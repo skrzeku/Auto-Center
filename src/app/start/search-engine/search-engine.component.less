@@ -1,0 +1,111 @@
+@import "../../../assets/styles/global";
+
+
+
+
+          .active {
+            background-color: white;
+          }
+            .navi-list {
+              .list-style-none;
+              .d-inline;
+              margin: 0 -1px 0;
+              width: 25%;
+              line-height: 60px;
+              .center-text;
+              background-color: lightgray;
+              border-left: lighten(black, 60%) solid 1px;
+              border-right: lighten(black, 60%) solid 1px;
+              .d-none;
+              @media @small {
+                .d-inline;
+                width: 12.5%;
+              }
+              @media @medium {
+                width: 25%;
+              }
+              i {
+                display: block;
+                margin-top: 10px;
+                margin-bottom: -10px;
+              }
+              a {
+                margin-bottom: -10px;
+              }
+            }
+            .shown-small {
+              .d-inline;
+              width: 100%;
+              @media @small {
+                width: 12.5%;
+              }
+              @media @medium {
+                width: 25%;
+              }
+            }
+            .hidden-lg {
+              .d-none;
+              width: 12.5%;
+              @media @small {
+                .d-inline;
+              }
+              @media @medium {
+                .d-none;
+              }
+            }
+            .dropdown {
+              @media @small {
+                .d-none;
+              }
+              @media @medium {
+                .d-inline;
+              }
+            }
+
+.p-0 {
+  padding: 0;
+  margin: 0;
+}
+.navigation-ul {
+  position: relative;
+  width: 100%;
+  background-color: black;
+  padding: 0;
+  li {
+    &:hover {
+      color: @bg-blue;
+    }
+    ul {
+      .d-none;
+      position: absolute;
+      color: black;
+      background-color: gray;
+      .list-style-none;
+    }
+    &:hover ul{
+      display: block;
+    }
+  }
+}
+
+
+
+              //Forms
+
+      .input-radios {
+        input {
+          margin: 30px 10px 30px;
+        }
+      }
+
+
+      //bottom
+.bottom-form {
+  padding: 20px 20px 20px;
+  p, button {
+    .grid-colums(12);
+    @media @small {
+      .grid-colums(6);
+    }
+  }
+}

@@ -10,6 +10,15 @@
       .float-right {
             float: right;
       }
+      .float-left {
+        float: left;
+      }
+      .w(@width) {
+        width: @width;
+      }
+      .center-text {
+        text-align: center;
+      }
 
       .margins-auto {
         margin-left: auto;
@@ -28,8 +37,11 @@
       .d-flex {
         display: flex;
       }
-      d-block {
+      .d-block {
         display: block;
+      }
+      .d-none {
+        display: none;
       }
       .upper {
         text-transform: uppercase;
@@ -41,6 +53,7 @@
         top: 0;
         left: 0;
         width: 100%;
+        padding: 0;
       }
       .clear {
         clear: both;
@@ -55,3 +68,5 @@
       .basic-transition {
         transition: all 0.2s ease-in-out;
       }
+
+

@@ -1,11 +1,19 @@
 @import "variables";
 @import "mixins";
+@import "../../../node_modules/@fortawesome/fontawesome-free/less/fontawesome";
       //media queries
 @x-small: ~'only screen and (max-width: 767px)';
 @small: ~'only screen and (min-width: 768px)';
 @medium: ~'only screen and (min-width: 992px)';
 @large: ~'only screen and (min-width: 1400px)';
 
+
+
+            //Body
+body {
+  margin: 0;
+  font-size: @main-font-size;
+}
           .white-bg {
             background-color: white;
           }
@@ -15,3 +23,109 @@
             grid-template-columns: repeat(12, 1fr);
             grid-gap: 20px;
           }
+a {
+  cursor: pointer;
+  .basic-transition;
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.img-responsive {
+  width: 100%;
+  height: auto;
+}
+.visible-xs {
+  display: block;
+  @media @small {
+    display: inline-block;
+  }
+}
+.visible-sm {
+  display: none;
+  @media @small {
+    display: inline-block;
+  }
+}
+.visible-md {
+  display: none;
+  @media @medium {
+    display: inline-block;
+  }
+}
+
+                      //universal line
+                          .lines (@color: @big-light-line , @w-x: 60px){
+                              background-color: @color;
+                              height: 1px;
+                              width: calc(100% + @w-x);
+                              margin: 10px calc(-@w-x/2) 10px;
+                              padding: 0;
+                            box-shadow: 0 0 0.5px @color ;
+                            }
+
+.car-price (@position, @right, @bottom, @padding, @mt){
+  font-size: 110%;
+  color: red;
+  margin-top: 0;
+  background-color: white;
+  font-weight: 800;
+  sup {
+    font-size: 60%;
+  }
+  @media @small {
+    position: @position;
+    right: @right;
+    padding: @padding;
+    bottom: @bottom;
+    margin-top: @mt;
+    z-index: 9 !important;
+  }
+
+}
+.small-car-box {
+  background-color: @main-bg;
+}
+
+
+.one-car (@img-width, @h4-font-size: @mobile-md-sm-cars, @h4-medium-font){
+  background-color: white;
+  border-bottom: 1px lighten(black, 80%) solid;
+  .padding-top-bottom(5px, 5px);
+          //car-img
+  img {
+    .w(@img-width);    //35 % for small-car
+    position: relative;
+    z-index: 1;
+    @media @small {
+      .w(100%);
+    }
+  }
+  .car-detail {
+    position: relative;
+    .d-inline;
+    padding: 5px;
+    @media @small {
+      .d-block;
+    }
+          h4 {
+            font-size: @h4-font-size;
+            margin: 0 0 10px;
+            @media @small {
+              font-size: @h4-medium-font;
+            }
+          }
+    .car-year {
+      .d-block;
+      font-size: 70%;
+      margin-top: 10px;
+      text-align: right;
+    }
+  }
+
+  @media @small {
+    .padding-top-bottom(0,0);
+    border: none;
+  }
+}
+
