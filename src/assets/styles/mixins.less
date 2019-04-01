@@ -13,12 +13,37 @@
       .float-left {
         float: left;
       }
+      .position (@position, @top: null, @right: null, @bottom: null, @left: null){
+        position: @position;
+        top: @top;
+        right: @right;
+        bottom: @bottom;
+        left: @left;
+      }
+
       .w(@width) {
         width: @width;
       }
       .center-text {
         text-align: center;
       }
+      .text-left {
+        text-align: left;
+      }
+
+
+
+      .c-pointer {
+        cursor: pointer;
+      }
+
+      //Text wraper
+      .text-wrap {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
 
       .margins-auto {
         margin-left: auto;
@@ -67,6 +92,28 @@
 
       .basic-transition {
         transition: all 0.2s ease-in-out;
+      }
+
+      //icons
+      .icon-span-round(@dimension) {
+        display: inline-block;
+        border-radius: 50%;
+        text-align: center;
+        width: @dimension;
+        height: @dimension;
+      }
+
+
+      //box shadow for tests
+      .drop-shadow (@x: 0, @y: 1px, @blur: 6px, @spread: 0, @alpha: 0.25) {
+        -webkit-box-shadow:	@x @y @blur @spread rgba(0, 0, 0, @alpha);
+        -moz-box-shadow:	@x @y @blur @spread rgba(0, 0, 0, @alpha);
+        box-shadow:		@x @y @blur @spread rgba(0, 0, 0, @alpha);
+      }
+      .box-sizing (@type: border-box) {
+        -webkit-box-sizing: @type;
+        -moz-box-sizing:    @type;
+        box-sizing:         @type;
       }
 
 

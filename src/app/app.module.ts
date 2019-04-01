@@ -8,13 +8,17 @@ import {LoginModule} from './login/login.module';
 import {DetailsModule} from './details/details.module';
 import {StartModule} from './start/start.module';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule, MatTooltipModule} from '@angular/material';
+import 'hammerjs';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule, SharedModule, CoreModule, LoginModule, DetailsModule, StartModule, AngularFontAwesomeModule
+    BrowserModule, SharedModule, CoreModule, LoginModule, DetailsModule,
+    StartModule, AngularFontAwesomeModule, BrowserAnimationsModule, MatTooltipModule, MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,198 @@
+@import "../../../assets/styles/global";
+
+.medium-container {
+  padding-bottom: 140px;
+}
+
+
+      //Blue Container
+.blue-container {
+  .w(100%);
+  background-color: @brands-color;
+  .center-text;
+  color: white;
+  font-size: 20px;
+  .padding-top-bottom(30px, 30px);
+
+}
+
+              //Blue content
+        .span-blue {
+          .d-inline;
+          padding: 0 5px 15px;
+          @media @small {
+            margin-right: 10px;
+          }
+
+        }
+        .btn-blue {
+          .d-inline;
+          border: solid 2px @hover-text-color;
+          opacity: 1;
+          color: @hover-text-color;
+          padding: 13px 50px;
+          @media @small {
+            margin-left: 10px;
+          }
+
+          &:hover {
+            background-color: @hover-text-color;
+            opacity: 1;
+            color: white;
+            transition: 0.5s ease-in-out;
+
+          }
+        }
+
+                  //Next Section
+          .find-us {
+            padding: 20px 10px;
+            .center-text;
+            .white-bg;
+            vertical-align: top;
+            @media @small {
+              background-color: transparent;
+              .d-inline;
+              .w(calc(25% - 20px));
+            }
+
+                  h5 {
+                    margin: 0 0 10px 0;
+                  }
+                  a {
+                    .d-inline;
+                    padding: 10px 15px;
+                    font-size: 13px;
+                    font-weight: 200;
+                    color: rgba(black, 0.6);
+                    &:hover {
+                      color: black;
+                    }
+                          i {
+                            font-size: 18px;
+                            margin-right: 5px;
+                            color: @hover-text-color;
+                          }
+
+                  }
+          }
+
+          //Center info the big one
+.center-info {
+  padding: 20px 60px;
+  @media @small {
+    .d-inline;
+    .w(calc(75% - 120px));
+  }
+}
+.auto-center, .services, .Useful-info {
+  ul {
+    .list-style-none;
+    font-size: 15px;
+    li {
+      padding: 5px;
+      font-weight: 200;
+      a {
+        color: rgba(black, 0.6);
+        &:hover{
+          color: black;
+          .basic-transition;
+        }
+      }
+    }
+  }
+}
+  .auto-center {
+    vertical-align: top;
+    @media @small {
+      .w(calc(33.33%));
+      .d-inline;
+    }
+        //First lvl
+    ul {
+      li {
+        &:last-child {
+                .drop {
+                      &:hover + .hide {
+                        display: block;
+                        .basic-transition;
+                      }
+                }
+
+               //Second lvl
+                ul {
+                  .d-none;
+                  color: black;
+                  background-color: gray;
+                  .list-style-none;
+                  li {
+                    .d-inline;
+                  }
+                }
+        }
+      }
+    }
+
+  }
+  .services {
+    vertical-align: top;
+    @media @small {
+      .w(calc(33.33%));
+      .d-inline;
+    }
+  }
+  .Useful-info {
+    @media @small {
+      .w(calc(33.33%));
+      .d-inline;
+    }
+  }
+
+
+              //line btwn booth sections
+      .footer-line {
+        .lines(@light-black, 40px, 0.5px);
+      }
+
+
+            //Last part of the footer
+  .mobile-apps {
+    text-align: center;
+        h5 {
+          margin: 20px 0;
+          .upper;
+        }
+    a {
+
+        span {
+         .icon-span-round(50px);
+          border: solid 1px @light-black;
+          position: relative;
+          margin: 0 5px;
+              i {
+                line-height: 50px;
+                font-size: 30px;
+                position: absolute;
+                left: 50%;
+                opacity: 0.4;
+                transform: translateX(-50%);
+
+              }
+              .fa-google-play {
+                left: 60%;
+              }
+        }
+      &:hover span > i{
+        opacity: 1;
+      }
+        }
+  }
+
+          //Angular Materials
+::ng-deep .mat-tooltip {
+  font-weight: bold;
+  font-size: 13px;
+  color: rgba(black, 0.5) !important;
+  border: none;
+  background-color: transparent;
+}

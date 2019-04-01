@@ -1,11 +1,13 @@
 @import "variables";
 @import "mixins";
 @import "../../../node_modules/@fortawesome/fontawesome-free/less/fontawesome";
+@import '../../../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css';
       //media queries
 @x-small: ~'only screen and (max-width: 767px)';
 @small: ~'only screen and (min-width: 768px)';
 @medium: ~'only screen and (min-width: 992px)';
 @large: ~'only screen and (min-width: 1400px)';
+@just-small: ~'only screen and (min-width: 768px) and (max-width: 991px)';
 
 
 
@@ -13,6 +15,10 @@
 body {
   margin: 0;
   font-size: @main-font-size;
+}
+h1, h2, h3, h4, h5 ,h6 {
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
           .white-bg {
             background-color: white;
@@ -23,12 +29,17 @@ body {
             grid-template-columns: repeat(12, 1fr);
             grid-gap: 20px;
           }
-a {
-  cursor: pointer;
-  .basic-transition;
-  &:hover {
-    opacity: 0.6;
-  }
+
+                        //Medium container
+
+                    .medium-container {
+                      max-width: 1180px;
+                      margin-left: auto;
+                      margin-right: auto;
+                      position: relative;
+                    }
+a, button{
+  .c-pointer;
 }
 
 .img-responsive {
@@ -55,9 +66,9 @@ a {
 }
 
                       //universal line
-                          .lines (@color: @big-light-line , @w-x: 60px){
+                          .lines (@color: @big-light-line , @w-x: 60px, @height: 1px){
                               background-color: @color;
-                              height: 1px;
+                              height: @height;
                               width: calc(100% + @w-x);
                               margin: 10px calc(-@w-x/2) 10px;
                               padding: 0;
@@ -87,7 +98,6 @@ a {
   background-color: @main-bg;
 }
 
-
 .one-car (@img-width, @h4-font-size: @mobile-md-sm-cars, @h4-medium-font){
   background-color: white;
   border-bottom: 1px lighten(black, 80%) solid;
@@ -97,6 +107,11 @@ a {
     .w(@img-width);    //35 % for small-car
     position: relative;
     z-index: 1;
+    .c-pointer;
+    &:hover {
+      opacity: 0.9;
+    }
+
     @media @small {
       .w(100%);
     }
@@ -111,13 +126,17 @@ a {
           h4 {
             font-size: @h4-font-size;
             margin: 0 0 10px;
+            .c-pointer;
+            &:hover {
+              color: @hover-text-color;
+            }
             @media @small {
               font-size: @h4-medium-font;
             }
           }
     .car-year {
       .d-block;
-      font-size: 70%;
+      font-size: 13px;
       margin-top: 10px;
       text-align: right;
     }
@@ -127,5 +146,16 @@ a {
     .padding-top-bottom(0,0);
     border: none;
   }
+}
+
+
+.w-sm-50 {
+  @media @small {
+    .w(50%);
+  }
+}
+
+.w-100 {
+  .w(100%);
 }
 
