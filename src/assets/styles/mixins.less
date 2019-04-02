@@ -1,4 +1,4 @@
-
+            //My mixins
 
 
       // Grids rows, columns
@@ -104,7 +104,7 @@
       }
 
 
-      //box shadow for tests
+      //box shadow and box sizing
       .drop-shadow (@x: 0, @y: 1px, @blur: 6px, @spread: 0, @alpha: 0.25) {
         -webkit-box-shadow:	@x @y @blur @spread rgba(0, 0, 0, @alpha);
         -moz-box-shadow:	@x @y @blur @spread rgba(0, 0, 0, @alpha);
@@ -114,6 +114,16 @@
         -webkit-box-sizing: @type;
         -moz-box-sizing:    @type;
         box-sizing:         @type;
+      }
+
+      .w-sm-50 {
+        @media @small {
+          .w(50%);
+        }
+      }
+
+      .w-100 {
+        .w(100%);
       }
 
 

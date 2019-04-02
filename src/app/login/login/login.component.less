@@ -1,0 +1,112 @@
+@import "../../../assets/styles/global";
+
+              //Left side
+              .left-form {
+                padding: 10px 10px 10px 5px;
+                .w(calc(100% - 20px));
+                margin: 0;
+                background-color: whitesmoke;
+                height: 100px;
+                .position(relative, @top: 100px);
+                @media @small {
+                  .d-inline;
+                  padding: 30px 30px 30px 10px;
+                  height: auto;
+                  top: 0;
+                  .w(calc(50% - 40px));
+                }
+                form {
+                  @media @small {
+                    border-right: solid 1px @light-black;
+                  }
+                }
+              }
+
+
+            //Right side
+        .right-add {
+          background-color: whitesmoke;
+          .w(100%);
+         .position(relative, @top: -120px);
+          height: 100px;
+          @media @small {
+            .d-inline;
+            top: 0;
+            .w(calc(50% - 30px));
+            height: auto;
+            padding: 30px 0 30px 30px;
+          }
+        }
+        .right-top-text {
+          .padding-top-bottom(0, 10px);
+          a {
+            &:hover {
+              color: @hover-text-color;
+            }
+          }
+        }
+        .right-top-container {
+          padding: 10px;
+          background-color: whitesmoke;
+                @media @small {
+                  border: 1px solid @light-black;
+                }
+            p {
+              font-size: 17px;
+              margin-left: 15px;
+            }
+        }
+        .right-top-img {
+          height: 50px;
+          width: 100%;
+          background-image: url("../../../assets/images/parts-page-hijack-bkgrnd-image1.jpg");
+          background-position: 50% 50%;
+          background-repeat: no-repeat;
+          -webkit-background-size: cover;
+          background-size: cover;
+        }
+        .right-top-header {
+
+          .d-inline;
+          font-size: 14px;
+          font-weight: 200;
+          opacity: 0.6;
+          .c-pointer;
+          &:hover {
+            color: @hover-text-color;
+          }
+          @media @small {
+            font-size: 20px;
+            margin: 15px 0 15px 15px;
+            cursor: default;
+            opacity: 1;
+            &:hover {
+              color: inherit;
+            }
+
+          }
+        }
+        .fa-info-circle {
+          .d-inline;
+          font-size: 14px;
+          margin-left: 5px;
+        }
+
+        .right-bottom-container {
+          background-color: lightskyblue;
+          padding: 30px 20px;
+          margin-top: 30px;
+          opacity: 1;
+          .c-pointer;
+          .position(relative);
+          .w(calc(100% - 40px));
+          &:hover {
+            opacity: 0.8;
+          }
+          .fa-chevron-right {
+            .position(absolute, @top: 50%, @right: 20px);
+            transform: translateY(-50%);
+            font-size: 30px;
+          }
+
+        }

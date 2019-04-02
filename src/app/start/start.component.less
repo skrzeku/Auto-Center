@@ -1,16 +1,11 @@
 @import "../../assets/styles/global";
 
 
-              //separator height equal to navigation height
-            .separator {
-              height: 50px;
-              padding: 0;
-              margin: 0;
-            }
+
 
             //First Section
           .first-section {
-            width: 100%;
+            .w-100;
             position: relative;
           }
 
@@ -19,10 +14,8 @@
 .backgrond-second-ground {
   @media @medium {
     .w(100%);
-    position: absolute;
-    top: 50px;
+    .position(absolute, @top: 50px, @left: 0);
     height: 540px;
-    left: 0;
     background: url("../../assets/images/first-bg.jpg");
   }
 
@@ -287,7 +280,6 @@
   text-align: center;
   .padding-top-bottom(10px, 0);
   @media @just-small {
-    text-align: left;
     .padding-top-bottom(20px, 40px);
   }
 
@@ -298,11 +290,7 @@
     border: solid 1px lightgray;
     background-color: white;
     border-radius: 2px;
-    @media @just-small {
-      position: relative;
-      left: calc(75%/2);
-      transform: translateX(-50%);
-    }
+
     &:hover {
       .drop-shadow(@blur: 6px);
       color: @hover-text-color;

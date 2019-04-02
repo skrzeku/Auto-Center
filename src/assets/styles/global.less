@@ -20,6 +20,13 @@ h1, h2, h3, h4, h5 ,h6 {
   margin-bottom: 10px;
   margin-top: 10px;
 }
+
+          //separator height equal to navigation height
+          .separator {
+            height: 50px;
+            padding: 0;
+            margin: 0;
+          }
           .white-bg {
             background-color: white;
           }
@@ -34,8 +41,7 @@ h1, h2, h3, h4, h5 ,h6 {
 
                     .medium-container {
                       max-width: 1180px;
-                      margin-left: auto;
-                      margin-right: auto;
+                     margin: 0 auto 0 auto;
                       position: relative;
                     }
 a, button{
@@ -46,24 +52,26 @@ a, button{
   width: 100%;
   height: auto;
 }
-.visible-xs {
-  display: block;
-  @media @small {
-    display: inline-block;
-  }
-}
-.visible-sm {
-  display: none;
-  @media @small {
-    display: inline-block;
-  }
-}
-.visible-md {
-  display: none;
-  @media @medium {
-    display: inline-block;
-  }
-}
+                      //Visibles on media devices
+                      .visible-xs {
+                        display: block;
+                        @media @small {
+                          display: inline-block;
+                        }
+                      }
+
+                      .visible-sm {
+                        display: none;
+                        @media @small {
+                          display: inline-block;
+                        }
+                      }
+                      .visible-md {
+                        display: none;
+                        @media @medium {
+                          display: inline-block;
+                        }
+                      }
 
                       //universal line
                           .lines (@color: @big-light-line , @w-x: 60px, @height: 1px){
@@ -94,68 +102,62 @@ a, button{
   }
 
 }
+
 .small-car-box {
   background-color: @main-bg;
 }
+                      //One Car!
 
-.one-car (@img-width, @h4-font-size: @mobile-md-sm-cars, @h4-medium-font){
-  background-color: white;
-  border-bottom: 1px lighten(black, 80%) solid;
-  .padding-top-bottom(5px, 5px);
-          //car-img
-  img {
-    .w(@img-width);    //35 % for small-car
-    position: relative;
-    z-index: 1;
-    .c-pointer;
-    &:hover {
-      opacity: 0.9;
-    }
+                .one-car (@img-width, @h4-font-size: @mobile-md-sm-cars, @h4-medium-font){
+                  background-color: white;
+                  border-bottom: 1px lighten(black, 80%) solid;
+                  .padding-top-bottom(5px, 5px);
+                          //car-img
+                  img {
+                    .w(@img-width);    //35 % for small-car
+                    position: relative;
+                    z-index: 1;
+                    .c-pointer;
+                    &:hover {
+                      opacity: 0.9;
+                    }
 
-    @media @small {
-      .w(100%);
-    }
-  }
-  .car-detail {
-    position: relative;
-    .d-inline;
-    padding: 5px;
-    @media @small {
-      .d-block;
-    }
-          h4 {
-            font-size: @h4-font-size;
-            margin: 0 0 10px;
-            .c-pointer;
-            &:hover {
-              color: @hover-text-color;
-            }
-            @media @small {
-              font-size: @h4-medium-font;
-            }
-          }
-    .car-year {
-      .d-block;
-      font-size: 13px;
-      margin-top: 10px;
-      text-align: right;
-    }
-  }
+                    @media @small {
+                      .w(100%);
+                    }
+                  }
+                  .car-detail {
+                    .position(relative);
+                    .d-inline;
+                    padding: 5px;
+                    @media @small {
+                      .d-block;
+                    }
+                          h4 {
+                            font-size: @h4-font-size;
+                            margin: 0 0 10px;
+                            .c-pointer;
+                            &:hover {
+                              color: @hover-text-color;
+                            }
+                            @media @small {
+                              font-size: @h4-medium-font;
+                            }
+                          }
+                    .car-year {
+                      .d-block;
+                      font-size: 13px;
+                      margin-top: 10px;
+                      text-align: right;
+                    }
+                  }
 
-  @media @small {
-    .padding-top-bottom(0,0);
-    border: none;
-  }
-}
+                  @media @small {
+                    .padding-top-bottom(0,0);
+                    border: none;
+                  }
+                }
 
 
-.w-sm-50 {
-  @media @small {
-    .w(50%);
-  }
-}
 
-.w-100 {
-  .w(100%);
-}
 

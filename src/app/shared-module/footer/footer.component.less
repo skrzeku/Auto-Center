@@ -167,13 +167,12 @@
         span {
          .icon-span-round(50px);
           border: solid 1px @light-black;
-          position: relative;
+          .position(relative);
           margin: 0 5px;
               i {
                 line-height: 50px;
                 font-size: 30px;
-                position: absolute;
-                left: 50%;
+                .position(absolute, @left: 50%);
                 opacity: 0.4;
                 transform: translateX(-50%);
 
