@@ -1,0 +1,108 @@
+@import "../../../assets/styles/global";
+
+@right-register-color: lighten(lightblue, 15%);
+
+        //edit the medium-container
+      .medium-container {
+        .padding-top-bottom(10px, 40px);
+        @media @small {
+          padding-top: 40px;
+        }
+      }
+
+
+      //Left One
+      .left-register-form {
+        .w-100;
+        .d-inline;
+        @media @small {
+          .w(calc(50% - 10px));
+          margin-right: 10px;
+        }
+        @media @medium {
+          .w(calc(50% - 40px));
+          margin-right: 40px;
+        }
+      }
+              .register-btn {
+               .w-100;
+                color: white;
+                .padding-top-bottom(10px, 10px);
+                position: relative;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: @brands-color;
+                font-size: 16px;
+                @media @small {
+                  .w(65%);
+
+                }
+              }
+              form {
+                p, h5 {
+                  font-size: 14px;
+                  color: lighten(gray, 5%);
+                  font-weight: 200;
+                  a {
+                    font-weight: 800;
+                  }
+                }
+              }
+
+
+
+
+
+      //Right one
+.right-register {
+  vertical-align: top;
+  .center-text;
+      @media @small {
+        .d-inline;   //to show
+        margin-left: 10px;
+                //border 1px and padding 10px
+                  border: 1px @right-register-color solid;
+                  .w(calc(50% - 12px));
+      }
+  @media @medium {
+    margin-left: 40px;
+    .w(calc(50% - 42px));
+  }
+}
+          .right-header-content {
+            background-color: @right-register-color;
+            .padding-top-bottom(15px, 15px);
+
+          }
+          .right-bottom-content {
+
+          }
+          .right-bottom-ul {
+            .list-style-none;
+            margin: 0;
+            font-size: 17px;
+            li {
+              border-bottom: @right-register-color solid 1px;
+              .padding-top-bottom(15px, 15px);
+              cursor: default;
+
+              &:last-child {
+                border-bottom: none;
+                padding-right: 100px;
+                padding-left: 100px;
+                        //span of the last li
+                      span {
+                        color: @brands-color;
+                        .c-pointer !important;
+                      }
+              }
+              span {
+                .d-block;
+              }
+              p {
+                margin-top: 10px;
+              }
+            }
+
+          }
+

@@ -21,9 +21,7 @@
         left: @left;
       }
 
-      .w(@width) {
-        width: @width;
-      }
+
       .center-text {
         text-align: center;
       }
@@ -125,5 +123,11 @@
       .w-100 {
         .w(100%);
       }
+            .w(@width) {
+              width: @width;
+            }
+            .w-calc(@width, @calc-value) {
+              width: calc(@width - @calc-value);
+            }
 
 

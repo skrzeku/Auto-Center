@@ -67,24 +67,26 @@
         }
         .right-top-header {
 
-          .d-inline;
-          font-size: 14px;
-          font-weight: 200;
-          opacity: 0.6;
-          .c-pointer;
-          &:hover {
-            color: @hover-text-color;
-          }
-          @media @small {
-            font-size: 20px;
-            margin: 15px 0 15px 15px;
-            cursor: default;
-            opacity: 1;
-            &:hover {
-              color: inherit;
-            }
+                .d-inline;
+                font-size: 14px;
+                font-weight: 200;
+                opacity: 0.6;
+                .c-pointer;
+                &:hover {
+                  color: @hover-text-color;
+                }
+                @media @small {
+                  font-size: 20px;
+                  margin: 15px 0 15px 15px;
+                  cursor: default;
+                  opacity: 1;
+                  font-weight: bold;
+                  color: lighten(red, 20%);
+                  &:hover {
+                    color: inherit;
+                  }
 
-          }
+                }
         }
         .fa-info-circle {
           .d-inline;
@@ -110,3 +112,61 @@
           }
 
         }
+
+        //Bottom
+.bottom-social-container {
+  padding: 20px 0 30px;
+  margin: 0;
+  .w(100%);
+  background-color: lightgray;
+}
+
+
+@bg-color-li: true;
+.social-buttons {
+  .list-style-none;
+  .face-li {
+   background-color: @facebook-color;
+      &:hover {
+        background-color: darken(@facebook-color, 10%);
+      }
+  }
+  .google-li {
+    background-color: @google-color;
+      &:hover {
+        background-color: darken(@google-color, 10%);
+      }
+  }
+ li {
+  .d-inline;
+   .w(100%);
+   font-size: 15px;
+   .c-pointer;
+   //background-color: if(@bg-color-li, @facebook-color, @google-color);
+   border: 1px solid gray;
+   color: white;
+   font-weight: 800;
+   .padding-top-bottom(0, 0);
+   margin: 10px 15px 0 0;
+   @media @small {
+     .w(auto);
+   }
+   i {
+margin-left: 10px;
+     padding-right: 10px;
+     border-right: 1px solid gray;
+     line-height: 36px;
+   }
+   a {
+     margin: 0 15px;
+
+   }
+ }
+}
+
+
+.social-par {
+  padding: 10px;
+  font-size: 15px;
+  opacity: 0.7;
+}
