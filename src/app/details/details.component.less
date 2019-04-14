@@ -1,5 +1,8 @@
 @import "../../assets/styles/global";
 
+.main-bg {
+  background-color: darkgray;
+}
 
 .big-container {
   position: relative;
@@ -8,15 +11,39 @@
 .main-detail-section {
   background-color: lighten(lightgray, 10%);
 }
+      //navi
+          .navi {
+            margin: 0;
+            padding: 0;
+            @media @small {
+              position: relative;
+              bottom: 40px;
+            }
+          }
 
 
               //filter
         .filter-container {
+          .medium-container;
+          padding-top: 0;
+          @media @small {
+          }
 
         }
             //list
         .filter-list {
           .list-style-none;
+          margin: 0;
+          font-size: 16px;
+          line-height: 40px;
+          color: @brands-color;
+          @media @small {
+            position: relative;
+            top: 133px;
+          }
+          @media @medium {
+            top: 110px;
+          }
         li {
           .d-inline;
           i {
@@ -25,4 +52,82 @@
             font-weight: 200;
           }
         }
+          .s {
+            .d-none;
+            @media @small {
+              .d-inline;
+            }
+          }
         }
+
+
+        .main-detail-section {
+          .w(100%);
+        }
+.another-container {
+}
+
+        //main-content-img
+        .main-detail-img {
+          .d-inline;
+          .clear;
+          @media @small {
+            .w(50%);
+          }
+              img {
+                .w(100%);
+              }
+              .show-all-images {
+                font-size: 14px;
+                float: right;
+                color: @brands-color;
+                .c-pointer;
+                line-height: 30px;
+                padding-right: 15px;
+              }
+        }
+
+
+          //dealer-info
+              .dealer-info-container {
+                .w-calc(100%, 22px);
+                margin: 0 10px 10px;
+                border: 1px solid darken(darkgray, 10%);
+                .drop-shadow();
+              }
+              .dealer-info-top {
+                padding: 15px;
+                .clear;
+                h5 {
+                  .d-inline;
+                }
+                span {
+                  float: right;
+                }
+                img {
+                }
+              }
+              .dealer-info-mid {
+                padding: 15px;
+              }
+
+              .dealer-where {
+                border-bottom: solid 1px grey;
+                line-height: 40px;
+                i {
+                  margin-right: 10px;
+                }
+              }
+              .dealer-numbers {
+                ul {
+                  .list-style-none;
+                  li {
+                    span {
+                      margin-left: 10px;
+                      padding: 10px 15px;
+                      background-color: @brands-color;
+                      color: white;
+                    }
+                  }
+                }
+              }
