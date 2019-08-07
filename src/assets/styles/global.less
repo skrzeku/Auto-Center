@@ -73,6 +73,11 @@ a, button{
                           display: inline-block;
                         }
                       }
+                      .hidden-sm {
+                        @media @small {
+                          display: none;
+                        }
+                      }
 
                       //universal line
                           .lines (@color: @big-light-line , @w-x: 60px, @height: 1px){

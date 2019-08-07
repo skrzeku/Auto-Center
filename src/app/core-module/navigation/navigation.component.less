@@ -15,23 +15,37 @@
         .list-style-none;
         .position(relative, @top: 50%);
         transform: translateY(-50%);
-        background-color: blue;
         margin: 0 5px;
+        .c-pointer;
       }
       .my-account {
-        background-color: transparent;
+        //.bg-trans;
       }
       i {
         margin-right: 5px;
       }
 
+
+.fa-bars {
+  &:hover {
+    color: @hover-text-color;
+  }
+@media @small {
+  .d-none;
+}
+
+}
 .right-list {
   .float-right;
   padding: 10px;
 }
 .left-list {
-  .d-inline;
-  background-color: blue;
+.float-left;
+  padding: 10px;
   border-radius: 3px;
+}
+.add {
+  background-color: blue;
+  color: white;
 }
 

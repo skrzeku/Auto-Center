@@ -21,6 +21,52 @@
             }
           }
 
+          //hidden small navi
+        .bottom-xs-navi {
+          .position(fixed, @bottom: 0);
+          .w(100%);
+          .bg-trans;
+          z-index: 50 !important;
+
+
+          ul {
+                  .list-style-none;
+                  padding: 6px;
+            margin: 0;
+
+                      li {
+                        .d-inline;
+                        .center-text;
+                        .w-calc(@width: 50%, @calc-value: 3px);
+                        .padding-top-bottom(10px, 10px);
+                        border-radius: 3px;
+                        color: white;
+                        .c-pointer;
+                        i {
+                          margin-right: 5px;
+                        }
+                        &:first-child {
+                          background-color: red;
+                          margin-right: 3px;
+                        }
+                        &:nth-child(2) {
+                          background-color: @brands-color;
+                          margin-left: 3px;
+                        }
+
+                        &:hover {
+                          .basic-transition;
+                          &:first-child {
+                            background-color: darken(red, 20%);
+                          }
+                          &:nth-child(2) {
+                            background-color: lighten(@brands-color, 20%);
+                          }
+                        }
+                      }
+                }
+        }
+
 
               //filter
         .filter-container {
@@ -37,12 +83,13 @@
           font-size: 16px;
           line-height: 40px;
           color: @brands-color;
+          .visible-sm;
           @media @small {
             position: relative;
-            top: 133px;
+            top: 133px;            //40px + 40px + 23px + 3x10px    //app-detail-navi
           }
           @media @medium {
-            top: 110px;
+            top: 110px;         //40px + 40px + 3x10px   app-detail-navi
           }
         li {
           .d-inline;
@@ -71,8 +118,10 @@
         .main-detail-img {
           .d-inline;
           .clear;
-          @media @small {
-            .w(50%);
+          .position(relative);
+          //transform: translateY(calc(-100% + 50px));
+          @media @medium {
+            .w(70%);
           }
               img {
                 .w(100%);
@@ -91,9 +140,19 @@
           //dealer-info
               .dealer-info-container {
                 .w-calc(100%, 22px);
+                vertical-align: top;
                 margin: 0 10px 10px;
                 border: 1px solid darken(darkgray, 10%);
                 .drop-shadow();
+
+                                //medias
+                            @media @small {
+                              .w-calc(50%, 22px);
+                              .d-inline;
+                            }
+                              @media @medium {
+                                .w-calc(30%, 22px);
+                              }
               }
               .dealer-info-top {
                 padding: 15px;
@@ -131,3 +190,16 @@
                   }
                 }
               }
+
+
+              //details info
+.date-id-details {
+  .w(100%);
+ .d-inline;
+  @media @small {
+    .w(30%);
+  }
+  li {
+    .list-style-none;
+  }
+}
