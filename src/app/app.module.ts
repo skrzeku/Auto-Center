@@ -11,14 +11,16 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatTooltipModule} from '@angular/material';
 import 'hammerjs';
+import {RouterModule} from '@angular/router';
+import {AppRoutingModule} from './app-routing.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule, SharedModule, CoreModule, LoginModule, DetailsModule,
-    StartModule, AngularFontAwesomeModule, BrowserAnimationsModule, MatTooltipModule, MatButtonModule
+    StartModule, AngularFontAwesomeModule, BrowserAnimationsModule, MatTooltipModule, MatButtonModule, RouterModule, AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

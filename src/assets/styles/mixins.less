@@ -134,3 +134,25 @@
             }
 
 
+                //animation
+
+            .keyframes (@name, @what-to-do) {
+
+              @-webkit-keyframes @name {
+                @what-to-do();
+              }
+              @-ms-keyframes @name {
+                @what-to-do();
+              }
+              @keyframes @name {
+                @what-to-do();
+              }
+              @-moz-keyframes @name {
+                @what-to-do();
+              }
+              @-o-keyframes @name {
+                @what-to-do();
+              }
+            }
+
+

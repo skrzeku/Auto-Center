@@ -66,6 +66,19 @@
   padding: 0;
   margin: 0;
 }
+
+
+                  /// Just for TEST!!!!!!
+              .keyframes(test, {
+              0% {
+                opacity: 0;
+              }
+              90% {
+                opacity: 1;
+              }
+              });
+
+
 .navigation-ul {
   position: relative;
   width: 100%;
@@ -76,14 +89,15 @@
       color: @bg-blue;
     }
     ul {
-      .d-none;
+      opacity: 0;
       position: absolute;
       color: black;
       background-color: gray;
       .list-style-none;
     }
     &:hover ul{
-      display: block;
+      //animation: test 2s ease-out;
+      -webkit-animation: test 3s linear;
     }
   }
 }

@@ -7,12 +7,13 @@ import { AdvertisingComponent } from './advertising/advertising.component';
 import { RestComponent } from './rest/rest.component';
 import { StartComponent } from './start.component';
 import {SharedModule} from '../shared-module/shared-module.module';
+import { LeftNaviComponent } from './left-navi/left-navi.component';
 
 @NgModule({
   imports: [
     CommonModule, SharedModule
   ],
   exports: [StartComponent],
-  declarations: [SearchEngineComponent, MainCarComponent, CarsListComponent, AdvertisingComponent, RestComponent, StartComponent]
+  declarations: [SearchEngineComponent, MainCarComponent, CarsListComponent, AdvertisingComponent, RestComponent, StartComponent, LeftNaviComponent]
 })
 export class StartModule { }

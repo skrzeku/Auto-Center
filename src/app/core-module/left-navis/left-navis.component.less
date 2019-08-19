@@ -1,0 +1,80 @@
+@import "../../../assets/styles/global";
+
+
+.left-navi-container {
+  background-color: white;
+ .position(relative, @top: -50px);
+  padding: 5px;
+  text-align: center;
+}
+.add-button {
+  background-color: darken(red, 15%);
+  padding: 15px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px 0;
+
+}
+
+
+.left-navi-uls {
+  .list-style-none;
+  .w(100%);
+  text-align: left;
+  padding: 10px;
+  li {
+    .c-pointer;
+    &:first-letter {
+      text-transform: uppercase;
+    }
+    &:hover {
+      color: @hover-text-color;
+    }
+  }
+
+}
+.flex-cont {
+  text-align: center;
+  .w(100%);
+  line-height: 40px;
+
+  div {
+    .d-inline;
+    .w-calc(33.33%, 2px);
+    border-right: solid 1px lightgray;
+    .c-pointer;
+    &:last-of-type {
+      border-right: none;
+    }
+    &:hover {
+      color: @hover-text-color;
+    }
+  }
+  span {
+    .d-block;
+    font-size: 15px;
+
+  }
+  i {
+    font-size: 25px;
+  }
+}
+
+.active {
+  border-bottom: darkgray 3px solid;
+  border-radius: 10px;
+}
+
+.close {
+  .position(absolute, @top: 10px, @right: 10px);
+  font-size: 25px;
+  border: none;
+  .bg-trans;
+  .visible-sm;
+  &:hover {
+    color: @hover-text-color;
+  }
+}

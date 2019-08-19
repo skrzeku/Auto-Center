@@ -1,4 +1,5 @@
 @import "../../assets/styles/global";
+@import "../../assets/styles/variables";
 
 .main-bg {
   background-color: darkgray;
@@ -112,6 +113,9 @@
           .w(100%);
         }
 .another-container {
+  @media @medium {
+    .medium-container;
+  }
 }
 
         //main-content-img
@@ -119,20 +123,72 @@
           .d-inline;
           .clear;
           .position(relative);
+          .w-100;
+          height: @detail-big-img-height;
+          .padding-top-bottom(0, 30px);
+                          top: -229px; //just for the x-small devices    it's a height of detail-navi
+
+                          @media @small {
+                            top: 0;
+                          }
+
+                  .main-img {
+                    height: 100%;
+                    .c-pointer;
+                    background-image: url("../../assets/images/maxresdefault.jpg");
+                    background-position: 50% 50%;
+                    background-repeat: no-repeat;
+                    -webkit-background-size: cover;
+                    background-size: cover;
+                    //margin-bottom: 30px;
+                    .w(100%);
+                    @media @medium {
+                      .w(70%);
+                      .position(relative, @left: 50%);
+                      transform: translateX(-50%);
+                    }
+                  }
+                  .mychevron {
+                    .position(absolute, @top: 50%);
+                    font-size: 30px;
+                    transform: translateY(-50%);
+                    .c-pointer;
+
+                    &:hover {
+                      color: @hover-text-color;
+                    }
+
+                    &:first-of-type {
+                      left: 6px;
+                      @media @medium {
+                        left: 7.5%;
+                      }
+                    }
+                    &:nth-of-type(2) {
+                      right: 6px;
+                      @media @medium {
+                        right: 7.5%;
+                      }
+                    }
+                  }
+
           //transform: translateY(calc(-100% + 50px));
           @media @medium {
             .w(70%);
           }
-              img {
-                .w(100%);
-              }
+
               .show-all-images {
                 font-size: 14px;
                 float: right;
                 color: @brands-color;
                 .c-pointer;
                 line-height: 30px;
-                padding-right: 15px;
+                position: absolute;
+                bottom: 0;      //couse of 30px big imgs margin
+                right: 15px;
+                &:hover {
+                  color: @hover-text-color;
+                }
               }
         }
 
@@ -147,7 +203,7 @@
 
                                 //medias
                             @media @small {
-                              .w-calc(50%, 22px);
+                              .w-calc(40%, 22px);
                               .d-inline;
                             }
                               @media @medium {
@@ -192,14 +248,47 @@
               }
 
 
-              //details info
-.date-id-details {
-  .w(100%);
- .d-inline;
-  @media @small {
-    .w(30%);
-  }
-  li {
-    .list-style-none;
-  }
-}
+                                    //details info
+                      .date-id-details {
+                        .w(100%);
+                       .d-inline;
+                        padding: 20px;
+                        ul {
+                          padding: 0;
+                          margin: 0;
+                          .d-block;
+                          vertical-align: top;
+                                @media @medium {
+                                  .d-inline;
+                                  .w(45%);
+                                }
+                          li {
+                            line-height: 30px;
+                          }
+                        }
+                                  .list-span {
+                                    opacity: .7;
+                                    .d-inline;
+                                    .w(40%);
+                                    &:first-letter {
+                                      text-transform: uppercase;
+                                    }
+                                  }
+                        .nav {
+                          color: @brands-color !important;
+                          .c-pointer;
+                          &:hover {
+                            color: @hover-text-color !important;
+                          }
+                        }
+
+                        @media @small {
+                          .w(40%);
+                        }
+                        @media @medium {
+                          .w(70%);
+                        }
+                        li {
+                          .list-style-none;
+                        }
+                      }

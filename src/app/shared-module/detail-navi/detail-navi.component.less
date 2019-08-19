@@ -3,15 +3,18 @@
 
 //the big one
 .detail-navi-container {
-  //padding-bottom: 20px;
   background-color: lightgray;
   margin: 0;
+  position: relative;
+                            top: @detail-big-img-height + 30px; // + 30px of padding for the span
+
+  @media @small {
+    top: 0;
+  }
 
    .medium-container {
      position: relative;
 
-     //top: 50%;
-     //transform: translateY(-50%);
    }
 }
 
@@ -33,6 +36,10 @@
     .center-text;
     .w(33.33%);
     font-size: 14px;
+    .c-pointer;
+      &:hover {
+        color: @hover-text-color;
+      }
     i {
       line-height: 40px;
       margin-right: 10px;
