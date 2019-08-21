@@ -1,22 +1,33 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
+import {MainLoginComponent} from './main-login.component';
+import {LoginComponent} from './login/login.component';
+import {RegisterComponent} from './register/register.component';
+import {DealerComponent} from './dealer/dealer.component';
 
 const Login: Routes = [
-  /*
+
   {path: '',
-    component: <any>ProjectRouterComponent,
-    children: [{
-      path: '',
-      component: <any>ProjectsComponent
-    },
+    component: <any>MainLoginComponent,
+    children: [
       {
-        path: ':id',
-        pathMatch: 'full',
-        component: <any>ProjectDetailsComponent
-      }],
+        path: '',
+        component: <any>LoginComponent,
+      },
+      {
+        path: 'register',
+        component: <any>RegisterComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'dealer',
+        component: <any>DealerComponent,
+        pathMatch: 'full'
+      }
+    ]
   },
-  */
+
 ];
 
 @NgModule({

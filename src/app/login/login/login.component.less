@@ -6,8 +6,10 @@
                 .w(calc(100% - 20px));
                 margin: 0;
                 background-color: whitesmoke;
-                height: 100px;
+                //height: 300px;
+                height: auto;
                 .position(relative, @top: 100px);
+                vertical-align: top;
                 @media @small {
                   .d-inline;
                   padding: 30px 30px 30px 10px;
@@ -22,12 +24,16 @@
                 }
               }
 
+                //Login-form-field -> global.less
+
+
+
 
             //Right side
         .right-add {
           background-color: whitesmoke;
           .w(100%);
-         .position(relative, @top: -120px);
+         .position(relative, @top: -350px);
           height: 100px;
           @media @small {
             .d-inline;
@@ -169,4 +175,82 @@ margin-left: 10px;
   padding: 10px;
   font-size: 15px;
   opacity: 0.7;
+}
+
+
+.slideThree {
+  width: 80px;
+  height: 26px;
+  background: white;
+  .d-inline;
+  margin: 10px 10px;
+  position: relative;
+  border-radius: 50px;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.5), 0 1px 0 rgba(255,255,255,0.2);
+  &:after {
+    content: 'nie';
+    color: red;
+    text-transform: uppercase;
+    position: absolute;
+    right: 10px;
+    z-index: 0;
+    font: 12px/26px Arial, sans-serif;
+    font-weight: bold;
+    text-shadow: 1px 1px 0px rgba(255,255,255,.15);
+  }
+  &:before {
+    content: 'tak';
+    color: green;
+
+    position: absolute;
+    text-transform: uppercase;
+    left: 10px;
+    z-index: 0;
+    font: 12px/26px Arial, sans-serif;
+    font-weight: bold;
+  }
+  label {
+    display: block;
+    width: 34px;
+    height: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    z-index: 1;
+    background: @brands-color;
+    background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+    border-radius: 50px;
+    transition: all 0.4s ease;
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.3);
+  }
+  input[type=checkbox] {
+    visibility: hidden;
+    &:checked + label {
+      left: 43px;
+    }
+  }
+
+}
+#remember-span {
+  font-size: 16px;
+  color: @brands-color;
+}
+
+.spans {
+  color: @brands-color;
+  padding: 30px;
+  font-size: 14px;
+  span {
+    .c-pointer;
+    &:hover {
+      border-bottom: @brands-color 1px solid;
+    }
+  }
+}
+#login-btn {
+  @media @small {
+    .w(90%);
+    margin: 0 auto;
+  }
 }

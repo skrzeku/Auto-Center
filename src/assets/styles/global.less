@@ -2,6 +2,7 @@
 @import "mixins";
 @import "../../../node_modules/@fortawesome/fontawesome-free/less/fontawesome";
 @import '../../../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css';
+
       //media queries
 @x-small: ~'only screen and (max-width: 767px)';
 @small: ~'only screen and (min-width: 768px)';
@@ -36,8 +37,12 @@ h1, h2, h3, h4, h5 ,h6 {
             grid-template-columns: repeat(12, 1fr);
             grid-gap: 20px;
           }
+.font-bold {
+  font-weight: bold;
+}
 
-                        //Medium container
+
+//Medium container
 
                     .medium-container {
                       max-width: 1180px;
@@ -112,6 +117,53 @@ a, button{
 .small-car-box {
   background-color: @main-bg;
 }
+                          //Login and register buttons
+              .register-btn {
+                .w-100;
+                color: white;
+                .padding-top-bottom(10px, 10px);
+                position: relative;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: @brands-color;
+                font-size: 16px;
+                transition: .8s ease all;
+                &:hover {
+                  -webkit-box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.75);
+                  -moz-box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.75);
+                  box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.75);
+                  background-color: lighten(@brands-color, 30%);
+                  transition: .8s ease all;
+
+                }
+                @media @small {
+                  .w(65%);
+
+                }
+              }
+
+                      //Login and register fields
+
+                    .login-form-field {
+                      padding: 10px;
+                      .w-calc(100%, 20px);
+                      font-size: 15px;
+                      span {
+                        .d-block;
+                        .font-bold;
+                      }
+                      input {
+                        margin: 5px 0;
+                        font-size: 15px;
+                        .w-calc(100%, 26px);
+                        padding: 6px 10px;
+                        //padding: 10px 20px;
+
+                        &:focus {
+                          background-color: lighten(lightskyblue, 19%);
+                        }
+                      }
+                    }
                       //One Car!
 
                 .one-car (@img-width, @h4-font-size: @mobile-md-sm-cars, @h4-medium-font){
@@ -163,7 +215,6 @@ a, button{
                     border: none;
                   }
                 }
-
 
 
 

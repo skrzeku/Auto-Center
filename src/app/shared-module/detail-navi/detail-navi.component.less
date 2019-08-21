@@ -6,8 +6,8 @@
   background-color: lightgray;
   margin: 0;
   position: relative;
+  .basic-transition;
                             top: @detail-big-img-height + 30px; // + 30px of padding for the span
-
   @media @small {
     top: 0;
   }
@@ -16,6 +16,13 @@
      position: relative;
 
    }
+}
+
+.fixed-navi {
+  .basic-transition;
+  .position(fixed, @top: 50px);
+  .w-100;
+  z-index: 99;
 }
 
 

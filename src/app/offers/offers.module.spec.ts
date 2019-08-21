@@ -1,4 +1,4 @@
-import { DetailsModule } from './details.module';
+import { DetailsModule } from './offers.module';
 import {describe, it, expect, beforeEach} from '@angular/core/testing/src/testing_internal';
 
 

@@ -10,7 +10,7 @@ const APP_ROUTES : Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'main'},
   {path: 'main', component: <any> StartComponent, pathMatch: 'full'},
   {path: 'login', loadChildren: '../app/login/login.module#LoginModule'},
-
+  {path: 'offers', loadChildren: '../app/offers/offers.module#OffersModule'}
 ];
 @NgModule({
   declarations: [],

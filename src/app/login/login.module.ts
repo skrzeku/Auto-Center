@@ -6,12 +6,14 @@ import {MainLoginComponent} from './main-login.component';
 import {SharedModule} from '../shared-module/shared-module.module';
 import {RouterModule} from '@angular/router';
 import {LoginRoutingModule} from './login-routing.module';
+import {BrowserModule} from '@angular/platform-browser';
+import { DealerComponent } from './dealer/dealer.component';
 
 @NgModule({
   imports: [
     CommonModule, SharedModule, RouterModule, LoginRoutingModule
   ],
-  exports: [MainLoginComponent, LoginComponent, RegisterComponent],
-  declarations: [LoginComponent, RegisterComponent, MainLoginComponent]
+  exports: [MainLoginComponent],
+  declarations: [LoginComponent, RegisterComponent, MainLoginComponent, DealerComponent]
 })
 export class LoginModule { }

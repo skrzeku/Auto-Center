@@ -1,0 +1,9 @@
+<div class="big-container">
+  <div class="one car" *ngFor="let car of cars$ | async">
+    <span>{{car.model}}</span>
+    <span>{{car.state}}</span>
+  </div>
+</div>
+
+
+<!-- I have to change it-->

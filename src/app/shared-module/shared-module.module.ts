@@ -6,10 +6,11 @@ import { BlueOneComponent } from './blue-one/blue-one.component';
 import { FooterComponent } from './footer/footer.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatTooltipModule} from '@angular/material';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   imports: [
-    CommonModule, BrowserAnimationsModule, MatTooltipModule
+    CommonModule, MatTooltipModule, RouterModule
   ],
   exports: [NaviLoginComponent, DetailNaviComponent, BlueOneComponent, FooterComponent],
   declarations: [DetailNaviComponent, NaviLoginComponent, BlueOneComponent, FooterComponent]
