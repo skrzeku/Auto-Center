@@ -1,28 +1,202 @@
 <div class="big-new-offer-container">
-  <mat-toolbar class="mytoolbar">Sprzedaje:
+  <mat-toolbar class="mytoolbar">
+    <div class="smaller-container">
+
+<label>Sprzedaję:</label>
+
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <input type="text"  placeholder="Kategoria" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
+            {{option}}
+          </mat-option>
+
+        </mat-autocomplete>
+
+      </mat-form-field>
+    </form>
+
+      <i class="fas fa-arrow-left"></i>
+      <span id="after-arrow">Wybierz Kategorie</span>
+      </div>
+
+  </mat-toolbar>   <!-- End Toolbar-->
 
 
 
+  <div class="rest-section">
+<div class="smaller-container">
+  <div class="left-one">
+  <h3>Twój pojazd</h3>
 
+    <form>
+      <div class="forms-inside">
+      <div class="change-width">
+        <span>Marka pojazdu:</span>
+      <mat-form-field class="example-full-width2">
+        <input type="text"   aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+      <div class="change-width">
+        <span>Model</span>
+        <mat-form-field class="example-full-width2">
+          <input type="text"   aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <div class="change-width">
+        <span>Wersja:</span>
+        <mat-form-field class="example-full-width2">
+          <input type="text"   aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <div class="change-width">
+        <span>Rok produkcji</span>
+        <mat-form-field class="example-full-width2">
+          <input type="text"   aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <div class="change-width">
+        <span>Rodzaj Paliwa:</span>
+        <mat-form-field class="example-full-width2">
+          <input type="text" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <div class="change-width">
+        <span>Color:</span>
+        <mat-form-field class="example-full-width2">
+          <input type="text"   aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" class="small-autocoplete">
+            <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      </div>
+      <div class="forms-inside">
+      <div class="change-width width-50">
+        <span>Skrzynia biegów:</span>
+        <mat-radio-group aria-label="Select an option">
+          <mat-radio-button class="radio-group" value="Manualna" color="primary">Manualna</mat-radio-button>
+          <mat-radio-button class="radio-group" value="Automatyczna" color="primary">Automatyczna</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="change-width width-50">
+        <span>Stan:</span>
+        <mat-radio-group aria-label="Select an option">
+          <mat-radio-button class="radio-group" value="Nowy" color="primary">Nowy</mat-radio-button>
+          <mat-radio-button class="radio-group" value="Używany" color="primary">Używany</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="change-width">
+      <span>Moc (KM):</span>
+      <mat-form-field class="example-full-width2">
+        <input type="number"  matInput name="value" placeholder=""
+        >
+      </mat-form-field>
+      </div>
+      <div class="change-width">
+        <span>Pojemność skokowa (cm<sup>3</sup>):</span>
+        <mat-form-field class="example-full-width2">
+          <input type="number"  matInput name="value" placeholder=""
+                 >
+        </mat-form-field>
+      </div>
+      <div class="change-width">
+        <span>Liczba drzwi:</span>
+        <mat-form-field class="example-full-width2">
+          <input type="number"  matInput name="value" placeholder="">
+        </mat-form-field>
+      </div>
+      </div>
+      <div class="forms-inside">
+      <div class="change-width" id="price">
+        <span>Cena:</span>
+        <mat-form-field class="example-full-width2">
+          <input type="number"  matInput name="value" placeholder="">
+        </mat-form-field>
+      </div>
+                          <!--Value "from" will be taken automatically -->
+      <div class="change-width " id="small-width">
+        <mat-form-field class="example-full-width2">
+          <mat-select name="currency" value="PLN">
+            <mat-option *ngFor="let currency of currency" [value]="currency">
+              {{currency}}
 
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
 
+      <div class="check-vat">
+      <mat-checkbox color="primary">Cena z Vat (+23%)</mat-checkbox></div>
+      <div class="check-vat">
+        <mat-checkbox color="primary">Do negocjacji</mat-checkbox></div>
+      <div class="add-photo-cont">
+        <a><i class="fas fa-camera"></i>Dodaj zdjęcia</a>
+      </div><div class="change-width" id="description">
+        <span>Opis oferty:</span>
+        <mat-form-field class="example-full-width2">
+          <input type="text"  matInput name="value" placeholder="">
+        </mat-form-field>
+      </div>
+      </div>
+    <div class="forms-inside">
+      <div class="change-width width-50">
+      <label>Imie:</label>
+        <input type="text" value="Yourname" class="client-inputs">
+      </div>
+    </div>
+    </form>
+  </div>
 
+  <div class="right-container">
+    <div class="office-info-big">
+      <span class="cirlce-span"><i class="fas fa-mobile-alt"></i></span>
+      <span>Potrzebujesz pomocy?</span>
+      <h3>Biuro Auto-Center</h3>
+      <h4>+48500600700</h4>
+      <span>(od pon. do pt. w godz. 6:00 - 21:00 </span>
+      <h4>pomoc@autocenter.pl</h4>
+    </div>
+    <div class="dynamic-info" *ngIf="dynamic_info">
+      <h3>Dynamic Header</h3>
+      <div>Dynamic Content</div>
 
+    </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-  </mat-toolbar>
+  </div>
 </div>
+
+
+  </div>
+
 
 
 

@@ -4,25 +4,245 @@
 .mytoolbar {
   background-color: @brands-color;
   color: white;
+  .position(relative);
+  //So useful
+                            &:after {
+                              bottom: -10px;
+                              border-style: solid;
+                              border-width: 10px 10px 0 10px;
+                              border-color: @brands-color transparent transparent transparent;
+                              content: '';
+                              height: 0;
+                              left: 50%;
+                              margin-left: -10px;
+                              position: absolute;
+                              width: 0
+                            }
 }
-.my-select {
-  background-color: white;
-  margin: 0 20px;
-  .w(200px);
+
+
+
+
+
+.example-form {
+  margin-left: 20px;
+
+}
+
+.example-full-width {
+
+  font-size: 13px;
+  width: 150px;
   text-align: center;
+  color: white;
+
+  input {
+  }
+}
+.myoption {
+
+  font-size: 13px;
 }
 
-select {
-  -webkit-appearance: button;
-  -moz-appearance: button;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  text-decoration: none;
+
+                            .rest-section {     //big container of the rest section
+                              background-color: @main-bg;
+                            }
+.smaller-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 10px 10px 0 10px;
+  position: relative;
+  label {
+    .d-inline;
+    font-size: 26px;
+  }
+  form {
+    .d-inline;
+  }
+}
+
+.fa-arrow-left {
+  margin: 10px 20px;
+}
+#after-arrow {
+  font-size: 16px !important;
+  font-family: "American Typewriter";
+}
+.rest-section {
+  .padding-top-bottom(20px, 20px);
+
+}
+                  .forms-inside {
+                    .w-calc(100%, 20px);
+                    border: solid 1px lighten(@hover-text-color, 20%);
+                    padding: 10px 10px;
+                    margin-bottom: 25px;
+                    background-color: white;
+                              form {
+                                .w(100%);
+                              }
+                        }
+            #price {
+               .w(60%) !important;
+             }
+.change-width {
+  .w-calc(100%, 15px);
+  margin: 10px 0 0 5px;
+  .d-inline;
+
+  span {
+    .position(relative, @top: -5px);
+    font-family: "American Typewriter";
+    .d-block;
+    margin-bottom: 10px;
+  }
+
+
+  @media @small {
+    .w-calc(33.33%, 5px);
+  }
+
+
+}
+.example-full-width2 {
+  .w-calc(100%, 4px);
+  height: 48px;
+  font-size: 15px;
+  color: @brands-color;
+
+  //.position(relative, @top: 0);
+  input {
+    background-color: white;
+    height: 28px;
+    padding-left: 10px;
+    width: calc(100% - 10px);
+    .position(absolute, @top: -17px);
+    z-index: 99;
+    border: solid 1px lighten(@hover-text-color, 20%);
+                                                      &:focus {
+                                                        background-color: lighten(@hover-text-color, 35%);
+                                                      }
+  }
+  mat-select {
+
+  }
+
+}
+.left-one {
+.w(100%);
+  .d-inline;
+  @media @small {
+    .w(760px);
+  }
+}                           //right info
+                        .right-container {
+                          .d-none;
+                          padding: 20px 0 0 15px;
+                          vertical-align: top;
+
+                          @media @medium {
+                            .w(300px);
+                            .d-inline;
+                          }
+                          .office-info-big {
+                            background-color: darken(gray, 20%);
+                            .position(relative);
+                            padding: 40px 0 15px 20px;
+                            h4{
+                              margin: 25px 0 5px 0;
+                              color: white;
+                            }
+                            h3 {
+                              color: white;
+                            }
+                            span {
+                              color: #b3bead;
+                              font-size: 15px;
+                              opacity: .8;
+                              &:first-of-type {
+                                opacity: 1;
+                                color: black;
+                              }
+                            }
+                          }
+                          .cirlce-span {
+                            border-radius: 50%;
+                            background-color: #4c8bf5;
+                            height: 60px;
+                            width: 60px;
+                            .position(absolute, @left: calc(50% - 30px), @top: -30px);
+                                i {
+                                  line-height: 60px;
+                                  font-size: 34px;
+                                  .position(relative, @left: 50%);
+                                  transform: translateX(-50%);
+                                }
+                          }
+                        }
+
+                        .width-50 {
+                          .d-inline;
+                          .w(100%);
+                          margin: 20px 0;
+                          @media @small {
+                            .w-calc(50%, 5px) !important;
+                            margin-bottom: 15px;
+                          }
+                          span {
+                            .d-block;
+                          }
+                        }
+                        mat-radio-button {
+                          margin-left: 10px;
+                        }
+
+#small-width {
+  .w(15%);
+  mat-select {
+
+  }
+}
+.check-vat {
+  margin-left: 20px;
+  .d-inline;
+}
+.add-photo-cont {
+  .w(100%);
+  background-color: white;
+  text-align: center;
+  .padding-top-bottom(20px,20px);
+  a {
+    font-size: 24px;
+    font-weight: bold;
+    color: @brands-color;
+    &:hover {
+      color: @hover-text-color;
+    }
+    i {
+      margin-right: 10px;
+
+    }
+  }
+}
+
+#description {
+  .w(100%) !important;
+}
+
+.dynamic-info {
+  background-color: @brands-color;
+  padding: 20px 0 15px 20px;
+  color: white;
+  margin-top: 20px;
+  transition: 4s all ease;
+}
+
+.client-inputs {
   border: none;
-  background-color: blueviolet;
-  font-size: 20px;
+  outline: none;
+  .d-block;
 }
-
 
 
 

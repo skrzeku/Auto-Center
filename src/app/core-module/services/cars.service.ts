@@ -3,6 +3,7 @@ import {AngularFireDatabase} from '@angular/fire/database';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Car} from '../models/car.model';
+import {Mark} from '../models/marks.model';
 
 
 
@@ -12,14 +13,27 @@ import {Car} from '../models/car.model';
 })
 export class CarsService {
     private Api_url = '/cars';
+    private marks_url = '/marks/marks';
   constructor(private db: AngularFireDatabase) { }
 
   getCars(): Observable<Car[]> {
     return this.db.list<Car>(this.Api_url).snapshotChanges()
-      .pipe(map(response => response.map(flight => this.assignKey(flight))));
+      .pipe(map(response => response.map(car => this.assignKey(car))));
   }
 
   private assignKey(car) {
     return {...car.payload.val(), key: car.key };
   }
+  getMarks(): Observable<Mark[]> {
+    return this.db.list<Mark>(this.marks_url).snapshotChanges()
+      .pipe(map(response => response.map(mark => this.assignKey(mark))));
+  }
+  getoneMark(key: string): Observable<Mark> {
+    return this.db.object<Mark>(`${this.marks_url}/${key}`).snapshotChanges()
+      .pipe(map(mark => this.assignKey(mark)));
+  }
+
+
+
+
 }

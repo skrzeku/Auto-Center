@@ -18,7 +18,8 @@
     "doors": 5,
     "seats": 5,
     "colour": "biały",
-    "state": "używany"
+    "state": "używany",
+    "price": 23000
   },
       {
         "id": "2",
@@ -37,7 +38,8 @@
         "doors": 5,
         "seats": 5,
         "colour": "biały",
-        "state": "używany"
+        "state": "używany",
+        "price": 223000
       },
       {
         "id": "3",
@@ -56,7 +58,8 @@
         "doors": 5,
         "seats": 5,
         "colour": "biały",
-        "state": "używany"
+        "state": "używany",
+        "price": 23000
       }
       ]
 }

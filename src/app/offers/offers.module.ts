@@ -10,6 +10,8 @@ import {MainOffersComponent} from './offers.component';
 import {CoreModule} from '../core-module/core-module.module';
 import { NewOfferComponent } from './new-offer/new-offer.component';
 import {MaterialModule} from '../material/material.module';
+import {MatInputModule} from '@angular/material';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -18,7 +20,11 @@ import {MaterialModule} from '../material/material.module';
     RouterModule,
     OffersRoutingModule,
     CoreModule,
-    MaterialModule
+    MatInputModule,
+    MaterialModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   exports: [OffersComponent, NewOfferComponent],
   declarations: [DetailsComponent, OffersComponent, MainOffersComponent, NewOfferComponent]

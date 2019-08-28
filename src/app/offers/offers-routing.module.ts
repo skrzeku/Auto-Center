@@ -22,7 +22,7 @@ const Offers_Route: Routes = [
         path: 'new',
         component: <any>NewOfferComponent,
         pathMatch: 'full'
-      }
+      },
       {
         path: ':id',
         component: <any>DetailsComponent,

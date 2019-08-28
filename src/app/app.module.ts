@@ -25,7 +25,6 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
     CommonModule, SharedModule, CoreModule, AngularFireModule.initializeApp(environment.firebase), MaterialModule, AngularFireDatabaseModule,
     StartModule, AngularFontAwesomeModule, BrowserAnimationsModule, MatTooltipModule, MatButtonModule, RouterModule, AppRoutingModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
