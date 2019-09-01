@@ -1,10 +1,13 @@
 @import "../../../assets/styles/global";
 
 
+
+
 .mytoolbar {
   background-color: @brands-color;
   color: white;
   .position(relative);
+  .w(100%);
   //So useful
                             &:after {
                               bottom: -10px;
@@ -20,13 +23,36 @@
                             }
 }
 
+.toolbar-inside {
+  .w(100%);
+
+        span {
+          font-size: 15px;
+          @media @small {
+            font-size: 20px;
+          }
+          @media @medium {
+            font-size: 26px;
+          }
+        }
+  @media @medium {
+    .w(1100px);
+    margin: 0 auto;
+    padding-left: 10px;
+  }
+}
+
+
+
+
 
 
 
 
 .example-form {
   margin-left: 20px;
-
+  .d-inline;
+  color: white;
 }
 
 .example-full-width {
@@ -34,9 +60,9 @@
   font-size: 13px;
   width: 150px;
   text-align: center;
-  color: white;
 
   input {
+
   }
 }
 .myoption {
@@ -53,12 +79,16 @@
   margin: 0 auto;
   padding: 10px 10px 0 10px;
   position: relative;
+
   label {
     .d-inline;
     font-size: 26px;
   }
   form {
     .d-inline;
+  }
+  @media @medium {
+    //.w(1100px);
   }
 }
 
@@ -75,10 +105,11 @@
 }
                   .forms-inside {
                     .w-calc(100%, 20px);
-                    border: solid 1px lighten(@hover-text-color, 20%);
+                    border: @light-border;
                     padding: 10px 10px;
                     margin-bottom: 25px;
                     background-color: white;
+                    .drop-shadow();
                               form {
                                 .w(100%);
                               }
@@ -92,10 +123,9 @@
   .d-inline;
 
   span {
-    .position(relative, @top: -5px);
     font-family: "American Typewriter";
-    .d-block;
-    margin-bottom: 10px;
+    .d-inline;
+    margin-bottom: 15px;
   }
 
 
@@ -103,6 +133,44 @@
     .w-calc(33.33%, 5px);
   }
 
+
+}
+.fa-info-circle {
+  .d-inline;
+  vertical-align: super;
+  margin-left: 5px;
+  font-size: 16px;
+  color: @brands-color;
+  .c-pointer;
+          &:hover {
+            color: @hover-text-color;
+          }
+
+}
+
+.small-width-50 {
+  .w-calc(50%, 2px);
+  .d-inline;
+        &:nth-of-type(1) {
+          border-bottom: @light-border;
+          border-right: @light-border;
+        }
+        &:nth-of-type(2) {
+          border-bottom: @light-border;
+        }
+        &:nth-of-type(3) {
+          border-right: @light-border;
+        }
+  span {
+    margin-left: 20px;
+    font-size: 13px;
+
+  }
+  input {
+    margin-left: 10px;
+    font-size: 13px;
+    color: @brands-color;
+  }
 
 }
 .example-full-width2 {
@@ -118,7 +186,7 @@
     padding-left: 10px;
     width: calc(100% - 10px);
     .position(absolute, @top: -17px);
-    z-index: 99;
+    z-index: 8;
     border: solid 1px lighten(@hover-text-color, 20%);
                                                       &:focus {
                                                         background-color: lighten(@hover-text-color, 35%);
@@ -132,6 +200,7 @@
 .left-one {
 .w(100%);
   .d-inline;
+  padding-bottom: 110px;
   @media @small {
     .w(760px);
   }
@@ -190,18 +259,23 @@
                             margin-bottom: 15px;
                           }
                           span {
-                            .d-block;
+                            .d-inline
                           }
                         }
                         mat-radio-button {
                           margin-left: 10px;
                         }
+                        mat-radio-group {
+                          .d-block;
+                        }
+                        #smaller-span {
+                          @media @small {
+                            font-size: 16px;
+                          }
+                        }
 
 #small-width {
   .w(15%);
-  mat-select {
-
-  }
 }
 .check-vat {
   margin-left: 20px;
@@ -235,7 +309,17 @@
   padding: 20px 0 15px 20px;
   color: white;
   margin-top: 20px;
-  transition: 4s all ease;
+  .position(relative);
+  .animation(fade-in 1s linear);
+
+
+
+}
+.dynamic-shown {
+  display: block;
+  opacity: 1;
+  transition: opacity 1s, visibility 1s linear;
+
 }
 
 .client-inputs {
@@ -243,8 +327,131 @@
   outline: none;
   .d-block;
 }
+#forms-inside-withoutPadding {
+  padding: 0;
+  .w(100%);
+}
+#bottom-checkbox {
+  padding: 10px;
+  mat-checkbox {
+    .w(8%);
+    .d-inline;
+    vertical-align: top;
+  }
+
+  span {
+    .w(92%);
+    .d-inline;
+    font-size: 13px;
+
+  }
+}
 
 
+//Bottom navbar
+#bottom-navi-fixed {
+  .position(fixed, @bottom: 0);
+  z-index: 9;
+  .w-calc(100%, 20px);
+  border-top: solid 1px lighten(gray, 10%);
+  padding: 10px 10px 0;
+  .white-bg;
+  box-shadow: 0 -5px 5px -5px #333;
+  @media @small {
+    padding: 10px 6px;
+    .w-calc(100%, 10px);
+  }
+  .smaller-container {
+    padding: 0;
+
+
+  }
+}
+.left-side {
+  .w(100%);
+  text-align: center;
+                  span {
+                    .d-block;
+                    cursor: default;
+                    font-size: 13px;
+                    opacity: 0.6;
+                    line-height: 21px;
+                    .position(relative, @top: 42px);
+                    @media @small {
+                      .d-inline;
+                      top: 0;
+                      margin-right: 10px;
+                    }
+                  }
+                  a {
+                    color: red;
+                    .font-bold;
+                    line-height: 30px;
+                    @media @small {
+                      margin-right: 150px;
+
+                    }
+                    &:hover {
+                      opacity: 0.7;
+                      border-bottom: 1px solid red;
+                    }
+                  }
+  @media @small {
+    .w(760px);
+    .clear;
+    text-align: right;
+  }
+}
+
+.right-side {
+  .d-none;
+}       //not important
+
+      //button
+#add-car {
+  left: 0;
+  transform: none;
+  .position(relative, @top: -23px);
+  @media @small {
+    .w(auto);
+    top: 0;
+    padding: 10px 60px;
+  }
+
+}
+.small-cont-toolbar {
+  @media @small {
+    width: 760px;
+    margin-right: auto;
+  }
+}
+.another-small {
+  width: 760px;
+}
+
+.keyframes(fade-in; {
+  0% {
+   left: -200px;
+    opacity: 0;
+  }
+  100% {
+    left: 0;
+    opacity: 1;
+  }
+ });
+
+
+.keyframes(fade-out; {
+    0% {
+      .w(100%);
+      opacity: 1;
+    }
+80% {
+  .w(0);
+  opacity: 0;
+}
+
+});
 
 
 

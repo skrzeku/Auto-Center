@@ -14,6 +14,7 @@ import {Mark} from '../models/marks.model';
 export class CarsService {
     private Api_url = '/cars';
     private marks_url = '/marks/marks';
+    private info_url = 'info/info_db';
   constructor(private db: AngularFireDatabase) { }
 
   getCars(): Observable<Car[]> {
@@ -31,6 +32,12 @@ export class CarsService {
   getoneMark(key: string): Observable<Mark> {
     return this.db.object<Mark>(`${this.marks_url}/${key}`).snapshotChanges()
       .pipe(map(mark => this.assignKey(mark)));
+  }
+
+
+  getInfoCircle(): Observable <any>{
+    return this.db.list<any>(this.info_url).snapshotChanges()
+      .pipe(map(response => response.map(info => this.assignKey(info))));
   }
 
 

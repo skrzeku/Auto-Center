@@ -1,8 +1,9 @@
 <div class="big-new-offer-container">
   <mat-toolbar class="mytoolbar">
-    <div class="smaller-container">
 
-<label>Sprzedaję:</label>
+
+<div class="toolbar-inside">
+<span>Sprzedaję:</span>
 
     <form class="example-form">
       <mat-form-field class="example-full-width">
@@ -19,9 +20,21 @@
 
       <i class="fas fa-arrow-left"></i>
       <span id="after-arrow">Wybierz Kategorie</span>
-      </div>
 
+</div>
   </mat-toolbar>   <!-- End Toolbar-->
+
+  <div id="bottom-navi-fixed">
+    <div class="smaller-container">
+      <div class="left-side"> <a>Anuluj</a>
+
+
+        <span>Liczba + Wypełnione pola</span>
+        <button class="register-btn" id="add-car">Dodaj Pojazd</button></div>
+      <div class="right-side"></div>
+
+    </div>
+  </div>
 
 
 
@@ -33,7 +46,7 @@
     <form>
       <div class="forms-inside">
       <div class="change-width">
-        <span>Marka pojazdu:</span>
+        <span>Marka pojazdu:</span><i class="fas fa-info-circle" id="1"></i>
       <mat-form-field class="example-full-width2">
         <input type="text"   aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
@@ -44,7 +57,7 @@
       </mat-form-field>
     </div>
       <div class="change-width">
-        <span>Model</span>
+        <span>Model:</span><i class="fas fa-info-circle" id="2"></i>
         <mat-form-field class="example-full-width2">
           <input type="text"   aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
@@ -66,7 +79,7 @@
         </mat-form-field>
       </div>
       <div class="change-width">
-        <span>Rok produkcji</span>
+        <span>Rok produkcji:</span><i class="fas fa-info-circle" id="3"></i>
         <mat-form-field class="example-full-width2">
           <input type="text"   aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
@@ -77,7 +90,7 @@
         </mat-form-field>
       </div>
       <div class="change-width">
-        <span>Rodzaj Paliwa:</span>
+        <span>Rodzaj Paliwa:</span><i class="fas fa-info-circle" id="4"></i>
         <mat-form-field class="example-full-width2">
           <input type="text" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
@@ -101,28 +114,28 @@
       </div>
       <div class="forms-inside">
       <div class="change-width width-50">
-        <span>Skrzynia biegów:</span>
+        <span>Skrzynia biegów:</span><i class="fas fa-info-circle" id="5"></i>
         <mat-radio-group aria-label="Select an option">
           <mat-radio-button class="radio-group" value="Manualna" color="primary">Manualna</mat-radio-button>
           <mat-radio-button class="radio-group" value="Automatyczna" color="primary">Automatyczna</mat-radio-button>
         </mat-radio-group>
       </div>
       <div class="change-width width-50">
-        <span>Stan:</span>
+        <span>Stan:</span><i class="fas fa-info-circle" id="6"></i>
         <mat-radio-group aria-label="Select an option">
           <mat-radio-button class="radio-group" value="Nowy" color="primary">Nowy</mat-radio-button>
           <mat-radio-button class="radio-group" value="Używany" color="primary">Używany</mat-radio-button>
         </mat-radio-group>
       </div>
       <div class="change-width">
-      <span>Moc (KM):</span>
+      <span>Moc (KM):</span><i class="fas fa-info-circle" id="7"></i>
       <mat-form-field class="example-full-width2">
         <input type="number"  matInput name="value" placeholder=""
         >
       </mat-form-field>
       </div>
       <div class="change-width">
-        <span>Pojemność skokowa (cm<sup>3</sup>):</span>
+        <span id="smaller-span">Pojemność skokowa (cm<sup>3</sup>):</span><i class="fas fa-info-circle" id="8"></i>
         <mat-form-field class="example-full-width2">
           <input type="number"  matInput name="value" placeholder=""
                  >
@@ -160,19 +173,36 @@
         <mat-checkbox color="primary">Do negocjacji</mat-checkbox></div>
       <div class="add-photo-cont">
         <a><i class="fas fa-camera"></i>Dodaj zdjęcia</a>
-      </div><div class="change-width" id="description">
+      </div>
+        <div class="change-width" id="description">
         <span>Opis oferty:</span>
         <mat-form-field class="example-full-width2">
           <input type="text"  matInput name="value" placeholder="">
         </mat-form-field>
       </div>
       </div>
-    <div class="forms-inside">
-      <div class="change-width width-50">
-      <label>Imie:</label>
-        <input type="text" value="Yourname" class="client-inputs">
+    <div class="forms-inside" id="forms-inside-withoutPadding">
+      <div class=" small-width-50">
+      <span>Imie:</span>
+        <input type="text" value="Client_name" class="client-inputs">
+      </div>
+      <div class=" small-width-50">
+        <span>email:</span>
+        <input type="text" value="pawel@wp.pl" class="client-inputs">
+      </div>
+      <div class=" small-width-50">
+        <span>Tel:</span>
+        <input type="text" value="+48500600700" class="client-inputs">
+      </div>
+      <div class="small-width-50">
+        <span>Lokalizacja:</span>
+        <input type="text" value="Gdańsk" class="client-inputs">
       </div>
     </div>
+      <div id="bottom-checkbox">
+      <mat-checkbox color="primary"></mat-checkbox>
+        <span>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt."</span>
+      </div>
     </form>
   </div>
 
@@ -186,15 +216,13 @@
       <h4>pomoc@autocenter.pl</h4>
     </div>
     <div class="dynamic-info" *ngIf="dynamic_info">
-      <h3>Dynamic Header</h3>
-      <div>Dynamic Content</div>
+      <h3>{{oneinfodb.header}}</h3>
+      <div>{{oneinfodb.content}}</div>
 
     </div>
 
   </div>
 </div>
-
-
   </div>
 
 

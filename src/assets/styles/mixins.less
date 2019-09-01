@@ -135,7 +135,6 @@
 
 
                 //animation
-
             .keyframes (@name, @what-to-do) {
 
               @-webkit-keyframes @name {
@@ -153,6 +152,12 @@
               @-o-keyframes @name {
                 @what-to-do();
               }
+            }
+
+            .animation(@arguments) {
+              -webkit-animation: @arguments;
+              -moz-animation: @arguments;
+              animation: @arguments;
             }
 
 
