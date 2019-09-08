@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {HelpService} from '../services/help.service';
 
 @Component({
   selector: 'app-left-navis',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeftNavisComponent implements OnInit {
 
-  constructor() { }
+  constructor(private helpservice: HelpService) { }
 
   ngOnInit() {
+  }
+  sharedbool(): void {
+    this.helpservice.shareCloseValue(false);
   }
 
 }

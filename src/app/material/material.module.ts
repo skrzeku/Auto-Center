@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import {
+  MAT_AUTOCOMPLETE_DEFAULT_OPTIONS,
   MatAutocompleteModule,
   MatButtonModule,
-  MatCardModule, MatCheckboxModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule, MatRadioModule, MatSelectModule,
+  MatCardModule, MatCheckboxModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule, MatPlaceholder, MatRadioModule,
+  MatSelectModule,
   MatSnackBarModule, MatToolbarModule
 } from '@angular/material';
+
 
 
 
@@ -20,11 +23,14 @@ import {
         MatButtonModule,
         MatAutocompleteModule,
         MatRadioModule,
-        MatCheckboxModule
+        MatCheckboxModule,
       ];
+
+
 
 @NgModule({
   declarations: [],
-  exports: [...Materials]
+  exports: [...Materials],
+  providers: []
 })
 export class MaterialModule { }

@@ -1,6 +1,8 @@
 @import "../../../assets/styles/global";
 
-
+.big-new-offer-container {
+  overflow-x: hidden;
+}
 
 
 .mytoolbar {
@@ -117,24 +119,7 @@
             #price {
                .w(60%) !important;
              }
-.change-width {
-  .w-calc(100%, 15px);
-  margin: 10px 0 0 5px;
-  .d-inline;
 
-  span {
-    font-family: "American Typewriter";
-    .d-inline;
-    margin-bottom: 15px;
-  }
-
-
-  @media @small {
-    .w-calc(33.33%, 5px);
-  }
-
-
-}
 .fa-info-circle {
   .d-inline;
   vertical-align: super;
@@ -142,10 +127,10 @@
   font-size: 16px;
   color: @brands-color;
   .c-pointer;
+  .visible-md;
           &:hover {
             color: @hover-text-color;
           }
-
 }
 
 .small-width-50 {
@@ -173,30 +158,7 @@
   }
 
 }
-.example-full-width2 {
-  .w-calc(100%, 4px);
-  height: 48px;
-  font-size: 15px;
-  color: @brands-color;
 
-  //.position(relative, @top: 0);
-  input {
-    background-color: white;
-    height: 28px;
-    padding-left: 10px;
-    width: calc(100% - 10px);
-    .position(absolute, @top: -17px);
-    z-index: 8;
-    border: solid 1px lighten(@hover-text-color, 20%);
-                                                      &:focus {
-                                                        background-color: lighten(@hover-text-color, 35%);
-                                                      }
-  }
-  mat-select {
-
-  }
-
-}
 .left-one {
 .w(100%);
   .d-inline;
@@ -206,9 +168,9 @@
   }
 }                           //right info
                         .right-container {
-                          .d-none;
                           padding: 20px 0 0 15px;
                           vertical-align: top;
+                          .visible-sm;
 
                           @media @medium {
                             .w(300px);
@@ -275,7 +237,7 @@
                         }
 
 #small-width {
-  .w(15%);
+  .w(10%);
 }
 .check-vat {
   margin-left: 20px;
@@ -303,24 +265,32 @@
 #description {
   .w(100%) !important;
 }
+                                //dynamic info
+                          .dynamic-info {
+                            background-color: @brands-color;
+                            padding: 20px 15px 15px 20px;
+                            color: white;
+                            margin-top: 20px;
+                            z-index: 1;
+                            .position(absolute);
+                                  h3 {
+                                    font-family: "American Typewriter";
+                                    margin-bottom: 20px;
+                                  }
+                                  div {
+                                    opacity: 0.8;
+                                    font-size: 80%;
 
-.dynamic-info {
-  background-color: @brands-color;
-  padding: 20px 0 15px 20px;
-  color: white;
-  margin-top: 20px;
-  .position(relative);
-  .animation(fade-in 1s linear);
-
-
-
-}
-.dynamic-shown {
-  display: block;
-  opacity: 1;
-  transition: opacity 1s, visibility 1s linear;
-
-}
+                                  }
+                            div::first-letter {
+                              font-weight: bold;
+                              font-size: 180%;
+                              margin-left: 5px;
+                            }
+                            @media @medium {
+                              .position(relative);
+                            }
+                          }
 
 .client-inputs {
   border: none;
@@ -363,6 +333,7 @@
   }
   .smaller-container {
     padding: 0;
+    .position(relative);
 
 
   }
@@ -452,6 +423,17 @@
 }
 
 });
+
+.close {
+  .position(absolute, @top: 10px, @right: 10px);
+  font-size: 25px;
+  border: none;
+  .bg-trans;
+  color: white;
+  &:hover {
+    color: @hover-text-color;
+  }
+}
 
 
 

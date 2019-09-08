@@ -8,7 +8,7 @@ import {StartComponent} from './start/start.component';
 
 const APP_ROUTES : Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'main'},
-  {path: 'main', component: <any> StartComponent, pathMatch: 'full'},
+  {path: 'main', loadChildren: '../app/start/start.module#StartModule'},
   {path: 'login', loadChildren: '../app/login/login.module#LoginModule'},
   {path: 'offers', loadChildren: '../app/offers/offers.module#OffersModule'}
 ];

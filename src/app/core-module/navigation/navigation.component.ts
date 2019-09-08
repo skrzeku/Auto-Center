@@ -1,4 +1,5 @@
 import {AfterViewInit, Component, ElementRef, EventEmitter, OnChanges, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
+import {HelpService} from '../services/help.service';
 
 @Component({
   selector: 'app-navigation',
@@ -14,7 +15,8 @@ export class NavigationComponent implements OnInit, AfterViewInit {
   mynav: any;
 
 
-  constructor(private rend: Renderer2) { }
+  constructor(private rend: Renderer2,
+              private helpservice: HelpService) { }
 
   ngOnInit() {
 
@@ -25,8 +27,10 @@ export class NavigationComponent implements OnInit, AfterViewInit {
   }
 
   sendOutput(): void {
-   this.Shownnavi = true;
-    this.showoutput.emit(this.Shownnavi);
+   //this.Shownnavi = true;
+    //this.showoutput.emit(this.Shownnavi);   //by using outputs
+    this.helpservice.shareCloseValue(true);
+
   }
 
 

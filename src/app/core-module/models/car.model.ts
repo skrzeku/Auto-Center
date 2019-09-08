@@ -18,6 +18,9 @@ export interface Car {
   year: number;
   key: string;
   price: number;
+  deadline: string;
+  premium: boolean;
+  timeLeft: number;
 }
 
 

@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, ElementRef, HostListener, Input, Renderer2, ViewChild} from '@angular/core';
 import {NavigationComponent} from './core-module/navigation/navigation.component';
+import {HelpService} from './core-module/services/help.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,8 @@ import {NavigationComponent} from './core-module/navigation/navigation.component
 })
 export class AppComponent implements AfterViewInit{
   title = 'app';
-  constructor (private rend: Renderer2) {}
+  constructor (private rend: Renderer2,
+               private helpservice: HelpService) {}
 
   shownnaviboolean: boolean = false;
 
@@ -18,7 +20,12 @@ export class AppComponent implements AfterViewInit{
   @ViewChild('navig') navig: ElementRef;
 
   ngAfterViewInit() {
+    this.helpservice.mybol$.subscribe((val) =>{
+      this.shownnaviboolean = val;
+      console.log(this.shownnaviboolean);
+    });
   }
+
 /* longer way!!
   @HostListener ('document:click', ['$event.target'])
 
@@ -37,9 +44,44 @@ export class AppComponent implements AfterViewInit{
   }
 */
   showoutputs($event) {
-    this.shownnaviboolean = $event;
-    console.log($event);
+
+      this.shownnaviboolean = $event;
+
   }
+
+  //It works good to use it later
+/*
+  @HostListener('document:click', ['$event'])
+  CheckClickOutside(event) {
+    let targetElement = event.target as Element;
+    const el = document.querySelector('.left-navi') as Element;
+    if (!this.shownnaviboolean) {
+        if (!targetElement.matches('#navi-bars' )){
+          targetElement = targetElement.closest('#navi-bars') as Element;
+        }
+                if (targetElement) {
+                  this.shownnaviboolean = true;
+                }
+                else {
+                  console.log('!targetElement');
+                }
+    }
+    if (this.shownnaviboolean) {
+      if (!targetElement.matches('.left-navi' )){
+        targetElement = targetElement.closest('.left-navi') as Element;
+      }
+      if (targetElement !== el ) {
+        this.shownnaviboolean = false;
+      }
+      else {
+        console.log('cos');
+      }
+
+    }
+  }
+
+*/
+
 
   Hideleftnavi($event): void {
     this.shownnaviboolean = false;

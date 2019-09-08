@@ -43,7 +43,7 @@
   <div class="left-one">
   <h3>Twój pojazd</h3>
 
-    <form>
+    <form>   <!--2nd form -->
       <div class="forms-inside">
       <div class="change-width">
         <span>Marka pojazdu:</span><i class="fas fa-info-circle" id="1"></i>
@@ -155,17 +155,28 @@
           <input type="number"  matInput name="value" placeholder="">
         </mat-form-field>
       </div>
-                          <!--Value "from" will be taken automatically -->
-      <div class="change-width " id="small-width">
+                          <!--Value "from" will be taken automatically
+      <div class="change-width" id="small-width">
         <mat-form-field class="example-full-width2">
           <mat-select name="currency" value="PLN">
             <mat-option *ngFor="let currency of currency" [value]="currency">
               {{currency}}
-
             </mat-option>
           </mat-select>
         </mat-form-field>
       </div>
+        -->
+
+        <div class="change-width" id="small-width">
+          <mat-form-field class="example-full-width2">
+            <mat-select name="currency" value="PLN">
+              <mat-option *ngFor="let currency of currency" [value]="currency">
+                {{currency}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
 
       <div class="check-vat">
       <mat-checkbox color="primary">Cena z Vat (+23%)</mat-checkbox></div>
@@ -215,7 +226,10 @@
       <span>(od pon. do pt. w godz. 6:00 - 21:00 </span>
       <h4>pomoc@autocenter.pl</h4>
     </div>
-    <div class="dynamic-info" *ngIf="dynamic_info">
+    <div class="dynamic-info" *ngIf="dynamic_info" [@openClose]>
+      <button type="button" class="close" aria-label="Close" (click)="closeInfo()">
+        <span aria-hidden="true">&times;</span>
+      </button>
       <h3>{{oneinfodb.header}}</h3>
       <div>{{oneinfodb.content}}</div>
 

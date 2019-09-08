@@ -2,44 +2,56 @@
 
 
           <!-- Navigation-->
-  <div class="search-navigation p-0">
+  <div class="search-navigation">
     <ul class="navigation-ul p-0">
-      <li class="navi-list shown-small active"><i class="fab fa-accessible-icon"></i> <a>osobowe</a></li>
-      <li class="navi-list"><i class="fab fa-accessible-icon"></i> <a>osobowe</a></li>
-      <li class="navi-list"><i class="fab fa-accessible-icon"></i> <a>osobowe</a></li>
-      <li class="navi-list dropdown">Show more
-      <ul>
-        <li href="#">Link 1</li>
-        <li href="#">Link 2</li>
-        <li href="#">Link 3</li>
+      <li class="navi-list"><a [routerLink]="['/main']"  routerLinkActive="test-class" [routerLinkActiveOptions]="{ exact: true }"><i class="fas fa-car"></i>Osobowe</a></li>
+      <li class="navi-list"><a [routerLink]="['parts']"  routerLinkActive="test-class"><i class="fab fa-accessible-icon" ></i>Części</a></li>
+      <li class="navi-list"><a [routerLink]="['motorcycle']"  routerLinkActive="test-class"><i class="fab fa-accessible-icon"></i>Motocykle</a></li>
+      <li class="navi-list dropdown"><a id="drop-a">Show more
+        <i class="fas fa-caret-down"></i></a>
+      <ul class="hidden-ul" [ngClass]="{'shown-ul': showUlBool}">
+        <li class="navi-list"><a [routerLink]="['parts']"  routerLinkActive="test-class"><i class="fas fa-car"></i>Ciężarowe</a></li>
+        <li class="navi-list"><a [routerLink]="['parts']"  routerLinkActive="test-class"><i class="fab fa-accessible-icon" ></i>Rowery</a></li>
+        <li class="navi-list"><a [routerLink]="['parts']"  routerLinkActive="test-class"><i class="fab fa-accessible-icon"></i>Busy</a></li>
       </ul>
       </li>
 
-      <li class="navi-list hidden-lg"><i class="fab fa-accessible-icon"></i> <a>osobowe</a></li>
-      <li class="navi-list hidden-lg"><i class="fab fa-accessible-icon"></i> <a>osobowe</a></li>
-      <li class="navi-list hidden-lg"><i class="fab fa-accessible-icon"></i> <a>osobowe</a></li>
-      <li class="navi-list hidden-lg"><i class="fab fa-accessible-icon"></i> <a>osobowe</a></li>
-      <li class="navi-list hidden-lg"><i class="fab fa-accessible-icon"></i> <a>osobowe</a></li>
+      <li class="navi-list hidden-lg"><a [routerLink]="['parts']"  routerLinkActive="test-class"><i class="fab fa-accessible-icon"></i> Ciężarowe</a></li>
+      <li class="navi-list hidden-lg"><a [routerLink]="['parts']"  routerLinkActive="test-class"><i class="fab fa-accessible-icon"></i> Xyz</a></li>
+      <li class="navi-list hidden-lg"><a [routerLink]="['parts']"  routerLinkActive="test-class"><i class="fab fa-accessible-icon"></i> aaa</a></li>
+      <li class="navi-list hidden-lg"><a [routerLink]="['parts']"  routerLinkActive="test-class"><i class="fab fa-accessible-icon"></i> bbb</a></li>
+      <li class="navi-list hidden-lg"><a [routerLink]="['parts']"  routerLinkActive="test-class"><i class="fab fa-accessible-icon"></i> ccc</a></li>
     </ul>
+
+    <div class="change-width" id="top-navi">
+      <mat-form-field class="example-full-width2">
+        <input type="text"  placeholder="Kategoria" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" >
+          <mat-option [routerLink]="[option.path]" class="myoption" *ngFor="let option of filteredOptions | async" [value]="option.name">
+            <i class="fas {{option.icon}}"></i>{{option.name}}
+          </mat-option>
+
+
+        </mat-autocomplete>
+
+      </mat-form-field>
+  </div>
   </div>
 
-        <!-- Form-->
-  <div class="Form-engine">
-    <div class="input-radios">
-      <input type="radio" name="state" value="new"> Nowe
-      <input type="radio" name="state" value="new"> Używane
-      <input type="radio" name="state" value="new"> Wszystkie
-    </div>
+
+          <!-- Another option-->
+  <router-outlet></router-outlet>
 
 
-      <!-- Dynamic content have to think about *ngIf or by dynamic components -->
-  <div class="main-form"> </div>
-  </div>
+
+
+
+          <!-- Another one-->
+
   <div class="bottom-form">
-    <div class="row">
     <p>Wyszukiwanie</p>
-    <button class="btn search-btn"><i class="fas fa-search"></i>Wyszukaj</button>
-    </div>
+    <button mat-raised-button color="primary"><i class="fas fa-search"></i>Wyszukaj</button>
+
   </div>
 
 </div>
