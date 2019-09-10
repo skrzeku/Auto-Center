@@ -117,7 +117,7 @@
                               }
                         }
             #price {
-               .w(60%) !important;
+               .w(30%) !important;
              }
 
 .fa-info-circle {
@@ -237,11 +237,12 @@
                         }
 
 #small-width {
-  .w(10%);
+  width: 20%;
 }
 .check-vat {
   margin-left: 20px;
   .d-inline;
+  font-size: 14px;
 }
 .add-photo-cont {
   .w(100%);
@@ -261,6 +262,7 @@
     }
   }
 }
+
 
 #description {
   .w(100%) !important;
@@ -435,5 +437,12 @@
   }
 }
 
+
+::ng-deep snack-bar-container.success-snack {
+  background-color: green !important;
+}
+::ng-deep snack-bar-container.snack-error {
+  background-color: red !important;
+}
 
 

@@ -1,7 +1,21 @@
-.one-car {
-  background-color: black;
-  color: white;
-}
+@import "../../../assets/styles/global";
+
 .anyway {
   background-color: blue;
+}
+.one-car {
+  .w-calc(25%, 24px);
+  height: 60px;
+  .d-inline;
+  margin: 10px;
+  border: 2px solid @brands-color;
+  vertical-align: top;
+  .c-pointer;
+  transition: 1s all ease;
+
+  &:hover {
+    background-color: @brands-color;
+    color: white;
+    transition: 1s all ease;
+  }
 }

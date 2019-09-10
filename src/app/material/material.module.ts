@@ -1,12 +1,19 @@
 import { NgModule } from '@angular/core';
 import {
-  MAT_AUTOCOMPLETE_DEFAULT_OPTIONS,
+  MAT_SNACK_BAR_DEFAULT_OPTIONS,
   MatAutocompleteModule,
   MatButtonModule,
   MatCardModule, MatCheckboxModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule, MatPlaceholder, MatRadioModule,
-  MatSelectModule,
+  MatSelectModule, MatSnackBarConfig,
   MatSnackBarModule, MatToolbarModule
 } from '@angular/material';
+
+      const MY_SNACK_GLOBAL_CONFIG: MatSnackBarConfig = {
+        duration: 3000,
+        verticalPosition: 'bottom',
+        horizontalPosition: 'center'
+      };
+
 
 
 
@@ -31,6 +38,10 @@ import {
 @NgModule({
   declarations: [],
   exports: [...Materials],
-  providers: []
+  providers: [
+    {
+      provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: MY_SNACK_GLOBAL_CONFIG
+    }
+  ]
 })
 export class MaterialModule { }

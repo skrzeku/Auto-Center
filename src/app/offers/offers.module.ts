@@ -13,6 +13,7 @@ import {MaterialModule} from '../material/material.module';
 import {MatInputModule} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -27,6 +28,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     FormsModule
   ],
   exports: [OffersComponent, NewOfferComponent],
-  declarations: [DetailsComponent, OffersComponent, MainOffersComponent, NewOfferComponent]
+  declarations: [DetailsComponent, OffersComponent, MainOffersComponent, NewOfferComponent],
 })
 export class OffersModule { }

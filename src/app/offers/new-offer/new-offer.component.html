@@ -5,9 +5,9 @@
 <div class="toolbar-inside">
 <span>Sprzedaję:</span>
 
-    <form class="example-form">
+    <form class="example-form" [formGroup]="form">
       <mat-form-field class="example-full-width">
-        <input type="text"  placeholder="Kategoria" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+        <input type="text"  placeholder="Kategoria" aria-label="Number" matInput formControlName="category" [matAutocomplete]="auto">
         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
           <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
             {{option}}
@@ -30,7 +30,7 @@
 
 
         <span>Liczba + Wypełnione pola</span>
-        <button class="register-btn" id="add-car">Dodaj Pojazd</button></div>
+        <button class="register-btn" id="add-car" [disabled]="form.invalid" (click)="createCar()">Dodaj Pojazd</button></div>
       <div class="right-side"></div>
 
     </div>
@@ -43,12 +43,12 @@
   <div class="left-one">
   <h3>Twój pojazd</h3>
 
-    <form>   <!--2nd form -->
+    <form [formGroup]="form">   <!--2nd form -->
       <div class="forms-inside">
       <div class="change-width">
         <span>Marka pojazdu:</span><i class="fas fa-info-circle" id="1"></i>
       <mat-form-field class="example-full-width2">
-        <input type="text"   aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+        <input type="text"   aria-label="Number" matInput formControlName="mark" [matAutocomplete]="auto">
         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
           <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
             {{option}}
@@ -59,7 +59,7 @@
       <div class="change-width">
         <span>Model:</span><i class="fas fa-info-circle" id="2"></i>
         <mat-form-field class="example-full-width2">
-          <input type="text"   aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+          <input type="text"   aria-label="Number" matInput formControlName="model" [matAutocomplete]="auto">
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
               {{option}}
@@ -70,7 +70,7 @@
       <div class="change-width">
         <span>Wersja:</span>
         <mat-form-field class="example-full-width2">
-          <input type="text"   aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+          <input type="text"   aria-label="Number" matInput formControlName="version" [matAutocomplete]="auto">
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
               {{option}}
@@ -81,7 +81,7 @@
       <div class="change-width">
         <span>Rok produkcji:</span><i class="fas fa-info-circle" id="3"></i>
         <mat-form-field class="example-full-width2">
-          <input type="text"   aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+          <input type="text"   aria-label="Number" matInput formControlName="year" [matAutocomplete]="auto">
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
               {{option}}
@@ -92,7 +92,7 @@
       <div class="change-width">
         <span>Rodzaj Paliwa:</span><i class="fas fa-info-circle" id="4"></i>
         <mat-form-field class="example-full-width2">
-          <input type="text" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+          <input type="text" aria-label="Number" matInput formControlName="fuel" [matAutocomplete]="auto">
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
               {{option}}
@@ -103,7 +103,8 @@
       <div class="change-width">
         <span>Color:</span>
         <mat-form-field class="example-full-width2">
-          <input type="text"   aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+          <input type="text"  formControlName="color" aria-label="Number" matInput [matAutocomplete]="auto">
+          <mat-error>Colour is required</mat-error>
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" class="small-autocoplete">
             <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
               {{option}}
@@ -115,36 +116,34 @@
       <div class="forms-inside">
       <div class="change-width width-50">
         <span>Skrzynia biegów:</span><i class="fas fa-info-circle" id="5"></i>
-        <mat-radio-group aria-label="Select an option">
-          <mat-radio-button class="radio-group" value="Manualna" color="primary">Manualna</mat-radio-button>
-          <mat-radio-button class="radio-group" value="Automatyczna" color="primary">Automatyczna</mat-radio-button>
+        <mat-radio-group aria-label="Select an option" formControlName="gearcase">
+          <mat-radio-button class="radio-group" value="manualna" color="primary">Manualna</mat-radio-button>
+          <mat-radio-button class="radio-group" value="automatyczna" color="primary">Automatyczna</mat-radio-button>
         </mat-radio-group>
       </div>
       <div class="change-width width-50">
         <span>Stan:</span><i class="fas fa-info-circle" id="6"></i>
-        <mat-radio-group aria-label="Select an option">
-          <mat-radio-button class="radio-group" value="Nowy" color="primary">Nowy</mat-radio-button>
-          <mat-radio-button class="radio-group" value="Używany" color="primary">Używany</mat-radio-button>
+        <mat-radio-group aria-label="Select an option" formControlName="state">
+          <mat-radio-button class="radio-group" value="nowy" color="primary">Nowy</mat-radio-button>
+          <mat-radio-button class="radio-group" value="używany" color="primary">Używany</mat-radio-button>
         </mat-radio-group>
       </div>
       <div class="change-width">
       <span>Moc (KM):</span><i class="fas fa-info-circle" id="7"></i>
       <mat-form-field class="example-full-width2">
-        <input type="number"  matInput name="value" placeholder=""
-        >
+        <input type="number"  matInput name="value" placeholder="" formControlName="power">
       </mat-form-field>
       </div>
       <div class="change-width">
         <span id="smaller-span">Pojemność skokowa (cm<sup>3</sup>):</span><i class="fas fa-info-circle" id="8"></i>
         <mat-form-field class="example-full-width2">
-          <input type="number"  matInput name="value" placeholder=""
-                 >
+          <input type="number"  matInput name="value" placeholder="" formControlName="engine_capacity">
         </mat-form-field>
       </div>
       <div class="change-width">
-        <span>Liczba drzwi:</span>
+        <span>Przebieg:</span>
         <mat-form-field class="example-full-width2">
-          <input type="number"  matInput name="value" placeholder="">
+          <input type="number"  formControlName="course" matInput name="value" placeholder="">
         </mat-form-field>
       </div>
       </div>
@@ -152,20 +151,11 @@
       <div class="change-width" id="price">
         <span>Cena:</span>
         <mat-form-field class="example-full-width2">
-          <input type="number"  matInput name="value" placeholder="">
+          <input type="number"  matInput name="value" placeholder="" formControlName="price">
+          <mat-error>Maximum price is 999999 PLN</mat-error>
         </mat-form-field>
       </div>
-                          <!--Value "from" will be taken automatically
-      <div class="change-width" id="small-width">
-        <mat-form-field class="example-full-width2">
-          <mat-select name="currency" value="PLN">
-            <mat-option *ngFor="let currency of currency" [value]="currency">
-              {{currency}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-        -->
+
 
         <div class="change-width" id="small-width">
           <mat-form-field class="example-full-width2">
@@ -179,18 +169,21 @@
 
 
       <div class="check-vat">
-      <mat-checkbox color="primary">Cena z Vat (+23%)</mat-checkbox></div>
-      <div class="check-vat">
-        <mat-checkbox color="primary">Do negocjacji</mat-checkbox></div>
+      <mat-checkbox color="primary" formControlName="vat">Cena z Vat (+23%)</mat-checkbox></div>
       <div class="add-photo-cont">
         <a><i class="fas fa-camera"></i>Dodaj zdjęcia</a>
       </div>
         <div class="change-width" id="description">
         <span>Opis oferty:</span>
         <mat-form-field class="example-full-width2">
-          <input type="text"  matInput name="value" placeholder="">
+          <input type="text"  matInput name="value" placeholder="" #descriptionInput formControlName="description">
+          <mat-hint align="end">{{descriptionInput.value.length}} / 170</mat-hint>
+          <mat-error *ngIf="form.get('description').hasError('minlength')">Minimum length is 30 chars</mat-error>
+          <mat-error *ngIf="form.get('description').hasError('maxlength')">Maximum length is 170 chars</mat-error>
         </mat-form-field>
       </div>
+        <div class="check-vat">
+          <mat-checkbox color="primary" formControlName="premium">Ogłoszenie wyróżnione (+ 40PLN)</mat-checkbox></div>
       </div>
     <div class="forms-inside" id="forms-inside-withoutPadding">
       <div class=" small-width-50">
@@ -211,7 +204,7 @@
       </div>
     </div>
       <div id="bottom-checkbox">
-      <mat-checkbox color="primary"></mat-checkbox>
+      <mat-checkbox color="primary" formControlName="bottom_checkbox"></mat-checkbox>
         <span>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt."</span>
       </div>
     </form>
@@ -234,6 +227,7 @@
       <div>{{oneinfodb.content}}</div>
 
     </div>
+    <pre>{{form.value | json}}</pre>
 
   </div>
 </div>

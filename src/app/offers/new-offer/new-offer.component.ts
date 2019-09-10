@@ -2,13 +2,14 @@ import {
   AfterViewInit, ChangeDetectorRef, Component, ComponentFactoryResolver, ElementRef, HostListener, OnInit, Renderer2,
   ViewChild, ViewChildren, ViewEncapsulation
 } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/internal/operators';
 import {isNumeric} from 'rxjs/internal/util/isNumeric';
 import {CarsService} from '../../core-module/services/cars.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {async} from 'rxjs/internal/scheduler/async';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-new-offer',
@@ -49,6 +50,7 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
 
   //dynamic databes for test!!
   info_db: any [] = [];
+  carsLength: number;
 
 
   oneinfodb: any;
@@ -62,7 +64,8 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
   constructor(private db: CarsService,
               private rend: Renderer2,
               private changeDetectorRef: ChangeDetectorRef,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private snack: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -76,6 +79,15 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
               startWith(''),
               map(value => this._filter(value))
             );
+            this.buildMyForm();
+    this.CheckCarsLength();
+  }
+
+  CheckCarsLength(): void {
+    this.db.getCars().subscribe((val) => {
+      this.carsLength = val.length;
+      console.log(this.carsLength);
+    });
   }
 
 
@@ -87,27 +99,26 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
           private buildMyForm(): void {
             this.form = this.formBuilder.group( {
               category: '',
-            colour: '',
-            course: 0,
-            doors: 5,
-            engine_capaciy: 1000 + 'cm3',
-            from: 'Osoba Prywatna',
-            fuel: '',
-            gearcase: '',
+            color: ['', Validators.required],
+            course: [0, Validators.required],
+            engine_capacity: [1000, Validators.required],
+            from: 'Osoba Prywatna',    //it should be moved to the client datas!!
+            fuel: ['', Validators.required],
+            gearcase: ['manualna', Validators.required],
             id: '',
-            mark: '',
-            model: '',
-            power: '',
-            seats: 5,
-            state: '',
-            type: '',
-            version: '',
-            year: 2000,
+            mark: ['', Validators.required],
+            model: ['', [Validators.required, Validators.maxLength(12)]],
+            power: [0, Validators.required],
+            state: ['nowy', Validators.required],
+            version: ['', Validators.required],
+            year: [2000, [Validators.required, Validators.max(new Date().getFullYear())]],
             key: '',
-            price: 0,
-            deadline: '',
-            premium: true,
-            timeLeft: ''
+            price: [0, [Validators.required, Validators.max(999999)]],
+            start_date: '',
+            premium: [false, Validators.required],
+                vat: [false, Validators.required],
+              description: ['', [Validators.required, Validators.minLength(30), Validators.maxLength(170)]],
+              bottom_checkbox: false,
               }
             );
           }
@@ -164,6 +175,22 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
   closeInfo(): void {
     this.dynamic_info = false;
 
+  }
+
+  createCar(): void {
+
+    this.form.controls['id'].setValue(this.carsLength + 1);
+    this.form.controls['start_date'].setValue(new Date());
+
+    this.db.addCar(this.form.value)
+      .then(this.SuccesCreate.bind(this), this.ErrorCreate.bind(this));
+  }
+
+  private SuccesCreate() {
+    this.snack.open('Car has been successfully created!', '', { panelClass: ['success-snack']});
+  }
+  private ErrorCreate (error) {
+    this.snack.open(error.message, '', {panelClass: 'snack-error'});
   }
 
 

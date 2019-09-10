@@ -1,9 +1,8 @@
 export interface Car {
   category: string;    //
-  colour: string;       //
+  color: string;       //
   course: number;       //
-  doors: number;        //
-  engine_capaciy: number;       //
+  engine_capacity: number;       //
   from: string;
   fuel: string;           //
   gearcase: string;       //
@@ -11,16 +10,15 @@ export interface Car {
   mark: string;     //
   model: string;        //
   power: number;        //
-  seats: number;
   state: string;        //
-  type: string;
   version: string;      //
   year: number;
   key: string;
   price: number;
-  deadline: string;
+  start_date: string;
   premium: boolean;
-  timeLeft: number;
+  vat: boolean;
+  description: string;
 }
 
 

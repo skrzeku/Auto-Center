@@ -5,6 +5,8 @@ import {MainOffersComponent} from './offers.component';
 import {OffersComponent} from './offers/offers.component';
 import {DetailsComponent} from './details/details.component';
 import {NewOfferComponent} from './new-offer/new-offer.component';
+import {CarResolve} from '../core-module/services/car-resolve.service';
+import {APIResolver} from '../shared-module/Api-resolver';
 
 
 
@@ -17,6 +19,7 @@ const Offers_Route: Routes = [
         path: '',
         component: <any>OffersComponent,
         pathMatch: 'full'
+
       },
       {
         path: 'new',
@@ -24,9 +27,9 @@ const Offers_Route: Routes = [
         pathMatch: 'full'
       },
       {
-        path: ':id',
+        path: ':key',
         component: <any>DetailsComponent,
-        pathMatch: 'full'
+        resolve: {car: CarResolve},
       }
 
     ]

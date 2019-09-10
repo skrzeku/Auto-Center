@@ -10,18 +10,17 @@
     "version": "II",
     "year": "2015",
     "course": 115000,
-    "engine capacity": 1300,
+    "engine_capacity": 1300,
     "fuel": "benzyna",
     "power": 140,
     "gearcase": "manualna",
-    "type": "SUV",
-    "doors": 5,
-    "seats": 5,
-    "colour": "biały",
+    "color": "biały",
     "state": "używany",
     "price": 23000,
-    "deadline": "2019-10-05T18:03:45.472Z",
-    "premium": true
+    "start_date": "2019-10-07T18:03:45.472Z",
+    "premium": true,
+    "vat": true,
+    "description": "its rly good car"
 
   },
       {
@@ -33,18 +32,17 @@
         "version": "II",
         "year": "2015",
         "course": 115000,
-        "engine capacity": 1300,
+        "engine_capacity": 1300,
         "fuel": "benzyna",
         "power": 140,
         "gearcase": "manualna",
-        "type": "SUV",
-        "doors": 5,
-        "seats": 5,
-        "colour": "biały",
+        "color": "biały",
         "state": "używany",
         "price": 223000,
-        "deadline": "2019-11-05T18:03:45.472Z",
-        "premium": true
+        "start_date": "2019-11-09T18:03:45.472Z",
+        "premium": true,
+        "vat": false,
+        "description": "its rly good car"
 
       },
       {
@@ -56,18 +54,17 @@
         "version": "II",
         "year": "2015",
         "course": 115000,
-        "engine capacity": 1300,
+        "engine_capacity": 1300,
         "fuel": "benzyna",
         "power": 140,
         "gearcase": "manualna",
-        "type": "SUV",
-        "doors": 5,
-        "seats": 5,
-        "colour": "biały",
+        "color": "biały",
         "state": "używany",
         "price": 23000,
-        "deadline": "2019-11-05T18:03:45.472Z",
-        "premium": true
+        "start_date": "2019-11-05T18:03:45.472Z",
+        "premium": true,
+        "vat": true,
+        "description": "its rly good car lol"
 
       },
       {
@@ -79,18 +76,17 @@
         "version": "II",
         "year": "2015",
         "course": 115000,
-        "engine capacity": 1300,
+        "engine_capacity": 1300,
         "fuel": "benzyna",
         "power": 140,
         "gearcase": "manualna",
-        "type": "SUV",
-        "doors": 5,
-        "seats": 5,
-        "colour": "biały",
+        "color": "biały",
         "state": "używany",
         "price": 23000,
-        "deadline": "2019-11-05T18:03:45.472Z",
-        "premium": true
+        "start_date": "2019-11-05T18:03:45.472Z",
+        "premium": true,
+        "vat": false,
+        "description": "its rly good car"
 
       },
       {
@@ -102,18 +98,17 @@
         "version": "II",
         "year": "2015",
         "course": 115000,
-        "engine capacity": 1300,
+        "engine_capacity": 1300,
         "fuel": "benzyna",
         "power": 140,
         "gearcase": "manualna",
-        "type": "SUV",
-        "doors": 5,
-        "seats": 5,
-        "colour": "biały",
+        "color": "biały",
         "state": "używany",
         "price": 23000,
-        "deadline": "2019-11-05T18:03:45.472Z",
-        "premium": true
+        "start_date": "2019-12-05T18:03:45.472Z",
+        "premium": true,
+        "vat": true,
+        "description": "its rly good car"
 
       },
       {
@@ -125,18 +120,17 @@
         "version": "II",
         "year": "2015",
         "course": 115000,
-        "engine capacity": 1300,
+        "engine_capacity": 1300,
         "fuel": "benzyna",
         "power": 140,
         "gearcase": "manualna",
-        "type": "SUV",
-        "doors": 5,
-        "seats": 5,
-        "colour": "biały",
+        "color": "biały",
         "state": "używany",
         "price": 23000,
-        "deadline": "2019-11-05T18:03:45.472Z",
-        "premium": true
+        "start_date": "2019-11-05T18:03:45.472Z",
+        "premium": true,
+        "vat": true,
+        "description": "its rly good car"
       }
       ]
 }

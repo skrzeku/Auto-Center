@@ -1,5 +1,5 @@
 <div class="big-container">
-  <div class="one-car" *ngFor="let car of cars$ | async">
+  <div class="one-car" *ngFor="let car of cars$ | async" (click)="gotoDetails(car)">
     <span>{{car.model}}</span>
     <span>{{car.state}}</span>
     <span>{{car.price}}</span>

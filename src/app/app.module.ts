@@ -16,6 +16,8 @@ import {environment} from '../environments/environment';
 import {MaterialModule} from './material/material.module';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {HelpService} from './core-module/services/help.service';
+import {CarResolve} from './core-module/services/car-resolve.service';
+import {CarsService} from './core-module/services/cars.service';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,6 @@ import {HelpService} from './core-module/services/help.service';
     MaterialModule, AngularFireDatabaseModule, AngularFontAwesomeModule, BrowserAnimationsModule, MatTooltipModule, MatButtonModule, RouterModule, AppRoutingModule
   ],
   bootstrap: [AppComponent],
-  providers: [HelpService]
+  providers: [HelpService, CarsService, CarResolve]
 })
 export class AppModule { }

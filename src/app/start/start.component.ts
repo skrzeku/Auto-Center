@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Car} from '../core-module/models/car.model';
 
 @Component({
   selector: 'app-start',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./start.component.less']
 })
 export class StartComponent implements OnInit {
+
+  car: Car;
 
   constructor() { }
 

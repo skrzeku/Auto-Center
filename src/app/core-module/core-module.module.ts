@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NavigationComponent } from './navigation/navigation.component';
 import { LeftNavisComponent } from './left-navis/left-navis.component';
 import {RouterModule} from '@angular/router';
+import {CarResolve} from './services/car-resolve.service';
 
 @NgModule({
   imports: [
@@ -10,6 +11,7 @@ import {RouterModule} from '@angular/router';
     RouterModule
   ],
   exports: [NavigationComponent, LeftNavisComponent],
-  declarations: [NavigationComponent, LeftNavisComponent]
+  declarations: [NavigationComponent, LeftNavisComponent],
+
 })
 export class CoreModule { }

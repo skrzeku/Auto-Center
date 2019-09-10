@@ -3,10 +3,10 @@
     <ul class="filter-list">
       <li class="s">Strona główna <i class="fas fa-angle-right"></i></li>
       <li class="s">Osobowe <i class="fas fa-angle-right"></i></li>
-      <li>Mercedes-Benz</li>
+      <li>{{car.model}}</li>
       <li>Klasa C<i class="fas fa-angle-right"></i></li>
       <li>C 63 AMG<i class="fas fa-angle-right"></i></li>
-      <li>Mercedes-Benz Klasa C W205 (2014-)</li>
+      <li>{{car.mark}} Klasa C W205 (2014-)</li>
     </ul>
 
   </div>
@@ -53,24 +53,21 @@
     <div class="date-id-details" #details_now_fixed>
       <h2>Szczegóły</h2>
       <ul>
-        <li><span class="list-span">Oferta of</span> <a class="nav">!!Kategoria Klienta!!</a></li>
-        <li><span class="list-span">kategoria</span> <a class="nav">!!Kategoria Pojazdu!!</a></li>
-        <li><span class="list-span">marka</span> <a class="nav">!!Kategoria Marki!!</a></li>
-        <li><span class="list-span">model</span> <a class="nav">!!Kategoria Modelu!!</a></li>
-        <li><span class="list-span">9</span> <a>ob8</a></li>
-        <li><span class="list-span">rok</span> <a class="nav">!!Kategoria Roku</a></li>
+        <li><span class="list-span">Oferta od:</span> <a class="nav">{{car.from}}</a></li>
+        <li><span class="list-span">Kategoria:</span> <a class="nav">{{car.category}}</a></li>
+        <li><span class="list-span">Marka:</span> <a class="nav">{{car.mark}}</a></li>
+        <li><span class="list-span">Model:</span> <a class="nav">{{car.model}}</a></li>
+        <li><span class="list-span">Wersja:</span> <a>ob8</a></li>
+        <li><span class="list-span">Rok:</span> <a class="nav">{{car.year}}</a></li>
 
 
-        <li><span class="list-span">przebieg</span> <a>199987 km</a></li>
-        <li><span class="list-span">rodzaj paliwa</span> <a class="nav">!!Kategoria Paliwa!!</a></li>
-        <li><span class="list-span">skrzynia</span> <a>manual</a></li>
+        <li><span class="list-span">Przebieg:</span> <a>{{car.course}} Km</a></li>
+        <li><span class="list-span">Rodzaj paliwa:</span> <a class="nav">{{car.fuel}}</a></li>
+        <li><span class="list-span">Skrzynia</span> <a>{{car.gearcase}}</a></li>
       </ul>
       <ul>
-        <li><span class="list-span">typ</span> <a class="nav">!!Kategoria Typu!!</a></li>
-        <li><span class="list-span">liczba drzwi</span> <a>5</a></li>
-        <li><span class="list-span">liczba miejsc</span> <a>5</a></li>
-        <li><span class="list-span">kolor</span> <a>czarny</a></li>
-        <li><span class="list-span">stan</span> <a>używane</a></li>
+        <li><span class="list-span">kolor</span> <a>{{car.color}}</a></li>
+        <li><span class="list-span">stan</span> <a>{{car.state}}</a></li>
       </ul>
 
     </div>

@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Car} from '../models/car.model';
 import {Mark} from '../models/marks.model';
+import {ActivatedRoute, Router} from '@angular/router';
 
 
 
@@ -15,7 +16,9 @@ export class CarsService {
     private Api_url = '/cars';
     private marks_url = '/marks/marks';
     private info_url = 'info/info_db';
-  constructor(private db: AngularFireDatabase) { }
+  constructor(private db: AngularFireDatabase,
+              private router: Router,
+              private activeroute: ActivatedRoute) { }
 
   getCars(): Observable<Car[]> {
     return this.db.list<Car>(this.Api_url).snapshotChanges()
@@ -40,7 +43,18 @@ export class CarsService {
       .pipe(map(response => response.map(info => this.assignKey(info))));
   }
 
+  addCar(car: Car) {
+    return this.db.list<Car>(this.Api_url).push(car);
+  }
+
+  goToCarDetails(car: Car) {
+    this.router.navigate(['/offers/', car.key]);
+  }
 
 
+  getCar(key: string): Observable<Car> {
+    return this.db.object<Car>(`${this.Api_url}/${key}`).snapshotChanges()
+      .pipe(map(car => this.assignKey(car)));
+  }
 
 }

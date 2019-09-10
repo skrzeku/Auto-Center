@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {Car} from '../../core-module/models/car.model';
 import {Mark} from '../../core-module/models/marks.model';
 import {map} from 'rxjs/internal/operators';
+import {Router} from '@angular/router';
 declare var require;
 
 @Component({
@@ -13,7 +14,8 @@ declare var require;
 })
 export class OffersComponent implements OnInit, AfterViewInit {
 
-  constructor(private carservice: CarsService) {}
+  constructor(private carservice: CarsService,
+              private router: Router) {}
   cars$: Observable<Car[]>;
 
   marks$: Observable<Mark[]>;
@@ -53,6 +55,10 @@ export class OffersComponent implements OnInit, AfterViewInit {
 
   }
 
+  gotoDetails(car: Car) {
+    this.carservice.goToCarDetails(car);
+
+  }
 
 
 
@@ -99,9 +105,9 @@ export class OffersComponent implements OnInit, AfterViewInit {
 
     voidnew(array): void {
     const chance = new this.Chance();
-    const uniques = chance.unique(chance.natural, array.length, {min: 0, max: 5});
+    const uniques = chance.unique(chance.natural, array.length, {min: 0, max: array.length - 1});
         for (let i = 0; i < array.length; i++ ) {
-          console.log(array[uniques[i]]);
+          //console.log(array[uniques[i]]);
         }
     }
 
