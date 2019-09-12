@@ -123,4 +123,9 @@ export class SearchEngineComponent implements OnInit {
             this.router.navigate(['main/motorcycle']);
           }
   }
+
+
+  goToOffers(): void {
+    this.router.navigate(['/offers']);
+  }
 }

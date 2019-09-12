@@ -20,6 +20,17 @@ export interface Car {
   vat: boolean;
   description: string;
 }
+export class Image {
+  key: string;
+  id: number;
+  url: string;
+  file: File;
+
+  constructor(file: File) {
+  this.file = file;
+}
+}
+
 
 
 

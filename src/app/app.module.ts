@@ -18,13 +18,15 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {HelpService} from './core-module/services/help.service';
 import {CarResolve} from './core-module/services/car-resolve.service';
 import {CarsService} from './core-module/services/cars.service';
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
-    CommonModule, SharedModule, CoreModule, AngularFireModule.initializeApp(environment.firebase),
+    CommonModule, SharedModule, CoreModule, AngularFireStorageModule, AngularFirestoreModule, AngularFireModule.initializeApp(environment.firebase),
     MaterialModule, AngularFireDatabaseModule, AngularFontAwesomeModule, BrowserAnimationsModule, MatTooltipModule, MatButtonModule, RouterModule, AppRoutingModule
   ],
   bootstrap: [AppComponent],

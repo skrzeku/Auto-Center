@@ -10,6 +10,7 @@ import {CarsService} from '../../core-module/services/cars.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {async} from 'rxjs/internal/scheduler/async';
 import {MatSnackBar} from '@angular/material';
+import {Image} from '../../core-module/models/car.model';
 
 @Component({
   selector: 'app-new-offer',
@@ -44,42 +45,44 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
   mark: string[] = ['Audi', 'BMW', 'Volkswagen', 'Opel', 'Toyota', 'Kia'];
   currency: string[] = ['PLN', 'Euro'];
   dynamic_info: boolean = false;
-  mydyna: any;
-
+  progress: { percentage: number } = {percentage: 0};
+  selectedFiles: FileList;
 
 
   //dynamic databes for test!!
   info_db: any [] = [];
   carsLength: number;
-
+url: string = '';
 
   oneinfodb: any;
 
   modelAudi: string[];
   filteredOptions: Observable<string[]>;
 
-    //forms
+  //forms
   form: FormGroup;
 
   constructor(private db: CarsService,
               private rend: Renderer2,
               private changeDetectorRef: ChangeDetectorRef,
               private formBuilder: FormBuilder,
-              private snack: MatSnackBar) {
+              private snack: MatSnackBar,
+              private cd: ChangeDetectorRef,
+              private carsservice: CarsService) {
   }
 
   ngOnInit() {
-            //filling the array
-            this.db.getInfoCircle().subscribe( async (lol) => {
-              this.info_db = lol;
-              console.log(lol);
-            });
+    //filling the array
+    this.db.getInfoCircle().subscribe(async (lol) => {
+      this.info_db = lol;
+      console.log(lol);
+    });
 
-            this.filteredOptions = this.myControl.valueChanges.pipe(
-              startWith(''),
-              map(value => this._filter(value))
-            );
-            this.buildMyForm();
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
+    this.buildMyForm();
     this.CheckCarsLength();
   }
 
@@ -91,57 +94,65 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
   }
 
 
-
   ngAfterViewInit() {
   }
 
 
-          private buildMyForm(): void {
-            this.form = this.formBuilder.group( {
-              category: '',
-            color: ['', Validators.required],
-            course: [0, Validators.required],
-            engine_capacity: [1000, Validators.required],
-            from: 'Osoba Prywatna',    //it should be moved to the client datas!!
-            fuel: ['', Validators.required],
-            gearcase: ['manualna', Validators.required],
-            id: '',
-            mark: ['', Validators.required],
-            model: ['', [Validators.required, Validators.maxLength(12)]],
-            power: [0, Validators.required],
-            state: ['nowy', Validators.required],
-            version: ['', Validators.required],
-            year: [2000, [Validators.required, Validators.max(new Date().getFullYear())]],
-            key: '',
-            price: [0, [Validators.required, Validators.max(999999)]],
-            start_date: '',
-            premium: [false, Validators.required],
-                vat: [false, Validators.required],
-              description: ['', [Validators.required, Validators.minLength(30), Validators.maxLength(170)]],
-              bottom_checkbox: false,
-              }
-            );
-          }
+  private buildMyForm(): void {
+    this.form = this.formBuilder.group({
+        category: '',
+        color: ['', Validators.required],
+        course: [0, Validators.required],
+        engine_capacity: [1000, Validators.required],
+        from: 'Osoba Prywatna',    //it should be moved to the client datas!!
+        fuel: ['', Validators.required],
+        gearcase: ['manualna', Validators.required],
+        id: '',
+        mark: ['', Validators.required],
+        model: ['', [Validators.required, Validators.maxLength(12)]],
+        power: [0, Validators.required],
+        state: ['nowy', Validators.required],
+        version: ['', Validators.required],
+        year: [2000, [Validators.required, Validators.max(new Date().getFullYear())]],
+        key: '',
+        price: [0, [Validators.required, Validators.max(999999)]],
+        start_date: '',
+        premium: [false, Validators.required],
+        vat: [false, Validators.required],
+        description: ['', [Validators.required, Validators.minLength(30), Validators.maxLength(170)]],
+        bottom_checkbox: false,
+      }
+    );
+  }
+
+  //Send images to the storage now just one file but i have to edit it :)
+  csvInputChange(event) {
+    this.selectedFiles = event.target.files;
+    console.log(this.selectedFiles.length);
+    for (let i = 0; i <= this.selectedFiles.length - 1; i++) {
+      const reader = new FileReader();
+      reader.readAsDataURL(event.target.files[i]);
+      reader.onload = (e: any) => { // called once readAsDataURL is completed
+        this.url = e.target.result;
+      }
+    }
+  }
 
 
-            private _filter(value: string): string[] {
-              const filterValue = value.toLowerCase();
-
-              return this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
-            }
-
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+  }
 
 
-                //filter db get one
-        public showDynamicInfo(id: number): void {
-
-          const oneobject = this.info_db.filter(one => one.id == id);
-          this.oneinfodb = oneobject[0];
-
-        }
+  //filter db get one
+  public showDynamicInfo(id: number): void {
+    const oneobject = this.info_db.filter(one => one.id == id);
+    this.oneinfodb = oneobject[0];
+  }
 
 
-@HostListener('document:click', ['$event'])
+  @HostListener('document:click', ['$event'])
 
   handleClick(event: Event) {
     const target = event.target as Element;
@@ -150,26 +161,25 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
     const correctClass = 'fas fa-info-circle';
     const top = target.getBoundingClientRect().top;
 
-        if (classs === correctClass && isNumeric(id)) {
-                          //nth click
-                    if(this.dynamic_info) {
-                      this.dynamic_info = false;
-                      setTimeout(() => {
-                        this.dynamic_info = true;
-                        this.showDynamicInfo(+id);
-                      }, 600);
-                    }
-                        //First Click!!
-                    else {
-                      this.dynamic_info = true;
-                      this.showDynamicInfo(+id);
-
-                    }
-        }
-        else {
-          return;
-        }
+    if (classs === correctClass && isNumeric(id)) {
+      //nth click
+      if (this.dynamic_info) {
+        this.dynamic_info = false;
+        setTimeout(() => {
+          this.dynamic_info = true;
+          this.showDynamicInfo(+id);
+        }, 600);
+      }
+      //First Click!!
+      else {
+        this.dynamic_info = true;
+        this.showDynamicInfo(+id);
+      }
     }
+    else {
+      return;
+    }
+  }
 
 
   closeInfo(): void {
@@ -179,19 +189,24 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
 
   createCar(): void {
 
-    this.form.controls['id'].setValue(this.carsLength + 1);
+    const id = this.carsLength + 1;
+    this.form.controls['id'].setValue(id);
     this.form.controls['start_date'].setValue(new Date());
+    this.carsservice.pushFileToStorage(this.selectedFiles, this.progress, id);   //images
+
 
     this.db.addCar(this.form.value)
       .then(this.SuccesCreate.bind(this), this.ErrorCreate.bind(this));
   }
 
   private SuccesCreate() {
-    this.snack.open('Car has been successfully created!', '', { panelClass: ['success-snack']});
+    this.snack.open('Car has been successfully created!', '', {panelClass: ['success-snack']});
   }
-  private ErrorCreate (error) {
+
+  private ErrorCreate(error) {
     this.snack.open(error.message, '', {panelClass: 'snack-error'});
   }
+
 
 
 }
