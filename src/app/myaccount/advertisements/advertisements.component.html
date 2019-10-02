@@ -1,0 +1,30 @@
+<div id="adds-container">
+  <ul id="choice-add-category">
+    <li class="active">Obecne {{amountOfCurrent}}</li>
+    <li>Zakończone {{amountOfRecent}}</li>
+  </ul>
+  <div class="adds-main-wrap">
+    <div class="search-adds">
+      <form id="form-search">
+      <mat-form-field id="newfieldtest">
+      <mat-select name="category" value="PLN" placeholder="Wybierz kategorie">
+        <mat-option *ngFor="let category of category" [value]="category">
+          {{category}}
+        </mat-option>
+      </mat-select>
+      </mat-form-field>
+      <mat-form-field id="search-field">
+        <input matInput placeholder="Szukaj...">
+        <span id="icon-wrapper"><i class="fas fa-search"></i></span>
+      </mat-form-field>
+      </form>
+      <span class="amount-span">{{amountOfCurrent}} Ogłoszeń</span>
+      <span class="amount-span">{{amountOfRecent}} Ogłoszeń</span>
+    </div>
+    <div class="empty-amount">
+      <h3 *ngIf="!amountOfCurrent">Obecnie nie masz żadnego aktywnego ogłoszenia</h3>
+      <h3 *ngIf="!amountOfRecent">Obecnie nie masz żadnego zakończonego ogłoszenia</h3>
+    </div>
+
+  </div>
+</div>

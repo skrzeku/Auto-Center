@@ -1,0 +1,72 @@
+@import "../../../assets/styles/global";
+
+
+#adds-container {
+  margin-top: 40px;
+
+}
+
+#choice-add-category {
+  .w(33.333%);
+  .list-style-none;
+      li {
+       .d-inline;
+        .w(50%);
+        .center-text;
+        font-size: 18px;
+        .padding-top-bottom(9px, 9px);
+      }
+}
+.active {
+  background-color: lighten(lightblue, 10%);
+}
+.search-adds {
+  width: 50%;
+  margin: 60px auto 0;
+}
+
+::ng-deep .mat-select-panel {
+  position: relative;
+  top: 44px !important;
+  min-width: calc(100% + 18px) !important;
+}
+
+::ng-deep .mat-form-field-infix {
+  padding: 0 0 0 10px !important;
+  border: solid 1px @hover-text-color;
+  line-height: 32px;
+}
+
+::ng-deep .mat-form-field-label {
+  position: relative !important;
+  top: -5px !important;
+  .center-text;
+  font-size: 16px !important;
+  padding: 5px !important;
+}
+
+#search-field {
+  margin-left: 20px;
+  position: relative;
+}
+#icon-wrapper {
+  background-color: lightblue;
+  position: absolute;
+  padding: 0 5px;
+  transform: translateX(-100%);
+  border-left: 1px solid @hover-text-color;
+}
+
+#form-search {
+  .d-inline;
+}
+.amount-span {
+  margin-left: 10px;
+}
+.empty-amount {
+  margin-top: 50px;
+  .center-text;
+  h3 {
+    margin: 20px 0 !important;
+  }
+}

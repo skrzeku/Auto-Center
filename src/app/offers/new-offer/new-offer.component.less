@@ -76,12 +76,8 @@
                             .rest-section {     //big container of the rest section
                               background-color: @main-bg;
                             }
-.smaller-container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 10px 10px 0 10px;
-  position: relative;
 
+.smaller-container {
   label {
     .d-inline;
     font-size: 26px;
@@ -92,8 +88,8 @@
   @media @medium {
     //.w(1100px);
   }
-}
 
+}
 .fa-arrow-left {
   margin: 10px 20px;
 }
@@ -445,14 +441,22 @@
   background-color: red !important;
 }
 .small-img {
-  height: 100px;
-  width: 100px;
+
   .d-inline;
-  border: 2px red solid;
+
 img {
-  width: 100px;
-  height: auto;
+  .w(auto);
+  height: 50px;
+  border: 2px red solid;
 }
+}
+#add-img {
+  .d-block;
+  margin-bottom: 20px;
+}
+.small-add-photo {
+  .d-inline;
+  .w(50%);
 }
 
 

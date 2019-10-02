@@ -62,7 +62,6 @@ export class CarsService {
 
 
   pushFileToStorage(fileUpload: FileList, progress: { percentage: number }, path) {
-
 for (let i = 0; i <= fileUpload.length - 1; i++) {
   const storageRef = firebase.storage().ref();
   const uploadTask = storageRef.child(`${'/' + path}/${fileUpload[i].name}`).put(fileUpload[i]);

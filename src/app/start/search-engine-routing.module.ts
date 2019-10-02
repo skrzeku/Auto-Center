@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-import {OffersComponent} from '../offers/offers/offers.component';
-import {SearchEngineComponent} from './search-engine/search-engine.component';
 import {PartsComponent} from './search-engine/parts/parts.component';
 import {MotorcycleComponent} from './search-engine/motorcycle/motorcycle.component';
 import {StartComponent} from './start.component';

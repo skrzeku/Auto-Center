@@ -6,6 +6,7 @@ import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {DealerComponent} from './dealer/dealer.component';
 
+
 const Login: Routes = [
 
   {path: '',
@@ -25,6 +26,7 @@ const Login: Routes = [
         component: <any>DealerComponent,
         pathMatch: 'full'
       }
+
     ]
   },
 

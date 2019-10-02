@@ -14,5 +14,9 @@ export class StartComponent implements OnInit {
 
   ngOnInit() {
   }
+  goToDetails(event): void {
+
+
+  }
 
 }

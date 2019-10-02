@@ -171,11 +171,16 @@
       <div class="check-vat">
       <mat-checkbox color="primary" formControlName="vat">Cena z Vat (+23%)</mat-checkbox></div>
       <div class="add-photo-cont">
-        <input #csvInput hidden="true" multiple type="file"  onclick="this.value=null" (change)="csvInputChange($event)" accept=".png"/>
-        <a (click)="csvInput.click()"><i class="fas fa-camera"></i>Dodaj zdjęcia</a>
+        <div class="small-add-photo">
+          <input #addMainInput hidden="true" type="file" onclick="this.value=null" accept=".png" (change)="addMainPhoto($event)"/>
+          <a (click)="addMainInput.click()" id="add-img-main"><i class="fas fa-camera"></i>Dodaj główne zdjęcie</a>
+        </div>
+        <div class="small-add-photo">
+          <input #csvInput hidden="true" multiple type="file"  onclick="this.value=null" (change)="csvInputChange($event)" accept=".png"/>
+          <a (click)="csvInput.click()" id="add-img"><i class="fas fa-camera"></i>Dodaj pozostałe zdjęcia</a>
+        </div>
         <div class="small-img" *ngFor="let img of selectedFiles; index as index">
           <img [src]="url[index]">
-
         </div>
 
       </div>

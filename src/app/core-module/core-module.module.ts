@@ -4,11 +4,13 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { LeftNavisComponent } from './left-navis/left-navis.component';
 import {RouterModule} from '@angular/router';
 import {CarResolve} from './services/car-resolve.service';
+import {SharedModule} from '../shared-module/shared-module.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    SharedModule
   ],
   exports: [NavigationComponent, LeftNavisComponent],
   declarations: [NavigationComponent, LeftNavisComponent],

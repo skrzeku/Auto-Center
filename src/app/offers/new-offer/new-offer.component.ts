@@ -47,12 +47,13 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
   dynamic_info: boolean = false;
   progress: { percentage: number } = {percentage: 0};
   selectedFiles: FileList;
+  oneSelectedFile: File;
 
 
   //dynamic databes for test!!
   info_db: any [] = [];
   carsLength: number;
-url: string = '';
+  url = [];
 
   oneinfodb: any;
 
@@ -126,16 +127,21 @@ url: string = '';
   }
 
   //Send images to the storage now just one file but i have to edit it :)
-  csvInputChange(event) {
+  csvInputChange(event): void {
     this.selectedFiles = event.target.files;
     console.log(this.selectedFiles.length);
     for (let i = 0; i <= this.selectedFiles.length - 1; i++) {
       const reader = new FileReader();
       reader.readAsDataURL(event.target.files[i]);
       reader.onload = (e: any) => { // called once readAsDataURL is completed
-        this.url = e.target.result;
-      }
+        const oneresult = e.target.result;
+        this.url.push(oneresult);
+      };
     }
+  }
+  addMainPhoto(event): void {
+    this.oneSelectedFile = event.target.files[0];
+    console.log(this.oneSelectedFile);
   }
 
 

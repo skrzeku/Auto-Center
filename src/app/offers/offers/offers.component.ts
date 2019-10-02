@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {Car} from '../../core-module/models/car.model';
 import {Mark} from '../../core-module/models/marks.model';
 import {map} from 'rxjs/internal/operators';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 declare var require;
 
 @Component({
@@ -43,15 +43,15 @@ export class OffersComponent implements OnInit, AfterViewInit {
     this.countDate();
 
 
-
-
-
-
   }
 
 
   ngAfterViewInit () {
 
+
+  }
+
+  LoadCarsBeforeView (): void {
 
   }
 
