@@ -1,13 +1,13 @@
 <div id="adds-container">
   <ul id="choice-add-category">
-    <li class="active">Obecne {{amountOfCurrent}}</li>
-    <li>Zakończone {{amountOfRecent}}</li>
+    <li class="active" (click)="changevoid('curr')">Obecne {{amountOfCurrent}}</li>
+    <li (click)="changevoid('rec')">Zakończone {{amountOfRecent}}</li>
   </ul>
   <div class="adds-main-wrap">
     <div class="search-adds">
       <form id="form-search">
       <mat-form-field id="newfieldtest">
-      <mat-select name="category" value="PLN" placeholder="Wybierz kategorie">
+      <mat-select name="category" value="Osobowe" placeholder="Wybierz kategorie">
         <mat-option *ngFor="let category of category" [value]="category">
           {{category}}
         </mat-option>
@@ -17,14 +17,61 @@
         <input matInput placeholder="Szukaj...">
         <span id="icon-wrapper"><i class="fas fa-search"></i></span>
       </mat-form-field>
+        <a id="btn_delete_all" *ngIf="(currentBoolean && amountOfCurrent) || (!currentBoolean && amountOfRecent)">Usuń Wszystkie</a>
+        <span class="amount-span" *ngIf="currentBoolean">{{amountOfCurrent}} Ogłoszeń</span>
+        <span class="amount-span" *ngIf="!currentBoolean">{{amountOfRecent}} Ogłoszeń</span>
+        <span *ngIf="(currentBoolean && amountOfCurrent) || (!currentBoolean && amountOfRecent)" id="span_page_amount">Ogloszenia na stronie: </span>
+        <mat-form-field id="page_amount" *ngIf="(currentBoolean && amountOfCurrent) || (!currentBoolean && amountOfRecent)">
+          <mat-select name="category" value= '10'>
+            <mat-option *ngFor="let amount of amount" [value]="amount">
+              {{amount}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       </form>
-      <span class="amount-span">{{amountOfCurrent}} Ogłoszeń</span>
-      <span class="amount-span">{{amountOfRecent}} Ogłoszeń</span>
+
     </div>
-    <div class="empty-amount">
-      <h3 *ngIf="!amountOfCurrent">Obecnie nie masz żadnego aktywnego ogłoszenia</h3>
-      <h3 *ngIf="!amountOfRecent">Obecnie nie masz żadnego zakończonego ogłoszenia</h3>
-    </div>
+                          <!-- Wrappers current and recent changed by *ngIF -->
+
+                          <!-- Current-->
+                  <div class="currentwrapper" *ngIf="currentBoolean">
+                    <div class="not_empty_inside" *ngIf="amountOfCurrent">
+                      <table class="not-empty-table">
+                        <tr>
+                          <th id="smallest_one"><a (click)="sortIt()">Pozostały czas<i class="fas" [ngClass]="booli ? 'fa-sort-up' : 'fa-sort-down'"></i></a></th>
+                          <th id="img_th"></th>
+                          <th id="th_title"><a (click)="sortIt()">Tytuł<i class="fas fa-sort-up"></i><i class="fas fa-sort-down"></i></a></th>
+                          <th><a>Cena<i class="fas fa-sort-up"></i><i class="fas fa-sort-down"></i></a></th>
+                          <th>Akcje</th>
+                        </tr>
+                        <tr *ngFor="let car of cars">
+                          <td>{{car.id}}</td>
+                          <td><img id="resp_img" src="../../../assets/images/fruit-juice-icon-png-18.png"></td>
+                          <td><a id="detail-a" (click)="gotoDetails(car)">{{car.mark}} {{car.model}} {{car.year}}</a><p class="car_p">id:{{car.id}}</p><p class="car_p">{{car.fuel}}</p></td>
+                          <td>{{car.price}} PLN</td>
+                          <td><a id="delete_car"><i class="fas fa-times"></i></a></td>
+                        </tr>
+                      </table>
+                    </div>
+                    <div class="empty_inside" *ngIf="!amountOfCurrent">
+                      <h3>Obecnie nie masz żadnego aktywnego ogłoszenia</h3>
+                      <a class="add-btn-red"><i class="fas fa-plus"></i>Dodaj Ogłoszenie</a>
+                    </div>
+                  </div>
+
+
+                            <!-- Recent-->
+
+                  <div class="recentwrapper" *ngIf="!currentBoolean">
+                    <div class="not_empty_inside" *ngIf="amountOfRecent">
+
+                    </div>
+                    <div class="empty_inside" *ngIf="!amountOfRecent">
+                      <h3>Obecnie nie masz żadnego zakończonego ogłoszenia</h3>
+                      <a class="add-btn-red"><i class="fas fa-plus"></i>Dodaj Ogłoszenie</a>
+                    </div>
+
+                  </div>
 
   </div>
 </div>
