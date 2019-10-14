@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {AngularFireDatabase} from '@angular/fire/database';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Car, Image} from '../models/car.model';
 import {Mark} from '../models/marks.model';
@@ -17,6 +17,7 @@ export class CarsService {
     private Api_url = '/cars';
     private marks_url = '/marks/marks';
     private info_url = 'info/info_db';
+    carSubject = new BehaviorSubject(null);
   private basePath = '/img';
   constructor(private db: AngularFireDatabase,
               private router: Router,
@@ -58,6 +59,11 @@ export class CarsService {
   getCar(key: string): Observable<Car> {
     return this.db.object<Car>(`${this.Api_url}/${key}`).snapshotChanges()
       .pipe(map(car => this.assignKey(car)));
+  }
+
+  shareCar(car: Car) {
+    this.carSubject.next(car);
+    console.log(car);
   }
 
 

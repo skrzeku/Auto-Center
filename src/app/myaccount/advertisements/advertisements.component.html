@@ -49,7 +49,9 @@
                           <td><img id="resp_img" src="../../../assets/images/fruit-juice-icon-png-18.png"></td>
                           <td><a id="detail-a" (click)="gotoDetails(car)">{{car.mark}} {{car.model}} {{car.year}}</a><p class="car_p">id:{{car.id}}</p><p class="car_p">{{car.fuel}}</p></td>
                           <td>{{car.price}} PLN</td>
-                          <td><a id="delete_car"><i class="fas fa-times"></i></a></td>
+                          <td>
+                            <a id="edit_car" (click)="goToEditCar(car)"><i class="fas fa-edit"></i></a>
+                            <a id="delete_car" (click)="openDialog(car)"><i class="fas fa-times"></i></a></td>
                         </tr>
                       </table>
                     </div>

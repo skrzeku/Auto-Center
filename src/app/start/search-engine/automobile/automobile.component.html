@@ -13,7 +13,7 @@
 
       <div class="change-width">
         <span>Marka i Model:</span>
-        <mat-form-field class="example-full-width2">
+        <mat-form-field class="auto_field">
           <input type="text" aria-label="Number" matInput [matAutocomplete]="auto">
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
@@ -21,7 +21,7 @@
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
-        <mat-form-field class="example-full-width2">
+        <mat-form-field class="auto_field">
           <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto">
           <mat-placeholder class="placeholder">Search</mat-placeholder>
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
@@ -33,9 +33,9 @@
       </div>
       <div class="change-width">
         <span>Cena:</span>
-        <mat-form-field class="example-full-width2">
+        <mat-form-field class="auto_field">
           <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto" name="Od">
-          <span class="mini-span">Od:</span>
+
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
               {{option}}
@@ -43,9 +43,9 @@
           </mat-autocomplete>
         </mat-form-field>
 
-        <mat-form-field class="example-full-width2">
+        <mat-form-field class="auto_field">
           <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto">
-          <span class="mini-span">Do:</span>
+
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
               {{option}}
@@ -55,18 +55,17 @@
       </div>
       <div class="change-width">
         <span>Rok Produkcji:</span>
-        <mat-form-field class="example-full-width2">
+        <mat-form-field class="auto_field">
           <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto">
-          <span class="mini-span">Od:</span>
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
               {{option}}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
-        <mat-form-field class="example-full-width2">
+        <mat-form-field class="auto_field">
           <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto">
-          <span class="mini-span">Do:</span>
+
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
               {{option}}
@@ -76,18 +75,16 @@
       </div>
       <div class="change-width">
         <span>Przebieg:</span>
-        <mat-form-field class="example-full-width2">
+        <mat-form-field class="auto_field">
           <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto">
-          <span class="mini-span">Od:</span>
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
               {{option}}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
-        <mat-form-field class="example-full-width2">
+        <mat-form-field class="auto_field">
           <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto">
-          <span class="mini-span">Do:</span>
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
               {{option}}

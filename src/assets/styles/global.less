@@ -280,5 +280,26 @@ a, button{
   position: relative;
 }
 
+::ng-deep .mat-select-panel {
+  position: relative;
+  top: 44px !important;
+  min-width: calc(100% + 18px) !important;
+}
+
+::ng-deep .mat-form-field-infix {
+  padding: 0 0 0 10px !important;
+  border: solid 1px @hover-text-color;
+  line-height: 32px;
+  background-color: white;
+}
+
+::ng-deep .mat-form-field-label {
+  position: relative !important;
+  top: -5px !important;
+  .center-text;
+  font-size: 16px !important;
+  padding: 5px !important;
+}
+
 
 

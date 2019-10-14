@@ -8,9 +8,10 @@ import { SettingsComponent } from './settings/settings.component';
 import { MessagesComponent } from './messages/messages.component';
 import {MyaccountComponent} from './myaccount.component';
 import {MaterialModule} from '../material/material.module';
+import { SmallModalComponent } from './small-modal/small-modal.component';
 
 @NgModule({
-  declarations: [MyaccountComponent, AdvertisementsComponent, SettingsComponent, MessagesComponent],
+  declarations: [MyaccountComponent, AdvertisementsComponent, SettingsComponent, MessagesComponent, SmallModalComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -18,6 +19,7 @@ import {MaterialModule} from '../material/material.module';
     MyaccRoutingModule,
     MaterialModule
   ],
+  entryComponents: [SmallModalComponent],
   exports: []
 })
 export class MyaccountModule { }

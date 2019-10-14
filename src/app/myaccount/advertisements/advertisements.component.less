@@ -91,6 +91,12 @@ th {
   background-color: red;
   padding: 6px;
   color: white;
+  margin-left: 10px;
+}
+#edit_car {
+  &:hover {
+    color: @brands-color;
+  }
 }
 
 #choice-add-category {
@@ -117,25 +123,6 @@ th {
   font-size: 85%;
 }
 
-::ng-deep .mat-select-panel {
-  position: relative;
-  top: 44px !important;
-  min-width: calc(100% + 18px) !important;
-}
-
-::ng-deep .mat-form-field-infix {
-  padding: 0 0 0 10px !important;
-  border: solid 1px @hover-text-color;
-  line-height: 32px;
-}
-
-::ng-deep .mat-form-field-label {
-  position: relative !important;
-  top: -5px !important;
-  .center-text;
-  font-size: 16px !important;
-  padding: 5px !important;
-}
 
 #search-field {
   margin-left: 20px;

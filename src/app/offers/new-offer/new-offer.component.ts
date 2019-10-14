@@ -10,7 +10,7 @@ import {CarsService} from '../../core-module/services/cars.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {async} from 'rxjs/internal/scheduler/async';
 import {MatSnackBar} from '@angular/material';
-import {Image} from '../../core-module/models/car.model';
+import {Car, Image} from '../../core-module/models/car.model';
 
 @Component({
   selector: 'app-new-offer',
@@ -62,6 +62,7 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
 
   //forms
   form: FormGroup;
+  car: Car;
 
   constructor(private db: CarsService,
               private rend: Renderer2,
@@ -78,6 +79,10 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
       this.info_db = lol;
       console.log(lol);
     });
+    this.LoadoneCar();
+
+
+
 
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
@@ -142,6 +147,17 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
   addMainPhoto(event): void {
     this.oneSelectedFile = event.target.files[0];
     console.log(this.oneSelectedFile);
+  }
+  LoadoneCar() {
+    if (this.carsservice.carSubject.value) {
+      this.carsservice.carSubject.subscribe((car) => {
+        this.carsservice.getCars().subscribe(() => {
+          this.form.patchValue(car);
+        });
+      });
+    }
+    else return false;
+
   }
 
 
@@ -211,6 +227,10 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
 
   private ErrorCreate(error) {
     this.snack.open(error.message, '', {panelClass: 'snack-error'});
+  }
+
+  LoadOneCar(car: Car): void {
+    this.form.patchValue(car);
   }
 
 

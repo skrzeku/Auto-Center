@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {CarsService} from '../../core-module/services/cars.service';
 import {Car} from '../../core-module/models/car.model';
 import {Observable} from 'rxjs';
+import {MatDialog} from '@angular/material';
+import {SmallModalComponent} from '../small-modal/small-modal.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-advertisements',
@@ -18,7 +21,9 @@ export class AdvertisementsComponent implements OnInit {
   amount: string[] = ['10', '20', '50'];
   cars: Car[];
 
-  constructor( private carservice: CarsService) { }
+  constructor( private carservice: CarsService,
+               private dialog: MatDialog,
+               private router: Router) { }
 
   ngOnInit() {
     this.carservice.getCars().subscribe((cars) => {
@@ -38,10 +43,20 @@ export class AdvertisementsComponent implements OnInit {
   }
   gotoDetails(car: Car) {
     this.carservice.goToCarDetails(car);
+  }
+  goToEditCar(car: Car) {
+    this.router.navigate(['offers/new']).then(
+      () => {
+            this.carservice.shareCar(car);
+      }
+    );
 
   }
   sortIt() {
     this.booli = !this.booli;
+  }
+  openDialog(car: Car) {
+  this.dialog.open(SmallModalComponent, { data: car });
   }
 
 }
