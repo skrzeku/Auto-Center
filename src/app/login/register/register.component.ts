@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthorizationService} from '../../core-module/services/authorization.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -6,38 +8,36 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register.component.less']
 })
 export class RegisterComponent implements OnInit {
-  lvpoolrandom: any;
-  barcarandom: any;
-  score: any;
 
 
-  constructor() {
+  registerform: FormGroup;
+
+
+  constructor(private authserv: AuthorizationService,
+              private formbuilder: FormBuilder) {
   }
 
   ngOnInit() {
+this.BuildRegisterForm();
+
   }
           //just for fun
-  obstaw(): void {
-    const lvpoolscroe: string[] = [
-      '3:1', '3:1', '3:0', '2:1', '2:0'
-    ];
-    const barcascore: string[] = [
-      '0:2', '0:2', '1:3', '1:2', '0:1'
-    ];
-    const myarray = [];
-    for (let i = 0; i <= lvpoolscroe.length - 1; i++) {
+ Register() {
 
-      const lvpool = 'Liverpool : Porto';
-      const barca = 'Manu : Barca';
-      this.lvpoolrandom = lvpoolscroe[(Math.random() * lvpoolscroe.length) | 0];
-      this.barcarandom = barcascore[(Math.random() * barcascore.length) | 0];
-      this.score = lvpool + ':' + this.lvpoolrandom + '     ' + barca + ':' + this.barcarandom + '\n' + '\n';
-      console.log(this.score);
-    };
-    alert(myarray );
+ }
+      //that's not allowed to make it public
 
+ private BuildRegisterForm() {
+    this.registerform = this.formbuilder.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required, Validators.minLength(6)],
+      first_name: '',
+      last_name: '',
+      country: '',
+      post_code: '',
+      city: '',
+      adress: ''
+    });
+ }
 
-
-
-  }
 }

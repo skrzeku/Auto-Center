@@ -1,26 +1,50 @@
 <div class="register-container white-bg">
   <div class="medium-container">
     <div class="left-register-form">
-      <form action="">
+      <form [formGroup]="registerform">
         <div class="login-form-field">
           <span>Login:</span>
-          <input type="text">
+          <input type="text" formControlName="email">
         </div>
         <div class="login-form-field">
           <span>Password:</span>
-          <input type="password">
+          <input type="password" formControlName="password">
         </div>
         <div class="login-form-field">
           <span>Repeat password: </span>
           <input type="password">
         </div>
+        <div class="login-form-field sm">
+          <span>Imię: </span>
+          <input type="text" formControlName="first_name">
+        </div>
+        <div class="login-form-field sm">
+          <span>Nazwisko: </span>
+          <input type="text" formControlName="last_name">
+        </div>
+        <div class="login-form-field">
+          <span>Kraj: </span>
+          <input type="text" formControlName="country">
+        </div>
+        <div class="login-form-field">
+          <span>Adres: </span>
+          <input type="text" formControlName="adress">
+        </div>
+        <div class="login-form-field sm">
+          <span>Kod Pocztowy: </span>
+          <input type="text" formControlName="post_code">
+        </div>
+        <div class="login-form-field sm">
+          <span>Miasto: </span>
+          <input type="text" formControlName="city">
+        </div>
 
         <!-- shown when login success
         <span ngIf="">Login success</span> -->
         <h5>Klikając przycisk utwórz konto, akceptuję <a>Regulamin</a> </h5>
-        <p>Przyjmuję do wiadomości, że OLX wykorzystuje moje dane osobowe zgodnie z <a>Polityką prywatności</a> oraz <a>Polityką dotyczącą plików cookie i podobnych technologii</a>. OLX wykorzystuje zautomatyzowane systemy i partnerów do analizowania, w jaki sposób korzystam z usług w celu zapewnienia odpowiedniej funkcjonalności produktu, treści, dostosowanych i opartych na zainteresowaniach reklam, jak również ochrony przed spamem, złośliwym oprogramowaniem i nieuprawnionym korzystaniem z naszych usług.</p>
+        <p>Przyjmuję do wiadomości, że Auto-Center wykorzystuje moje dane osobowe zgodnie z <a>Polityką prywatności</a> oraz <a>Polityką dotyczącą plików cookie i podobnych technologii</a>. OLX wykorzystuje zautomatyzowane systemy i partnerów do analizowania, w jaki sposób korzystam z usług w celu zapewnienia odpowiedniej funkcjonalności produktu, treści, dostosowanych i opartych na zainteresowaniach reklam, jak również ochrony przed spamem, złośliwym oprogramowaniem i nieuprawnionym korzystaniem z naszych usług.</p>
 
-        <!-- Checbox--> <p>Wyrażam zgodę na używanie przez Grupę OLX sp. z o.o. środków komunikacji elektronicznej oraz telekomunikacyjnych urządzeń końcowych w celu przesyłania mi informacji handlowych oraz prowadzenia marketingu (np. newsletter, wiadomości SMS) przez Grupę OLX sp. z o.o., podmioty powiązane i partnerów biznesowych.</p>
+        <!-- Checbox--> <p>WLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
       </form>
       <button class="register-btn">Utwórz konto indywidualne</button>
     </div>
