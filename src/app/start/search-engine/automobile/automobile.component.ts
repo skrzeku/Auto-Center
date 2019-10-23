@@ -6,6 +6,8 @@ import {Component, HostListener, OnInit, Renderer2} from '@angular/core';
   styleUrls: ['./automobile.component.less']
 })
 export class AutomobileComponent implements OnInit {
+  filteredOptions = ['lol', 'lol2'];
+
 
 
 
