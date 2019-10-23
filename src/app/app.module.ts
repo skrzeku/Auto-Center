@@ -20,16 +20,18 @@ import {CarResolve} from './core-module/services/car-resolve.service';
 import {CarsService} from './core-module/services/cars.service';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {AngularFireAuth, AngularFireAuthModule} from '@angular/fire/auth';
+import {AuthGuard} from './core-module/services/auth.guard';
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
-    CommonModule, SharedModule, CoreModule, AngularFireStorageModule, AngularFirestoreModule, AngularFireModule.initializeApp(environment.firebase),
+    CommonModule, SharedModule, CoreModule, AngularFireAuthModule, AngularFireStorageModule, AngularFirestoreModule, AngularFireModule.initializeApp(environment.firebase),
     MaterialModule, AngularFireDatabaseModule, AngularFontAwesomeModule, BrowserAnimationsModule, MatTooltipModule, MatButtonModule, RouterModule, AppRoutingModule
   ],
   bootstrap: [AppComponent],
-  providers: [HelpService, CarsService, CarResolve]
+  providers: [HelpService, CarsService, CarResolve, AuthGuard]
 })
 export class AppModule { }

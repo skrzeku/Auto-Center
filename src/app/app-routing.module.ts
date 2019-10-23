@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
+import {AuthGuard} from './core-module/services/auth.guard';
 
 
 
@@ -9,10 +10,10 @@ import {RouterModule, Routes} from '@angular/router';
 
 const APP_ROUTES : Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'main'},
-  {path: 'main', loadChildren: '../app/start/start.module#StartModule'},
+  {path: 'main', canActivate: [AuthGuard], loadChildren: '../app/start/start.module#StartModule'},
   {path: 'login', loadChildren: '../app/login/login.module#LoginModule'},
   {path: 'offers', loadChildren: '../app/offers/offers.module#OffersModule'},
-  {path: 'myaccount', loadChildren: '../app/myaccount/myaccount.module#MyaccountModule'}
+  {path: 'myaccount', canLoad: [AuthGuard], loadChildren: '../app/myaccount/myaccount.module#MyaccountModule'}
 
 
 

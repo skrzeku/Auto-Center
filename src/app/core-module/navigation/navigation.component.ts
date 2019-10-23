@@ -1,5 +1,7 @@
 import {AfterViewInit, Component, ElementRef, EventEmitter, OnChanges, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
 import {HelpService} from '../services/help.service';
+import {AuthorizationService} from '../services/authorization.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
@@ -13,12 +15,20 @@ export class NavigationComponent implements OnInit, AfterViewInit {
   @ViewChild('nav') nav: ElementRef;
 
   mynav: any;
+  bool;
 
 
   constructor(private rend: Renderer2,
-              private helpservice: HelpService) { }
+              private helpservice: HelpService,
+              private authserv: AuthorizationService,
+              private router: Router) { }
 
   ngOnInit() {
+    this.authserv.authState$.subscribe((auth) => {
+      this.bool = auth;
+      console.log(this.bool);
+    });
+
 
   }
   ngAfterViewInit () {
@@ -30,9 +40,12 @@ export class NavigationComponent implements OnInit, AfterViewInit {
    //this.Shownnavi = true;
     //this.showoutput.emit(this.Shownnavi);   //by using outputs
     this.helpservice.shareCloseValue(true);
+  }
+  singOut() {
+    this.authserv.logout()
+      .then(val => this.router.navigate(['/login']));
 
   }
-
 
   // (click)="Shownnavi = !Shownnavi"
 

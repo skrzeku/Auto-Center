@@ -4,11 +4,11 @@
       <form action="">
         <div class="login-form-field">
           <span>Login:</span>
-          <input type="text">
+          <input type="text" [(ngModel)]="user.email" required name="email">
         </div>
         <div class="login-form-field">
           <span>Password:</span>
-          <input type="password">
+          <input type="password" [(ngModel)]="user.password" required name="password">
         </div>                                <!--Checkbox -->
                                       <section title=".slideThree">
                                         <div class="slideThree">
@@ -22,7 +22,7 @@
         <!--<span ngIf="">Login success</span> -->
 
       </form>
-      <button class="register-btn" id="login-btn">Zaloguj się</button>
+      <button class="register-btn" id="login-btn" (click)="SingIn()">Zaloguj się</button>
       <div class="spans">
         <span>Przypomnij login lub hasło</span>
         <span class="float-right">Zarejestruj się</span>

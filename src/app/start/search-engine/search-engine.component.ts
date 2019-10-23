@@ -10,7 +10,6 @@ import * as $ from 'jQuery';
   selector: 'app-search-engine',
   templateUrl: './search-engine.component.html',
   styleUrls: ['./search-engine.component.less'],
-  encapsulation: ViewEncapsulation.None,
   animations: [
   ]
 })
