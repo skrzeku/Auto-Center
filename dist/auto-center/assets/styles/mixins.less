@@ -1,0 +1,163 @@
+            //My mixins
+
+
+      // Grids rows, columns
+.grid-colums (@col) {
+  grid-column: span @col;
+}
+
+              // Positions
+      .float-right {
+            float: right;
+      }
+      .float-left {
+        float: left;
+      }
+      .position (@position, @top: null, @right: null, @bottom: null, @left: null){
+        position: @position;
+        top: @top;
+        right: @right;
+        bottom: @bottom;
+        left: @left;
+      }
+            .bg-trans {
+              background-color: transparent;
+            }
+
+
+      .center-text {
+        text-align: center;
+      }
+      .text-left {
+        text-align: left;
+      }
+
+
+
+      .c-pointer {
+        cursor: pointer;
+      }
+
+      //Text wraper
+      .text-wrap {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+
+      .margins-auto {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .padding-top-bottom (@top, @bottom) {
+        padding-top: @top;
+        padding-bottom: @bottom;
+      }
+
+      //display
+      .d-inline {
+        display: inline-block;
+      }
+      .d-flex {
+        display: flex;
+      }
+      .d-block {
+        display: block;
+      }
+      .d-none {
+        display: none;
+      }
+      .upper {
+        text-transform: uppercase;
+      }
+
+
+      .fixed-full-top {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 0;
+      }
+      .clear {
+        clear: both;
+      }
+
+      .list-style-none {
+        list-style-type: none;
+        padding-left: 0;
+        margin-left: 0;
+      }
+
+      .basic-transition {
+        transition: all 0.6s ease-in-out;
+      }
+
+      //icons
+      .icon-span-round(@dimension) {
+        display: inline-block;
+        border-radius: 50%;
+        text-align: center;
+        width: @dimension;
+        height: @dimension;
+      }
+
+
+      //box shadow and box sizing
+      .drop-shadow (@x: 0, @y: 1px, @blur: 6px, @spread: 0, @alpha: 0.25) {
+        -webkit-box-shadow:	@x @y @blur @spread rgba(0, 0, 0, @alpha);
+        -moz-box-shadow:	@x @y @blur @spread rgba(0, 0, 0, @alpha);
+        box-shadow:		@x @y @blur @spread rgba(0, 0, 0, @alpha);
+      }
+      .box-sizing (@type: border-box) {
+        -webkit-box-sizing: @type;
+        -moz-box-sizing:    @type;
+        box-sizing:         @type;
+      }
+
+      .w-sm-50 {
+        @media @small {
+          .w(50%);
+        }
+      }
+
+      .w-100 {
+        .w(100%);
+      }
+            .w(@width) {
+              width: @width;
+            }
+            .w-calc(@width, @calc-value) {
+              width: calc(@width - @calc-value);
+            }
+
+
+                //animation
+            .keyframes (@name, @what-to-do) {
+
+              @-webkit-keyframes @name {
+                @what-to-do();
+              }
+              @-ms-keyframes @name {
+                @what-to-do();
+              }
+              @keyframes @name {
+                @what-to-do();
+              }
+              @-moz-keyframes @name {
+                @what-to-do();
+              }
+              @-o-keyframes @name {
+                @what-to-do();
+              }
+            }
+
+            .animation(@arguments) {
+              -webkit-animation: @arguments;
+              -moz-animation: @arguments;
+              animation: @arguments;
+            }
+
+
