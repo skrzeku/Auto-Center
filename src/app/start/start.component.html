@@ -13,14 +13,13 @@
                       <!-- Big Car-->
 
                 <div class="big-cars">
-                <div class="big-car-img" (click)="goToDetails($event)"></div>
+                <div class="big-car-img" (click)="goToDetails(BigCar)"></div>
                   <div class="main-car-info">
                     <span class="btn-main">Day offer</span>
-                    <h4 class="big-car-name">Mazda Cx5 5 drzwiowa automat 260 km Nowa!</h4>
-                    <h3 class="main-car-price">25000 PLN</h3>
+                    <h4 class="big-car-name">{{BigCar?.mark}} {{BigCar?.model}} {{BigCar?.version}}</h4>
+                    <h3 class="main-car-price">{{BigCar?.price}}</h3>
 
-                    <!-- <div class="line"></div> -->
-                    <p class="car-year-info">2017 * 120.000 km </p>
+                    <p class="car-year-info">{{BigCar?.year}} * {{BigCar?.course}}km </p>
                   </div>
                 </div>
 
@@ -30,124 +29,41 @@
 
                         <!-- MID Cars-->
                 <div class="mid-cars">
-                  <div class="one-car-box">
+                  <div class="one-car-box" *ngFor="let car of midCars" (click)="goToDetails(car)">
                     <div class="one-car">
                       <img src="../../assets/images/maxresdefault.jpg" class="img-responsive">
                       <div class="car-detail">
-                        <h4>Mazda</h4>
-                        <span class="car-price">20 000 <sup>PLN</sup></span>
+                        <h4>{{car?.mark}} {{car?.model}}</h4>
+                        <span class="car-price">{{car?.price}} <sup>PLN</sup></span>
                         <div class="line"></div>
-                        <span class="car-year">2017 * 25000</span>
+                        <span class="car-year">{{car?.year}} * {{car?.course}}km</span>
                       </div>
                     </div>
-                  </div>
-
-
-                  <div class="one-car-box">
-                    <div class="one-car">
-                      <img src="../../assets/images/maxresdefault.jpg" class="img-responsive">
-                      <div class="car-detail">
-                        <h4>Mazda</h4>
-                        <span class="car-price">20 000 <sup>PLN</sup></span>
-                        <div class="line"></div>
-                        <span class="car-year">2017 * 25000</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="one-car-box">
-                    <div class="one-car">
-                      <img src="../../assets/images/maxresdefault.jpg" class="img-responsive">
-                      <div class="car-detail">
-                        <h4>Mazda</h4>
-                        <span class="car-price">20 000 <sup>PLN</sup></span>
-                        <div class="line"></div>
-                        <span class="car-year">2017 * 25000</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="one-car-box">
-                  <div class="one-car">
-                    <img src="../../assets/images/maxresdefault.jpg" class="img-responsive">
-                    <div class="car-detail">
-                      <h4>Mazda</h4>
-                      <span class="car-price">20000 <sup>PLN</sup></span>
-                      <div class="line"></div>
-                      <span class="car-year">2017 * 25000</span>
-                    </div>
-                  </div>
                   </div>
                 </div>
 
 
 
+
+
+
                             <!-- Small Cars-->
                 <div class="small-cars">
-                  <div class="small-car-box">
+
+                  <div class="small-car-box" *ngFor="let car of smallCars" (click)="goToDetails(car)">
                     <div class="one-car">
                       <img src="../../assets/images/maxresdefault.jpg" class="img-responsive">
                       <div class="car-detail">
-                        <h4>Mazda</h4>
-                        <span class="car-price">20 000 <sup>PLN</sup></span>
+                        <h4>{{car.mark}} {{car.model}}</h4>
+                        <span class="car-price">{{car.price}} <sup>PLN</sup></span>
                         <div class="line"></div>
-                        <span class="car-year">2017 * 25000</span>
+                        <span class="car-year">{{car.year}} * {{car.course}}</span>
                       </div>
                     </div>
                   </div>
-                  <div class="small-car-box">
-                    <div class="one-car">
-                      <img src="../../assets/images/maxresdefault.jpg" class="img-responsive">
-                      <div class="car-detail">
-                        <h4>Mazda</h4>
-                        <span class="car-price">20 000 <sup>PLN</sup></span>
-                        <div class="line"></div>
-                        <span class="car-year">2017 * 25000</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="small-car-box">
-                    <div class="one-car">
-                      <img src="../../assets/images/maxresdefault.jpg" class="img-responsive">
-                      <div class="car-detail">
-                        <h4>Mazda</h4>
-                        <span class="car-price">20000 <sup>PLN</sup></span>
-                        <div class="line"></div>
-                        <span class="car-year">2017 * 25000</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="small-car-box">
-                    <div class="one-car">
-                      <img src="../../assets/images/maxresdefault.jpg" class="img-responsive">
-                      <div class="car-detail">
-                        <h4>Mazda</h4>
-                        <span class="car-price">20000 <sup>PLN</sup></span>
-                        <div class="line"></div>
-                        <span class="car-year">2017 * 25000</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="small-car-box visible-md">
-                    <div class="one-car">
-                      <img src="../../assets/images/maxresdefault.jpg" class="img-responsive">
-                      <div class="car-detail">
-                        <h4>Mazda</h4>
-                        <span class="car-price">20000 <sup>PLN</sup></span>
-                        <div class="line"></div>
-                        <span class="car-year">2017 * 25000</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="small-car-box visible-md">
-                    <div class="one-car">
-                      <img src="../../assets/images/maxresdefault.jpg" class="img-responsive">
-                      <div class="car-detail">
-                        <h4>Mazda</h4>
-                        <span class="car-price">20000 <sup>PLN</sup></span>
-                        <div class="line"></div>
-                        <span class="car-year">2017 * 25000</span>
-                      </div>
-                    </div>
-                  </div>
+
+
+
                 </div>
               </div>
           </section>

@@ -2,16 +2,15 @@
   <div class="filter-container">
     <ul class="filter-list">
       <li class="s">Strona główna <i class="fas fa-angle-right"></i></li>
-      <li class="s">Osobowe <i class="fas fa-angle-right"></i></li>
-      <li>{{car.model}}</li>
-      <li>Klasa C<i class="fas fa-angle-right"></i></li>
-      <li>C 63 AMG<i class="fas fa-angle-right"></i></li>
-      <li>{{car.mark}} Klasa C W205 (2014-)</li>
+      <li class="s">{{car.category}} <i class="fas fa-angle-right"></i></li>
+      <li>{{car.mark}}</li>
+      <li>{{car.model}}<i class="fas fa-angle-right"></i></li>
+      <li>{{car.version}}</li>
     </ul>
 
   </div>
   <div class="navi">
-<app-detail-navi #detail_navi_children></app-detail-navi>
+<app-detail-navi #detail_navi_children [car] ="car"></app-detail-navi>
   </div>
   <div class="bottom-xs-navi hidden-sm">
     <ul>
@@ -44,7 +43,7 @@
                 </div>
                 <div class="dealer-numbers">
                   <ul>
-                    <li><i class="fas fa-phone"></i> 51220292 <span>Wyswietl numer</span></li>
+                    <li><i class="fas fa-phone"></i> <span *ngIf="visibleboolean">51220292</span> <span (click)="shownumber()">Wyswietl numer</span></li>
                   </ul>
                 </div>
 

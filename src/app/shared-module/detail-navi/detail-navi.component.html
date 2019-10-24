@@ -10,19 +10,19 @@
 
   <div class="medium-container">
   <div class="model-name">
-            <h2 class="model-header">BMW Seria 5 F10</h2>
+            <h2 class="model-header">{{car.mark}} {{car.model}} {{car.version}}</h2>
             <i class="far fa-star"></i>
             <div class="price-info">
-                    <h4 class="price-header">59900</h4>
+                    <h4 class="price-header">{{car.price}} PLN</h4>
                     <span>Cena Brutto, Do negocjacji</span>
                     <a>Oblicz rate <i class="fas fa-angle-double-right"></i></a>
                     <i class="fas fa-share-alt"></i>
             </div>
             <ul class="model-info-list">
-              <li>2010</li>
-              <li><i class="far fa-circle"></i>250000km</li>
+              <li>{{car.year}}</li>
+              <li><i class="far fa-circle"></i>{{car.course}} km</li>
               <li><i class="far fa-circle"></i>sedan</li>
-              <li><i class="far fa-circle"></i>diesel</li>
+              <li><i class="far fa-circle"></i>{{car.fuel}}</li>
             </ul>
             <ul class="client-info-list">
               <li class="visible-sm"><i class="fas fa-phone"></i>513</li>

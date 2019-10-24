@@ -26,9 +26,15 @@ export class LoginComponent implements OnInit {
   SingIn() {
     console.log(this.user);
     this.authserv.login(this.user)
-      .then(lol => this.router.navigate(['/myaccount']))
+      .then(lol => this.router.navigate(['myaccount']))
       .catch(error => this.snack.open(error.message));
+  }
 
+  GoToDealer() {
+    this.router.navigate(['login/dealer']);
+  }
+  gotoRegister() {
+    this.router.navigate(['login/register']);
   }
 
 }

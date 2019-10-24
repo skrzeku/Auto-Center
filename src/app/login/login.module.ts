@@ -8,10 +8,11 @@ import {RouterModule} from '@angular/router';
 import {LoginRoutingModule} from './login-routing.module';
 import { DealerComponent } from './dealer/dealer.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MaterialModule} from '../material/material.module';
 
 @NgModule({
   imports: [
-    CommonModule, SharedModule, RouterModule, LoginRoutingModule, FormsModule, ReactiveFormsModule
+    CommonModule, SharedModule, RouterModule, LoginRoutingModule, FormsModule, ReactiveFormsModule, MaterialModule
   ],
   exports: [MainLoginComponent, ],
   declarations: [LoginComponent, RegisterComponent, MainLoginComponent, DealerComponent]

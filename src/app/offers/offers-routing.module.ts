@@ -7,6 +7,7 @@ import {DetailsComponent} from './details/details.component';
 import {NewOfferComponent} from './new-offer/new-offer.component';
 import {CarResolve} from '../core-module/services/car-resolve.service';
 import {APIResolver} from '../shared-module/Api-resolver';
+import {AuthGuard} from '../core-module/services/auth.guard';
 
 
 
@@ -24,7 +25,8 @@ const Offers_Route: Routes = [
       {
         path: 'new',
         component: <any>NewOfferComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
+        canActivate: [AuthGuard]
       },
       {
         path: ':key',

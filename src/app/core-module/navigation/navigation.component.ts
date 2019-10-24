@@ -46,6 +46,11 @@ export class NavigationComponent implements OnInit, AfterViewInit {
       .then(val => this.router.navigate(['/login']));
 
   }
+  LoginorMyAccount() {
+
+    // guard will redirect it To login if user has no authorization
+    this.router.navigate(['myaccount']);
+  }
 
   // (click)="Shownnavi = !Shownnavi"
 

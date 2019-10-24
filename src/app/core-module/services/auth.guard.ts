@@ -24,7 +24,8 @@ export class AuthGuard implements CanActivate, CanLoad {
         if (state !== null) {
           return true;
         }
-        this.router.navigate(['/login']);
+        this.router.navigate(['/login'])
+          .then(error => this.toast.open("Sorry you're not authorized to view this page"));
         return false;
       }
       )
@@ -33,13 +34,13 @@ export class AuthGuard implements CanActivate, CanLoad {
 
   canLoad(route: Route): Observable<boolean> | Promise<boolean> | boolean {
 
+    if (this.authService.authState$) {
+      return true;
+    }
+    this.router.navigate(['login'])
+      .then(error => this.toast.open("Sorry you're not authorized to view this page"));
 
-    return this.authService.authState$.pipe(map(state => {
-      if (state !== null) {
-        return true;
-      }
-      this.router.navigate(['/login']);
-      return false;
-    }));
+    return false;
+
   }
 }

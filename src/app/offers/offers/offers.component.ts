@@ -57,7 +57,6 @@ export class OffersComponent implements OnInit, AfterViewInit {
 
   gotoDetails(car: Car) {
     this.carservice.goToCarDetails(car);
-
   }
 
 

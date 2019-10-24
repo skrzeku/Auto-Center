@@ -101,6 +101,7 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
 
 
   ngAfterViewInit() {
+
   }
 
 

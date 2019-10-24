@@ -19,11 +19,11 @@ export class DetailsComponent implements OnInit, AfterViewInit {
 
   car: Car;
   key: any;
+  visibleboolean: boolean = false;
 
   constructor(private activeroute: ActivatedRoute,
               private router: Router,
               private carsservice: CarsService) {}
-
 
 
   ngOnInit() {
@@ -33,6 +33,10 @@ export class DetailsComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
 
     this.mydetail_element = this.details_now_fixed.nativeElement;
+  }
+
+  shownumber() {
+    this.visibleboolean = !this.visibleboolean;
   }
 
 
@@ -54,7 +58,6 @@ export class DetailsComponent implements OnInit, AfterViewInit {
       this.detail_navi_children.fixedposition = false;
     }
     if (scrollPosition >= (detailPostition)) {
-        console.log('wiecej');
         this.detail_navi_children.fixedposition = true;
     }
   }

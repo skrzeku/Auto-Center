@@ -25,7 +25,7 @@
       <button class="register-btn" id="login-btn" (click)="SingIn()">Zaloguj się</button>
       <div class="spans">
         <span>Przypomnij login lub hasło</span>
-        <span class="float-right">Zarejestruj się</span>
+        <span class="float-right" (click)="gotoRegister()">Zarejestruj się</span>
       </div>
 
     </div>
@@ -38,7 +38,7 @@
         <h3 class="right-top-header">Bądź bezpieczny w Auto-Center!</h3> <i class="fas fa-info-circle"></i>
         <p class="visible-sm">Korzystaj z bezpiecznych łączy. Zwróć uwagę, czy linki odnoszące się do Auto-Center są odpowiednio zabezpieczone i prowadzą do właściwej strony. Pamiętaj o protokole bezpieczeństwa HTTPS, który chroni Twoje dane osobowe w sieci.</p>
       </div>
-      <div class="right-bottom-container visible-sm">
+      <div class="right-bottom-container visible-sm" (click)="GoToDealer()">
         <h4>Masz firmę sprzedającą pojazdy?</h4>
         <h5>Załóż konto dla użytkowników profesjonalnych</h5>
         <i class="fas fa-chevron-right"></i>

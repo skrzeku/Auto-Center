@@ -6,6 +6,7 @@ import {AdvertisementsComponent} from './advertisements/advertisements.component
 import {MessagesComponent} from './messages/messages.component';
 import {SettingsComponent} from './settings/settings.component';
 import {MyaccountComponent} from './myaccount.component';
+import {AuthGuard} from '../core-module/services/auth.guard';
 
 
 const Myacc: Routes = [
@@ -17,17 +18,20 @@ const Myacc: Routes = [
       {
         path: '',
         component: <any>AdvertisementsComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
+        canActivate: [AuthGuard]
       },
       {
         path: 'messages',
         component: <any>MessagesComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
+        canActivate: [AuthGuard]
       },
       {
         path: 'settings',
         component: <any>SettingsComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
+        canActivate: [AuthGuard]
       }
     ]
   },
