@@ -1,4 +1,4 @@
-<div class="big-search-form white-bg">
+<div class="big-search-form">
 
 
           <!-- Navigation-->
@@ -23,8 +23,8 @@
       <li class="navi-list hidden-lg"><a [routerLink]="['parts']"  routerLinkActive="test-class"><i class="fab fa-accessible-icon"></i> ccc</a></li>
     </ul>
 
-    <div class="change-width" id="top-navi">
-      <mat-form-field class="example-full-width2">
+    <div id="top-navi">
+      <mat-form-field>
         <input type="text"  placeholder="Kategoria" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" >
           <mat-option [routerLink]="[option.path]" class="myoption" *ngFor="let option of filteredOptions | async" [value]="option.name">

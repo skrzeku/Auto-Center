@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Subject} from 'rxjs';
 import {Car} from '../models/car.model';
+import {Filter} from '../models/filter.model';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,7 @@ import {Car} from '../models/car.model';
 export class HelpService {
   mybol$ = new Subject<boolean>();
   oneCar$ = new Subject<Car>();
+  array: Filter[] = [];
 
   constructor() { }
 
@@ -16,5 +18,18 @@ export class HelpService {
   shareCloseValue (bol: boolean): void {
     this.mybol$.next(bol);
     console.log(bol);
+  }
+
+  PushFilterArray(name: string, value: any, value2: any): void {
+    this.array.push({
+      name: name,
+      value: value,
+      value2: value2
+    });
+    console.log(this.array);
+  }
+    // remove one element
+  PopFilterArray() {
+    this.array.pop();
   }
 }

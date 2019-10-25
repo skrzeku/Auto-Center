@@ -16,7 +16,7 @@
     .w(100%);
     .position(absolute, @top: 0px, @left: 0);
     height: 540px;
-    background: url("../../assets/images/first-bg.jpg");
+    background-color: lightgray;
   }
 
 }
@@ -29,19 +29,18 @@
                             .left-search {
                               .w(100%);
                               margin-top: 20px;
-                              background-color: lightgray;
+                              background-color: white;
                               //height: 450px;    //like a right container
                               .d-inline;
-                              position: relative;
+                              .position(relative);
                               @media @small {
                                 height: 500px;
                               }
                               @media @medium {
-                                .w(calc(50% - 15px));
+                                .w(50%);
                                 height: 500px;
                                 margin-bottom: 20px;
-                                padding-right: 10px;
-                                padding-left: 5px
+                                .drop-shadow(@blur: 7px);
                               }
 
                             }
@@ -58,7 +57,7 @@
                       vertical-align: top;
                       .position(relative);
                       height: 380px;
-                      background-color: darken(@bg-blue, 10%);
+                      background-color: @brands-color;
                       margin: 20px 10px 0;
                      .w(calc(100% - 20px));
                       .drop-shadow(@blur: 7px);
@@ -294,7 +293,7 @@
     &:hover {
       .drop-shadow(@blur: 6px);
       color: @hover-text-color;
-      .basic-transition;
+      transition: .3s ease-in-out all;
 
     }
   }

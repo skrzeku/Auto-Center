@@ -5,8 +5,8 @@
 <div class="toolbar-inside">
 <span>Sprzedaję:</span>
 
-    <form class="example-form" [formGroup]="form">
-      <mat-form-field>
+    <form [formGroup]="form">
+      <mat-form-field id="top_form_field">
         <input type="text"  placeholder="Kategoria" aria-label="Number" matInput formControlName="category" [matAutocomplete]="auto">
         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
           <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
@@ -45,7 +45,7 @@
 
     <form [formGroup]="form">   <!--2nd form -->
       <div class="forms-inside">
-      <div class="change-width">
+      <div class="mywidth">
         <span>Marka pojazdu:</span><i class="fas fa-info-circle" id="1"></i>
       <mat-form-field>
         <input type="text"   aria-label="Number" matInput formControlName="mark" [matAutocomplete]="auto">
@@ -56,7 +56,7 @@
         </mat-autocomplete>
       </mat-form-field>
     </div>
-      <div class="change-width">
+      <div class="mywidth">
         <span>Model:</span><i class="fas fa-info-circle" id="2"></i>
         <mat-form-field>
           <input type="text"   aria-label="Number" matInput formControlName="model" [matAutocomplete]="auto">
@@ -67,7 +67,7 @@
           </mat-autocomplete>
         </mat-form-field>
       </div>
-      <div class="change-width">
+      <div class="mywidth">
         <span>Wersja:</span>
         <mat-form-field>
           <input type="text"   aria-label="Number" matInput formControlName="version" [matAutocomplete]="auto">
@@ -78,7 +78,7 @@
           </mat-autocomplete>
         </mat-form-field>
       </div>
-      <div class="change-width">
+      <div class="mywidth">
         <span>Rok produkcji:</span><i class="fas fa-info-circle" id="3"></i>
         <mat-form-field>
           <input type="text"   aria-label="Number" matInput formControlName="year" [matAutocomplete]="auto">
@@ -89,7 +89,7 @@
           </mat-autocomplete>
         </mat-form-field>
       </div>
-      <div class="change-width">
+      <div class="mywidth">
         <span>Rodzaj Paliwa:</span><i class="fas fa-info-circle" id="4"></i>
         <mat-form-field>
           <input type="text" aria-label="Number" matInput formControlName="fuel" [matAutocomplete]="auto">
@@ -100,7 +100,7 @@
           </mat-autocomplete>
         </mat-form-field>
       </div>
-      <div class="change-width">
+      <div class="mywidth">
         <span>Color:</span>
         <mat-form-field>
           <input type="text"  formControlName="color" aria-label="Number" matInput [matAutocomplete]="auto">
@@ -114,33 +114,33 @@
       </div>
       </div>
       <div class="forms-inside">
-      <div class="change-width width-50">
+      <div class="mywidth width-50">
         <span>Skrzynia biegów:</span><i class="fas fa-info-circle" id="5"></i>
         <mat-radio-group aria-label="Select an option" formControlName="gearcase">
           <mat-radio-button class="radio-group" value="manualna" color="primary">Manualna</mat-radio-button>
           <mat-radio-button class="radio-group" value="automatyczna" color="primary">Automatyczna</mat-radio-button>
         </mat-radio-group>
       </div>
-      <div class="change-width width-50">
+      <div class="mywidth width-50">
         <span>Stan:</span><i class="fas fa-info-circle" id="6"></i>
         <mat-radio-group aria-label="Select an option" formControlName="state">
           <mat-radio-button class="radio-group" value="nowy" color="primary">Nowy</mat-radio-button>
           <mat-radio-button class="radio-group" value="używany" color="primary">Używany</mat-radio-button>
         </mat-radio-group>
       </div>
-      <div class="change-width">
+      <div class="mywidth">
       <span>Moc (KM):</span><i class="fas fa-info-circle" id="7"></i>
       <mat-form-field>
         <input type="number"  matInput name="value" placeholder="" formControlName="power">
       </mat-form-field>
       </div>
-      <div class="change-width">
+      <div class="mywidth">
         <span id="smaller-span">Pojemność skokowa (cm<sup>3</sup>):</span><i class="fas fa-info-circle" id="8"></i>
         <mat-form-field>
           <input type="number"  matInput name="value" placeholder="" formControlName="engine_capacity">
         </mat-form-field>
       </div>
-      <div class="change-width">
+      <div class="mywidth">
         <span>Przebieg:</span>
         <mat-form-field>
           <input type="number"  formControlName="course" matInput name="value" placeholder="">
@@ -148,24 +148,15 @@
       </div>
       </div>
       <div class="forms-inside">
-      <div class="change-width" id="price">
+      <div class="mywidth" id="price">
         <span>Cena:</span>
         <mat-form-field>
           <input type="number"  matInput name="value" placeholder="" formControlName="price">
           <mat-error>Maximum price is 999999 PLN</mat-error>
         </mat-form-field>
       </div>
+        <span>PLN</span>
 
-
-        <div class="change-width">
-          <mat-form-field>
-            <mat-select name="currency" value="PLN">
-              <mat-option *ngFor="let currency of currency" [value]="currency">
-                {{currency}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
 
 
       <div class="check-vat">
@@ -187,7 +178,7 @@
 
 
 
-        <div class="change-width" id="description">
+        <div class="mywidth" id="description">
         <span>Opis oferty:</span>
         <mat-form-field>
           <input type="text"  matInput name="value" placeholder="" #descriptionInput formControlName="description">

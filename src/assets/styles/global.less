@@ -294,11 +294,44 @@ a, button{
 }
 
 ::ng-deep .mat-form-field-label {
-  position: relative !important;
-  top: -5px !important;
   .center-text;
   font-size: 16px !important;
-  padding: 5px !important;
+  position: relative !important;
+  top: -3px !important;
+  padding: 7px !important;
+
+}
+
+
+.change-width {
+  margin-bottom: -40px;
+  font-size: 16px;
+
+  @media @small {
+    margin-bottom: 0;
+    .w-calc(50%, 10px);
+  }
+  span {
+    .d-block;
+  }
+}
+
+.radio-buttons-cont {
+  padding: 5px 0 15px 0
+}
+.spans-inside {
+  .d-block;
+  padding: 15px;
+}
+.span-send-value {
+  margin-left: 10px;
+  border: solid 1px @brands-color;
+  padding: 5px 10px;
+  .c-pointer;
+}
+.span-clicked {
+  background-color: @hover-text-color;
+  color: white;
 }
 
 

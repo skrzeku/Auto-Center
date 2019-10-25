@@ -22,6 +22,7 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireAuth, AngularFireAuthModule} from '@angular/fire/auth';
 import {AuthGuard} from './core-module/services/auth.guard';
+import {FilterPipe} from './core-module/pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,6 @@ import {AuthGuard} from './core-module/services/auth.guard';
     MaterialModule, AngularFireDatabaseModule, AngularFontAwesomeModule, BrowserAnimationsModule, MatTooltipModule, MatButtonModule, RouterModule, AppRoutingModule
   ],
   bootstrap: [AppComponent],
-  providers: [HelpService, CarsService, CarResolve, AuthGuard]
+  providers: [HelpService, CarsService, CarResolve, AuthGuard, FilterPipe]
 })
 export class AppModule { }

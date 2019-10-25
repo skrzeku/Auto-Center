@@ -1,8 +1,8 @@
 @import "../../../assets/styles/global";
 
 .big-search-form {
-  background-color: #b3bead;
   padding-bottom: 60px;
+
 }
 .navigation-ul {
  .visible-sm;
@@ -17,12 +17,14 @@
 }
 
 #top-navi {
+  .w(100%);
   @media @small {
     .d-none;
   }
-  .example-full-width2 {
+  mat-form-field {
     .w(100%);
   }
+
 }
           .active {
             background-color: white;
@@ -171,40 +173,27 @@
 
       //bottom
 .bottom-form {
-  padding: 5px 10px;
-  background-color: red;
-  .w-calc(100%, 20px);
-  .position(absolute, @bottom: 0, @left: 0);
+  height: 60px; //same like padding bottom of container
   text-align: right;
+  .w-100;
+  .position(absolute, @bottom: 0, @left: 0);
   p {
-    text-align: left;
     .d-inline;
     //.w(70%);
     color: darken(#b3bead, 20%);
     font-size: 90%;
+    margin-right: 10px;
   }
   button {
+    margin-right: 10px;
     //margin-left: 30px;
 
   }
 }
-.change-width {
-  margin-bottom: -40px;
-  font-size: 16px;
-
-  @media @small {
-    margin-bottom: 0;
-    .w-calc(50%, 10px);
-  }
-  span {
-    .d-block;
-  }
-}
 
 
-.radio-buttons-cont {
-  padding: 5px 0 15px 0
-}
+
+
 .placeholder {
   color: #00D318;
   .position(absolute, @left: 20px, @top: 10px);
@@ -235,20 +224,9 @@
 
 }
 
-.span-send-value {
-  margin-left: 10px;
-  border: solid 1px @brands-color;
-  padding: 5px 10px;
-  .c-pointer;
-}
-.span-clicked {
-  background-color: @hover-text-color;
-  color: white;
-}
-.spans-inside {
-  .d-block;
-  padding: 15px;
-}
+
+
+
 .test-class {
   color: @brands-color;
 }

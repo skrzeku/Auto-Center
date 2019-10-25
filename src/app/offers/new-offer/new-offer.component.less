@@ -28,20 +28,26 @@
 .toolbar-inside {
   .w(100%);
 
-        span {
-          font-size: 15px;
-          @media @small {
-            font-size: 20px;
-          }
-          @media @medium {
-            font-size: 26px;
-          }
-        }
+
   @media @medium {
     .w(1100px);
     margin: 0 auto;
     padding-left: 10px;
   }
+  span {
+    font-size: 16px;
+    margin-right: 10px;
+    @media @medium {
+      font-size: 20px;
+    }
+  }
+  form, span {
+    .d-inline;
+    line-height: 64px;
+
+  }
+
+
 }
 
 
@@ -233,7 +239,25 @@
                         }
 
 #small-width {
-  width: 20%;
+  .w(20%);
+}
+
+.mywidth {
+  .w-calc(100%, 10px);
+  margin: 10px 5px 0 5px;
+  mat-form-field {
+    .d-block;
+  }
+  span {
+    font-family: "American Typewriter";
+    .d-inline;
+    margin-bottom: 15px;
+  }
+  @media @medium {
+    .w-calc(50%, 10px);
+    .d-inline;
+
+  }
 }
 .check-vat {
   margin-left: 20px;
@@ -458,5 +482,15 @@ img {
   .d-inline;
   .w(50%);
 }
+#top_form_field {
+  color: black;
+  font-size: 16px;
+  .center-text;
+
+  ::ng-deep .mat-form-field-label {
+    color: white;
+  }
+}
+
 
 

@@ -1,10 +1,12 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {CarsService} from '../../core-module/services/cars.service';
 import {Observable} from 'rxjs';
 import {Car} from '../../core-module/models/car.model';
 import {Mark} from '../../core-module/models/marks.model';
 import {map} from 'rxjs/internal/operators';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Filter} from '../../core-module/models/filter.model';
+import {HelpService} from '../../core-module/services/help.service';
 declare var require;
 
 @Component({
@@ -12,10 +14,11 @@ declare var require;
   templateUrl: './offers.component.html',
   styleUrls: ['./offers.component.less']
 })
-export class OffersComponent implements OnInit, AfterViewInit {
+export class OffersComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(private carservice: CarsService,
-              private router: Router) {}
+              private router: Router,
+              private helpserv: HelpService) {}
   cars$: Observable<Car[]>;
 
   marks$: Observable<Mark[]>;
@@ -27,22 +30,24 @@ export class OffersComponent implements OnInit, AfterViewInit {
   number = [0,1,2,3,4,5,6,7,8,9,10];
   Chance = require('chance');
 
+  filters: Filter[] = this.helpserv.array;
+
 
 
 
 
   ngOnInit() {
-    this.cars$ = this.carservice.getCars();
-    this.marks$ = this.carservice.getMarks();
-    this.siema = this.carservice.getoneMark('1');
-    this.cars$.subscribe((carse) => {
+    //this.cars$ = this.carservice.getCars();
+    this.carservice.getCars().subscribe((carse) => {
       this.carse = carse;
-      //this.shuffleArray(carse);
       this.voidnew(carse);
+      console.log(carse);
     });
-    this.countDate();
-
-
+    //this.countDate();
+//this.pushtoArray();
+  }
+  ngOnDestroy() {
+    this.helpserv.array.length = 0;
   }
 
 
@@ -50,10 +55,19 @@ export class OffersComponent implements OnInit, AfterViewInit {
 
 
   }
-
-  LoadCarsBeforeView (): void {
-
-  }
+      // it works!! :D
+ pushtoArray() {
+    this.filters.push({
+      name: 'price',
+      value: 20,
+      value2: 30000
+    },
+      {
+        name: 'mark',
+        value: 'Mazda',
+        value2: ''
+      });
+ }
 
   gotoDetails(car: Car) {
     this.carservice.goToCarDetails(car);

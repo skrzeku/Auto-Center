@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Car} from '../core-module/models/car.model';
 import {AuthorizationService} from '../core-module/services/authorization.service';
 import {CarsService} from '../core-module/services/cars.service';
+import {HelpService} from '../core-module/services/help.service';
+import {Router} from '@angular/router';
 declare var require;
 
 @Component({
@@ -17,18 +19,31 @@ export class StartComponent implements OnInit {
   midCars: Car[] = [];
   smallCars: Car[] = [];
 
+  allcars: Car[];
 
 
-  constructor(private carsserv: CarsService) { }
+
+
+  constructor(private carsserv: CarsService,
+              private helpserv: HelpService,
+              private router: Router) { }
 
   ngOnInit() {
     this.carsserv.getCars().subscribe((cars) => {
       this.chanceit(cars);
+      this.allcars = cars;
     });
 
   }
   goToDetails(car: Car): void {
     this.carsserv.goToCarDetails(car);
+  }
+  goTopromotedCars() {
+    this.helpserv.array.length = 0;
+    this.helpserv.PushFilterArray('premium', true, '' );
+    this.router.navigate(['offers']);
+
+
   }
 
 
@@ -45,8 +60,6 @@ export class StartComponent implements OnInit {
       else if (i < 11) {
         this.smallCars.push(array[uniques[i]]);
       }
-
-
     }
   }
 

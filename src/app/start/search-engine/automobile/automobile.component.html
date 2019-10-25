@@ -34,7 +34,7 @@
       <div class="change-width">
         <span>Cena:</span>
         <mat-form-field class="auto_field">
-          <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto" name="Od">
+          <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto" placeholder="Od:">
 
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option class="myoption" *ngFor="let option of filteredOptions" [value]="option">
@@ -44,7 +44,7 @@
         </mat-form-field>
 
         <mat-form-field class="auto_field">
-          <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto">
+          <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto" placeholder="Do:">
 
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option class="myoption" *ngFor="let option of filteredOptions" [value]="option">
@@ -56,15 +56,15 @@
       <div class="change-width">
         <span>Rok Produkcji:</span>
         <mat-form-field class="auto_field">
-          <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto">
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto" placeholder="Od:">
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" >
             <mat-option class="myoption" *ngFor="let option of filteredOptions" [value]="option">
               {{option}}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
         <mat-form-field class="auto_field">
-          <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto">
+          <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto" placeholder="Do:">
 
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option class="myoption" *ngFor="let option of filteredOptions" [value]="option">
@@ -76,7 +76,7 @@
       <div class="change-width">
         <span>Przebieg:</span>
         <mat-form-field class="auto_field">
-          <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto">
+          <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto" placeholder="Od:">
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option class="myoption" *ngFor="let option of filteredOptions" [value]="option">
               {{option}}
@@ -84,7 +84,7 @@
           </mat-autocomplete>
         </mat-form-field>
         <mat-form-field class="auto_field">
-          <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto">
+          <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto" placeholder="Do:">
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option class="myoption" *ngFor="let option of filteredOptions" [value]="option">
               {{option}}
@@ -94,7 +94,7 @@
       </div>
     </div>
     <div class="span-buttons-cont">
-      <span>Rodzaj Paliwa:</span>
+      <span id="rfuel">Rodzaj Paliwa:</span>
       <div class="spans-inside">
         <span class="span-send-value" (click)="sendspan(1, $event)" [ngClass]="{'span-clicked': firstclicked == 1}">Diesel</span>
         <span class="span-send-value" (click)="sendspan(2, $event)" [ngClass]="{'span-clicked': firstclicked == 2}">Benzyna</span>

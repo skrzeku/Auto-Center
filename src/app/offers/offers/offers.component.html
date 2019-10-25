@@ -2,7 +2,7 @@
   <div class="smaller-container">
 
 
-  <div class="one-car" *ngFor="let car of cars$ | async" (click)="gotoDetails(car)">
+  <div class="one-car" *ngFor="let car of carse | myfilter: filters" (click)="gotoDetails(car)">
    <div class="one-car-img">
      <img src="">
    </div>
