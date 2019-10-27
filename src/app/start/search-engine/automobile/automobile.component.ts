@@ -7,6 +7,15 @@ import {Component, HostListener, OnInit, Renderer2} from '@angular/core';
 })
 export class AutomobileComponent implements OnInit {
   filteredOptions = ['lol', 'lol2'];
+  mark = '';
+  model = '';
+  price_from = '';
+  price_to = '';
+  year_from = '';
+  year_to = '';
+  course_from = '';
+  course_to = '';
+
 
 
 
@@ -17,6 +26,12 @@ export class AutomobileComponent implements OnInit {
   constructor(private rend: Renderer2) { }
 
   ngOnInit() {
+    console.log(this.mark);
+
+  }
+
+  works() {
+    console.log('siema');
   }
 
 

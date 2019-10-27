@@ -14,7 +14,7 @@
       <div class="change-width">
         <span>Marka i Model:</span>
         <mat-form-field class="auto_field">
-          <input type="text" aria-label="Number" matInput [matAutocomplete]="auto">
+          <input type="text" aria-label="Number" matInput [matAutocomplete]="auto" [(ngModel)]="mark" name="mark">
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option class="myoption" *ngFor="let option of filteredOptions" [value]="option">
               {{option}}
@@ -22,8 +22,7 @@
           </mat-autocomplete>
         </mat-form-field>
         <mat-form-field class="auto_field">
-          <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto">
-          <mat-placeholder class="placeholder">Search</mat-placeholder>
+          <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto" [(ngModel)]="model" name="model">
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option class="myoption" *ngFor="let option of filteredOptions" [value]="option">
               {{option}}
@@ -33,63 +32,37 @@
       </div>
       <div class="change-width">
         <span>Cena:</span>
-        <mat-form-field class="auto_field">
-          <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto" placeholder="Od:">
-
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option class="myoption" *ngFor="let option of filteredOptions" [value]="option">
-              {{option}}
-            </mat-option>
-          </mat-autocomplete>
+          <mat-form-field class="auto_field">
+          <input type="number"   aria-label="Number" matInput placeholder="Od:" [(ngModel)]="price_from" name="price_from">
+            <span class="spanAbs">zł</span>
         </mat-form-field>
 
         <mat-form-field class="auto_field">
-          <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto" placeholder="Do:">
+          <input type="number"   aria-label="Number" matInput placeholder="Do:" [(ngModel)]="price_to" name="price_to">
+          <span class="spanAbs">zł</span>
 
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option class="myoption" *ngFor="let option of filteredOptions" [value]="option">
-              {{option}}
-            </mat-option>
-          </mat-autocomplete>
         </mat-form-field>
       </div>
       <div class="change-width">
         <span>Rok Produkcji:</span>
         <mat-form-field class="auto_field">
-          <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto" placeholder="Od:">
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" >
-            <mat-option class="myoption" *ngFor="let option of filteredOptions" [value]="option">
-              {{option}}
-            </mat-option>
-          </mat-autocomplete>
+          <input type="number"   aria-label="Number" matInput placeholder="Od:" [(ngModel)]="year_from" name="year_from">
+          <span class="spanAbs">r</span>
         </mat-form-field>
         <mat-form-field class="auto_field">
-          <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto" placeholder="Do:">
-
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option class="myoption" *ngFor="let option of filteredOptions" [value]="option">
-              {{option}}
-            </mat-option>
-          </mat-autocomplete>
+          <input type="number"   aria-label="Number" matInput placeholder="Do:" [(ngModel)]="year_to" name="year_to">
+          <span class="spanAbs">r</span>
         </mat-form-field>
       </div>
       <div class="change-width">
         <span>Przebieg:</span>
         <mat-form-field class="auto_field">
-          <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto" placeholder="Od:">
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option class="myoption" *ngFor="let option of filteredOptions" [value]="option">
-              {{option}}
-            </mat-option>
-          </mat-autocomplete>
+          <input type="number"   aria-label="Number" matInput [matAutocomplete]="auto" placeholder="Od:" [(ngModel)]="course_from" name="course_from">
+          <span class="spanAbs">km</span>
         </mat-form-field>
         <mat-form-field class="auto_field">
-          <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto" placeholder="Do:">
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option class="myoption" *ngFor="let option of filteredOptions" [value]="option">
-              {{option}}
-            </mat-option>
-          </mat-autocomplete>
+          <input type="number"   aria-label="Number" matInput [matAutocomplete]="auto" placeholder="Do:" [(ngModel)]="course_to" name="course_to">
+          <span class="spanAbs">km</span>
         </mat-form-field>
       </div>
     </div>

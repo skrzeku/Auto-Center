@@ -291,15 +291,21 @@ a, button{
   border: solid 1px @hover-text-color;
   line-height: 32px;
   background-color: white;
+  .center-text;
 }
 
 ::ng-deep .mat-form-field-label {
   .center-text;
   font-size: 16px !important;
   position: relative !important;
-  top: -3px !important;
+  top: -5px !important;
   padding: 7px !important;
 
+}
+.spanAbs {
+  .position(absolute, @right: 14px, @top: 2px);
+  color: gray;
+  font-size: 15px;
 }
 
 

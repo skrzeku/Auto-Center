@@ -1,10 +1,11 @@
-import {Component, HostListener, OnInit, Renderer2, ViewEncapsulation} from '@angular/core';
+import {AfterViewInit, Component, ComponentRef, HostListener, OnInit, Renderer2, ViewChild, ViewEncapsulation} from '@angular/core';
 import {text} from '@angular/core/src/render3/instructions';
 import {map, startWith, tap} from 'rxjs/internal/operators';
 import {Observable} from 'rxjs';
 import {FormControl} from '@angular/forms';
 import {Router} from '@angular/router';
 import * as $ from 'jQuery';
+import {AutomobileComponent} from './automobile/automobile.component';
 
 @Component({
   selector: 'app-search-engine',
@@ -13,13 +14,14 @@ import * as $ from 'jQuery';
   animations: [
   ]
 })
-export class SearchEngineComponent implements OnInit {
+export class SearchEngineComponent implements OnInit, AfterViewInit {
 
 
   motocykleboolean: boolean = false;
   myControl = new FormControl();
   osoboweBoolean: boolean = true;
   partsboolean: boolean = false;
+  @ViewChild('routerchild') routerchild: AutomobileComponent;
   icon: any = '<i class="fas fa-bible"></i>';
   showUlBool: boolean = false;
   options: any[] = [
@@ -53,11 +55,17 @@ export class SearchEngineComponent implements OnInit {
     this.myControl.setValue(this.options[this.tap].name);
 
 
+
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       map(value => this._filter([value]))
     );
   }
+  ngAfterViewInit() {
+  }
+
+
+
   CheckUrl(): void {
     const curUrl = this.router.url;
     if (curUrl === '/main') {
@@ -125,6 +133,8 @@ export class SearchEngineComponent implements OnInit {
 
 
   goToOffers(): void {
+    console.log(this.routerchild.mark);
     this.router.navigate(['/offers']);
+
   }
 }
