@@ -1,0 +1,344 @@
+@import "variables";
+@import "mixins";
+@import "../../../node_modules/@fortawesome/fontawesome-free/less/fontawesome";
+@import '../../../node_modules/@angular/material/prebuilt-themes/indigo-pink.css';
+
+      //media queries
+@x-small: ~'only screen and (max-width: 767px)';
+@small: ~'only screen and (min-width: 768px)';
+@medium: ~'only screen and (min-width: 992px)';
+@large: ~'only screen and (min-width: 1400px)';
+@just-small: ~'only screen and (min-width: 768px) and (max-width: 991px)';
+
+
+
+            //Body
+body {
+  margin: 0;
+  font-size: @main-font-size;
+}
+h1, h2, h3, h4, h5 ,h6 {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+          //separator height equal to navigation height
+          .separator {
+            height: 50px;
+            padding: 0;
+            margin: 0;
+          }
+          .white-bg {
+            background-color: white;
+          }
+          //grid
+          .row {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-gap: 20px;
+          }
+.font-bold {
+  font-weight: bold;
+}
+mat-radio-button {
+  margin-left: 10px;
+}
+
+
+//Medium container
+
+                    .medium-container {
+                      max-width: 1180px;
+                     margin: 0 auto 0 auto;
+                      padding: 10px 10px 0 10px;
+                      position: relative;
+                    }
+a, button{
+  .c-pointer;
+}
+
+.img-responsive {
+  width: 100%;
+  height: auto;
+}
+
+.example-full-width2 {
+  .w-calc(100%, 4px);
+  height: 48px;
+  font-size: 15px;
+  color: @brands-color;
+
+  //.position(relative, @top: 0);
+  input {
+    background-color: white;
+    height: 28px;
+    padding-left: 10px;
+    width: calc(100% - 10px);
+    .position(absolute, @top: -17px);
+    z-index: 8;
+    border: solid 1px lighten(@hover-text-color, 20%);
+   // &:focus {
+     // background-color: lighten(@hover-text-color, 35%);
+    //}
+  }
+  mat-select {
+    border: solid 1px lighten(@hover-text-color, 20%);
+    .position(absolute, @top: -17px);
+    padding: 5px 10px;
+    height: 18px;
+    z-index: 8;
+    margin-left: -10px;
+
+
+  }
+
+}
+
+.change-width {
+  .w-calc(100%, 10px);
+  margin: 10px 5px 0 5px;
+  .d-inline;
+
+  span {
+    font-family: "American Typewriter";
+    .d-inline;
+    margin-bottom: 15px;
+  }
+
+
+  @media @small {
+    .w-calc(33.33%, 10px);
+  }
+
+
+}
+                      //Visibles on media devices
+                      .visible-xs {
+                        display: block;
+                        @media @small {
+                          display: inline-block;
+                        }
+                      }
+
+                      .visible-sm {
+                        display: none;
+                        @media @small {
+                          display: inline-block;
+                        }
+                      }
+                      .visible-md {
+                        display: none;
+                        @media @medium {
+                          display: inline-block;
+                        }
+                      }
+                      .hidden-sm {
+                        @media @small {
+                          display: none;
+                        }
+                      }
+
+                      //universal line
+                          .lines (@color: @big-light-line , @w-x: 60px, @height: 1px){
+                              background-color: @color;
+                              height: @height;
+                              width: calc(100% + @w-x);
+                              margin: 10px calc(-@w-x/2) 10px;
+                              padding: 0;
+                            box-shadow: 0 0 0.5px @color ;
+                            }
+
+.car-price (@position, @right, @bottom, @padding, @mt){
+  font-size: 110%;
+  color: red;
+  margin-top: 0;
+  background-color: white;
+  font-weight: 800;
+  sup {
+    font-size: 60%;
+  }
+  @media @small {
+    position: @position;
+    right: @right;
+    padding: @padding;
+    bottom: @bottom;
+    margin-top: @mt;
+    z-index: 9 !important;
+  }
+
+}
+
+.small-car-box {
+  background-color: @main-bg;
+}
+                          //Login and register buttons
+              .register-btn {
+                .w-100;
+                color: white;
+                .padding-top-bottom(10px, 10px);
+                position: relative;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: @brands-color;
+                font-size: 16px;
+                transition: .8s ease all;
+                &:hover {
+                  -webkit-box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.75);
+                  -moz-box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.75);
+                  box-shadow: 1px 1px 8px 0 rgba(0,0,0,0.75);
+                  background-color: lighten(@brands-color, 30%);
+                  transition: .8s ease all;
+
+                }
+                &:disabled {
+                  background-color: #b3bead;
+                  cursor: not-allowed;
+                }
+                @media @small {
+                  .w(65%);
+
+                }
+              }
+
+                      //Login and register fields
+
+                    .login-form-field {
+                      padding: 10px;
+                      .w-calc(100%, 20px);
+                      font-size: 15px;
+                      span {
+                        .d-block;
+                        .font-bold;
+                      }
+                      input {
+                        margin: 5px 0;
+                        font-size: 15px;
+                        .w-calc(100%, 26px);
+                        padding: 6px 10px;
+                        //padding: 10px 20px;
+
+                        &:focus {
+                          background-color: lighten(lightskyblue, 19%);
+                        }
+                      }
+                    }
+                      //One Car!
+
+                .one-car (@img-width, @h4-font-size: @mobile-md-sm-cars, @h4-medium-font){
+                  background-color: white;
+                  border-bottom: 1px lighten(black, 80%) solid;
+                  .padding-top-bottom(5px, 5px);
+                          //car-img
+                  img {
+                    .w(@img-width);    //35 % for small-car
+                    position: relative;
+                    z-index: 1;
+                    .c-pointer;
+                    &:hover {
+                      opacity: 0.9;
+                    }
+
+                    @media @small {
+                      .w(100%);
+                    }
+                  }
+                  .car-detail {
+                    .position(relative);
+                    .d-inline;
+                    padding: 5px;
+                    @media @small {
+                      .d-block;
+                    }
+                          h4 {
+                            font-size: @h4-font-size;
+                            margin: 0 0 10px;
+                            .c-pointer;
+                            &:hover {
+                              color: @hover-text-color;
+                            }
+                            @media @small {
+                              font-size: @h4-medium-font;
+                            }
+                          }
+                    .car-year {
+                      .d-block;
+                      font-size: 13px;
+                      margin-top: 10px;
+                      text-align: right;
+                    }
+                  }
+
+                  @media @small {
+                    .padding-top-bottom(0,0);
+                    border: none;
+                  }
+                }
+.smaller-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 10px 10px 0 10px;
+  position: relative;
+}
+
+::ng-deep .mat-select-panel {
+  position: relative;
+  top: 44px !important;
+  min-width: calc(100% + 18px) !important;
+}
+
+::ng-deep .mat-form-field-infix {
+  padding: 0 0 0 10px !important;
+  border: solid 1px @hover-text-color;
+  line-height: 32px;
+  background-color: white;
+  .center-text;
+}
+
+::ng-deep .mat-form-field-label {
+  .center-text;
+  font-size: 16px !important;
+  position: relative !important;
+  top: -5px !important;
+  padding: 7px !important;
+
+}
+.spanAbs {
+  .position(absolute, @right: 14px, @top: 2px);
+  color: gray;
+  font-size: 15px;
+}
+
+
+.change-width {
+  margin-bottom: -40px;
+  font-size: 16px;
+
+  @media @small {
+    margin-bottom: 0;
+    .w-calc(50%, 10px);
+  }
+  span {
+    .d-block;
+  }
+}
+
+.radio-buttons-cont {
+  padding: 5px 0 15px 0
+}
+.spans-inside {
+  .d-block;
+  padding: 15px;
+}
+.span-send-value {
+  margin-left: 10px;
+  border: solid 1px @brands-color;
+  padding: 5px 10px;
+  .c-pointer;
+}
+.span-clicked {
+  background-color: @hover-text-color;
+  color: white;
+}
+
+
+
