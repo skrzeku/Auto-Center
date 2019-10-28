@@ -42,8 +42,6 @@ export class StartComponent implements OnInit {
     this.helpserv.array.length = 0;
     this.helpserv.PushFilterArray('premium', true, '' );
     this.router.navigate(['offers']);
-
-
   }
 
 

@@ -307,7 +307,29 @@ a, button{
   color: gray;
   font-size: 15px;
 }
+//bottom
+.bottom-form {
+  height: 60px; //same like padding bottom of container
+  text-align: right;
+  .w-100;
 
+  margin-top: 10px;
+  p {
+    .d-inline;
+    //.w(70%);
+    color: darken(#b3bead, 20%);
+    font-size: 90%;
+    margin-right: 10px;
+  }
+  button {
+    margin-right: 10px;
+    //margin-left: 30px;
+  }
+  @media @small {
+    margin-top: 0;
+    .position(absolute, @bottom: 0, @left: 0);
+  }
+}
 
 .change-width {
   margin-bottom: -40px;

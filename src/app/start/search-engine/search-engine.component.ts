@@ -1,4 +1,7 @@
-import {AfterViewInit, Component, ComponentRef, HostListener, OnInit, Renderer2, ViewChild, ViewEncapsulation} from '@angular/core';
+import {
+  AfterViewInit, Component, ComponentRef, ContentChild, HostListener, OnInit, Renderer2, ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
 import {text} from '@angular/core/src/render3/instructions';
 import {map, startWith, tap} from 'rxjs/internal/operators';
 import {Observable} from 'rxjs';
@@ -6,13 +9,13 @@ import {FormControl} from '@angular/forms';
 import {Router} from '@angular/router';
 import * as $ from 'jQuery';
 import {AutomobileComponent} from './automobile/automobile.component';
+import {HelpService} from '../../core-module/services/help.service';
 
 @Component({
   selector: 'app-search-engine',
   templateUrl: './search-engine.component.html',
   styleUrls: ['./search-engine.component.less'],
-  animations: [
-  ]
+  providers: [AutomobileComponent]
 })
 export class SearchEngineComponent implements OnInit, AfterViewInit {
 
@@ -21,7 +24,8 @@ export class SearchEngineComponent implements OnInit, AfterViewInit {
   myControl = new FormControl();
   osoboweBoolean: boolean = true;
   partsboolean: boolean = false;
-  @ViewChild('routerchild') routerchild: AutomobileComponent;
+  @ViewChild(AutomobileComponent) routerchild: AutomobileComponent;
+  @ContentChild(AutomobileComponent) childCompo: AutomobileComponent;
   icon: any = '<i class="fas fa-bible"></i>';
   showUlBool: boolean = false;
   options: any[] = [
@@ -47,7 +51,8 @@ export class SearchEngineComponent implements OnInit, AfterViewInit {
 
 
   constructor(private rend: Renderer2,
-              private router: Router) {
+              private router: Router,
+              private helpserv: HelpService) {
   }
 
   ngOnInit() {
@@ -62,6 +67,7 @@ export class SearchEngineComponent implements OnInit, AfterViewInit {
     );
   }
   ngAfterViewInit() {
+
   }
 
 
@@ -132,9 +138,4 @@ export class SearchEngineComponent implements OnInit, AfterViewInit {
   }
 
 
-  goToOffers(): void {
-    console.log(this.routerchild.mark);
-    this.router.navigate(['/offers']);
-
-  }
 }

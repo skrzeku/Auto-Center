@@ -37,21 +37,22 @@
       </mat-form-field>
   </div>
   </div>
+  <div class="radio-buttons-cont">
+    <mat-radio-group aria-label="Select an option">
+      <mat-radio-button class="radio-group" value="Wszystkie" color="primary" checked>Wszystkie</mat-radio-button>
+      <mat-radio-button class="radio-group" value="Nowe" color="primary">Nowe</mat-radio-button>
+      <mat-radio-button class="radio-group" value="Używane" color="primary">Używane</mat-radio-button>
+    </mat-radio-group>
+  </div>
 
 
           <!-- Another option-->
-  <router-outlet></router-outlet>
+  <router-outlet #routchild></router-outlet>
 
 
 
 
 
-          <!-- Another one-->
 
-  <div class="bottom-form">
-    <p>Wyszukiwanie</p>
-    <button mat-raised-button color="primary" (click)="goToOffers()"><i class="fas fa-search"></i>Wyszukaj</button>
-
-  </div>
 
 </div>

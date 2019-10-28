@@ -2,30 +2,23 @@
   <form>
     <!-- Radio Buttons-->
     <div class="Form-engine">
-      <div class="radio-buttons-cont">
-        <mat-radio-group aria-label="Select an option">
-          <mat-radio-button class="radio-group" value="Wszystkie" color="primary" checked>Wszystkie</mat-radio-button>
-          <mat-radio-button class="radio-group" value="Nowe" color="primary">Nowe</mat-radio-button>
-          <mat-radio-button class="radio-group" value="Używane" color="primary">Używane</mat-radio-button>
-        </mat-radio-group>
-      </div>
+
 
 
       <div class="change-width">
         <span>Marka i Model:</span>
-        <mat-form-field class="example-full-width2">
+        <mat-form-field class="auto_field">
           <input type="text" aria-label="Number" matInput [matAutocomplete]="auto">
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
+            <mat-option class="myoption" *ngFor="let option of filteredOptions" [value]="option">
               {{option}}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
-        <mat-form-field class="example-full-width2">
+        <mat-form-field class="auto_field">
           <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto">
-          <mat-placeholder class="placeholder">Search</mat-placeholder>
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
+            <mat-option class="myoption" *ngFor="let option of filteredOptions" [value]="option">
               {{option}}
             </mat-option>
           </mat-autocomplete>
@@ -33,68 +26,43 @@
       </div>
       <div class="change-width">
         <span>Cena:</span>
-        <mat-form-field class="example-full-width2">
-          <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto" name="Od">
-          <span class="mini-span">Od:</span>
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
-              {{option}}
-            </mat-option>
-          </mat-autocomplete>
+        <mat-form-field class="auto_field">
+          <input type="number"   aria-label="Number" matInput [matAutocomplete]="auto" name="Od" placeholder="Od:">
+          <span class="spanAbs">zl</span>
         </mat-form-field>
 
-        <mat-form-field class="example-full-width2">
-          <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto">
-          <span class="mini-span">Do:</span>
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
-              {{option}}
-            </mat-option>
-          </mat-autocomplete>
+        <mat-form-field class="auto_field">
+          <input type="number"   aria-label="Number" matInput [matAutocomplete]="auto" placeholder="Do:">
         </mat-form-field>
       </div>
       <div class="change-width">
         <span>Rok Produkcji:</span>
-        <mat-form-field class="example-full-width2">
-          <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto">
-          <span class="mini-span">Od:</span>
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
-              {{option}}
-            </mat-option>
-          </mat-autocomplete>
+        <mat-form-field class="auto_field">
+          <input type="number"   aria-label="Number" matInput [matAutocomplete]="auto" placeholder="Od:">
+          <span class="spanAbs">r</span>
         </mat-form-field>
-        <mat-form-field class="example-full-width2">
-          <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto">
-          <span class="mini-span">Do:</span>
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
-              {{option}}
-            </mat-option>
-          </mat-autocomplete>
+        <mat-form-field class="auto_field">
+          <input type="number"   aria-label="Number" matInput [matAutocomplete]="auto" placeholder="Do:">
+          <span class="spanAbs">r</span>
         </mat-form-field>
       </div>
       <div class="change-width">
         <span>Przebieg:</span>
-        <mat-form-field class="example-full-width2">
-          <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto">
-          <span class="mini-span">Od:</span>
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
-              {{option}}
-            </mat-option>
-          </mat-autocomplete>
+        <mat-form-field class="auto_field">
+          <input type="number"   aria-label="Number" matInput [matAutocomplete]="auto" placeholder="Od:">
+          <span class="spanAbs">km</span>
         </mat-form-field>
-        <mat-form-field class="example-full-width2">
-          <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto">
-          <span class="mini-span">Do:</span>
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
-              {{option}}
-            </mat-option>
-          </mat-autocomplete>
+        <mat-form-field class="auto_field">
+          <input type="number"   aria-label="Number" matInput [matAutocomplete]="auto" placeholder="Do:">
+          <span class="spanAbs">km</span>
         </mat-form-field>
       </div>
+    </div>
+    <!-- Search button-->
+
+    <div class="bottom-form">
+      <p>Wyszukiwanie</p>
+      <button mat-raised-button color="primary" (click)="goToOffers()"><i class="fas fa-search"></i>Wyszukaj</button>
     </div>
   </form>
 </div>

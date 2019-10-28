@@ -1,20 +1,14 @@
 <div class="main-form">
-  <form>
+  <form [formGroup]="autoform">
     <!-- Radio Buttons-->
     <div class="Form-engine">
-      <div class="radio-buttons-cont">
-        <mat-radio-group aria-label="Select an option">
-          <mat-radio-button class="radio-group" value="Wszystkie" color="primary" checked>Wszystkie</mat-radio-button>
-          <mat-radio-button class="radio-group" value="Nowe" color="primary">Nowe</mat-radio-button>
-          <mat-radio-button class="radio-group" value="Używane" color="primary">Używane</mat-radio-button>
-        </mat-radio-group>
-      </div>
+
 
 
       <div class="change-width">
         <span>Marka i Model:</span>
         <mat-form-field class="auto_field">
-          <input type="text" aria-label="Number" matInput [matAutocomplete]="auto" [(ngModel)]="mark" name="mark">
+          <input type="text" aria-label="Number" matInput [matAutocomplete]="auto" formControlName="mark" name="mark">
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option class="myoption" *ngFor="let option of filteredOptions" [value]="option">
               {{option}}
@@ -22,7 +16,7 @@
           </mat-autocomplete>
         </mat-form-field>
         <mat-form-field class="auto_field">
-          <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto" [(ngModel)]="model" name="model">
+          <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto" formControlName="model" name="model">
           <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option class="myoption" *ngFor="let option of filteredOptions" [value]="option">
               {{option}}
@@ -33,12 +27,12 @@
       <div class="change-width">
         <span>Cena:</span>
           <mat-form-field class="auto_field">
-          <input type="number"   aria-label="Number" matInput placeholder="Od:" [(ngModel)]="price_from" name="price_from">
+          <input type="number"   aria-label="Number" matInput placeholder="Od:" formControlName="price_from" name="price_from">
             <span class="spanAbs">zł</span>
         </mat-form-field>
 
         <mat-form-field class="auto_field">
-          <input type="number"   aria-label="Number" matInput placeholder="Do:" [(ngModel)]="price_to" name="price_to">
+          <input type="number"   aria-label="Number" matInput placeholder="Do:" formControlName="price_to" name="price_to">
           <span class="spanAbs">zł</span>
 
         </mat-form-field>
@@ -46,22 +40,22 @@
       <div class="change-width">
         <span>Rok Produkcji:</span>
         <mat-form-field class="auto_field">
-          <input type="number"   aria-label="Number" matInput placeholder="Od:" [(ngModel)]="year_from" name="year_from">
+          <input type="number"   aria-label="Number" matInput placeholder="Od:" formControlName="year_from" name="year_from">
           <span class="spanAbs">r</span>
         </mat-form-field>
         <mat-form-field class="auto_field">
-          <input type="number"   aria-label="Number" matInput placeholder="Do:" [(ngModel)]="year_to" name="year_to">
+          <input type="number"   aria-label="Number" matInput placeholder="Do:" formControlName="year_to" name="year_to">
           <span class="spanAbs">r</span>
         </mat-form-field>
       </div>
       <div class="change-width">
         <span>Przebieg:</span>
         <mat-form-field class="auto_field">
-          <input type="number"   aria-label="Number" matInput [matAutocomplete]="auto" placeholder="Od:" [(ngModel)]="course_from" name="course_from">
+          <input type="number"   aria-label="Number" matInput [matAutocomplete]="auto" placeholder="Od:" formControlName="course_from" name="course_from">
           <span class="spanAbs">km</span>
         </mat-form-field>
         <mat-form-field class="auto_field">
-          <input type="number"   aria-label="Number" matInput [matAutocomplete]="auto" placeholder="Do:" [(ngModel)]="course_to" name="course_to">
+          <input type="number"   aria-label="Number" matInput [matAutocomplete]="auto" placeholder="Do:" formControlName="course_to" name="course_to">
           <span class="spanAbs">km</span>
         </mat-form-field>
       </div>
@@ -73,7 +67,12 @@
         <span class="span-send-value" (click)="sendspan(2, $event)" [ngClass]="{'span-clicked': firstclicked == 2}">Benzyna</span>
         <span class="span-send-value" (click)="sendspan(3, $event)" [ngClass]="{'span-clicked': firstclicked == 3}">Wszystkie</span>
       </div>
+    </div>
+    <!-- Search button-->
 
+    <div class="bottom-form">
+      <p>Wyszukiwanie</p>
+      <button mat-raised-button color="primary" (click)="AutogoToOffers()"><i class="fas fa-search"></i>Wyszukaj</button>
     </div>
   </form>
 </div>
