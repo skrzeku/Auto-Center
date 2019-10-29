@@ -100,7 +100,6 @@ export class SearchEngineComponent implements OnInit, AfterViewInit {
 
 
 
-
             //It works good to use it later
   @HostListener('document:click', ['$event'])
   CheckClickOutside(event) {
@@ -115,7 +114,6 @@ export class SearchEngineComponent implements OnInit, AfterViewInit {
       this.showUlBool = false;
     }
   }
-
 
 
   RouteInside(event): void {

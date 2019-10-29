@@ -4,9 +4,10 @@ import {
   MatAutocompleteModule,
   MatButtonModule,
   MatCardModule, MatCheckboxModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule, MatPlaceholder, MatRadioModule,
-  MatSelectModule, MatSnackBarConfig,
+  MatSelectModule, MatSliderModule, MatSnackBarConfig,
   MatSnackBarModule, MatToolbarModule
 } from '@angular/material';
+import {RangeSliderModule} from 'ngx-rangeslider-component';
 
       const MY_SNACK_GLOBAL_CONFIG: MatSnackBarConfig = {
         duration: 3000,
@@ -31,6 +32,8 @@ import {
         MatAutocompleteModule,
         MatRadioModule,
         MatCheckboxModule,
+        MatSliderModule,
+        RangeSliderModule
       ];
 
 

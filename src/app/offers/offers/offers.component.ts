@@ -29,6 +29,10 @@ export class OffersComponent implements OnInit, AfterViewInit, OnDestroy {
   lastNumber = 0;
   number = [0,1,2,3,4,5,6,7,8,9,10];
   Chance = require('chance');
+  stepRange;
+  min = 0;
+  max = 99999;
+  range = [0, 99999];
 
   filters: Filter[] = this.helpserv.array;
 
@@ -41,14 +45,20 @@ export class OffersComponent implements OnInit, AfterViewInit, OnDestroy {
     this.carservice.getCars().subscribe((carse) => {
       this.carse = carse;
       this.voidnew(carse);
-      console.log(carse);
     });
-    //this.countDate();
-//this.pushtoArray();
+    console.log(this.filters);
+
+
   }
   ngOnDestroy() {
     this.helpserv.array.length = 0;
   }
+
+
+  rangeChanged(event:any){
+    console.log(event);
+  }
+
 
 
   ngAfterViewInit () {

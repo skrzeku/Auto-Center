@@ -1,22 +1,38 @@
-<div class="big-container">
+
   <div class="smaller-container">
 
+    <div class="left_offers">
+      <h3>Cena</h3>
+      <range-slider [min]="min" [max]="max" [step]="1" [(ngModel)]="range" (onRangeChange)="rangeChanged($event)">        </range-slider>
+      <span class="slider_span">Cena: {{range[0]}} zł - {{range[1]}} zł </span>
 
-  <div class="one-car" *ngFor="let car of carse | myfilter: filters" (click)="gotoDetails(car)">
-   <div class="one-car-img">
-     <img src="">
-   </div>
-    <div class="one-car-right-side-wrapper">
-      <h4>{{car.mark}}&nbsp;{{car.model}}&nbsp;{{car.year}}</h4>
-      <span>{{car.category}}<i class="fas fa-angle-double-right"></i>{{car.model}}</span>
+
     </div>
-    <div class="one-car-price">
-      <span>{{car.price}}</span>
+    <div class="right_offers">
+      <div id="small_navi_separator">
+
+        <span>Strona główna / Aktywne Oferty</span>
+        <span id="smallerone">Wszystkie Ogłoszenia - {{(carse | myfilter: filters).length}} </span>
+
+      </div>
+
+      <div class="one-car" *ngFor="let car of carse | myfilter: filters" (click)="gotoDetails(car)">
+        <div class="one-car-img">
+          <img src="">
+        </div>
+        <div class="one-car-right-side-wrapper">
+          <h4>{{car.mark}}&nbsp;{{car.model}}&nbsp;{{car.year}}</h4>
+          <span>{{car.category}}<i class="fas fa-angle-double-right"></i>{{car.model}}</span>
+        </div>
+        <div class="one-car-price">
+          <span>{{car.price}}</span>
+        </div>
+      </div>
     </div>
+
+
   </div>
 
-  </div>
-</div>
 
 
 <!-- I have to change it-->

@@ -3,7 +3,8 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {buildAnimationAst} from '@angular/animations/browser/src/dsl/animation_ast_builder';
 import {HelpService} from '../../../core-module/services/help.service';
 import {Router} from '@angular/router';
-import {map} from 'rxjs/internal/operators';
+import {CarsService} from '../../../core-module/services/cars.service';
+import {Car} from '../../../core-module/models/car.model';
 
 @Component({
   selector: 'app-automobile',
@@ -12,13 +13,19 @@ import {map} from 'rxjs/internal/operators';
 })
 export class AutomobileComponent implements OnInit {
   filteredOptions = ['lol', 'lol2'];
-  model = 's';
-  price_from = '';
-  price_to = '';
-  year_from = '';
-  year_to = '';
-  course_from = '';
-  course_to = '';
+  model = '';
+  category = 'Osobowe';
+  mark = '';
+  price_from = 0;
+  price_to = 999999;
+  year_from = 0;
+  year_to = 2020;
+  course_from = 0;
+  course_to = 999999;
+  myformarray = [];
+  valuetwo: any;
+
+  cars: Car[];
 
 
 
@@ -32,13 +39,16 @@ export class AutomobileComponent implements OnInit {
   constructor(private rend: Renderer2,
               private formbuilder: FormBuilder,
               private helpserv: HelpService,
-              private router: Router) { }
+              private router: Router,
+              private carservice: CarsService) { }
 
   ngOnInit() {
-    this.buildautoform();
-
+    //this.buildautoform();
+    this.carservice.getCars().subscribe((val) => {
+      this.cars = val;
+    });
   }
-
+/*
  private buildautoform() {
     this.autoform = this.formbuilder.group({
       category: 'Osobowe',
@@ -52,28 +62,43 @@ export class AutomobileComponent implements OnInit {
       course_to: ''
     });
   }
+*/
 
-
-
+  Checkfields(modelvalue) {
+    if (modelvalue === '') {
+    this.valuetwo = null;
+    }
+    else  this.valuetwo = '';
+  }
 
 
 
   AutogoToOffers() {
     this.helpserv.array.length = 0;
+    const mapprice = this.cars.map(car => car.price);
+
+    const maxprice = Math.max(...mapprice);
+    const minprice = Math.min(...mapprice);
 
 
+      //mark
+    this.Checkfields(this.mark);
+    this.helpserv.PushFilterArray('mark', this.mark || null, this.valuetwo  );
+
+        //model
+    this.Checkfields(this.model);
+    this.helpserv.PushFilterArray('model', this.model || null, this.valuetwo  );
 
 
+        //price
+    this.helpserv.PushFilterArray('price', this.price_from || minprice  , this.price_to || maxprice);
 
+      //year
+    this.helpserv.PushFilterArray('year', this.year_from || 0, this.price_to || 2500);
 
-    //this.helpserv.PushFilterArray('category', this.autoform.controls['category'].value, '' );
-    //this.helpserv.PushFilterArray('mark', this.autoform.controls['mark'].value, '' );
-    this.helpserv.PushFilterArray('model', null, null );
+      //course
+    this.helpserv.PushFilterArray('course', this.course_from || 0, this.course_to || 9999999);
 
-    this.helpserv.PushFilterArray('year', 0, 2500 );
-    this.helpserv.PushFilterArray('price', 0, 99999 );
-
-    this.helpserv.PushFilterArray('fuel', null, null );
 
     this.router.navigate(['offers']);
   }

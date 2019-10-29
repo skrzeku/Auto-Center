@@ -1,7 +1,51 @@
 @import "../../../assets/styles/global";
 
-.anyway {
-  background-color: blue;
+#small_navi_separator {
+  height: 50px;
+  background-color: lighten(lightblue, 10%);
+
+  padding: 0 15px;
+  span {
+    line-height: 50px;
+    font-size: 16px;
+  }
+
+}
+#smallerone {
+  opacity: .6;
+  float: right;
+  font-size: 14px;
+}
+.left_offers {
+  .d-none;
+  .center-text;
+  margin-top: 15px;
+ border: 1px lightgray solid;
+  .drop-shadow();
+  .padding-top-bottom(15px, 15px);
+  @media @small {
+    .w-calc(25%, 2px);
+    .d-inline;
+    vertical-align: top;
+  }
+  @media @medium {
+    //max-width: 280px;
+  }
+  span {
+
+  }
+}
+
+.right_offers {
+  .w(100%);
+  .d-inline;
+  @media @small {
+    margin-left: 15px;
+    .w-calc(75%, 15px);
+  }
+  @media @medium {
+    //max-width: 875px;
+  }
 }
 .one-car {
  .w-calc(100%, 22px);
@@ -43,3 +87,29 @@
   margin: 0 5px;
   font-size: 8px;
 }
+
+::ng-deep .sliderHilight {
+  background-color: @brands-color !important;
+  //height: 6px !important;
+}
+::ng-deep .dsliderClass {
+  .w(12px) !important;
+  height: 12px !important;
+  border-radius: 50%;
+  border: none !important;
+  background-color: @brands-color !important;
+}
+
+::ng-deep .dbarClass {
+  height: 5px !important;
+  .w(80%) !important;
+  margin-left: 10% !important;
+  span {
+    .d-none !important;
+  }
+}
+.slider_span {
+
+}
+
+
