@@ -24,6 +24,8 @@ export class AutomobileComponent implements OnInit {
   course_to = 999999;
   myformarray = [];
   valuetwo: any;
+  marks$: any;
+  correct_models: any;
 
   cars: Car[];
 
@@ -47,6 +49,8 @@ export class AutomobileComponent implements OnInit {
     this.carservice.getCars().subscribe((val) => {
       this.cars = val;
     });
+
+    this.marks$ = this.helpserv.marks$;
   }
 /*
  private buildautoform() {
@@ -69,6 +73,12 @@ export class AutomobileComponent implements OnInit {
     this.valuetwo = null;
     }
     else  this.valuetwo = '';
+  }
+
+  checkmark(mark) {
+    const models = this.cars.filter(car => car.mark === mark);
+    const lol = models.map(car => car.model);
+    this.correct_models = lol;
   }
 
 
@@ -112,5 +122,8 @@ export class AutomobileComponent implements OnInit {
     this.firstclicked = num;
     const elementText = event.target.innerText;
     console.log(elementText);
+  }
+  Checkmodel(model) {
+    console.log(model);
   }
 }

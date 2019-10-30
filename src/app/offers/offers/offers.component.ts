@@ -21,11 +21,10 @@ export class OffersComponent implements OnInit, AfterViewInit, OnDestroy {
               private helpserv: HelpService) {}
   cars$: Observable<Car[]>;
 
-  marks$: Observable<Mark[]>;
-  siema: Observable<Mark>;
   deadline: any;
   maps: any;
   carse: Car [];
+  selectedValue: string;
   lastNumber = 0;
   number = [0,1,2,3,4,5,6,7,8,9,10];
   Chance = require('chance');
@@ -33,6 +32,11 @@ export class OffersComponent implements OnInit, AfterViewInit, OnDestroy {
   min = 0;
   max = 99999;
   range = [0, 99999];
+  course_range = [0, 999999];
+  year_range = [1850, 2019];
+  categories: string[] = ['Osobowe', 'Ciężarowe', 'Motocykle', 'Części'];
+  models: string[] = ['BMW', 'Mazda', 'Toyota', 'Audi'];
+  selectedModel: string;
 
   filters: Filter[] = this.helpserv.array;
 
@@ -46,7 +50,7 @@ export class OffersComponent implements OnInit, AfterViewInit, OnDestroy {
       this.carse = carse;
       this.voidnew(carse);
     });
-    console.log(this.filters);
+
 
 
   }
@@ -55,9 +59,7 @@ export class OffersComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
 
-  rangeChanged(event:any){
-    console.log(event);
-  }
+
 
 
 
@@ -116,15 +118,6 @@ export class OffersComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-    shuffleArray(array): void {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * i);
-        const temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-        console.log(array[j]);
-      }
-    }
 
     voidnew(array): void {
     const chance = new this.Chance();

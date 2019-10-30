@@ -5,23 +5,22 @@
 
 
 
-      <div class="change-width">
+      <div class="change-width3">
         <span>Marka i Model:</span>
-        <mat-form-field class="auto_field">
-          <input type="text" aria-label="Number" matInput [matAutocomplete]="auto" [(ngModel)]="mark" name="mark">
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option class="myoption" *ngFor="let option of filteredOptions" [value]="option">
-              {{option}}
+        <mat-form-field class="auto_field" floatLabel="never">
+          <mat-select  name="food" placeholder="- marka -" [(ngModel)]="mark" name="mark" (selectionChange)="checkmark(mark)">
+            <mat-option *ngFor="let mark of marks$ | async" [value]="mark">
+              {{mark}}
             </mat-option>
-          </mat-autocomplete>
+          </mat-select>
         </mat-form-field>
+
         <mat-form-field class="auto_field">
-          <input type="text"   aria-label="Number" matInput [matAutocomplete]="auto" [(ngModel)]="model" name="model">
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option class="myoption" *ngFor="let option of filteredOptions" [value]="option">
-              {{option}}
+          <mat-select  name="food" placeholder="- model -" [(ngModel)]="model" name="model">
+            <mat-option *ngFor="let model of correct_models" [value]="model">
+              {{model}}
             </mat-option>
-          </mat-autocomplete>
+          </mat-select>
         </mat-form-field>
       </div>
       <div class="change-width">
@@ -72,7 +71,7 @@
 
     <div class="bottom-form">
       <p>Wyszukiwanie</p>
-      <button mat-raised-button color="primary" (click)="AutogoToOffers()"><i class="fas fa-search"></i>Wyszukaj</button>
+      <button mat-raised-button color="primary" (click)="AutogoToOffers()" class="search_button"><i class="fas fa-search"></i>Wyszukaj</button>
     </div>
   </form>
 </div>

@@ -13,4 +13,27 @@
   font-family: "American Typewriter";
   font-size: 16px;
 }
+#mywidthclass {
+  .w(50%);
+  span {
+    .d-block;
+  }
+}
+.change-width3 {
+  .d-inline;
+  margin-left: 5px;
+  .w-calc(100%, 5px);
+  @media @small {
+    .w-calc(50%, 5px);
+
+  }
+
+  span {
+    font-family: "American Typewriter";
+    .d-block;
+    margin-bottom: 10px;
+
+    font-size: 16px;
+  }
+}
 

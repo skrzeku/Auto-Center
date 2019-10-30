@@ -2,7 +2,8 @@
 
 #small_navi_separator {
   height: 50px;
-  background-color: lighten(lightblue, 10%);
+  background-color: lightgray;
+  font-family: "Open Sans", Arial , sans-serif;
 
   padding: 0 15px;
   span {
@@ -31,8 +32,8 @@
   @media @medium {
     //max-width: 280px;
   }
-  span {
-
+  h3 {
+margin-top: 25px;
   }
 }
 
@@ -90,6 +91,7 @@
 
 ::ng-deep .sliderHilight {
   background-color: @brands-color !important;
+  z-index: 10 !important;
   //height: 6px !important;
 }
 ::ng-deep .dsliderClass {
@@ -97,13 +99,20 @@
   height: 12px !important;
   border-radius: 50%;
   border: none !important;
+  z-index: 10 !important;
   background-color: @brands-color !important;
+  cursor: ew-resize !important;
+  &:active {
+    cursor: ew-resize !important;
+  }
+
 }
 
 ::ng-deep .dbarClass {
   height: 5px !important;
   .w(80%) !important;
   margin-left: 10% !important;
+  z-index: 10 !important;
   span {
     .d-none !important;
   }
@@ -111,5 +120,30 @@
 .slider_span {
 
 }
+.fa-chevron-right {
+  margin-left: 5px;
+}
+#left_offers_button {
+  margin-top: 20px;
+}
+
+mat-form-field {
+  display: block;
+  .w(80%);
+  margin: 0 auto;
+
+
+
+}
+#advertising_left_search {
+  .w(80%);
+  margin: 30px auto;
+  color: white;
+  background-color: @brands-color;
+  height: 400px;
+}
+
+
+
 
 

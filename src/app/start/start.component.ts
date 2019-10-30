@@ -18,6 +18,8 @@ export class StartComponent implements OnInit {
   BigCar: Car;
   midCars: Car[] = [];
   smallCars: Car[] = [];
+  mapmark: any;
+  reducedmark: any;
 
   allcars: Car[];
 
@@ -32,6 +34,7 @@ export class StartComponent implements OnInit {
     this.carsserv.getCars().subscribe((cars) => {
       this.chanceit(cars);
       this.allcars = cars;
+      this.mapCars();
     });
 
   }
@@ -42,6 +45,20 @@ export class StartComponent implements OnInit {
     this.helpserv.array.length = 0;
     this.helpserv.PushFilterArray('premium', true, '' );
     this.router.navigate(['offers']);
+  }
+
+  mapCars(): void {
+ this.mapmark = this.allcars.map(car => car.mark);
+ this.reduceMapValues(this.mapmark);
+  }
+
+  reduceMapValues(array: any) {
+    this.reducedmark = Array.from(new Set(array));
+    this.helpserv.ShareMarks(this.reducedmark);
+  }
+
+  mapModels(): void {
+
   }
 
 

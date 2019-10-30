@@ -6,7 +6,7 @@
                           .position(fixed, @top: 0);
                           height: 50px;
                           .w-100;
-                          z-index: 40 !important;
+                          z-index: 99 !important;
                         }
 .navi-ul {
   height: 100%;
@@ -19,6 +19,7 @@
         .position(relative, @top: 50%);
         transform: translateY(-50%);
         margin: 0 5px;
+        outline: 0;
         .navi-link {
           .c-pointer;
         }
@@ -72,4 +73,8 @@ background-color: #4c8bf5}
   }
 
 }
-
+#logo_img {
+  height: 50px;
+  .w(auto);
+  outline: 0;
+}

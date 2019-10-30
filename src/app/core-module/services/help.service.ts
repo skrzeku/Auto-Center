@@ -11,6 +11,8 @@ export class HelpService {
   mybol$ = new Subject<boolean>();
   oneCar$ = new Subject<Car>();
   array: Filter[] = [];
+  marks$ = new BehaviorSubject<string[]>(null);
+
 
   constructor() { }
 
@@ -32,6 +34,11 @@ export class HelpService {
     // remove one element
   PopFilterArray() {
     this.array.pop();
+  }
+
+  ShareMarks(marks) {
+  this.marks$.next(marks);
+  console.log(marks);
   }
 
 

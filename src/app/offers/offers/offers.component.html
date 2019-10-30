@@ -2,12 +2,71 @@
   <div class="smaller-container">
 
     <div class="left_offers">
-      <h3>Cena</h3>
-      <range-slider [min]="min" [max]="max" [step]="1" [(ngModel)]="range" (onRangeChange)="rangeChanged($event)">        </range-slider>
-      <span class="slider_span">Cena: {{range[0]}} zł - {{range[1]}} zł </span>
+      <div class="left_form_field">
+        <h3>Cena</h3>
+        <range-slider [min]="min" [max]="max" [step]="1" [(ngModel)]="range" >        </range-slider>
+        <span class="slider_span">Cena: {{range[0]}} zł - {{range[1]}} zł </span>
+      </div>
+      <div class="left_form_field" *ngIf="selectedValue !== 'Części'">
+        <h3>Przebieg</h3>
+        <range-slider [min]="0" [max]="999999" [step]="10" [(ngModel)]="course_range" >        </range-slider>
+        <span class="slider_span">Przebieg: {{course_range[0]}} km - {{course_range[1]}} km </span>
+      </div>
+      <div class="left_form_field" *ngIf="selectedValue !== 'Części'">
+        <h3>Rok Produkcji</h3>                                      <!--(onRangeChange)="rangeChanged($event)" -->
+        <range-slider [min]="1850" [max]="2019" [step]="1" [(ngModel)]="year_range" >        </range-slider>
+        <span class="slider_span">Rok Produkcji: {{year_range[0]}} r - {{year_range[1]}} r </span>
+      </div>
+
+
+
+
+
+
+      <h3>Kategoria</h3>
+      <mat-form-field floatLabel="never">
+      <mat-select [(ngModel)]="selectedValue" name="food" placeholder="- kategoria -">
+        <mat-option *ngFor="let category of categories" [value]="category">
+          {{category}}
+        </mat-option>
+      </mat-select>
+      </mat-form-field>
+
+      <h3>Marka</h3>
+      <mat-form-field floatLabel="never">
+        <mat-select [(ngModel)]="selectedModel" name="food" placeholder="- wybierz model -">
+          <mat-option *ngFor="let mark of models" [value]="mark">
+            {{mark}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+
+    <div *ngIf="selectedModel">
+      <h3>Model</h3>
+      <mat-form-field floatLabel="never">
+        <mat-select [(ngModel)]="selectedModel" name="food" placeholder="- wybierz model -">
+          <mat-option *ngFor="let model of models" [value]="model">
+            {{model}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+      <button mat-raised-button class="search_button" id="left_offers_button">Filtruj<i class="fa fa-chevron-right"></i></button>
+
+      <div id="advertising_left_search">
+        Miejsce na reklame
+
+      </div>
+
 
 
     </div>
+
+
+          <!-- Right side -->
     <div class="right_offers">
       <div id="small_navi_separator">
 
@@ -25,7 +84,7 @@
           <span>{{car.category}}<i class="fas fa-angle-double-right"></i>{{car.model}}</span>
         </div>
         <div class="one-car-price">
-          <span>{{car.price}}</span>
+          <span>{{car.price}} zł</span>
         </div>
       </div>
     </div>
