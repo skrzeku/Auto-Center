@@ -1,11 +1,14 @@
 import {AfterViewInit, Component, ElementRef, HostListener, Input, Renderer2, ViewChild} from '@angular/core';
 import {NavigationComponent} from './core-module/navigation/navigation.component';
 import {HelpService} from './core-module/services/help.service';
+import {fadeAnimation} from './start/animation/fadeIntRoute';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.less']
+  styleUrls: ['./app.component.less'],
+  animations: [fadeAnimation]
 })
 export class AppComponent implements AfterViewInit{
   title = 'app';

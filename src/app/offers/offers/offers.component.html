@@ -1,45 +1,91 @@
 
   <div class="smaller-container">
+    <div id="small_navi_separator">
 
-    <div class="left_offers">
+      <span>Strona główna > Aktywne Oferty</span>
+      <span id="smallerone">Wszystkie Ogłoszenia - {{(carse | myfilter: filters).length}} </span>
+      <div id="filters_medium_wrapper">
+      <div class="one_medium_filter">
+        <div (click)="show_one_filter = !show_one_filter" class="one_medium_inside">Cena<i class="fas fa-chevron-down"></i></div>
+      </div>
+        <div class="one_medium_filter">
+          <div (click)="show_one_filter = !show_one_filter" class="one_medium_inside">Rok produkcji<i class="fas fa-chevron-down"></i></div>
+          <div class="hidden_filter" [ngClass]="{'shown_filter': show_one_filter}"><button>click me</button></div>
+        </div>
+        <div class="one_medium_filter"><div (click)="show_one_filter = !show_one_filter" class="one_medium_inside">Przebieg<i class="fas fa-chevron-down"></i></div>
+        </div>
+
+
+         <mat-form-field class="top_filter_fields">
+           <mat-select>
+             <mat-option *ngFor="let category of categories" [value]="category">
+               {{category}}
+             </mat-option>
+           </mat-select>
+         </mat-form-field>
+
+        <mat-form-field class="top_filter_fields">
+          <mat-select>
+            <mat-option *ngFor="let category of categories" [value]="category">
+              {{category}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="d-inline" id="show_btn">
+          <button mat-raised-button class="search_button">Pokaż</button>
+        </div>
+
+
+      </div>
+    </div>
+    <div class="w-100 center-text filterbtn">
+      <button mat-raised-button color="primary" class="search_button" (click)="showfilters('show')">Filtruj</button>
+    </div>
+
+    <div class="left_offers_top" [ngClass]="{'left_offers_show': showfilter}">
       <div class="left_form_field">
-        <h3>Cena</h3>
+        <h3>Cena: </h3><span class="slider_span"> {{range[0]}} - {{range[1]}} zł </span>
         <range-slider [min]="min" [max]="max" [step]="1" [(ngModel)]="range" >        </range-slider>
-        <span class="slider_span">Cena: {{range[0]}} zł - {{range[1]}} zł </span>
+
       </div>
       <div class="left_form_field" *ngIf="selectedValue !== 'Części'">
-        <h3>Przebieg</h3>
+        <h3>Przebieg: </h3><span class="slider_span"> {{course_range[0]}} - {{course_range[1]}} km </span>
         <range-slider [min]="0" [max]="999999" [step]="10" [(ngModel)]="course_range" >        </range-slider>
-        <span class="slider_span">Przebieg: {{course_range[0]}} km - {{course_range[1]}} km </span>
+
       </div>
       <div class="left_form_field" *ngIf="selectedValue !== 'Części'">
-        <h3>Rok Produkcji</h3>                                      <!--(onRangeChange)="rangeChanged($event)" -->
+        <h3>Rok Produkcji: </h3><span class="slider_span"> {{year_range[0]}} - {{year_range[1]}} r </span>                                      <!--(onRangeChange)="rangeChanged($event)" -->
         <range-slider [min]="1850" [max]="2019" [step]="1" [(ngModel)]="year_range" >        </range-slider>
-        <span class="slider_span">Rok Produkcji: {{year_range[0]}} r - {{year_range[1]}} r </span>
+
       </div>
 
 
 
 
 
+      <div class="left_form_field">
+        <h3>Kategoria</h3>
+        <mat-form-field floatLabel="never">
+          <mat-select [(ngModel)]="selectedValue" name="food" placeholder="- kategoria -">
+            <mat-option *ngFor="let category of categories" [value]="category">
+              {{category}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
 
-      <h3>Kategoria</h3>
-      <mat-form-field floatLabel="never">
-      <mat-select [(ngModel)]="selectedValue" name="food" placeholder="- kategoria -">
-        <mat-option *ngFor="let category of categories" [value]="category">
-          {{category}}
-        </mat-option>
-      </mat-select>
-      </mat-form-field>
+      <div class="left_form_field">
+        <h3>Marka</h3>
+        <mat-form-field floatLabel="never">
+          <mat-select [(ngModel)]="selectedModel" name="food" placeholder="- wybierz model -">
+            <mat-option *ngFor="let mark of models" [value]="mark">
+              {{mark}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
 
-      <h3>Marka</h3>
-      <mat-form-field floatLabel="never">
-        <mat-select [(ngModel)]="selectedModel" name="food" placeholder="- wybierz model -">
-          <mat-option *ngFor="let mark of models" [value]="mark">
-            {{mark}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+
 
 
 
@@ -53,13 +99,12 @@
         </mat-select>
       </mat-form-field>
     </div>
-
+    <div id="filter_btn_wrapper">
       <button mat-raised-button class="search_button" id="left_offers_button">Filtruj<i class="fa fa-chevron-right"></i></button>
+      <button mat-raised-button class="search_button" color="warning" (click)="showfilters('hide')">X</button>
+    </div>
 
-      <div id="advertising_left_search">
-        Miejsce na reklame
 
-      </div>
 
 
 
@@ -67,30 +112,42 @@
 
 
           <!-- Right side -->
-    <div class="right_offers">
-      <div id="small_navi_separator">
+    <div class="right_offers" *ngIf="(carse && carse | myfilter: filters).length > 0; else noCars">
 
-        <span>Strona główna / Aktywne Oferty</span>
-        <span id="smallerone">Wszystkie Ogłoszenia - {{(carse | myfilter: filters).length}} </span>
 
-      </div>
+          <div class="one-car" *ngFor="let car of carse | myfilter: filters" (click)="gotoDetails(car)">
+            <div class="one_car_absolute">
+            <div class="one-car-img"></div>  <!-- with a background-->
+            <div class="one-car-right-side-wrapper">
+              <div id="span_sep">
+                <span id="car_state" *ngIf="car.state === 'używany'">{{car.state}}</span>
+              </div>
 
-      <div class="one-car" *ngFor="let car of carse | myfilter: filters" (click)="gotoDetails(car)">
-        <div class="one-car-img">
-          <img src="">
+              <h3>{{car.mark}}&nbsp;{{car.model}}&nbsp;{{car.year}}</h3>
+              <div class="one-car-price">
+                <span>{{car.price | number }} zł </span>
+                <p id="small_vat">W tym 23% Vat</p>
+              </div>
+
+            </div>
+              <div id="show_more">
+                <span>{{car.fuel}}<i class="fas fa-angle-double-right"></i>{{car.course}} km<i class="fas fa-angle-double-right"></i>{{car.power}} KM</span>
+                <button mat-raised-button color="primary" class="search_button">ZOBACZ WIĘCEJ</button>
+
+              </div>
+
+
+          </div>
         </div>
-        <div class="one-car-right-side-wrapper">
-          <h4>{{car.mark}}&nbsp;{{car.model}}&nbsp;{{car.year}}</h4>
-          <span>{{car.category}}<i class="fas fa-angle-double-right"></i>{{car.model}}</span>
-        </div>
-        <div class="one-car-price">
-          <span>{{car.price}} zł</span>
-        </div>
-      </div>
+
     </div>
 
 
   </div>
+
+
+
+  <ng-template #noCars>Nie znaleziono samochodów spełniających podane kryteria. Proszę spróbować ponownie! </ng-template>
 
 
 

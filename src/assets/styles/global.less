@@ -10,6 +10,8 @@
 @large: ~'only screen and (min-width: 1400px)';
 @just-small: ~'only screen and (min-width: 768px) and (max-width: 991px)';
 
+      //to make an animation
+
 
 
             //Body
@@ -81,16 +83,7 @@ a, button{
      // background-color: lighten(@hover-text-color, 35%);
     //}
   }
-  mat-select {
-    border: solid 1px lighten(@hover-text-color, 20%);
-    .position(absolute, @top: -17px);
-    padding: 5px 10px;
-    height: 18px;
-    z-index: 8;
-    margin-left: -10px;
 
-
-  }
 
 }
 
@@ -280,28 +273,7 @@ a, button{
   position: relative;
 }
 
-::ng-deep .mat-select-panel {
-  position: relative;
-  top: 44px !important;
-  min-width: calc(100% + 18px) !important;
-}
 
-::ng-deep .mat-form-field-infix {
-  padding: 0 0 0 10px !important;
-  border: solid 1px @hover-text-color;
-  line-height: 32px;
-  background-color: white;
-  .center-text;
-}
-
-::ng-deep .mat-form-field-label {
-  .center-text;
-  font-size: 16px !important;
-  position: relative !important;
-  top: -5px !important;
-  padding: 7px !important;
-
-}
 .spanAbs {
   .position(absolute, @right: 14px, @top: 2px);
   color: gray;
@@ -371,6 +343,13 @@ a, button{
     transition: all 0.3s ease-in-out;
   }
 }
+.transition(@what, @time, @how) {
+  transition: @what, @time, @how;
+  -moz-transition: @what, @time, @how;
+  -o-transition: @what, @time, @how;
+  -webkit-transition: @what, @time, @how;
+}
+
 
 
 

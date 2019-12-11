@@ -1,12 +1,13 @@
 import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {CarsService} from '../../core-module/services/cars.service';
-import {Observable} from 'rxjs';
+import {Observable, pipe} from 'rxjs';
 import {Car} from '../../core-module/models/car.model';
 import {Mark} from '../../core-module/models/marks.model';
 import {map} from 'rxjs/internal/operators';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Filter} from '../../core-module/models/filter.model';
 import {HelpService} from '../../core-module/services/help.service';
+import {el} from '@angular/platform-browser/testing/src/browser_util';
 declare var require;
 
 @Component({
@@ -37,8 +38,10 @@ export class OffersComponent implements OnInit, AfterViewInit, OnDestroy {
   categories: string[] = ['Osobowe', 'Ciężarowe', 'Motocykle', 'Części'];
   models: string[] = ['BMW', 'Mazda', 'Toyota', 'Audi'];
   selectedModel: string;
+  showfilter = false;
 
   filters: Filter[] = this.helpserv.array;
+  show_one_filter = false;
 
 
 
@@ -95,6 +98,16 @@ export class OffersComponent implements OnInit, AfterViewInit, OnDestroy {
       console.log(this.number[index]);
       this.number.splice(index, 1);
     }
+  }
+  showfilters(str: string) {
+    if (str == 'show') {
+      this.showfilter = true;
+    }
+    else {
+      this.showfilter = false;
+    }
+
+
   }
 
 

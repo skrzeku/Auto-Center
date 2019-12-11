@@ -10,12 +10,14 @@ import {Router} from '@angular/router';
 import * as $ from 'jQuery';
 import {AutomobileComponent} from './automobile/automobile.component';
 import {HelpService} from '../../core-module/services/help.service';
+import {fadeAnimation} from '../animation/fadeIntRoute';
 
 @Component({
   selector: 'app-search-engine',
   templateUrl: './search-engine.component.html',
   styleUrls: ['./search-engine.component.less'],
-  providers: [AutomobileComponent]
+  providers: [AutomobileComponent],
+  animations: [fadeAnimation]
 })
 export class SearchEngineComponent implements OnInit, AfterViewInit {
 

@@ -23,6 +23,7 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireAuth, AngularFireAuthModule} from '@angular/fire/auth';
 import {AuthGuard} from './core-module/services/auth.guard';
 import {FilterPipe} from './core-module/pipes/filter.pipe';
+import {ReplaceUnderscorePipe} from './core-module/pipes/under.pipe';
 
 @NgModule({
   declarations: [
@@ -30,9 +31,9 @@ import {FilterPipe} from './core-module/pipes/filter.pipe';
   ],
   imports: [
     CommonModule, SharedModule, CoreModule, AngularFireAuthModule, AngularFireStorageModule, AngularFirestoreModule, AngularFireModule.initializeApp(environment.firebase),
-    MaterialModule, AngularFireDatabaseModule, AngularFontAwesomeModule, BrowserAnimationsModule, MatTooltipModule, MatButtonModule, RouterModule, AppRoutingModule
+    MaterialModule, AngularFireDatabaseModule, AngularFontAwesomeModule, BrowserAnimationsModule,  MatTooltipModule, MatButtonModule, RouterModule, AppRoutingModule
   ],
   bootstrap: [AppComponent],
-  providers: [HelpService, CarsService, CarResolve, AuthGuard, FilterPipe]
+  providers: [HelpService, CarsService, CarResolve, AuthGuard, FilterPipe, ReplaceUnderscorePipe]
 })
 export class AppModule { }

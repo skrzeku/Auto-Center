@@ -31,6 +31,18 @@
       .text-left {
         text-align: left;
       }
+      .relative {
+        position: relative;
+      }
+      .absolute {
+        position: absolute;
+      }
+      .d-flex {
+        display: flex;
+        display: -moz-flex;
+        display: -webkit-flex;
+        display: -o-flex;
+      }
 
 
 
@@ -60,9 +72,7 @@
       .d-inline {
         display: inline-block;
       }
-      .d-flex {
-        display: flex;
-      }
+
       .d-block {
         display: block;
       }
@@ -158,6 +168,11 @@
               -webkit-animation: @arguments;
               -moz-animation: @arguments;
               animation: @arguments;
+            }
+            .custom-transition (@how) {
+              -webkit-transition: @how;
+              transition: @how;
+              -moz-transition: @how;
             }
 
 
