@@ -86,20 +86,14 @@ export class AutomobileComponent implements OnInit {
   AutogoToOffers() {
     this.helpserv.array.length = 0;
     const mapprice = this.cars.map(car => car.price);
-
     const maxprice = Math.max(...mapprice);
     const minprice = Math.min(...mapprice);
-
-
       //mark
     this.Checkfields(this.mark);
-    this.helpserv.PushFilterArray('mark', this.mark || null, this.valuetwo  );
-
+    this.helpserv.PushFilterArray('mark', this.mark, this.valuetwo);
         //model
     this.Checkfields(this.model);
-    this.helpserv.PushFilterArray('model', this.model || null, this.valuetwo  );
-
-
+    this.helpserv.PushFilterArray('model', this.model, this.valuetwo  );
         //price
     this.helpserv.PushFilterArray('price', this.price_from || minprice  , this.price_to || maxprice);
 

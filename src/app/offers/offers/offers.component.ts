@@ -1,25 +1,38 @@
-import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostListener,
+  OnDestroy,
+  OnInit,
+  QueryList,
+  Renderer2,
+  ViewChild,
+  ViewChildren
+} from '@angular/core';
 import {CarsService} from '../../core-module/services/cars.service';
-import {Observable, pipe} from 'rxjs';
+import {Observable, range} from 'rxjs';
 import {Car} from '../../core-module/models/car.model';
-import {Mark} from '../../core-module/models/marks.model';
-import {map} from 'rxjs/internal/operators';
-import {ActivatedRoute, Router} from '@angular/router';
+
+import {Router} from '@angular/router';
 import {Filter} from '../../core-module/models/filter.model';
 import {HelpService} from '../../core-module/services/help.service';
-import {el} from '@angular/platform-browser/testing/src/browser_util';
+import {scale3dboth} from '../../start/animation/scale3dboth';
+import {widtheight} from '../../start/animation/widthandheight';
 declare var require;
 
 @Component({
   selector: 'app-offers',
   templateUrl: './offers.component.html',
-  styleUrls: ['./offers.component.less']
+  styleUrls: ['./offers.component.less'],
+  animations: [widtheight, scale3dboth]
 })
 export class OffersComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(private carservice: CarsService,
               private router: Router,
-              private helpserv: HelpService) {}
+              private helpserv: HelpService,
+              private render: Renderer2) {}
   cars$: Observable<Car[]>;
 
   deadline: any;
@@ -35,24 +48,50 @@ export class OffersComponent implements OnInit, AfterViewInit, OnDestroy {
   range = [0, 99999];
   course_range = [0, 999999];
   year_range = [1850, 2019];
-  categories: string[] = ['Osobowe', 'Ciężarowe', 'Motocykle', 'Części'];
+  states: string[] = ['Nowy', 'Używany', 'Wszystkie'];
   models: string[] = ['BMW', 'Mazda', 'Toyota', 'Audi'];
   selectedModel: string;
   showfilter = false;
-
+  sorts = ['Najnowsze', 'Cena rosnąco', 'Cena malejąco', 'Najniższy przebieg', 'Najwyższy przebieg'];
+  marks$;
+  markModel = '';
+  stateModel = '';
+  mybo = false;
+  valuetwo: any;
+  valueone: any;
+  mybools = [false, false, false];
+  queryArray = [];
   filters: Filter[] = this.helpserv.array;
-  show_one_filter = false;
+  filter_number = 0;
+  @ViewChildren('topfilters') topfilters: QueryList<ElementRef>;
+  @ViewChildren('carselement') carselement: QueryList<ElementRef>;
+  sortby = 0;
+  @ViewChild('rangeslider') rangeslider: any;
+  range1 = [0, 99999];
+  course_range1 = [0, 999999];
+  year_range1 = [1850, 2019];
+
 
 
 
 
 
   ngOnInit() {
-    //this.cars$ = this.carservice.getCars();
+
     this.carservice.getCars().subscribe((carse) => {
       this.carse = carse;
-      this.voidnew(carse);
+
+      const mapprice = carse.map(car => car.price);
+      this.max = Math.max(...mapprice);
+      this.min = Math.min(...mapprice);
+      this.range = [this.min, this.max];
+      this.SortfromNewest();
+
+
     });
+    this.marks$ = this.helpserv.marks$;
+
+
 
 
 
@@ -67,53 +106,153 @@ export class OffersComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   ngAfterViewInit () {
+   this.queryArray = this.topfilters.toArray();
+
+
 
 
   }
-      // it works!! :D
- pushtoArray() {
-    this.filters.push({
-      name: 'price',
-      value: 20,
-      value2: 30000
-    },
-      {
-        name: 'mark',
-        value: 'Mazda',
-        value2: ''
-      });
- }
+  Sortfromlower (): void {
+    this.carse.sort((a, b) => {
+      return a.price - b.price;
+    });
+
+  }
+  Sortfromhigher (): void {
+    this.AddsortAnimation();
+    this.carse.sort((a, b) => {
+      return b.price - a.price;
+    });
+  }
+  SortfromNewest (): void {
+    this.AddsortAnimation();
+    this.carse.sort((a, b) => {
+      return b.id - a.id;
+    });
+  }
+  sorthighestcourse (): void {
+    this.AddsortAnimation();
+    this.carse.sort((a, b) => {
+      return b.course - a.course;
+    });
+  }
+  sortlowestcourse (): void {
+    this.AddsortAnimation();
+    this.carse.sort((a, b) => {
+      return a.course - b.course;
+    });
+  }
+
+  SortResults () {
+    this.carse.sort((a, b) => {
+      if (a.id < b.id) {
+        return 1;
+      } else if(a.id > b.id) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+  }
 
   gotoDetails(car: Car) {
     this.carservice.goToCarDetails(car);
   }
 
 
-
-  getNumber(): void {
-    if (0 === this.number.length) {
-      alert('Finish');
-    } else {
-      const index = Math.floor(Math.random() * this.number.length);
-      console.log(this.number[index]);
-      this.number.splice(index, 1);
-    }
-  }
   showfilters(str: string) {
-    if (str == 'show') {
-      this.showfilter = true;
-    }
-    else {
+
+      if (str === 'show') {
+        this.showfilter = true;
+      }
+      if (str === 'hide') {
+        this.showfilter = false;
+      }
+  }
+  hiefilter(event) {
+    const targetClass = event.target.classList;
+    if (targetClass.contains('left_offers_top'))  {
       this.showfilter = false;
     }
-
-
+    return false;
   }
 
+  @HostListener('document:click', ['$event.target'])
+  private checkClick(target) {
+    if (target.closest('.one_medium_inside')) {
+      target = target.closest('.one_medium_inside');
+      const id = target.id;
+      this.filter_number = id;
+
+    }
+    if ((!target.closest('.hidden_filter') && !target.closest('.one_medium_inside')) || target.closest('.close_hidden_btn')) {
+      this.filter_number = 0;
+    }
+  }
+
+  dataChanged(e) {
+    if (e === 0) {
+      this.SortfromNewest();
+    }
+    if (e === 1) {
+      this.Sortfromlower();
+    }
+    if (e === 2) {
+      this.Sortfromhigher();
+    }
+    if (e === 3) {
+      this.sortlowestcourse();
+    }
+    if (e === 4) {
+      this.sorthighestcourse();
 
 
+    }
+  }
 
+  AddsortAnimation() {
+    this.mybo = true;
+    setTimeout(() => {
+      this.mybo = false;
+    }, 300);
+  }
+  Checkfields(modelvalue) {
 
+    if (modelvalue === '' || modelvalue === 'Wszystkie') {
+      this.valueone = '';
+      this.valuetwo = null;
+    }
+    else  {
+      this.valueone = modelvalue;
+      this.valuetwo = '';
+    }
+
+  }
+  fillFilterArray(): void {
+    this.helpserv.array.length = 0;
+   this.helpserv.PushFilterArray('price', this.range[0], this.range[1]);
+   this.helpserv.PushFilterArray('year', this.year_range[0], this.year_range[1]);
+   this.helpserv.PushFilterArray('course', this.course_range[0], this.course_range[1]);
+   this.Checkfields(this.stateModel);
+   this.helpserv.PushFilterArray('state', this.valueone.toLowerCase(), this.valuetwo);
+    this.Checkfields(this.markModel);
+    this.helpserv.PushFilterArray('mark', this.valueone, this.valuetwo);
+  }
+
+  setValues(arr: number) {
+    this.mybools[arr] = true;
+    this.filter_number = 0;
+  }
+  closeValues(arr: number): void {
+    this.mybools[arr] = false;
+    this.filter_number = 0;
+  }
+  clearValues(what: number[], num: number, min: number, max: number): void {
+    this.filter_number = 0;
+    what[0] = min;
+    what[1] = max;
+    this.mybools[num] = false;
+  }
 
 
 
@@ -131,14 +270,6 @@ export class OffersComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-
-    voidnew(array): void {
-    const chance = new this.Chance();
-    const uniques = chance.unique(chance.natural, array.length, {min: 0, max: array.length - 1});
-        for (let i = 0; i < array.length; i++ ) {
-          //console.log(array[uniques[i]]);
-        }
-    }
 
 
 

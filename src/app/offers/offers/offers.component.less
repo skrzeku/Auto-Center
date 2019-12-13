@@ -11,7 +11,7 @@
 
                   //For small devices!
               .filterbtn {
-                margin-top: 15px;
+                margin: 15px 0;
                 button {
                   width: 40%;
                 }
@@ -58,22 +58,16 @@
               .absolute;
               bottom: 0;
               left: 0;
-              .w(0);
-              opacity: 0;
-              height: 0;
-              background-color: red;
-              transform: translateY(100%);
-              z-index: -1;
-              .custom-transition(0.4s all ease);
-            }
-            .shown_filter {
-              .w(200px);
-              opacity: 1;
+              .w(250px);
+              height: 150px;
+              padding: 5px;
               z-index: 5;
-              display: block;
-              height: 100px;
-              .custom-transition(0.4s all ease);
+              .center-text;
+              overflow: hidden;
+              background-color: lighten(lightgray, 5%);
+              transform: translateY(100%);
             }
+
             .top_filter_fields {
               background-color: whitesmoke;
               margin-left: 20px;
@@ -121,6 +115,11 @@
                 font-weight: 900;
               }
             }
+            ::ng-deep .mat-select-placeholder {
+              color: black !important;
+              -webkit-text-fill-color: black !important;
+
+            }
             /*
             ::ng-deep .mat-select-panel {
               .w(160px) !important;
@@ -151,33 +150,37 @@
                           font-family: "Open Sans", Arial , sans-serif;
                           white-space: normal;
                           background-color: whitesmoke !important;
-
                         }
                 }
 
 #smallerone {
   opacity: .6;
   float: right;
-  font-size: 14px;
+  font-size: 0.9rem
 }
 .left_offers_top {
-  .w-calc(75%, 20px);
+  .w(100%);
   position: fixed;
   height: 100%;
-  left: calc(-75% - 20px);
+  left: -100%;
   top: 0;
   z-index: 99;
+  text-align: left;
  border: 1px lightgray solid;
   .drop-shadow();
-  padding: 10px;
-  background-color: whitesmoke;
+  background-color: rgba(0,0,0,0.4);
   .custom-transition(0.4s all linear);
-  @media @small {
 
-  }
   @media @medium {
-
+  .d-none;
   }
+}
+#left_offers_inside {
+  .w-calc(75%, 20px);
+  height: 100%;
+  padding: 10px;
+  background-color: lighten(lightgray, 5%);
+
 
 }
                 //after click
@@ -191,6 +194,7 @@
   .w-calc(100%, 20px);
   .d-inline;
   margin-right: 20px;
+  padding-bottom: 20px;
   z-index: 2;
 }
 .one-car {
@@ -209,6 +213,7 @@
   .c-pointer;
   background-color: white;
   .basic-transition;
+  opacity: 1;
   @media @small {
     .w-calc(33.333%, 22px);
   }
@@ -227,6 +232,10 @@
   }
 
 
+}
+.one_car_hidden {
+  opacity: 0;
+  .custom-transition(0.3s all ease);
 }
 #span_sep {
   height: 24px;
@@ -318,6 +327,8 @@
   }
   mat-form-field {
     margin-top: 10px;
+    background-color: whitesmoke;
+
   }
 }
 
@@ -373,12 +384,39 @@ mat-form-field {
   padding: 3px 5px;
 }
 #filter_btn_wrapper {
+  margin-top: 30px;
   .w(100%);
   display: flex;
   justify-content: space-evenly;
 }
 #show_btn {
   margin-left: 20px;
+}
+#sortby_wrapper {
+
+  padding-bottom: 10px;
+  .d-flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+.hidden_filter_top {
+  .d-flex;
+  justify-content: space-between;
+  .w(96%);
+  margin: 0 auto;
+  align-items: center;
+  span {
+    text-decoration: underline;
+    .c-pointer;
+    &:hover {
+      text-decoration: none;
+      opacity: .7;
+    }
+  }
+}
+.colorbrands {
+  color: @brands-color;
 }
 
 
