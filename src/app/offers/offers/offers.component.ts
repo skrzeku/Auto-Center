@@ -39,10 +39,9 @@ export class OffersComponent implements OnInit, AfterViewInit, OnDestroy {
   maps: any;
   carse: Car [];
   selectedValue: string;
-  lastNumber = 0;
+
   number = [0,1,2,3,4,5,6,7,8,9,10];
-  Chance = require('chance');
-  stepRange;
+
   min = 0;
   max = 99999;
   range = [0, 99999];
@@ -50,7 +49,9 @@ export class OffersComponent implements OnInit, AfterViewInit, OnDestroy {
   year_range = [1850, 2019];
   states: string[] = ['Nowy', 'Używany', 'Wszystkie'];
   models: string[] = ['BMW', 'Mazda', 'Toyota', 'Audi'];
-  selectedModel: string;
+  modeModel = '';
+  stateModel1 = '';
+  markModel1 = '';
   showfilter = false;
   sorts = ['Najnowsze', 'Cena rosnąco', 'Cena malejąco', 'Najniższy przebieg', 'Najwyższy przebieg'];
   marks$;
@@ -80,16 +81,16 @@ export class OffersComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.carservice.getCars().subscribe((carse) => {
       this.carse = carse;
-
       const mapprice = carse.map(car => car.price);
       this.max = Math.max(...mapprice);
       this.min = Math.min(...mapprice);
       this.range = [this.min, this.max];
+      this.range1 = [this.min, this.max];
       this.SortfromNewest();
-
-
     });
     this.marks$ = this.helpserv.marks$;
+
+
 
 
 
@@ -228,15 +229,22 @@ export class OffersComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
   }
-  fillFilterArray(): void {
+  fillFilterArray(price: string, year: string, course: string, state: string, mark: string, model: string): void {
     this.helpserv.array.length = 0;
-   this.helpserv.PushFilterArray('price', this.range[0], this.range[1]);
-   this.helpserv.PushFilterArray('year', this.year_range[0], this.year_range[1]);
-   this.helpserv.PushFilterArray('course', this.course_range[0], this.course_range[1]);
-   this.Checkfields(this.stateModel);
+   this.helpserv.PushFilterArray('price', price[0], price[1]);
+   this.helpserv.PushFilterArray('year', year[0], year[1]);
+   this.helpserv.PushFilterArray('course', course[0], course[1]);
+   this.Checkfields(state);
    this.helpserv.PushFilterArray('state', this.valueone.toLowerCase(), this.valuetwo);
-    this.Checkfields(this.markModel);
+    this.Checkfields(mark);
     this.helpserv.PushFilterArray('mark', this.valueone, this.valuetwo);
+    this.Checkfields(model);
+    this.helpserv.PushFilterArray('model', this.valueone, this.valuetwo);
+
+    this.showfilter = false;
+  }
+  fillMobileArray(): void {
+
   }
 
   setValues(arr: number) {

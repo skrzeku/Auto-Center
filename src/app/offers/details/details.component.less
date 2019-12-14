@@ -12,6 +12,13 @@
 .main-detail-section {
   background-color: lighten(lightgray, 10%);
 }
+.img_wrapper {
+  img {
+    margin-left: 50px;
+    height: 100px;
+    .w(auto);
+  }
+}
       //navi
           .navi {
             margin: 0;
@@ -123,7 +130,10 @@
           .d-inline;
           .clear;
           .position(relative);
-          .w-100;
+          .w(100%);
+          .d-inline;
+          background-color: yellow;
+          overflow: hidden;
           height: @detail-big-img-height;
           .padding-top-bottom(0, 30px);
                           top: -229px; //just for the x-small devices    it's a height of detail-navi
@@ -153,6 +163,7 @@
                     font-size: 30px;
                     transform: translateY(-50%);
                     .c-pointer;
+                    z-index: 10;
 
                     &:hover {
                       color: @hover-text-color;
@@ -174,7 +185,8 @@
 
           //transform: translateY(calc(-100% + 50px));
           @media @medium {
-            .w(70%);
+            .w(60%);
+            margin-right: 40px;
           }
 
               .show-all-images {
@@ -191,6 +203,11 @@
                 }
               }
         }
+        .img_carousel {
+          float: left;
+          height: 100%;
+          .w(auto);
+        }
 
 
           //dealer-info
@@ -200,6 +217,7 @@
                 margin: 0 10px 10px;
                 border: 1px solid darken(darkgray, 10%);
                 .drop-shadow();
+
 
                                 //medias
                             @media @small {

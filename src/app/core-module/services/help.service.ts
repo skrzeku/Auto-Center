@@ -12,6 +12,7 @@ export class HelpService {
   oneCar$ = new Subject<Car>();
   array: Filter[] = [];
   marks$ = new BehaviorSubject<string[]>(null);
+  cars$ = new BehaviorSubject<string[]>(null);
 
 
   constructor() { }
@@ -39,6 +40,9 @@ export class HelpService {
   ShareMarks(marks) {
   this.marks$.next(marks);
   console.log(marks);
+  }
+  ShareCars(cars) {
+  this.cars$.next(cars);
   }
 
 

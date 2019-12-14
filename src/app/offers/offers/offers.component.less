@@ -4,9 +4,14 @@
   background-color: lighten(lightgray, 5%);
   font-family: "Open Sans", Arial , sans-serif;
 
-  padding: 0 15px;
+  padding: 10px 15px 0;
 
 
+}
+#top_span_navi {
+  font-size: 1rem;
+  opacity: .8;
+  font-family: "Montserrat", sans-serif;
 }
 
                   //For small devices!
@@ -73,52 +78,6 @@
               margin-left: 20px;
               .d-inline !important;
               .w(140px);
-            }
-            mat-form-field {
-              font-size: 0.8rem !important;
-              padding: 10px;
-              font-family: "Open Sans", Arial , sans-serif;
-            }
-            ::ng-deep .mat-form-field-wrapper {
-              padding-bottom: 0 !important;
-
-            }
-            ::ng-deep .mat-form-field-label-wrapper {
-              padding-top: 0 !important;
-            }
-            ::ng-deep .mat-form-field-infix {
-              border-top-width: 0 !important;
-              padding: 0 !important;
-
-            }
-            ::ng-deep .mat-select-value {
-              color: @brands-color;
-            }
-
-
-            ::ng-deep .mat-form-field-label-wrapper {
-              .d-none;
-            }
-
-            ::ng-deep .mat-form-field-underline {
-              .d-none;
-            }
-            ::ng-deep .mat-select-arrow {
-              border: none !important;
-              &:after {
-                content: "\f078";
-                font-family: 'Font Awesome 5 Free';
-                .absolute;
-                top: 0;
-                right: 0;
-                color: black;
-                font-weight: 900;
-              }
-            }
-            ::ng-deep .mat-select-placeholder {
-              color: black !important;
-              -webkit-text-fill-color: black !important;
-
             }
             /*
             ::ng-deep .mat-select-panel {
@@ -327,7 +286,6 @@
   }
   mat-form-field {
     margin-top: 10px;
-    background-color: whitesmoke;
 
   }
 }

@@ -80,7 +80,7 @@
 
 
                             .rest-section {     //big container of the rest section
-                              background-color: @main-bg;
+                              //background-color: @main-bg;
                             }
 
 .smaller-container {
@@ -112,7 +112,7 @@
                     border: @light-border;
                     padding: 10px 10px;
                     margin-bottom: 25px;
-                    background-color: white;
+                    background-color: lighten(lightgray, 5%);
                     .drop-shadow();
                               form {
                                 .w(100%);
@@ -219,7 +219,7 @@
                           .w(100%);
                           margin: 20px 0;
                           @media @small {
-                            .w-calc(50%, 5px) !important;
+                            .w-calc(50%, 10px) !important;
                             margin-bottom: 15px;
                           }
                           span {
@@ -318,6 +318,7 @@
   border: none;
   outline: none;
   .d-block;
+  padding: 5px;
 }
 #forms-inside-withoutPadding {
   padding: 0;
@@ -486,46 +487,18 @@ img {
   color: black;
   font-size: 16px;
   .center-text;
+}
+::ng-deep .mat-autocomplete-panel {
+  .w(100%);
+  top: 10px;
 
-  ::ng-deep .mat-form-field-label {
-    color: white;
-  }
+}
+error_field {
+  border: 1px solid red !important;
 }
 
 
 
-
-::ng-deep .mat-select-panel {
-  position: relative;
-  top: 44px !important;
-  min-width: calc(100% + 18px) !important;
-}
-
-::ng-deep .mat-form-field-infix {
-  padding: 0 0 0 10px !important;
-  border: solid 1px @hover-text-color;
-  line-height: 32px;
-  background-color: white;
-  .center-text;
-}
-
-::ng-deep .mat-form-field-label {
-  .center-text;
-  font-size: 16px !important;
-  position: relative !important;
-  top: -5px !important;
-  padding: 7px !important;
-}
-
-
-mat-select {
-  border: solid 1px lighten(@hover-text-color, 20%);
-  .position(absolute, @top: -17px);
-  padding: 5px 10px;
-  height: 18px;
-  z-index: 8;
-  margin-left: -10px;
-}
 
 
 

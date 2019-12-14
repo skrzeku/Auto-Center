@@ -22,9 +22,13 @@
   <div class="another-container">   <!--have to add class .medium-container -->
           <div class="main-detail-img">
             <i class="fas fa-chevron-left mychevron"></i>
-            <div class="main-img"></div>
             <i class="fas fa-chevron-right mychevron"></i>
+            <figure style="width: 1600%; height: 100%">
+              <div class="img_carousel_wrapper" *ngFor="let img of small_img_src">
+                <img src="../../../assets/images/maxresdefault.jpg" class="img_carousel">
+              </div>
 
+            </figure>
               <span class="show-all-images">Zobacz wszystkie zdjęcia liczba <i class="fas fa-camera"></i></span>
           </div>
           <div class="dealer-info-container">
@@ -70,6 +74,10 @@
       </ul>
 
     </div>
+  </div>
+  <div class="img_wrapper">
+    <img *ngFor="let img of small_img_src" [src]="img" >
+
   </div>
 </section>
 </div>

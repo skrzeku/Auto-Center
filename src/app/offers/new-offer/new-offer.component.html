@@ -3,23 +3,10 @@
 
 
 <div class="toolbar-inside">
-<span>Sprzedaję:</span>
+  Dodawanie Ogłoszenia
 
-    <form [formGroup]="form">
-      <mat-form-field id="top_form_field">
-        <input type="text"  placeholder="Kategoria" aria-label="Number" matInput formControlName="category" [matAutocomplete]="auto">
-        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-          <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
-            {{option}}
-          </mat-option>
 
-        </mat-autocomplete>
 
-      </mat-form-field>
-    </form>
-
-      <i class="fas fa-arrow-left"></i>
-      <span id="after-arrow">Wybierz Kategorie</span>
 
 </div>
   </mat-toolbar>   <!-- End Toolbar-->
@@ -48,68 +35,69 @@
       <div class="mywidth">
         <span>Marka pojazdu:</span><i class="fas fa-info-circle" id="1"></i>
       <mat-form-field>
-        <input type="text"   aria-label="Number" matInput formControlName="mark" [matAutocomplete]="auto">
-        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-          <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
-            {{option}}
+        <mat-select formControlName="mark" (selectionChange)="checkmark()">
+          <mat-option class="myoption" *ngFor="let mark of marks" [value]="mark">
+            {{mark}}
           </mat-option>
-        </mat-autocomplete>
+        </mat-select>
       </mat-form-field>
     </div>
       <div class="mywidth">
         <span>Model:</span><i class="fas fa-info-circle" id="2"></i>
         <mat-form-field>
-          <input type="text"   aria-label="Number" matInput formControlName="model" [matAutocomplete]="auto">
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
-              {{option}}
+          <mat-error>Model is required</mat-error>
+          <mat-select formControlName="model">
+            <mat-option *ngFor="let model of models" [value]="model">
+              {{model}}
             </mat-option>
-          </mat-autocomplete>
+          </mat-select>
         </mat-form-field>
       </div>
-      <div class="mywidth">
-        <span>Wersja:</span>
-        <mat-form-field>
-          <input type="text"   aria-label="Number" matInput formControlName="version" [matAutocomplete]="auto">
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
-              {{option}}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
-      </div>
+
+        <div class="mywidth">
+          <span>Typ pojazdu:</span>
+          <mat-form-field>
+            <mat-error>Type is required</mat-error>
+            <mat-select formControlName="type">
+              <mat-option class="myoption" *ngFor="let type of types" [value]="type">
+                {{type}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+
       <div class="mywidth">
         <span>Rok produkcji:</span><i class="fas fa-info-circle" id="3"></i>
         <mat-form-field>
-          <input type="text"   aria-label="Number" matInput formControlName="year" [matAutocomplete]="auto">
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
-              {{option}}
+          <mat-select formControlName="year">
+            <mat-option class="myoption" *ngFor="let year of years" [value]="year">
+              {{year}}
             </mat-option>
-          </mat-autocomplete>
+          </mat-select>
         </mat-form-field>
       </div>
       <div class="mywidth">
         <span>Rodzaj Paliwa:</span><i class="fas fa-info-circle" id="4"></i>
         <mat-form-field>
-          <input type="text" aria-label="Number" matInput formControlName="fuel" [matAutocomplete]="auto">
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
-              {{option}}
+
+          <mat-select formControlName="fuel">
+            <mat-option class="myoption" *ngFor="let fuel of fuels" [value]="fuel">
+              {{fuel}}
             </mat-option>
-          </mat-autocomplete>
+          </mat-select>
         </mat-form-field>
       </div>
       <div class="mywidth">
         <span>Color:</span>
         <mat-form-field>
-          <input type="text"  formControlName="color" aria-label="Number" matInput [matAutocomplete]="auto">
+
           <mat-error>Colour is required</mat-error>
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" class="small-autocoplete">
-            <mat-option class="myoption" *ngFor="let option of filteredOptions | async" [value]="option">
-              {{option}}
+          <mat-select formControlName="color">
+            <mat-option class="myoption" *ngFor="let color of colors" [value]="color">
+              {{color}}
             </mat-option>
-          </mat-autocomplete>
+          </mat-select>
         </mat-form-field>
       </div>
       </div>
@@ -130,9 +118,11 @@
       </div>
       <div class="mywidth">
       <span>Moc (KM):</span><i class="fas fa-info-circle" id="7"></i>
-      <mat-form-field>
+      <mat-form-field [ngClass]="{'error_field': form.get('power').invalid}">
+        <mat-error>Power should be more than 0</mat-error>
         <input type="number"  matInput name="value" placeholder="" formControlName="power">
       </mat-form-field>
+
       </div>
       <div class="mywidth">
         <span id="smaller-span">Pojemność skokowa (cm<sup>3</sup>):</span><i class="fas fa-info-circle" id="8"></i>
@@ -143,6 +133,7 @@
       <div class="mywidth">
         <span>Przebieg:</span>
         <mat-form-field>
+          <mat-error>Course should be more than 0</mat-error>
           <input type="number"  formControlName="course" matInput name="value" placeholder="">
         </mat-form-field>
       </div>
@@ -213,6 +204,8 @@
         <span>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt."</span>
       </div>
     </form>
+
+    <img src="https://firebasestorage.googleapis.com/v0/b/cars-bf4a0.appspot.com/o/img%2FZrzut%20ekranu%202019-08-27%20o%2021.19.40.png?alt=media&token=f2100144-c650-4e68-aebd-7a0651e69a06">
   </div>
 
   <div class="right-container">

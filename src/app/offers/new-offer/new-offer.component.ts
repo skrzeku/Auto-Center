@@ -3,7 +3,7 @@ import {
   ViewChild, ViewChildren, ViewEncapsulation
 } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Observable} from 'rxjs';
+import {Observable, range} from 'rxjs';
 import {map, startWith} from 'rxjs/internal/operators';
 import {isNumeric} from 'rxjs/internal/util/isNumeric';
 import {CarsService} from '../../core-module/services/cars.service';
@@ -11,6 +11,10 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import {async} from 'rxjs/internal/scheduler/async';
 import {MatSnackBar} from '@angular/material';
 import {Car, Image} from '../../core-module/models/car.model';
+import {HelpService} from '../../core-module/services/help.service';
+import {rS} from '@angular/core/src/render3';
+import {Router} from '@angular/router';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-new-offer',
@@ -39,26 +43,31 @@ import {Car, Image} from '../../core-module/models/car.model';
 
 })
 export class NewOfferComponent implements OnInit, AfterViewInit {
-  myControl = new FormControl();
+
   @ViewChildren('mydynamic') mydynamic: ElementRef;
-  options: string[] = ['Osobowe', 'Ciężarowe', 'Motocykle', 'Części'];
-  mark: string[] = ['Audi', 'BMW', 'Volkswagen', 'Opel', 'Toyota', 'Kia'];
-  currency: string[] = ['PLN', 'Euro'];
   dynamic_info: boolean = false;
   progress: { percentage: number } = {percentage: 0};
   selectedFiles: FileList;
   oneSelectedFile: File;
+ marks = ['Mazda', 'Audi', 'Volkswagen', 'Kia', 'Toyota', 'BMW', 'Citroen', 'Fiat', 'Honda', 'Ford', 'Hyundai', 'Lexus', 'Mercedes', 'Nissan', 'Renault'];
+  models = [];
+  colors = ['Biały', 'Czarny', 'Granatowy', 'Sredrny', 'Szary', 'Czerwony', 'Zielony', 'Żółty'];
+  types = ['Hatchback', 'Sedan', 'Kombi', 'Coupe', 'Kabriolet', 'Limuzyna', 'Pickup', 'Terenowe', 'Van'];
+  fuels = ['Benzyna', 'Diesel', 'Hybryda', 'Elektryczny', 'LPG'];
+  carse: Car[];
+  mysrc;
+  storageRef;
 
 
   //dynamic databes for test!!
   info_db: any [] = [];
   carsLength: number;
   url = [];
+  rs$;
+  years = [];
 
   oneinfodb: any;
 
-  modelAudi: string[];
-  filteredOptions: Observable<string[]>;
 
   //forms
   form: FormGroup;
@@ -70,7 +79,9 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
               private formBuilder: FormBuilder,
               private snack: MatSnackBar,
               private cd: ChangeDetectorRef,
-              private carsservice: CarsService) {
+              private carsservice: CarsService,
+              private helpservice: HelpService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -79,55 +90,60 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
       this.info_db = lol;
       console.log(lol);
     });
+
     this.LoadoneCar();
-
-
-
-
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value))
-    );
     this.buildMyForm();
     this.CheckCarsLength();
+    this.iterationofyears();
+
   }
+
 
   CheckCarsLength(): void {
     this.db.getCars().subscribe((val) => {
       this.carsLength = val.length;
-      console.log(this.carsLength);
     });
   }
 
 
   ngAfterViewInit() {
+  this.carsservice.getCars().subscribe((cars) => {
+    if (cars) {
+      this.carse = cars;
+    }
+  });
 
+    this.storageRef = firebase.storage().ref().child('Zrzut ekranu 2019-09-11 o 13.30.10.png');
+    this.storageRef.getDownloadURL().then(url => console.log(url) );
   }
+
+
+
 
 
   private buildMyForm(): void {
     this.form = this.formBuilder.group({
-        category: '',
         color: ['', Validators.required],
-        course: [0, Validators.required],
-        engine_capacity: [1000, Validators.required],
+        course: [0, [Validators.required, Validators.min(0)]],
+        engine_capacity: [1000, [Validators.required, Validators.min(0)]],
         from: 'Osoba Prywatna',    //it should be moved to the client datas!!
         fuel: ['', Validators.required],
         gearcase: ['manualna', Validators.required],
         id: '',
         mark: ['', Validators.required],
         model: ['', [Validators.required, Validators.maxLength(12)]],
-        power: [0, Validators.required],
+        power: [0, [Validators.required, Validators.min(0)]],
         state: ['nowy', Validators.required],
-        version: ['', Validators.required],
-        year: [2000, [Validators.required, Validators.max(new Date().getFullYear())]],
+        version: '',
+        year: [2010, Validators.required],
         key: '',
-        price: [0, [Validators.required, Validators.max(999999)]],
+        price: [0, [Validators.required, Validators.min(0), Validators.max(999999)]],
         start_date: '',
         premium: [false, Validators.required],
         vat: [false, Validators.required],
         description: ['', [Validators.required, Validators.minLength(30), Validators.maxLength(170)]],
         bottom_checkbox: false,
+      type: ['', Validators.required]
       }
     );
   }
@@ -147,7 +163,8 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
   }
   addMainPhoto(event): void {
     this.oneSelectedFile = event.target.files[0];
-    console.log(this.oneSelectedFile);
+
+    console.log(this.oneSelectedFile.webkitRelativePath);
   }
   LoadoneCar() {
     if (this.carsservice.carSubject.value) {
@@ -162,10 +179,7 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
   }
 
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
-  }
+
 
 
   //filter db get one
@@ -211,7 +225,6 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
   }
 
   createCar(): void {
-
     const id = this.carsLength + 1;
     this.form.controls['id'].setValue(id);
     this.form.controls['start_date'].setValue(new Date());
@@ -223,6 +236,7 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
   }
 
   private SuccesCreate() {
+    this.router.navigate(['main']);
     this.snack.open('Car has been successfully created!', '', {panelClass: ['success-snack']});
   }
 
@@ -232,6 +246,18 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
 
   LoadOneCar(car: Car): void {
     this.form.patchValue(car);
+  }
+  iterationofyears() {
+    for (let i = 2020; i > 1950; i--) {
+      this.years.push(i);
+
+    }
+  }
+  checkmark() {
+    const mark = this.form.controls['mark'].value;
+    const models = this.carse.filter(car => car.mark === mark);
+    const lol = models.map(car => car.model);
+    this.models = Array.from(new Set(lol));
   }
 
 

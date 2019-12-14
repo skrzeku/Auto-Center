@@ -6,6 +6,7 @@ import {Car, Image} from '../models/car.model';
 import {Mark} from '../models/marks.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import * as firebase from 'firebase';
+import {HelpService} from './help.service';
 
 
 
@@ -21,7 +22,8 @@ export class CarsService {
   private basePath = '/img';
   constructor(private db: AngularFireDatabase,
               private router: Router,
-              private activeroute: ActivatedRoute) { }
+              private activeroute: ActivatedRoute,
+              private helpserv: HelpService) { }
 
   getCars(): Observable<Car[]> {
     return this.db.list<Car>(this.Api_url).snapshotChanges()
@@ -31,14 +33,6 @@ export class CarsService {
 
   private assignKey(car) {
     return {...car.payload.val(), key: car.key };
-  }
-  getMarks(): Observable<Mark[]> {
-    return this.db.list<Mark>(this.marks_url).snapshotChanges()
-      .pipe(map(response => response.map(mark => this.assignKey(mark))));
-  }
-  getoneMark(key: string): Observable<Mark> {
-    return this.db.object<Mark>(`${this.marks_url}/${key}`).snapshotChanges()
-      .pipe(map(mark => this.assignKey(mark)));
   }
 
 
@@ -70,7 +64,7 @@ export class CarsService {
   pushFileToStorage(fileUpload: FileList, progress: { percentage: number }, path) {
 for (let i = 0; i <= fileUpload.length - 1; i++) {
   const storageRef = firebase.storage().ref();
-  const uploadTask = storageRef.child(`${'/' + path}/${fileUpload[i].name}`).put(fileUpload[i]);
+  const uploadTask = storageRef.child(`${'/' + path}/${i + '.png'}`).put(fileUpload[i]);
   uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
     (snapshot) => {
       // in progress
@@ -82,9 +76,6 @@ for (let i = 0; i <= fileUpload.length - 1; i++) {
       console.log(error);
     },
     () => {
-      // success
-      //fileUpload.url = uploadTask.snapshot.downloadURL;  to edit!!
-      //fileUpload.key = fileUpload.file.name;
       this.saveFileData(fileUpload[i], path);
     }
   );

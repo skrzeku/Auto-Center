@@ -51,48 +51,12 @@ export class AppComponent implements OnInit, AfterViewInit{
   reduceMapValues(array: any) {
     this.reducedmark = Array.from(new Set(array));
     this.reducedmark.push('Wszystkie');
-
     this.helpservice.ShareMarks(this.reducedmark);
   }
 
-  showoutputs($event) {
-
-      this.shownnaviboolean = $event;
+  ShareallCars(cars: Car[]) {
 
   }
-
-  //It works good to use it later
-/*
-  @HostListener('document:click', ['$event'])
-  CheckClickOutside(event) {
-    let targetElement = event.target as Element;
-    const el = document.querySelector('.left-navi') as Element;
-    if (!this.shownnaviboolean) {
-        if (!targetElement.matches('#navi-bars' )){
-          targetElement = targetElement.closest('#navi-bars') as Element;
-        }
-                if (targetElement) {
-                  this.shownnaviboolean = true;
-                }
-                else {
-                  console.log('!targetElement');
-                }
-    }
-    if (this.shownnaviboolean) {
-      if (!targetElement.matches('.left-navi' )){
-        targetElement = targetElement.closest('.left-navi') as Element;
-      }
-      if (targetElement !== el ) {
-        this.shownnaviboolean = false;
-      }
-      else {
-        console.log('cos');
-      }
-
-    }
-  }
-
-*/
 
 
   Hideleftnavi($event): void {

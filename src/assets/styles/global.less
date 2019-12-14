@@ -352,4 +352,64 @@ a, button{
 
 
 
+    //forms
+
+mat-form-field {
+  font-size: 0.8rem !important;
+  font-family: "Open Sans", Arial , sans-serif;
+  background-color: white;
+  padding: 0 5px;
+
+}
+::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0 !important;
+
+
+
+
+}
+::ng-deep .mat-form-field-label-wrapper {
+  padding-top: 0 !important;
+}
+::ng-deep .mat-form-field-infix {
+  border-top-width: 0 !important;
+  padding: 0 !important;
+
+}
+::ng-deep .mat-select-value {
+  color: @brands-color;
+  padding: 10px 0;
+}
+::ng-deep .mat-input-element {
+padding: 10px 0 !important;
+}
+
+
+::ng-deep .mat-form-field-label-wrapper {
+  .d-none;
+}
+
+::ng-deep .mat-form-field-underline {
+  .d-none;
+}
+::ng-deep .mat-select-arrow {
+  border: none !important;
+  &:after {
+    content: "\f078";
+    font-family: 'Font Awesome 5 Free';
+    .absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    color: black;
+    font-weight: 900;
+  }
+}
+::ng-deep .mat-select-placeholder {
+  color: black !important;
+  -webkit-text-fill-color: black !important;
+
+}
+
+
 

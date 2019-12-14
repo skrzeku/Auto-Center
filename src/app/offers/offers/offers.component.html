@@ -2,7 +2,7 @@
   <div class="smaller-container">
     <div id="small_navi_separator">
 
-      <span>Strona główna > Aktywne Oferty</span>
+      <span id="top_span_navi">Strona główna <i class="fas fa-chevron-right"></i> Aktywne Oferty</span>
       <div class="w-100 center-text filterbtn">
         <button mat-raised-button color="primary" class="search_button" (click)="showfilters('show')">Filtruj</button>
       </div>
@@ -66,7 +66,7 @@
           </mat-select>
         </mat-form-field>
         <div class="d-inline" id="show_btn">
-          <button mat-raised-button class="search_button" (click)="fillFilterArray()">Pokaż</button>
+          <button mat-raised-button class="search_button" (click)="fillFilterArray(range, year_range, course_range, stateModel, markModel, '')">Pokaż</button>
         </div>
       </div>
           <div id="sortby_wrapper">
@@ -92,14 +92,14 @@
       <div id="left_offers_inside">
       <div class="left_form_field">
         <h3>Cena: </h3><span class="slider_span"> {{range1[0]}} - {{range1[1]}} zł </span>
-        <range-slider [min]="0" [max]="99999" [step]="1" [(ngModel)]="range1"></range-slider>
+        <range-slider [min]="min" [max]="max" [step]="1" [(ngModel)]="range1"></range-slider>
       </div>
-      <div class="left_form_field" *ngIf="selectedValue !== 'Części'">
+      <div class="left_form_field">
         <h3>Przebieg: </h3><span class="slider_span"> {{course_range1[0]}} - {{course_range1[1]}} km </span>
         <range-slider [min]="0" [max]="999999" [step]="10" [(ngModel)]="course_range1" >        </range-slider>
 
       </div>
-      <div class="left_form_field" *ngIf="selectedValue !== 'Części'">
+      <div class="left_form_field">
         <h3>Rok Produkcji: </h3><span class="slider_span"> {{year_range1[0]}} - {{year_range1[1]}} r </span>                                      <!--(onRangeChange)="rangeChanged($event)" -->
         <range-slider [min]="1850" [max]="2019" [step]="1" [(ngModel)]="year_range1" >        </range-slider>
 
@@ -110,11 +110,11 @@
 
 
       <div class="left_form_field">
-        <h3>Kategoria</h3>
+        <h3>Stan</h3>
         <mat-form-field floatLabel="never">
-          <mat-select [(ngModel)]="selectedValue" name="food" placeholder="- kategoria -">
-            <mat-option *ngFor="let category of categories" [value]="category">
-              {{category}}
+          <mat-select [(ngModel)]="stateModel1" name="food" placeholder="Stan">
+            <mat-option *ngFor="let state2 of states" [value]="state2">
+              {{state2}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -123,8 +123,8 @@
       <div class="left_form_field">
         <h3>Marka</h3>
         <mat-form-field floatLabel="never">
-          <mat-select [(ngModel)]="selectedModel" name="food" placeholder="- wybierz model -">
-            <mat-option *ngFor="let mark of models" [value]="mark">
+          <mat-select [(ngModel)]="markModel1" name="food" placeholder="Mark">
+            <mat-option *ngFor="let mark of marks$ | async" [value]="mark">
               {{mark}}
             </mat-option>
           </mat-select>
@@ -135,10 +135,10 @@
 
 
 
-    <div *ngIf="selectedModel" class="left_form_field" [@scale3dboth]>
+    <div *ngIf="markModel1" class="left_form_field" [@scale3dboth]>
       <h3>Model</h3>
       <mat-form-field floatLabel="never">
-        <mat-select [(ngModel)]="selectedModel" name="food" placeholder="- wybierz model -">
+        <mat-select [(ngModel)]="modeModel" name="food" placeholder="Model">
           <mat-option *ngFor="let model of models" [value]="model">
             {{model}}
           </mat-option>
@@ -146,7 +146,7 @@
       </mat-form-field>
     </div>
     <div id="filter_btn_wrapper">
-      <button mat-raised-button class="search_button" id="left_offers_button">Filtruj<i class="fa fa-chevron-right"></i></button>
+      <button mat-raised-button class="search_button" id="left_offers_button" (click)="fillFilterArray(range1, year_range1, course_range1, stateModel1, markModel, modeModel)">Filtruj<i class="fa fa-chevron-right"></i></button>
       <button mat-raised-button class="search_button" color="warning" (click)="showfilters('hide')">X</button>
     </div>
 

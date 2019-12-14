@@ -19,6 +19,7 @@ export interface Car {
   premium: boolean;
   vat: boolean;
   description: string;
+  type: string;
 }
 export class Image {
   key: string;
