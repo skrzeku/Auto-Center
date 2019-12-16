@@ -137,6 +137,17 @@
           <input type="number"  formControlName="course" matInput name="value" placeholder="">
         </mat-form-field>
       </div>
+        <div class="mywidth">
+          <span>Country:</span>
+          <mat-form-field>
+            <mat-error>Colour is required</mat-error>
+            <mat-select formControlName="from">
+              <mat-option class="myoption" *ngFor="let country of countries" [value]="country">
+                {{country}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
       </div>
       <div class="forms-inside">
       <div class="mywidth" id="price">
@@ -166,11 +177,19 @@
         </div>
 
       </div>
+        <div class="mywidth w-100">
+          <span>Title:</span>
+          <mat-form-field>
+            <input type="text"  matInput name="value" placeholder="" #titleInput formControlName="shortdescription">
+            <mat-hint align="end">{{titleInput.value.length}} / 50</mat-hint>
+            <mat-error *ngIf="form.get('shortdescription').hasError('maxlength')">Maximum length is 50 chars</mat-error>
+          </mat-form-field>
+        </div>
 
 
 
-        <div class="mywidth" id="description">
-        <span>Opis oferty:</span>
+        <div class="mywidth w-100">
+        <span>Description:</span>
         <mat-form-field>
           <input type="text"  matInput name="value" placeholder="" #descriptionInput formControlName="description">
           <mat-hint align="end">{{descriptionInput.value.length}} / 170</mat-hint>
@@ -205,7 +224,6 @@
       </div>
     </form>
 
-    <img src="https://firebasestorage.googleapis.com/v0/b/cars-bf4a0.appspot.com/o/img%2FZrzut%20ekranu%202019-08-27%20o%2021.19.40.png?alt=media&token=f2100144-c650-4e68-aebd-7a0651e69a06">
   </div>
 
   <div class="right-container">

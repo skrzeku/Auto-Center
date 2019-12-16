@@ -1,26 +1,45 @@
-import {AfterViewInit, Component, ElementRef, HostListener, Injectable, OnInit, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostListener,
+  Injectable,
+  OnInit,
+  QueryList,
+  Renderer2,
+  RendererStyleFlags2,
+  ViewChild,
+  ViewChildren
+} from '@angular/core';
 import {DetailNaviComponent} from '../../shared-module/detail-navi/detail-navi.component';
 import {Car} from '../../core-module/models/car.model';
-import {ActivatedRoute, ActivatedRouteSnapshot, Params, Resolve, Router} from '@angular/router';
-import {Observable} from 'rxjs';
-import {map, tap} from 'rxjs/internal/operators';
+import {ActivatedRoute, Router} from '@angular/router';
 import {CarsService} from '../../core-module/services/cars.service';
 import * as firebase from 'firebase';
+import {MatDialog} from '@angular/material';
+import {ImgdialogComponent} from './imgdialog/imgdialog.component';
+import {scale3dboth} from '../../start/animation/scale3dboth';
+import {ContactDialogComponent} from './contact-dialog/contact-dialog.component';
 
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
-  styleUrls: ['./details.component.less']
+  styleUrls: ['./details.component.less'],
+  animations: [scale3dboth]
 })
 @Injectable()
 export class DetailsComponent implements OnInit, AfterViewInit {
   @ViewChild('details_now_fixed') details_now_fixed: ElementRef;
   mydetail_element: any;
   @ViewChild('detail_navi_children') detail_navi_children: DetailNaviComponent;
-  smallimages = [];
+  @ViewChild('slider_wrapper') slider_wrapper: ElementRef;
+  @ViewChildren('sliders') sliders: QueryList<ElementRef>;
+  @ViewChild('figure') figure: ElementRef;
   small_img_src = [];
-  storageRef;
-  imgslength = 0;
+  visibleLeft = false;
+  visibleRight = true;
+  wrapper_slider_width = 0;
+  increment = 0;
 
 
   car: Car;
@@ -29,7 +48,9 @@ export class DetailsComponent implements OnInit, AfterViewInit {
 
   constructor(private activeroute: ActivatedRoute,
               private router: Router,
-              private carsservice: CarsService) {}
+              private carsservice: CarsService,
+              private renderer: Renderer2,
+              public dialog: MatDialog) {}
 
 
   ngOnInit() {
@@ -40,11 +61,18 @@ export class DetailsComponent implements OnInit, AfterViewInit {
 
     this.mydetail_element = this.details_now_fixed.nativeElement;
     this.getLength();
+    console.log(this.slider_wrapper.nativeElement.clientWidth);
+    //this.renderer.setStyle(this.figure.nativeElement, 'left', -this.slider_wrapper.nativeElement.clientWidth + 'px');
+
 
   }
 
   shownumber() {
-    this.visibleboolean = !this.visibleboolean;
+    this.visibleboolean = true;
+
+  }
+  hidenumber(): void {
+    this.visibleboolean = false;
   }
   getLength(): void {
     firebase.storage().ref().child('21').listAll().then((result) => {
@@ -54,12 +82,26 @@ export class DetailsComponent implements OnInit, AfterViewInit {
     });
   }
   DownloadImgs(num: number): void {
+
     for(let i = 0; i <= num - 1; i++) {
+
       const storage = firebase.storage().ref().child('21/' + i + '.png');
       storage.getDownloadURL().then(url => {
         this.small_img_src.push(url);
+        this.renderer.setStyle(this.figure.nativeElement, 'width', (num * 100) + '%');
+        console.log(i);
       });
     }
+    setTimeout(() => {
+      this.CheckWidth();
+    }, 300);
+  }
+  CheckWidth(): void {
+    this.wrapper_slider_width = this.slider_wrapper.nativeElement.clientWidth;
+    this.sliders.forEach((slider) => {
+     this.renderer.setStyle(slider.nativeElement, 'width', this.wrapper_slider_width + 'px');
+     console.log('CheckWidth()');
+    });
   }
 
 
@@ -85,7 +127,33 @@ export class DetailsComponent implements OnInit, AfterViewInit {
         this.detail_navi_children.fixedposition = true;
     }
   }
+  slideit(str: string): void {
+    if (str === '-') {
+      if (this.increment <= 1) {
+      this.visibleLeft = false;
+      }
+      this.increment--;
+      this.visibleRight = true;
+    }
+    if (str === '+') {
+      if (this.increment >= this.sliders.length - 1) {
+        this.visibleRight = false;
+      }
+      this.increment++;
+      this.visibleLeft = true;
+    }
+    this.renderer.setStyle(this.figure.nativeElement, 'left', -(this.wrapper_slider_width * this.increment) + 'px');
 
+    console.log(this.small_img_src);
+
+  }
+
+  showAllImages(): void {
+    this.dialog.open(ImgdialogComponent , {data: this.small_img_src});
+  }
+  showContact(): void {
+    this.dialog.open(ContactDialogComponent, {data: this.car});
+  }
 
 
 }

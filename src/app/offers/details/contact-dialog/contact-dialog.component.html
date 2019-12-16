@@ -1,0 +1,20 @@
+<div id="contact_container">
+  <div id="close_wrapper" (click)="closeDialog()">
+    <i class="fas fa-times"></i>
+  </div>
+  <h2>{{car.mark}} {{car.model}} {{car.year}}</h2>
+  <span id="small_id">id: {{car.id}}</span>
+  <form id="contact_form">
+    <div>
+      <input type="text" placeholder="Name" [(ngModel)]="name" class="contact_inputs" name="name">
+    </div>
+    <div>
+      <input type="text" placeholder="E-mail" [(ngModel)]="email" class="contact_inputs" name="email">
+    </div>
+    <div>
+      <textarea type="text" placeholder="Content" [(ngModel)]="text" rows="3" class="contact_inputs" name="text"></textarea>
+    </div>
+  </form>
+  <div class="hidden_validation" [ngClass]="{'shown_validation': validbool}">Currently that's not possible to send an email</div>
+  <button mat-raised-button color="primary" (click)="SendEmail()">Send</button>
+</div>

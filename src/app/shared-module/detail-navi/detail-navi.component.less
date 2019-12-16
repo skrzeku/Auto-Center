@@ -3,10 +3,10 @@
 
 //the big one
 .detail-navi-container {
-  background-color: lightgray;
   margin: 0;
   position: relative;
   .basic-transition;
+  border-bottom: solid 1px lightgray;
                             top: @detail-big-img-height + 30px; // + 30px of padding for the span
   @media @small {
     top: 0;
@@ -20,9 +20,33 @@
 
 .fixed-navi {
   .basic-transition;
-  .position(fixed, @top: 50px);
+  //.position(fixed, @top: 50px);
   .w-100;
   z-index: 99;
+
+}
+//list
+.filter-list {
+  .list-style-none;
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 40px;
+  color: black;
+  opacity: .7;
+  li {
+    .d-inline;
+    i {
+      margin: 0 10px;
+      opacity: 0.6;
+      font-weight: 200;
+    }
+  }
+  .s {
+    .d-none;
+    @media @small {
+      .d-inline;
+    }
+  }
 }
 
 
@@ -59,23 +83,18 @@
 
 .model-name {
   .position(relative);
-  .clear;
-  padding-bottom: 10px;
+
+ padding: 15px 0;
   .model-header {
-    .d-inline;
-    line-height: 40px;
-    margin: 0;
     color: @brands-color;
     .font-bold;
-  }
-  i:nth-child(2) {
-    .d-inline;
-    .position(absolute, @top: 10px, @right: 10px);
-    @media @small {
-      .d-none;
-    }
-
-    //transform: translateX(-100%);
+    font-size: 2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+     @media @medium {
+       font-size: 2.5rem;
+     }
   }
 }
 
@@ -113,19 +132,6 @@
     }
 
 
-
-    //bottom info
-.model-info-list {
-  .list-style-none;
-  margin: 0;
-  @media @medium {
-    .d-inline !important; //not working as well
-    margin-left: 10px;
-  }
-  li {
-    .d-inline;
-  }
-}
 .fa-circle {
   line-height: 20px;
   font-size: 5px;

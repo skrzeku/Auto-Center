@@ -1,0 +1,66 @@
+@import "../../../../assets/styles/global";
+
+#contact_container {
+
+}
+#close_wrapper {
+  .w(100%);
+  text-align: right;
+  font-size: 1.2rem;
+  .c-pointer;
+  &:hover {
+    opacity: .7;
+  }
+}
+.contact_inputs {
+  font-size: 0.8rem;
+  outline: 0;
+  padding: 5px;
+  border: none;
+  .drop-shadow();
+}
+input {
+  .w(90%);
+}
+textarea {
+  .w(90%);
+}
+::ng-deep .mat-dialog-container {
+  background-color: lighten(lightgray, 5%);
+  //.w(150%);
+}
+#small_id {
+  font-size: .7rem;
+  opacity: .7;
+}
+#contact_form {
+  margin-top: 20px;
+  .center-text;
+}
+button {
+  .w(50%);
+  margin-left: 25%;
+  margin-top: 20px;
+}
+h2 {
+  border-bottom: solid 1px @brands-color;
+  color: dimgray;
+  &:first-letter {
+    color: @brands-color;
+    .font-bold;
+  }
+}
+.hidden_validation {
+  background-color: darken(red, 10%);
+  color: white;
+  font-size: 0.9rem;
+  padding: 5px;
+  .relative;
+  top: 50px;
+  opacity: 0;
+}
+.shown_validation {
+  top: 0;
+  opacity: 1;
+  .custom-transition(0.3s all ease);
+}

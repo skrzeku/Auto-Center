@@ -20,6 +20,8 @@ export interface Car {
   vat: boolean;
   description: string;
   type: string;
+  shortdescription: string;
+
 }
 export class Image {
   key: string;

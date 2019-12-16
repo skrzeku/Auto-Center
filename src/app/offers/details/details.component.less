@@ -7,6 +7,7 @@
 
 .big-container {
   .relative;
+  padding: 0;
 }
 //main container
 .main-detail-section {
@@ -25,7 +26,6 @@
             padding: 0;
             @media @small {
               .relative;
-              bottom: 40px;
             }
           }
 
@@ -35,45 +35,22 @@
           .w(100%);
           .bg-trans;
           z-index: 50 !important;
-
-
-          ul {
-                  .list-style-none;
-                  padding: 6px;
-            margin: 0;
-
-                      li {
-                        .d-inline;
-                        .center-text;
-                        .w-calc(@width: 50%, @calc-value: 3px);
-                        .padding-top-bottom(10px, 10px);
-                        border-radius: 3px;
-                        color: white;
-                        .c-pointer;
-                        i {
-                          margin-right: 5px;
-                        }
-                        &:first-child {
-                          background-color: red;
-                          margin-right: 3px;
-                        }
-                        &:nth-child(2) {
-                          background-color: @brands-color;
-                          margin-left: 3px;
-                        }
-
-                        &:hover {
-                          .basic-transition;
-                          &:first-child {
-                            background-color: darken(red, 20%);
-                          }
-                          &:nth-child(2) {
-                            background-color: lighten(@brands-color, 20%);
-                          }
-                        }
-                      }
+                button {
+                  .w(50%);
+                  i {
+                    margin-right: 15px;
+                  }
                 }
         }
+.details-button-wrapper {
+  .w(100%);
+  border-bottom: solid 1px lightgray;
+}
+
+.headers_btn {
+  font-size: 1.3rem;
+  padding: 5px 40px;
+}
 
 
               //filter
@@ -82,43 +59,10 @@
           padding-top: 0;
           @media @small {
           }
-
-        }
-            //list
-        .filter-list {
-          .list-style-none;
-          margin: 0;
-          font-size: 16px;
-          line-height: 40px;
-          color: @brands-color;
-          .visible-sm;
-          @media @small {
-            position: relative;
-            top: 133px;            //40px + 40px + 23px + 3x10px    //app-detail-navi
-          }
-          @media @medium {
-            top: 110px;         //40px + 40px + 3x10px   app-detail-navi
-          }
-        li {
-          .d-inline;
-          i {
-            margin: 0 10px;
-            opacity: 0.6;
-            font-weight: 200;
-          }
-        }
-          .s {
-            .d-none;
-            @media @small {
-              .d-inline;
-            }
-          }
         }
 
 
-        .main-detail-section {
-          .w(100%);
-        }
+
 .another-container {
   @media @medium {
     .medium-container;
@@ -132,15 +76,18 @@
           .position(relative);
           .w(100%);
           .d-inline;
-          background-color: yellow;
           overflow: hidden;
           height: @detail-big-img-height;
           .padding-top-bottom(0, 30px);
-                          top: -229px; //just for the x-small devices    it's a height of detail-navi
-
+                          top: -200px; //just for the x-small devices    it's a height of detail-navi
                           @media @small {
                             top: 0;
                           }
+          //transform: translateY(calc(-100% + 50px));
+          @media @medium {
+            .w-calc(60%, 20px);
+            margin-right: 20px;
+          }
 
                   .main-img {
                     height: 100%;
@@ -158,110 +105,140 @@
                       transform: translateX(-50%);
                     }
                   }
-                  .mychevron {
-                    .position(absolute, @top: 50%);
-                    font-size: 30px;
-                    transform: translateY(-50%);
-                    .c-pointer;
-                    z-index: 10;
+          .chevron_wrapper {
+            .absolute;
+            top: 0;
+            .w(100px);
+            height: 100%;
+            .center-text;
+            .c-pointer;
+            .custom-transition(0.3s all ease);
+            &:hover {
+              background-color: rgba(1, 1, 1, 0.2);
+            }
+            &:hover .mychevron {
+              color: whitesmoke;
+            }
 
-                    &:hover {
-                      color: @hover-text-color;
-                    }
+          }
+          #leftchev {
+            left: 0;
+          }
+          #rightchev {
+            right: 0;
+          }
+                  .mychevron {
+                    //.position(absolute, @top: 50%);
+                    font-size: 30px;
+                    .relative;
+                    top: 50%;
+                    .w(100%);
+                    transform: translateY(-50%);
+                    z-index: 10;
+                    .custom-transition(0.3s all ease);
 
                     &:first-of-type {
-                      left: 6px;
+                      //left: 6px;
                       @media @medium {
-                        left: 7.5%;
+                        //left: 15px;
                       }
                     }
                     &:nth-of-type(2) {
-                      right: 6px;
+                      //right: 6px;
                       @media @medium {
-                        right: 7.5%;
+                        //right: 15px;
                       }
                     }
                   }
 
-          //transform: translateY(calc(-100% + 50px));
-          @media @medium {
-            .w(60%);
-            margin-right: 40px;
-          }
 
-              .show-all-images {
-                font-size: 14px;
-                float: right;
-                color: @brands-color;
-                .c-pointer;
-                line-height: 30px;
-                position: absolute;
-                bottom: 0;      //couse of 30px big imgs margin
-                right: 15px;
-                &:hover {
-                  color: @hover-text-color;
-                }
-              }
+
         }
+.img_carousel_wrapper {
+  float: left;
+  height: 380px;
+  .center-text;
+  .w(100%);
+}
+.show-all-images {
+  .c-pointer;
+  .absolute;
+  font-size: 1.1rem;
+  line-height: 30px;
+  bottom: 0;      //couse of 30px big imgs margin
+  right: 5px;
+  &:hover {
+    color: @hover-text-color;
+  }
+}
         .img_carousel {
-          float: left;
           height: 100%;
           .w(auto);
+        }
+
+        .myfigure {
+          margin: 0;
+          left: 0;
+          .relative;
+          .w(100%);
+          .custom-transition(0.5s all ease);
+
         }
 
 
           //dealer-info
               .dealer-info-container {
                 .w-calc(100%, 22px);
-                vertical-align: top;
-                margin: 0 10px 10px;
-                border: 1px solid darken(darkgray, 10%);
-                .drop-shadow();
-
-
-                                //medias
-                            @media @small {
-                              .w-calc(40%, 22px);
-                              .d-inline;
-                            }
+                //margin: 0 10px 10px;
+                //.drop-shadow();
+                .d-inline;
+                vertical-align: bottom;
                               @media @medium {
-                                .w-calc(30%, 22px);
+                                .w-calc(40%, 62px);
+                                //padding: 40px 30px;
                               }
               }
-              .dealer-info-top {
-                padding: 15px;
-                .clear;
-                h5 {
-                  .d-inline;
-                }
-                span {
-                  float: right;
-                }
-                img {
-                }
-              }
+
               .dealer-info-mid {
                 padding: 15px;
               }
 
               .dealer-where {
-                border-bottom: solid 1px grey;
-                line-height: 40px;
+                font-size: 1.3rem;
+                margin-top: 15px;
                 i {
-                  margin-right: 10px;
+                  margin-right: 15px;
                 }
               }
+              .question_button {
+                width: 80%;
+                margin: 10px 10% 0;
+              }
               .dealer-numbers {
-                ul {
-                  .list-style-none;
-                  li {
-                    span {
-                      margin-left: 10px;
-                      padding: 10px 15px;
-                      background-color: @brands-color;
-                      color: white;
-                    }
-                  }
+                font-size: 1.3rem;
+               i {
+                 margin-right: 15px;
+               }
+              }
+              #price_info {
+                .d-flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 20px;
+                border-bottom: solid 1px lightgray;
+                h3 {
+                  opacity: .8;
+                }
+              }
+              #price_inside {
+                font-size: 2.4rem;
+                .font-bold;
+                font-family: 'Roboto Condensed',Arial,Helvetica,sans-serif;
+              }
+              #description_wrapper {
+                padding: 0 10px;
+                p {
+                  padding: 15px 0;
                 }
               }
 
@@ -270,14 +247,14 @@
                       .date-id-details {
                         .w(100%);
                        .d-inline;
-                        padding: 20px;
+                        padding: 20px 10px;
                         ul {
-                          padding: 0;
-                          margin: 0;
+                          padding: 10px 0;
                           .d-block;
-                          vertical-align: top;
+
                                 @media @medium {
                                   .d-inline;
+                                  vertical-align: top;
                                   .w(45%);
                                 }
                           li {
@@ -300,12 +277,6 @@
                           }
                         }
 
-                        @media @small {
-                          .w(40%);
-                        }
-                        @media @medium {
-                          .w(70%);
-                        }
                         li {
                           .list-style-none;
                         }

@@ -1,83 +1,88 @@
 <div class="big-container">
-  <div class="filter-container">
-    <ul class="filter-list">
-      <li class="s">Strona główna <i class="fas fa-angle-right"></i></li>
-      <li class="s">{{car.category}} <i class="fas fa-angle-right"></i></li>
-      <li>{{car.mark}}</li>
-      <li>{{car.model}}<i class="fas fa-angle-right"></i></li>
-      <li>{{car.version}}</li>
-    </ul>
-
-  </div>
   <div class="navi">
 <app-detail-navi #detail_navi_children [car] ="car"></app-detail-navi>
   </div>
   <div class="bottom-xs-navi hidden-sm">
-    <ul>
-      <li><a><i class="fas fa-phone"></i>Zadzwon</a></li>
-      <li><a class="blue"><i class="fas fa-envelope"></i>Napisz</a></li>
-    </ul>
+    <button mat-raised-button color="danger"><i class="fas fa-phone"></i>Call</button>
+    <button mat-raised-button color="primary" (click)="showContact()"><i class="fas fa-envelope"></i>Contact</button>
   </div>
 <section class="main-detail-section">
   <div class="another-container">   <!--have to add class .medium-container -->
-          <div class="main-detail-img">
-            <i class="fas fa-chevron-left mychevron"></i>
-            <i class="fas fa-chevron-right mychevron"></i>
-            <figure style="width: 1600%; height: 100%">
-              <div class="img_carousel_wrapper" *ngFor="let img of small_img_src">
-                <img src="../../../assets/images/maxresdefault.jpg" class="img_carousel">
+          <div class="main-detail-img" #slider_wrapper>
+            <div class="chevron_wrapper" (click)="slideit('-')" *ngIf="visibleLeft" id="leftchev">
+              <i class="fas fa-chevron-left mychevron"></i>
+            </div>
+            <div class="chevron_wrapper" (click)="slideit('+')" *ngIf="visibleRight" id="rightchev">
+              <i class="fas fa-chevron-right mychevron"></i>
+            </div>
+
+            <figure style="height: 100%" class="myfigure" #figure>
+              <div class="img_carousel_wrapper" *ngFor="let img of small_img_src" #sliders>
+                <img [src]="img" class="img_carousel">
               </div>
 
+
             </figure>
-              <span class="show-all-images">Zobacz wszystkie zdjęcia liczba <i class="fas fa-camera"></i></span>
+            <span class="show-all-images" (click)="showAllImages()"><i class="fas fa-camera"></i> Show all images</span>
           </div>
-          <div class="dealer-info-container">
-              <div class="dealer-info-top main-bg">
-              <h5>dealer or client</h5>
-                <span>Sprzedający na Autocenter od data!</span>
-                <h4>Nazwa Clienta</h4>
-                <img class="premium-img" src="" alt="premium">
-              </div>
+
+    <div class="dealer-info-container">
+            <div id="price_info">
+              <h3>Price</h3> <span id="price_inside">{{car.price}} $</span>
+            </div>
               <div class="dealer-info-mid">
-                <div class="dealer-logo">
-                  empty
+                <div class="dealer-where">
+                  <i class="fas fa-calendar-alt"></i>{{car.year}}
                 </div>
                 <div class="dealer-where">
-                  <i class="fas fa-map-marker-alt"></i><span>Skąd pochodzi</span>
+                  <i class="fas fa-road"></i>{{car.course}} km
                 </div>
-                <div class="dealer-numbers">
-                  <ul>
-                    <li><i class="fas fa-phone"></i> <span *ngIf="visibleboolean">51220292</span> <span (click)="shownumber()" class="c-pointer">Wyswietl numer</span></li>
-                  </ul>
+                <div class="dealer-where">
+                  <i class="fas fa-map-marker-alt"></i><span>{{car.from}}</span>
                 </div>
+                <div class="dealer-where">
+                  <i class="fas fa-clock"></i>{{car.start_date}}
+                </div>
+                <div class="dealer-where">
+                    <div *ngIf="visibleboolean" [@scale3dboth]>
+                      <i class="fas fa-phone"></i><span>51220292</span>
+                    </div>
+                  <button mat-raised-button (click)="shownumber()" class="question_button" *ngIf="!visibleboolean">Show Number</button> <button mat-raised-button (click)="hidenumber()" class="question_button" *ngIf="visibleboolean">Hide Number</button>
+
+                </div>
+                <button mat-raised-button class="question_button visible-sm" color="primary" (click)="showContact()">Contact</button>
 
               </div>
           </div>
     <div class="date-id-details" #details_now_fixed>
-      <h2>Szczegóły</h2>
+      <div class="details-button-wrapper">
+        <button mat-raised-button class="headers_btn" color="primary">Details</button>
+      </div>
+
       <ul>
-        <li><span class="list-span">Oferta od:</span> <a class="nav">{{car.from}}</a></li>
-        <li><span class="list-span">Kategoria:</span> <a class="nav">{{car.category}}</a></li>
-        <li><span class="list-span">Marka:</span> <a class="nav">{{car.mark}}</a></li>
+        <li><span class="list-span">Country:</span> <a class="nav">{{car.from}}</a></li>
+        <li><span class="list-span">Mark:</span> <a class="nav">{{car.mark}}</a></li>
         <li><span class="list-span">Model:</span> <a class="nav">{{car.model}}</a></li>
-        <li><span class="list-span">Wersja:</span> <a>ob8</a></li>
-        <li><span class="list-span">Rok:</span> <a class="nav">{{car.year}}</a></li>
+        <li><span class="list-span">Year:</span> <a class="nav">{{car.year}}</a></li>
+        <li><span class="list-span">Published:</span> <a class="nav">{{car.start_date}}</a></li>
 
 
-        <li><span class="list-span">Przebieg:</span> <a>{{car.course}} Km</a></li>
-        <li><span class="list-span">Rodzaj paliwa:</span> <a class="nav">{{car.fuel}}</a></li>
-        <li><span class="list-span">Skrzynia</span> <a>{{car.gearcase}}</a></li>
+        <li><span class="list-span">Course:</span> <a>{{car.course}} Km</a></li>
+        <li><span class="list-span">Fuel:</span> <a class="nav">{{car.fuel}}</a></li>
+        <li><span class="list-span">Gearcase</span> <a>{{car.gearcase}}</a></li>
       </ul>
       <ul>
-        <li><span class="list-span">kolor</span> <a>{{car.color}}</a></li>
-        <li><span class="list-span">stan</span> <a>{{car.state}}</a></li>
+        <li><span class="list-span">Color</span> <a>{{car.color}}</a></li>
+        <li><span class="list-span">State</span> <a>{{car.state}}</a></li>
       </ul>
 
     </div>
-  </div>
-  <div class="img_wrapper">
-    <img *ngFor="let img of small_img_src" [src]="img" >
-
+    <div id="description_wrapper">
+      <div class="details-button-wrapper">
+        <button mat-raised-button class="headers_btn" color="primary">Description</button>
+      </div>
+      <p>{{car.description}}</p>
+    </div>
   </div>
 </section>
 </div>

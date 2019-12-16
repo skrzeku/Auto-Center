@@ -54,6 +54,7 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
   colors = ['Biały', 'Czarny', 'Granatowy', 'Sredrny', 'Szary', 'Czerwony', 'Zielony', 'Żółty'];
   types = ['Hatchback', 'Sedan', 'Kombi', 'Coupe', 'Kabriolet', 'Limuzyna', 'Pickup', 'Terenowe', 'Van'];
   fuels = ['Benzyna', 'Diesel', 'Hybryda', 'Elektryczny', 'LPG'];
+  countries = ['Poland', 'Germany', 'France', 'UK', 'USA', 'Russia', 'Belgium', 'Netherlands', 'Other'];
   carse: Car[];
   mysrc;
   storageRef;
@@ -130,6 +131,7 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
         fuel: ['', Validators.required],
         gearcase: ['manualna', Validators.required],
         id: '',
+      shortdescription: ['', [Validators.required, Validators.maxLength(50)]],
         mark: ['', Validators.required],
         model: ['', [Validators.required, Validators.maxLength(12)]],
         power: [0, [Validators.required, Validators.min(0)]],

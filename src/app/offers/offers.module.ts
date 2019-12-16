@@ -12,6 +12,8 @@ import { NewOfferComponent } from './new-offer/new-offer.component';
 import {MaterialModule} from '../material/material.module';
 import {MatInputModule} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { ImgdialogComponent } from './details/imgdialog/imgdialog.component';
+import { ContactDialogComponent } from './details/contact-dialog/contact-dialog.component';
 
 
 @NgModule({
@@ -28,6 +30,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     FormsModule
   ],
   exports: [OffersComponent, NewOfferComponent],
-  declarations: [DetailsComponent, OffersComponent, MainOffersComponent, NewOfferComponent],
+  declarations: [DetailsComponent, OffersComponent, MainOffersComponent, NewOfferComponent, ImgdialogComponent, ContactDialogComponent],
+  entryComponents: [ImgdialogComponent, ContactDialogComponent]
 })
 export class OffersModule { }
