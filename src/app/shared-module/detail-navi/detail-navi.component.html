@@ -1,10 +1,9 @@
-<div class="detail-navi-container" [ngClass]="{'fixed-navi': fixedposition}">
+<div class="detail-navi-container">
                   <!-- Top hidden on the small screens-->
             <div class="more-info-container">
                    <ul class="more-info-list">
-                     <li><i class="fas fa-check-circle"></i>Wyposażenie</li>
-                     <li><i class="fas fa-list"></i>Opis</li>
-                     <li><i class="fas fa-portrait"></i>Sprzedający</li>
+                     <li><i class="fas fa-check-circle"></i>Details</li>
+                     <li><i class="fas fa-list"></i>Description</li>
                    </ul>
             </div>
 
@@ -12,7 +11,7 @@
     <div class="model-name">
       <h1 class="model-header">Bardzo piekny model audi q5</h1>
     </div>
-    <div class="filter-container">
+    <div class="filter-container visible-sm">
       <ul class="filter-list">
         <li class="s">Offers<i class="fas fa-angle-right"></i></li>
         <li>{{car.type}}<i class="fas fa-angle-right"></i></li>

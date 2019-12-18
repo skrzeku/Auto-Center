@@ -1,27 +1,39 @@
 
-  <div class="backgrond-second-ground"></div>
+
          <!-- First section with search engine -->
           <section class="first-section">
 
             <div class="medium-container">
-
-
-                <div class="left-search">
-                 <app-search-engine></app-search-engine>
+              <div class="top_wrapper">
+                <div class="left_big">
+                  <app-search-engine></app-search-engine>
                 </div>
-
-                      <!-- Big Car-->
-
-                <div class="big-cars">
-                <div class="big-car-img" (click)="goToDetails(BigCar)"></div>
-                  <div class="main-car-info">
-                    <span class="btn-main">Day offer</span>
-                    <h4 class="big-car-name">{{BigCar?.mark}} {{BigCar?.model}} {{BigCar?.version}}</h4>
-                    <h3 class="main-car-price">{{BigCar?.price}}</h3>
-
-                    <p class="car-year-info">{{BigCar?.year}} * {{BigCar?.course}}km </p>
-                  </div>
+                <div class="right_big w-100">
+        napis
                 </div>
+              </div>
+
+
+
+
+
+                    <!-- It will be for the future -->
+                              <div class="left-search d-none">
+                               <app-search-engine></app-search-engine>
+                              </div>
+
+                                    <!-- Big Car-->
+
+                              <div class="big-cars d-none">
+                              <div class="big-car-img" (click)="goToDetails(BigCar)"></div>
+                                <div class="main-car-info">
+                                  <span class="btn-main">Day offer</span>
+                                  <h4 class="big-car-name">{{BigCar?.mark}} {{BigCar?.model}} {{BigCar?.version}}</h4>
+                                  <h3 class="main-car-price">{{BigCar?.price}}</h3>
+
+                                  <p class="car-year-info">{{BigCar?.year}} * {{BigCar?.course}}km </p>
+                                </div>
+                              </div>
 
 
 

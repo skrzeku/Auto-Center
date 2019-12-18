@@ -5,7 +5,7 @@
 
 <div class="both-ones" [ngClass]="{'both-opa' : shownnaviboolean}">
   <div class="just-navi" [ngClass]="{'navi-after': shownnaviboolean}">
-<app-navigation></app-navigation>
+<app-navigation [cars]="allcars"></app-navigation>
   </div>
   <!--<app-start (click)="Hideleftnavi($event)"></app-start> -->
   <div class="router" (click)="Hideleftnavi($event)">

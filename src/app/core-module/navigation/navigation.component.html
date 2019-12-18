@@ -5,9 +5,32 @@
     <li class="left-list" routerLink='/main'>
       <img src="../../../assets/images/logo2.png" alt="logo" id="logo_img">
     </li>
+
     <li class="right-list" *ngIf="bool"><a class="singouticon" (click)="singOut()"><i class="fas fa-sign-out-alt"></i></a></li>
-    <li class="right-list add visible-sm" routerLink="/offers/new"><a class="navi-link"><i class="fas fa-plus"></i>Dodaj ogloszenie</a> </li>
-    <li class="right-list my-account visible-sm" (click)="LoginorMyAccount()"><a><i class="fas fa-address-book"></i>Moje konto</a></li>
+   <li class="right-list visible-sm" routerLink="/offers/new"><a class="navi-link"><i class="far fa-plus-square"></i></a> </li>
+    <li class="right-list visible-sm" (click)="LoginorMyAccount()"><a><i class="far fa-user"></i></a></li>
+    <li class="right-list visible-sm relative"><a><i class="fas fa-search" (click)="showSearchForm()" id="show_search_icon"></i></a>
+    <input type="text" [(ngModel)]="inputvalue" (ngModelChange)="checkSearch($event)" placeholder="Search..." *ngIf="visibleSearch" [@width] id="search_input">
+      <div class="hidden_search_ul">
+        <div *ngFor="let car of cars | search: searches" class="searches_car" (click)="navigatetoCar(car)">
+          <img src="../../../assets/images/maxresdefault.jpg">
+          <span>{{car.mark}} {{car.model}}</span>
+        </div>
+      </div>
+    </li>
+
+    <!--
+      <li class="right-list visible-sm nopadding"><div id="hidden_search" *ngIf="visibleSearch" [@width]>
+      <input type="text" [(ngModel)]="inputvalue" (ngModelChange)="checkSearch($event)" placeholder="Search...">
+        <div class="hidden_search_ul">
+          <div *ngFor="let car of cars | search: searches">
+            <img src="../../../assets/images/maxresdefault.jpg">
+            <span>{{car.mark}} {{car.model}}</span>
+          </div>
+        </div>
+    </div>
+    </li>
+    -->
   </ul>
 </nav>
 

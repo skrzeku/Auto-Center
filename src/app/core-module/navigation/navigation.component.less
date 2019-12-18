@@ -4,7 +4,7 @@
                         .fixed-navbar-top {
                           //.fixed-full-top;
                           .position(fixed, @top: 0);
-                          height: 50px;
+                          height: 80px;
                           .w-100;
                           z-index: 99 !important;
                         }
@@ -20,6 +20,9 @@
         transform: translateY(-50%);
         margin: 0 5px;
         outline: 0;
+        i {
+          .custom-transition(0.2s all ease);
+        }
         .navi-link {
           .c-pointer;
         }
@@ -49,6 +52,23 @@ background-color: #4c8bf5}
 .right-list {
   .float-right;
   padding: 10px;
+  i {
+    line-height: 40px;
+    font-size: 30px;
+    color: gray;
+    font-weight: 900;
+    &:hover {
+      color: black;
+      transform:rotate(-10deg);
+    }
+  }
+  .fa-search {
+    .relative;
+    z-index: 10;
+    background-color: white;
+
+  }
+
 }
 .left-list {
 .float-left;
@@ -68,13 +88,82 @@ background-color: #4c8bf5}
 }
 .singouticon {
   color: red;
-  i {
-    font-size: 32px;
-  }
 
 }
 #logo_img {
-  height: 50px;
+  height: 60px;
   .w(auto);
   outline: 0;
 }
+input {
+  border: none;
+  .absolute;
+  top: 50%;
+  right: 15px;
+  padding: 0 10px;
+  font-size: 1rem;
+  height: 40px;
+  .w(220px);
+  transform: translateY(-50%);
+  outline: 0;
+  .drop-shadow();
+}
+
+/*
+#hidden_search {
+  .w(200px);
+  overflow: hidden;
+  height: 40px;
+
+} */
+.hidden_search_ul {
+  .list-style-none;
+  .absolute;
+  bottom: 0;
+  right: 0;
+  background-color: white;
+  transform: translateY(calc(100% - 10px));
+  .w(240px);
+  overflow-y: auto;
+  max-height: 150px;
+                  //For every car
+              div {
+                  height: 50px;
+                line-height: 50px;
+                padding: 5px;
+                .d-flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: solid 1px lightgray;
+                .c-pointer;
+                .custom-transition(0.3s all ease);
+                &:hover {
+                  background-color: lighten(lightgray, 5%);
+                }
+                img {
+                  height: 40px;
+                  .w(auto);
+                }
+              }
+}
+/*
+input {
+  height: 100%;
+  .relative;
+  .w(100%);
+  padding: 10px;
+  font-size: 1rem;
+  border: none;
+
+}
+input[type="search"] {
+  -webkit-appearance: textfield;
+}
+
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+.nopadding {
+  padding: 0;
+}
+*/

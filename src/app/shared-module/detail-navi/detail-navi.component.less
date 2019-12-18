@@ -6,8 +6,7 @@
   margin: 0;
   position: relative;
   .basic-transition;
-  border-bottom: solid 1px lightgray;
-                            top: @detail-big-img-height + 30px; // + 30px of padding for the span
+                            top: 350px;
   @media @small {
     top: 0;
   }
@@ -18,13 +17,7 @@
    }
 }
 
-.fixed-navi {
-  .basic-transition;
-  //.position(fixed, @top: 50px);
-  .w-100;
-  z-index: 99;
 
-}
 //list
 .filter-list {
   .list-style-none;
@@ -62,11 +55,10 @@
   .list-style-none;
   padding: 0 20px;
   margin: 0;
+  .d-flex;
+  justify-content: space-around;
   li {
-    .d-inline;
-    .center-text;
-    .w(33.33%);
-    font-size: 14px;
+    font-size: 0.9rem;
     .c-pointer;
       &:hover {
         color: @hover-text-color;
@@ -83,15 +75,20 @@
 
 .model-name {
   .position(relative);
+ padding: 5px 0 5px;
+  @media @small {
+    padding: 15px 0 5px;
+  }
 
- padding: 15px 0;
+
   .model-header {
-    color: @brands-color;
+    color: lighten(black, 20%);
     .font-bold;
-    font-size: 2rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    font-size: 1.6rem;
+    padding: 10px 0;
+      @media @small {
+        border-bottom: solid 1px lightgray;
+      }
      @media @medium {
        font-size: 2.5rem;
      }
@@ -99,87 +96,4 @@
 }
 
 
-    //Price
-    .price-info {
-      @myfont: 14px;
-      a {
-        .d-block;
-        margin: 5px;
-        color: red;
-        font-size: @myfont;
-      }
-      span {
-        margin: 5px;
-        font-size: @myfont;
-      }
-      .fa-share-alt {
-        .position(absolute, @top: 50px, @right: 10px);
-        @media @small {
-          .d-none;
-        }
-      }
-      @media @small {
-        //position: absolute;
-        //top: 10px;
-        //right: 10px;
-        .float-right;
 
-      }
-    }
-    .price-header {
-      font-size: 23px;
-      color: red;
-    }
-
-
-.fa-circle {
-  line-height: 20px;
-  font-size: 5px;
-  vertical-align: middle;
-  color: darkgray;
-  font-weight: 200;
-  margin: 0 9px;
-}
-
-
-
-.client-info-list {
-  .list-style-none;
-  line-height: 40px;
-  margin: 10px 0 0 ;
-  li {
-    margin: 0 5px;
-   padding: 0 10px;
-    font-size: 18px;                //+18px
-    @media @small {
-      .d-inline;
-    }
-    &:nth-of-type(2) {
-      background-color: @brands-color;
-      color: white;
-      .c-pointer;
-      &:hover {
-        background-color: lighten(@brands-color, 10%);
-      }
-    }
-    &:nth-of-type(3) {
-      background-color: red;
-      color: white;
-      .c-pointer;
-      i {
-        margin-right: 5px;
-      }
-      &:hover {
-        opacity: 0.8;
-      }
-    }
-
-
-  }
-
-}
-.fa-star, fa-share-alt {
-  @media @small {
-    //.d-inline;
-  }
-}

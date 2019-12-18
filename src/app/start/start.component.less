@@ -8,18 +8,27 @@
             .w-100;
             position: relative;
           }
-
-
-                //Absolute background
-.backgrond-second-ground {
-  @media @medium {
-    .w(100%);
-    .position(absolute, @top: 0px, @left: 0);
-    height: 540px;
-    background-color: lightgray;
-  }
-
+.top_wrapper {
+  background-color: yellow;
+  .relative;
 }
+.left_big {
+  .w-100;
+  background-color: lighten(lightgray, 5%);
+  @media @medium {
+    .w(40%);
+    .absolute;
+    height: 420px;
+    left: 40px;
+    top: 40px;
+  }
+}
+.right_big {
+  background-color: red;
+  height: 500px;
+}
+
+
 
 
 
@@ -30,8 +39,7 @@
                               .w(100%);
                               margin-top: 20px;
                               background-color: white;
-                              //height: 450px;    //like a right container
-                              .d-inline;
+                              //.d-inline;
                               .position(relative);
                               @media @small {
                                 height: 500px;
@@ -53,7 +61,7 @@
 }
                               //Big Cars
                     .big-cars {
-                      .d-inline;
+                      //.d-inline;
                       vertical-align: top;
                       .position(relative);
                       height: 380px;

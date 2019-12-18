@@ -4,6 +4,10 @@
 .main-bg {
   background-color: darkgray;
 }
+.big-container {
+  .custom-transition(0.7s all ease);
+  opacity: 1;
+}
 
 .big-container {
   .relative;
@@ -77,11 +81,15 @@
           .w(100%);
           .d-inline;
           overflow: hidden;
-          height: @detail-big-img-height;
+          height: 280px;
+          background-color: white;
           .padding-top-bottom(0, 30px);
-                          top: -200px; //just for the x-small devices    it's a height of detail-navi
+                          top: -150px; //just for the x-small devices    it's a height of detail-navi
                           @media @small {
                             top: 0;
+                            height: 350px;
+                            background-color: lighten(lightgray, 5%);
+
                           }
           //transform: translateY(calc(-100% + 50px));
           @media @medium {
@@ -156,7 +164,7 @@
         }
 .img_carousel_wrapper {
   float: left;
-  height: 380px;
+  height: 100%;
   .center-text;
   .w(100%);
 }
@@ -206,8 +214,10 @@
               .dealer-where {
                 font-size: 1.3rem;
                 margin-top: 15px;
+                color: lighten(black, 20%);
                 i {
-                  margin-right: 15px;
+                  color: black;
+                  .w(15%);
                 }
               }
               .question_button {
@@ -236,16 +246,14 @@
                 font-family: 'Roboto Condensed',Arial,Helvetica,sans-serif;
               }
               #description_wrapper {
-                padding: 0 10px;
-                p {
-                  padding: 15px 0;
-                }
+                padding: 15px 10px;
+
               }
 
 
                                     //details info
                       .date-id-details {
-                        .w(100%);
+                        .w-calc(100%, 20px);
                        .d-inline;
                         padding: 20px 10px;
                         ul {
@@ -281,3 +289,7 @@
                           .list-style-none;
                         }
                       }
+.showbig {
+  opacity: 0;
+  .custom-transition(0.2s all ease);
+}

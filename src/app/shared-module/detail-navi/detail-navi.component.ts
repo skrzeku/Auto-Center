@@ -9,7 +9,6 @@ import {Car} from '../../core-module/models/car.model';
 export class DetailNaviComponent implements OnInit, AfterViewInit {
 
 
-  fixedposition: boolean = false;
   @Input ('car') car: Car;
 
   visiblenumber: boolean = false;

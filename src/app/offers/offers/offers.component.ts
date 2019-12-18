@@ -157,7 +157,7 @@ export class OffersComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   gotoDetails(car: Car) {
-    this.carservice.goToCarDetails(car);
+    this.router.navigate(['/offers/', car.key], {skipLocationChange: true});
   }
 
 
@@ -184,7 +184,6 @@ export class OffersComponent implements OnInit, AfterViewInit, OnDestroy {
       target = target.closest('.one_medium_inside');
       const id = target.id;
       this.filter_number = id;
-
     }
     if ((!target.closest('.hidden_filter') && !target.closest('.one_medium_inside')) || target.closest('.close_hidden_btn')) {
       this.filter_number = 0;

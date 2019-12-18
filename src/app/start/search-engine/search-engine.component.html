@@ -1,54 +1,64 @@
 <div class="big-search-form">
 
-
-          <!-- Navigation-->
-  <div class="search-navigation">
-    <ul class="navigation-ul p-0">
-      <li class="navi-list"><a [routerLink]="['/main']"  routerLinkActive="test-class" [routerLinkActiveOptions]="{ exact: true }"><i class="fas fa-car"></i>Osobowe</a></li>
-      <li class="navi-list"><a [routerLink]="['parts']"  routerLinkActive="test-class"><i class="fab fa-accessible-icon" ></i>Części</a></li>
-      <li class="navi-list"><a [routerLink]="['motorcycle']"  routerLinkActive="test-class"><i class="fab fa-accessible-icon"></i>Motocykle</a></li>
-      <li class="navi-list dropdown"><a id="drop-a">Show more
-        <i class="fas fa-caret-down"></i></a>
-      <ul class="hidden-ul" [ngClass]="{'shown-ul': showUlBool}">
-        <li class="navi-list"><a [routerLink]="['parts']"  routerLinkActive="test-class"><i class="fas fa-car"></i>Ciężarowe</a></li>
-        <li class="navi-list"><a [routerLink]="['parts']"  routerLinkActive="test-class"><i class="fab fa-accessible-icon" ></i>Rowery</a></li>
-        <li class="navi-list"><a [routerLink]="['parts']"  routerLinkActive="test-class"><i class="fab fa-accessible-icon"></i>Busy</a></li>
-      </ul>
-      </li>
-
-      <li class="navi-list hidden-lg"><a [routerLink]="['parts']"  routerLinkActive="test-class"><i class="fab fa-accessible-icon"></i> Ciężarowe</a></li>
-      <li class="navi-list hidden-lg"><a [routerLink]="['parts']"  routerLinkActive="test-class"><i class="fab fa-accessible-icon"></i> Xyz</a></li>
-      <li class="navi-list hidden-lg"><a [routerLink]="['parts']"  routerLinkActive="test-class"><i class="fab fa-accessible-icon"></i> aaa</a></li>
-      <li class="navi-list hidden-lg"><a [routerLink]="['parts']"  routerLinkActive="test-class"><i class="fab fa-accessible-icon"></i> bbb</a></li>
-      <li class="navi-list hidden-lg"><a [routerLink]="['parts']"  routerLinkActive="test-class"><i class="fab fa-accessible-icon"></i> ccc</a></li>
-    </ul>
-
-    <div id="top-navi">
-      <mat-form-field>
-        <input type="text"  placeholder="Kategoria" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
-        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" >
-          <mat-option [routerLink]="[option.path]" class="myoption" *ngFor="let option of filteredOptions | async" [value]="option.name">
-            <i class="fas {{option.icon}}"></i>{{option.name}}
-          </mat-option>
-
-
-        </mat-autocomplete>
-
-      </mat-form-field>
-  </div>
-  </div>
   <div class="radio-buttons-cont">
     <mat-radio-group aria-label="Select an option">
-      <mat-radio-button class="radio-group" value="Wszystkie" color="primary" checked>Wszystkie</mat-radio-button>
-      <mat-radio-button class="radio-group" value="Nowe" color="primary">Nowe</mat-radio-button>
-      <mat-radio-button class="radio-group" value="Używane" color="primary">Używane</mat-radio-button>
+      <mat-radio-button class="radio-group" value="Wszystkie" color="primary" checked>All</mat-radio-button>
+      <mat-radio-button class="radio-group" value="Nowe" color="primary">New</mat-radio-button>
+      <mat-radio-button class="radio-group" value="Używane" color="primary">Used</mat-radio-button>
     </mat-radio-group>
   </div>
+  <form>
+    <div class="full_field_wrapper">
+      <mat-form-field floatLabel="never">
+        <mat-select  name="food" placeholder="Choose a mark.." [(ngModel)]="mark" name="mark" (selectionChange)="checkmark(mark)">
+          <mat-option *ngFor="let mark of marks$ | async" [value]="mark">
+            {{mark}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
+      <mat-form-field>
+        <mat-select  name="food" placeholder="Choose a model.." [(ngModel)]="model" name="model">
+          <mat-option *ngFor="let model of correct_models" [value]="model">
+            {{model}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="half_field_wrapper">
+      <div>Price:</div>
+      <mat-form-field floatLabel="never">
+        <input type="number"   aria-label="Number" matInput placeholder="Min Price..." [(ngModel)]="price_from" name="price_from">
+        <span class="spanAbs">$</span>
+      </mat-form-field>
 
-          <!-- Another option-->
-  <main [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''">
-    <router-outlet #o="outlet"></router-outlet>
-  </main>
+      <mat-form-field floatLabel="never">
+        <input type="number"   aria-label="Number" matInput placeholder="Max Price...:" [(ngModel)]="price_to" name="price_to">
+        <span class="spanAbs">$</span>
 
+      </mat-form-field>
+    </div>
+    <div class="half_field_wrapper">
+      <div>Production Year:</div>
+      <mat-form-field>
+        <input type="number"   aria-label="Number" matInput placeholder="From:" [(ngModel)]="year_from" name="year_from">
+        <span class="spanAbs">r</span>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="number"   aria-label="Number" matInput placeholder="To:" [(ngModel)]="year_to" name="year_to">
+        <span class="spanAbs">r</span>
+      </mat-form-field>
+    </div>
+
+    <div class="span-buttons-cont">
+      <span id="rfuel">Fuel:</span>
+      <div class="spans-inside relative">
+        <span id="left_span_fuel"></span>
+        <span class="span_fuel" (click)="sendspan(3, $event)" [ngClass]="{'span-clicked': firstclicked == 3}">All</span>
+        <span class="span_fuel" (click)="sendspan(1, $event)" [ngClass]="{'span-clicked': firstclicked == 1}">Diesel</span>
+        <span class="span_fuel" (click)="sendspan(2, $event)" [ngClass]="{'span-clicked': firstclicked == 2}">Petrol</span>
+
+      </div>
+    </div>
+  </form>
 </div>

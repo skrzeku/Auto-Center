@@ -1,4 +1,4 @@
-<div class="big-container">
+<div class="big-container" [ngClass]="{'showbig': bigbool}" >
   <div class="navi">
 <app-detail-navi #detail_navi_children [car] ="car"></app-detail-navi>
   </div>
@@ -65,15 +65,17 @@
         <li><span class="list-span">Model:</span> <a class="nav">{{car.model}}</a></li>
         <li><span class="list-span">Year:</span> <a class="nav">{{car.year}}</a></li>
         <li><span class="list-span">Published:</span> <a class="nav">{{car.start_date}}</a></li>
-
-
-        <li><span class="list-span">Course:</span> <a>{{car.course}} Km</a></li>
+        <li><span class="list-span">Course:</span> <a class="nav">{{car.course}} Km</a></li>
+        <li><span class="list-span">Type:</span> <a class="nav">{{car.type}}</a></li>
         <li><span class="list-span">Fuel:</span> <a class="nav">{{car.fuel}}</a></li>
-        <li><span class="list-span">Gearcase</span> <a>{{car.gearcase}}</a></li>
+        <li><span class="list-span">Gearcase</span> <a class="nav">{{car.gearcase}}</a></li>
       </ul>
       <ul>
-        <li><span class="list-span">Color</span> <a>{{car.color}}</a></li>
-        <li><span class="list-span">State</span> <a>{{car.state}}</a></li>
+        <li><span class="list-span">Color:</span> <a class="nav">{{car.color}}</a></li>
+        <li><span class="list-span">State:</span> <a class="nav">{{car.state}}</a></li>
+        <li><span class="list-span">Power:</span> <a class="nav">{{car.power}} KW</a></li>
+        <li><span class="list-span">Engine capacity:</span> <a class="nav">{{car.engine_capacity}} cm<sup>3</sup></a></li>
+
       </ul>
 
     </div>
@@ -81,7 +83,7 @@
       <div class="details-button-wrapper">
         <button mat-raised-button class="headers_btn" color="primary">Description</button>
       </div>
-      <p>{{car.description}}</p>
+      <div>{{car.description}}</div>
     </div>
   </div>
 </section>
