@@ -1,7 +1,6 @@
 @import "../../../assets/styles/global";
 
 .big-search-form {
-  padding-bottom: 60px;
 
 }
 .navigation-ul {
@@ -26,7 +25,10 @@
   }
 
 }
-
+#top_radios {
+  .d-flex;
+  justify-content: space-around;
+}
 
 
 
@@ -79,7 +81,9 @@
   }
 }
 .half_field_wrapper {
-  .full_field_wrapper;
+  .d-inline;
+  .w-calc(100%, 10px);
+  padding: 10px 10px 0 0;
   mat-form-field {
     .d-inline;
     margin-left: 10px;
@@ -88,22 +92,95 @@
 }
 #left_span_fuel {
   .absolute;
-  background-color: red;
-  left: 55px;
   z-index: 1;
-  top: 10px;
+  background-color: @main-color;
+  left: 0;
+  top: 15px;
   height: 32px;
-  .w(100px);
+  .w(33.333%);
+  border-radius: 0 0 8px 8px;
+  .custom-transition(0.5s all ease);
+}
+.state_btn {
+  z-index: 2;
+  .w(33.333%);
+  .center-text;
+  .c-pointer;
+  .font-bold;
+  color: dimgray;
+}
+#fuel_span {
+  z-index: 2;
+}
+#rfuel {
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.radio-buttons-cont {
+  .d-flex;
+  justify-content: space-between;
+  padding: 20px 0;
+  &:before {
+    content: '';
+    .absolute;
+    left: 0;
+    top: 0;
+    height: 15px;
+    .w(100%);
+    background-color: @main-color;
+  }
+
 }
 .span_fuel {
   z-index: 2;
   width: 100px;
   padding: 5px 0;
   .center-text;
+  .relative;
+  .c-pointer;
+  color: white;
+  border: solid 2px white;
+  .custom-transition(0.3s all ease);
+  &:hover {
+    background-color: white;
+    color: @main-color;
+  }
+
+}
+#moved_fuel {
+  .absolute;
+  left: 15px;
+  top: 15px;
+  z-index: 1;
+  .w(102px);
+  height: 36px;
 }
 .spans-inside {
   .d-flex;
   justify-content: space-around;
+}
+#movedinside {
+  .w(100%);
+  height: 100%;
+  .relative;
+
+}
+.fuel_active {
+  background-color: white;
+  color: @main-color;
+
+  &:before {
+    .aftericons;
+    left: -20px;
+    top: 50%;
+    transform: rotate(-90deg) translateX(50%);
+  }
+  &:after {
+    .aftericons;
+    top: 50%;
+    transform: rotate(90deg) translateX(-50%);
+    right: -20px;
+  }
 }
 
 
@@ -111,6 +188,21 @@
 
 .test-class {
   color: @brands-color;
+}
+.span-buttons-cont {
+  background-color: @main-color;
+  margin-top: 30px;
+}
+#btn_bottom_wrapper {
+  .w(100%);
+  margin: 0 auto;
+  padding: 10px 0 15px;
+  .center-text;
+  background-color: @main-color;
+}
+#search_bottom {
+  .w(300px);
+  color: dimgray;
 }
 
 
@@ -125,4 +217,3 @@
 .main-form {
   .animation(fade-form 300ms linear);
 }
-

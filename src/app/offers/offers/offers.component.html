@@ -50,7 +50,7 @@
         </div>
 
 
-         <mat-form-field class="top_filter_fields">
+         <mat-form-field class="top_filter_fields" floatLabel="never">
            <mat-select [(ngModel)]="stateModel" placeholder="Stan">
              <mat-option *ngFor="let state of states" [value]="state" >
                {{state}}
@@ -58,7 +58,7 @@
            </mat-select>
          </mat-form-field>
 
-        <mat-form-field class="top_filter_fields">
+        <mat-form-field class="top_filter_fields" floatLabel="never">
           <mat-select [(ngModel)]="markModel" placeholder="Marka">
             <mat-option *ngFor="let mark of marks$ | async" [value]="mark" >
               {{mark}}

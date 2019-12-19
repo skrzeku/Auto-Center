@@ -19,6 +19,8 @@ export class StartComponent implements OnInit {
   midCars: Car[] = [];
   smallCars: Car[] = [];
   allcars: Car[];
+  types = ['Hatchback', 'Sedan', 'Wagon', 'Coupe', 'Convertible', 'Luxury', 'Pickup', 'Suv', 'Van'];
+  randomCars: Car[];
 
 
 
@@ -31,6 +33,7 @@ export class StartComponent implements OnInit {
     this.carsserv.getCars().subscribe((cars) => {
       this.chanceit(cars);
       this.allcars = cars;
+      this.randomCars = cars.slice(0, 10);
     });
 
   }

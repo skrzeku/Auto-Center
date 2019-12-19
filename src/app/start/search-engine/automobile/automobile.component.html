@@ -15,7 +15,7 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field class="auto_field">
+        <mat-form-field class="auto_field" floatLabel="never">
           <mat-select  name="food" placeholder="- model -" [(ngModel)]="model" name="model">
             <mat-option *ngFor="let model of correct_models" [value]="model">
               {{model}}
@@ -40,11 +40,9 @@
         <span>Rok Produkcji:</span>
         <mat-form-field class="auto_field">
           <input type="number"   aria-label="Number" matInput placeholder="Od:" [(ngModel)]="year_from" name="year_from">
-          <span class="spanAbs">r</span>
         </mat-form-field>
         <mat-form-field class="auto_field">
           <input type="number"   aria-label="Number" matInput placeholder="Do:" [(ngModel)]="year_to" name="year_to">
-          <span class="spanAbs">r</span>
         </mat-form-field>
       </div>
       <div class="change-width">

@@ -130,6 +130,11 @@ a, button{
                           display: none;
                         }
                       }
+                      .hidden-md {
+                        @media @medium {
+                          .d-none;
+                        }
+                      }
 
                       //universal line
                           .lines (@color: @big-light-line , @w-x: 60px, @height: 1px){
@@ -275,7 +280,8 @@ a, button{
 
 
 .spanAbs {
-  .position(absolute, @right: 14px, @top: 2px);
+  .position(absolute, @right: 14px, @top: 50%);
+  transform: translateY(-50%);
   color: gray;
   font-size: 15px;
 }
@@ -330,8 +336,8 @@ a, button{
   .c-pointer;
 }
 .span-clicked {
-  background-color: @hover-text-color;
-  color: white;
+  color: white !important;
+  .custom-transition(0.5s all ease);
 }
 
 .search_button {
@@ -370,6 +376,13 @@ mat-form-field {
 }
 ::ng-deep .mat-form-field-label-wrapper {
   padding-top: 0 !important;
+  bottom: 0;
+  top: 0 !important;
+}
+::ng-deep .mat-form-field-label {
+  top: 50% !important;
+  font-size: 1rem !important;
+  transform: translateY(-50%) !important;
 }
 ::ng-deep .mat-form-field-infix {
   border-top-width: 0 !important;
@@ -377,7 +390,6 @@ mat-form-field {
 
 }
 ::ng-deep .mat-select-value {
-  color: @brands-color;
   padding: 10px 0;
 }
 ::ng-deep .mat-input-element {
@@ -409,7 +421,20 @@ padding: 10px 0 !important;
  // color: black !important;
   //-webkit-text-fill-color: black !important;
 }
-
+.aftericons {
+  .w(0);
+  height: 0;
+  .absolute;
+  content: "";
+  z-index: 10;
+  border-style: solid;
+  border-width: 10px 10px 10px;
+  border-color: transparent transparent white transparent;
+}
+.main_btn {
+  background-color: @main-color;
+  color: white !important;
+}
 
 
 

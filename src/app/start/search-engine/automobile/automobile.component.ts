@@ -27,6 +27,7 @@ export class AutomobileComponent implements OnInit {
   marks$: any;
   correct_models: any;
 
+
   cars: Car[];
 
 
@@ -46,9 +47,7 @@ export class AutomobileComponent implements OnInit {
 
   ngOnInit() {
     //this.buildautoform();
-    this.carservice.getCars().subscribe((val) => {
-      this.cars = val;
-    });
+
 
     this.marks$ = this.helpserv.marks$;
   }

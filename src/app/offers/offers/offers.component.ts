@@ -217,7 +217,6 @@ export class OffersComponent implements OnInit, AfterViewInit, OnDestroy {
     }, 300);
   }
   Checkfields(modelvalue) {
-
     if (modelvalue === '' || modelvalue === 'Wszystkie') {
       this.valueone = '';
       this.valuetwo = null;
@@ -226,7 +225,6 @@ export class OffersComponent implements OnInit, AfterViewInit, OnDestroy {
       this.valueone = modelvalue;
       this.valuetwo = '';
     }
-
   }
   fillFilterArray(price: string, year: string, course: string, state: string, mark: string, model: string): void {
     this.helpserv.array.length = 0;

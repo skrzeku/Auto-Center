@@ -1,11 +1,10 @@
 <div class="big-search-form">
 
-  <div class="radio-buttons-cont">
-    <mat-radio-group aria-label="Select an option">
-      <mat-radio-button class="radio-group" value="Wszystkie" color="primary" checked>All</mat-radio-button>
-      <mat-radio-button class="radio-group" value="Nowe" color="primary">New</mat-radio-button>
-      <mat-radio-button class="radio-group" value="Używane" color="primary">Used</mat-radio-button>
-    </mat-radio-group>
+  <div class="radio-buttons-cont relative">
+    <div id="left_span_fuel" #movedspan></div>
+    <div class="state_btn" (click)="sendspan(1, $event)" [ngClass]="{'span-clicked': firstclicked == 1}" #firstspan>All</div>
+    <div class="state_btn" (click)="sendspan(2, $event)" [ngClass]="{'span-clicked': firstclicked == 2}">New</div>
+    <div class="state_btn" (click)="sendspan(3, $event)" [ngClass]="{'span-clicked': firstclicked == 3}">Used</div>
   </div>
   <form>
     <div class="full_field_wrapper">
@@ -17,7 +16,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field floatLabel="never">
         <mat-select  name="food" placeholder="Choose a model.." [(ngModel)]="model" name="model">
           <mat-option *ngFor="let model of correct_models" [value]="model">
             {{model}}
@@ -26,39 +25,37 @@
       </mat-form-field>
     </div>
     <div class="half_field_wrapper">
-      <div>Price:</div>
       <mat-form-field floatLabel="never">
         <input type="number"   aria-label="Number" matInput placeholder="Min Price..." [(ngModel)]="price_from" name="price_from">
         <span class="spanAbs">$</span>
       </mat-form-field>
 
       <mat-form-field floatLabel="never">
-        <input type="number"   aria-label="Number" matInput placeholder="Max Price...:" [(ngModel)]="price_to" name="price_to">
+        <input type="number"   aria-label="Number" matInput placeholder="Max Price..." [(ngModel)]="price_to" name="price_to">
         <span class="spanAbs">$</span>
 
       </mat-form-field>
     </div>
     <div class="half_field_wrapper">
-      <div>Production Year:</div>
-      <mat-form-field>
-        <input type="number"   aria-label="Number" matInput placeholder="From:" [(ngModel)]="year_from" name="year_from">
-        <span class="spanAbs">r</span>
+      <mat-form-field floatLabel="never">
+        <input type="number"   aria-label="Number" matInput placeholder="Year From:" [(ngModel)]="year_from" name="year_from">
+
       </mat-form-field>
-      <mat-form-field>
-        <input type="number"   aria-label="Number" matInput placeholder="To:" [(ngModel)]="year_to" name="year_to">
-        <span class="spanAbs">r</span>
+      <mat-form-field floatLabel="never">
+        <input type="number"   aria-label="Number" matInput placeholder="Year To:" [(ngModel)]="year_to" name="year_to">
+
       </mat-form-field>
     </div>
 
     <div class="span-buttons-cont">
-      <span id="rfuel">Fuel:</span>
       <div class="spans-inside relative">
-        <span id="left_span_fuel"></span>
-        <span class="span_fuel" (click)="sendspan(3, $event)" [ngClass]="{'span-clicked': firstclicked == 3}">All</span>
-        <span class="span_fuel" (click)="sendspan(1, $event)" [ngClass]="{'span-clicked': firstclicked == 1}">Diesel</span>
-        <span class="span_fuel" (click)="sendspan(2, $event)" [ngClass]="{'span-clicked': firstclicked == 2}">Petrol</span>
-
+        <div class="span_fuel" #firstfuel (click)="sendfuel(1, $event)" [ngClass]="{'fuel_active': fuel === 1}">All</div>
+        <div class="span_fuel" (click)="sendfuel(2, $event)" [ngClass]="{'fuel_active': fuel === 2}">Diesel</div>
+        <div class="span_fuel" (click)="sendfuel(3, $event)" [ngClass]="{'fuel_active': fuel === 3}">Petrol</div>
       </div>
     </div>
   </form>
+  <div id="btn_bottom_wrapper">
+    <button mat-raised-button id="search_bottom" (click)="AutogoToOffers()">Search</button>
+  </div>
 </div>

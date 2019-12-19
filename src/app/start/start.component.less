@@ -13,19 +13,123 @@
   .relative;
 }
 .left_big {
-  .w-100;
+  .w-calc(100%, 4px);
   background-color: lighten(lightgray, 5%);
+  border: solid 2px @main-color;
   @media @medium {
     .w(40%);
     .absolute;
-    height: 420px;
     left: 40px;
     top: 40px;
   }
 }
 .right_big {
-  background-color: red;
+  background-image: url("../../assets/images/4GkLBU.jpeg");
   height: 500px;
+  background-size: cover;
+  background-position: center center;
+}
+#findyourdreamcar {
+  background-color: rgba(225, 225, 225, 0.5);
+  height: 200px;
+  .w(400px);
+  .absolute;
+  top: 50px;
+  right: 50px;
+  h2 {
+    .relative;
+    top: 20%;
+    color: @main-color;
+    transform: rotate(-30deg);
+    font-weight: bold;
+  }
+}
+.main_header_wrapper {
+  .w(100%);
+  overflow: hidden;
+  .center-text;
+}
+.main_header {
+  font-size: 1.8rem;
+  color: @main-color;
+  font-weight: bold;
+}
+.header_separator {
+  height: 3px;
+  .w(100px);
+  background-color: @main-color;
+}
+.one_type {
+  .d-inline;
+  .w-calc(50%, 10px);
+  margin-left: 10px;
+  margin-top: 20px;
+  background-color: #00D318;
+  height: 200px;
+  .c-pointer;
+  .custom-transition(0.2s all ease);
+  .center-text;
+  h3 {
+    .w(100px);
+    margin: 0 auto;
+  }
+  &:nth-child(n + 8) {
+    .d-none;
+    @media @medium {
+      .d-inline;
+    }
+  }
+
+
+  @media @medium {
+    .w-calc(25%, 10px);
+  }
+  &:hover h3 {
+    border-bottom: solid 2px black;
+  }
+
+}
+.custom_btn_wrapper {
+  padding: 20px 0;
+  button {
+    .w(250px);
+  }
+}
+section {
+  padding: 80px 0;
+}
+.type_img {
+  height: 170px;
+  .w(100%);
+  background-color: #4c8bf5;
+}
+.random_car {
+  .w-calc(10%, 15px);
+  float: left;
+  margin-left: 15px;
+  height: 300px;
+  background-color: red;
+}
+.random_car_img {
+  height: 200px;
+  background-color: @main-color;
+}
+#main_figure {
+.w(250%);
+  height: 300px;
+  margin: 0;
+}
+#random_btn_wrapper {
+  .w(100%);
+  .center-text;
+  .d-block;
+  margin: 20px 0;
+  background-color: yellow;
+  padding: 20px;
+}
+#figure_wrapper {
+  background-color: yellow;
+  width: 100%;
 }
 
 
@@ -177,111 +281,17 @@
                       }
 
 
-                            //Mid Cars
-                    .mid-cars {
-                      .d-inline;
-                      .w(100%);
-                      .position(relative);
-                      @media @small {
-                        .w(calc(75% - 16px));
-                        padding: 0 8px;
-                        margin-top: 8px;
-                      }
-                      @media @medium {
-                        .w(100%);
-                        padding: 0;
-                        margin: 20px -2px;
-                      }
-
-
-                            //Mid cars - one box
-                      .one-car-box {
-                        opacity: 1;
-                        .drop-shadow();
-
-
-                              @media @small {
-                                .w(calc(50% - 8px));
-                                .d-inline;
-                                margin: 0 4px 0;
-                              }
-                              @media @medium {
-                              .w(calc(25% - 10px));
-                                margin: 0 5px 0;
-                            }
-                                .car-price {
-                                  .car-price(absolute, 0, 100%, 12px, 0);
-                                }
-                                .line {
-                                  .lines(@color: @light-line, @w-x: 10px);
-                                }
-                                .one-car(35%, default, @mid-cars-font);
-                      }
+                    #third_section {
+                      background-color: @main-color;
+                      padding: 100px 0;
                     }
 
-                    //Small Cars
-                .small-cars {
-
-                  position: relative;
-                  .d-inline;
-                  .w(100%);
-
-                      @media @small {
-                     .w(25%);
-                        .position(absolute, @right: 0, @top: 530px);
-                      }
-                      @media @medium {
-                        .position(relative, @top: 0);
-                        .w(100%);
-                        margin-top: 20px;
-                      }
-                }
-
-
-                      //small-car-box
-                .small-car-box {
-                  .drop-shadow();
-                  opacity: 1;
-
-                          @media @medium {
-                            .w(calc(16.66% - 6px));
-                            .d-inline;
-                            margin: 0 3px 20px;
-                          }
-                      .line {
-                        .lines(@color: @light-line, @w-x: 6px);
-                      }
-                      .one-car(35%, default, @small-cars-font);
-                      .car-price {
-                        .car-price(relative, auto, 0, 3px, 4px);
-                      }
-                }
-
-
-      //just for tests
-.one-car-another {
-  width: 25%;
-  .drop-shadow();
-  opacity: 1;
-  .d-inline;
-  .c-pointer !important;
-  vertical-align: bottom;
-  border: solid 2px red;
-  &:hover {
-    border: none;
-  }
-}
 
 
 
 
 
-                      //Second section
-.second-section > .medium-container > .adds-row{
-}
-.second-section {
-  //padding-top: 30px;
-}
+
 .btn-sec-section {
   .w(100%);
   text-align: center;
