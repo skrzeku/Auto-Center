@@ -16,29 +16,47 @@
               </div>
               </div>
           </section>
+         <section>
+           <div class="medium-container">
+             <div class="main_header_wrapper">
+               <span class="main_header">Why Auto-Center?</span>
+             </div>
+               <div id="about_wrapper">
+                 <div class="about_content"><div>first</div>
+                 <button mat-raised-button>Check</button> </div>
+                 <div class="about_content"><div>sec</div>
+                   <button mat-raised-button>Check</button> </div>
+                 <div class="about_content"><div>3rd</div>
+                   <button mat-raised-button>Check</button> </div>
+               </div>
+
+           </div>
+         </section>
 
                         <!--Second Section -->
           <section class="second-section">
             <div class="medium-container">
               <div class="main_header_wrapper">
-                <h2 class="main_header">Browse by Type</h2>
-                <div *ngFor="let type of types" class="one_type">
-                  <div class="type_img"></div>
+                <span class="main_header">Search by type</span>
+              </div>
+                <div *ngFor="let type of types" class="one_type" #alltypes (click)="filterbyTypes(type)">
+                  <div class="type_img">
+                    <img [src]="imgUrl + type + '.png'">
+                  </div>
                   <h3>{{type}}</h3>
                 </div>
                 <div class="custom_btn_wrapper">
-                  <button mat-raised-button class="main_btn hidden-md">Show more</button>
+                  <button mat-raised-button class="main_btn hidden-md" (click)="showMoreTypes()" *ngIf="types_button">Show more</button>
                 </div>
 
               </div>
-            </div>
           </section>
-         <section id="third_section">
+         <section>
            <div class="medium-container">
              <div class="main_header_wrapper">
-               <h2 class="main_header">Popular Types</h2>
-               <div>text</div>
+               <span class="main_header">Search by brand</span>
              </div>
+             <div>text</div>
            </div>
          </section>
 
@@ -46,25 +64,40 @@
          <section class="second-section">
            <div class="medium-container">
              <div class="main_header_wrapper">
-               <h2 class="main_header">Premium vehicles</h2>
+               <span class="main_header">Promoted vehicles</span></div>
                <div id="figure_wrapper">
-                 <figure id="main_figure">
-                   <div class="random_car" *ngFor="let car of randomCars">
-                     <div class="random_car_img">
+                   <i class="fas fa-chevron-left random_car_chevron" id="left_chev" *ngIf="leftchevron_vis" (click)="slideImg('-')"></i>
+                   <i class="fas fa-chevron-right random_car_chevron" id="right-chev" *ngIf="rightchevron_vis" (click)="slideImg('+')"></i>
 
+                 <figure id="main_figure" #main_figure>
+                   <div class="random_car" *ngFor="let car of randomCars" (click)="goToDetails(car)">
+                     <div class="random_car_img" [ngStyle]="{'background-image':' url(../../assets/images/maxresdefault.jpg)'}">
                      </div>
-                     <span>{{car.year}} {{car.mark}}</span>
-                     {{car.model}}
+                     <div class="random_car_details">
+                       <span class="random_car_span">{{car.year}} {{car.mark}}  {{car.model}}</span>
+                       <div>{{car.course | number}} km</div>
+                       <div class="random_car_price">
+                         {{car.price | currency:'':''}} $
+                       </div>
+                     </div>
                    </div>
                  </figure>
                </div>
 
                <div class="custom_btn_wrapper">
-                 <button mat-raised-button class="main_btn">
+                 <button mat-raised-button class="main_btn" (click)="goTopromotedCars()">
                    Show all promoted cars
                  </button>
                </div>
              </div>
+         </section>
+
+         <section>
+           <div class="medium-container">
+             <div class="main_header_wrapper">
+               <span class="main_header">Contact</span>
+             </div>
+             <div>text</div>
            </div>
          </section>
 

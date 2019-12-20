@@ -21,6 +21,7 @@ export interface Car {
   description: string;
   type: string;
   shortdescription: string;
+  mainImg: any;
 
 }
 export class Image {

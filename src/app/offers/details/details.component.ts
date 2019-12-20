@@ -162,8 +162,6 @@ export class DetailsComponent implements OnInit, AfterViewInit {
     }
     this.renderer.setStyle(this.figure.nativeElement, 'left', -(100 * this.increment) + '%');
 
-    console.log(this.small_img_src);
-
   }
 
   showAllImages(): void {

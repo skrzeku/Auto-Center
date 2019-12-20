@@ -435,6 +435,39 @@ padding: 10px 0 !important;
   background-color: @main-color;
   color: white !important;
 }
+.headers_line (@width) {
+  .absolute;
+  content: '';
+  width: @width;
+  height: 0;
+  border-top: solid 1px dimgray;
+
+}
+.chevron_wrapper {
+  .absolute;
+  top: 0;
+  .w(100px);
+  height: 100%;
+  .center-text;
+  .c-pointer;
+  .custom-transition(0.3s all ease);
+  &:hover {
+    background-color: rgba(1, 1, 1, 0.2);
+  }
+  &:hover .mychevron {
+    color: whitesmoke;
+  }
+}
+.mychevron {
+  font-size: 30px;
+  .relative;
+  top: 50%;
+  .w(100%);
+  transform: translateY(-50%);
+  z-index: 10;
+  .custom-transition(0.3s all ease);
+
+}
 
 
 
