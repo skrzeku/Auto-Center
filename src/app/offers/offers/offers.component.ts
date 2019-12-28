@@ -226,7 +226,7 @@ export class OffersComponent implements OnInit, AfterViewInit, OnDestroy {
       this.valuetwo = '';
     }
   }
-  fillFilterArray(price: string, year: string, course: string, state: string, mark: string, model: string): void {
+  fillFilterArray(price: number[], year: number[], course: number[], state: string, mark: string, model: string): void {
     this.helpserv.array.length = 0;
    this.helpserv.PushFilterArray('price', price[0], price[1]);
    this.helpserv.PushFilterArray('year', year[0], year[1]);
@@ -240,9 +240,7 @@ export class OffersComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.showfilter = false;
   }
-  fillMobileArray(): void {
 
-  }
 
   setValues(arr: number) {
     this.mybools[arr] = true;

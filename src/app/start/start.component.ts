@@ -20,14 +20,19 @@ export class StartComponent implements OnInit {
   smallCars: Car[] = [];
   allcars: Car[];
   imgUrl = '../../assets/images/';
-  types = ['Hatchback', 'Sedan', 'Wagon', 'Coupe', 'Convertible', 'Luxury', 'Pickup', 'Suv'];
+  marks = ['Mazda', 'Audi', 'Volkswagen', 'Kia', 'Toyota', 'BMW', 'Citroen', 'Fiat', 'Honda', 'Ford', 'Hyundai', 'Lexus', 'Mercedes', 'Nissan', 'Renault'];
   randomCars: Car[];
+  types = ['Hatchback', 'Sedan', 'Wagon', 'Coupe', 'Convertible', 'Luxury', 'Pickup', 'Suv'];
   @ViewChildren('alltypes') alltypes: QueryList<ElementRef>;
+  @ViewChildren('allbrands') allbrands: QueryList<ElementRef>;
   @ViewChild('main_figure') main_figure: ElementRef;
+  @ViewChild('hidden_message') hidden_message: ElementRef;
   types_button = true;
+  brand_button = true;
   leftchevron_vis = false;
   rightchevron_vis = true;
   increment = 0;
+  contactSent = false;
 
 
 
@@ -60,6 +65,12 @@ export class StartComponent implements OnInit {
       this.render.setStyle(type.nativeElement, 'display', 'inline-block');
     });
     this.types_button = false;
+  }
+  showMoreBrands(): void {
+    this.allbrands.forEach((brand) => {
+      this.render.setStyle(brand.nativeElement, 'display', 'inline-block');
+    });
+    this.brand_button = false;
 
   }
 
@@ -83,6 +94,10 @@ export class StartComponent implements OnInit {
     this.router.navigate(['/offers']);
     this.helpserv.PushFilterArray('type', type, '');
   }
+  filterbyBrand(brand: string) {
+    this.router.navigate(['/offers']);
+    this.helpserv.PushFilterArray('mark', brand, '');
+  }
   slideImg(str: string): void {
     if (str === '-') {
       if (this.increment <= 1) {
@@ -104,9 +119,13 @@ export class StartComponent implements OnInit {
     else  {
       this.render.setStyle(this.main_figure.nativeElement, 'left', -(100 * this.increment) + '%');
     }
-
-
-
+  }
+  SendEmail(): void {
+    this.contactSent = true;
+    this.render.addClass(this.hidden_message.nativeElement, 'shown_message');
+    setTimeout(() => {
+      this.render.removeClass(this.hidden_message.nativeElement, 'shown_message');
+    }, 4000);
   }
 
 }

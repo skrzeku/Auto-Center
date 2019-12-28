@@ -11,5 +11,14 @@ export class FooterComponent implements OnInit {
 
   ngOnInit() {
   }
+  gotoTwitter(): void {
+    window.open('https://twitter.com');
+  }
+  gotoFacebook(): void {
+    window.open('https://www.facebook.com');
+  }
+  gotoInstagram(): void {
+    window.open('https://www.instagram.com');
+  }
 
 }

@@ -22,11 +22,15 @@ body {
 h1, h2, h3, h4, h5 ,h6 {
   margin-bottom: 10px;
   margin-top: 10px;
+  font-family: 'Open Sans', sans-serif;
+}
+div, span, p {
+  font-family: 'Roboto', sans-serif;
 }
 
           //separator height equal to navigation height
           .separator {
-            height: 80px;
+            height: 50px;
             padding: 0;
             margin: 0;
           }
@@ -361,7 +365,7 @@ a, button{
     //forms
 
 mat-form-field {
-  font-size: 0.8rem !important;
+  font-size: 1rem !important;
   font-family: "Open Sans", Arial , sans-serif;
   background-color: white;
   padding: 0 5px;
@@ -394,6 +398,7 @@ mat-form-field {
 }
 ::ng-deep .mat-input-element {
 padding: 10px 0 !important;
+  font-size: 1rem !important;
 }
 
 
@@ -440,7 +445,7 @@ padding: 10px 0 !important;
   content: '';
   width: @width;
   height: 0;
-  border-top: solid 1px dimgray;
+  border-top: solid 1px @main-color;
 
 }
 .chevron_wrapper {
@@ -467,6 +472,39 @@ padding: 10px 0 !important;
   z-index: 10;
   .custom-transition(0.3s all ease);
 
+}
+.box-shadow {
+  -webkit-box-shadow: 1px 5px 5px 1px rgba(19,20,47,1);
+  -o-box-shadow: 1px 5px 5px 1px rgba(19,20,47,1);
+  -moz-box-shadow: 1px 5px 5px 1px rgba(19,20,47,1);
+  box-shadow: 1px 5px 5px 1px rgba(19,20,47,1);
+}
+.main-button {
+  border-radius: 0;
+  width: 200px;
+  .box-shadow !important;
+  color: @bg-color;
+  font-family: 'Open Sans', sans-serif;
+  .custom-transition(0.4s all ease);
+  font-weight: bold;
+  &:hover {
+    transform: scale(1.01);
+    -webkit-transform: scale(1.01);
+  }
+}
+.orange {
+  background-color: @sec-color !important;
+  &:hover {
+    background-color: @bg-color !important;
+    color: @main-color;
+  }
+}
+.blue {
+  background-color: @main-color !important;
+  &:hover {
+    background-color: @sec-color !important;
+    color: @main-color;
+  }
 }
 
 

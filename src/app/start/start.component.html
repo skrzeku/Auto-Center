@@ -7,34 +7,38 @@
               <div class="top_wrapper">
                 <div class="left_big">
                   <app-search-engine></app-search-engine>
-                </div>
-                <div class="right_big w-100">
-                  <div id="findyourdreamcar">
-                    <h2>Let's find you dream car!</h2>
-                  </div>
-                </div>
-              </div>
+                </div></div>
               </div>
           </section>
-         <section>
+
+         <section id="about_section">
            <div class="medium-container">
              <div class="main_header_wrapper">
-               <span class="main_header">Why Auto-Center?</span>
+               <span class="main_header">Auto-Center</span>
              </div>
                <div id="about_wrapper">
-                 <div class="about_content"><div>first</div>
-                 <button mat-raised-button>Check</button> </div>
-                 <div class="about_content"><div>sec</div>
-                   <button mat-raised-button>Check</button> </div>
-                 <div class="about_content"><div>3rd</div>
-                   <button mat-raised-button>Check</button> </div>
+                 <div class="about_content">
+                   <i class="fas fa-car"></i>
+                   <h3>Find a Dream Car</h3>
+                   <p>Get Cash for Your Car. Free Pickup. Quick and Easy Process.</p>
+                 <button mat-raised-button class="main-button orange">Check</button> </div>
+                 <div class="about_content">
+                   <i class="fas fa-cart-plus"></i>
+                   <h3>SELL OR TRADE IN</h3>
+                   <p>Get Cash for Your Car. Free Pickup. Quick and Easy Process.</p>
+                   <button mat-raised-button class="main-button orange">Check</button> </div>
+                 <div class="about_content">
+                   <i class="fas fa-envelope"></i>
+                   <h3>Get in touch</h3>
+                   <p>Get Cash for Your Car. Free Pickup. Quick and Easy Process.</p>
+                   <button mat-raised-button class="main-button orange">Check</button> </div>
                </div>
 
            </div>
          </section>
 
                         <!--Second Section -->
-          <section class="second-section">
+          <section id="types_section">
             <div class="medium-container">
               <div class="main_header_wrapper">
                 <span class="main_header">Search by type</span>
@@ -46,7 +50,7 @@
                   <h3>{{type}}</h3>
                 </div>
                 <div class="custom_btn_wrapper">
-                  <button mat-raised-button class="main_btn hidden-md" (click)="showMoreTypes()" *ngIf="types_button">Show more</button>
+                  <button mat-raised-button class="main-button blue hidden-md" (click)="showMoreTypes()" *ngIf="types_button">Show more types</button>
                 </div>
 
               </div>
@@ -56,7 +60,11 @@
              <div class="main_header_wrapper">
                <span class="main_header">Search by brand</span>
              </div>
-             <div>text</div>
+             <div class="one_brand" *ngFor="let brand of marks" #allbrands><div class="brand_img"><img [src]="imgUrl + 'brands/' + brand + '.png'" (click)="filterbyBrand(brand)"></div>
+             </div>
+             <div class="custom_btn_wrapper">
+               <button mat-raised-button class="main-button blue hidden-md" (click)="showMoreBrands()" *ngIf="brand_button">Show more brands</button>
+             </div>
            </div>
          </section>
 
@@ -85,19 +93,48 @@
                </div>
 
                <div class="custom_btn_wrapper">
-                 <button mat-raised-button class="main_btn" (click)="goTopromotedCars()">
+                 <button mat-raised-button class="main-button blue" (click)="goTopromotedCars()">
                    Show all promoted cars
                  </button>
                </div>
              </div>
          </section>
 
-         <section>
+         <section id="contact_section">
            <div class="medium-container">
-             <div class="main_header_wrapper">
-               <span class="main_header">Contact</span>
+             <div id="right_contact">
+               <div id="lefter_contact">
+                 <h2>Auto-Center</h2>
+                 <span><h3>Adress:</h3> Otto-Pawel Street 13, 80-500 Gdańsk, Poland</span>
+                 <span><h3>Phone:</h3> (+48) 091 00 00 75</span>
+                 <span><h3>Email:</h3> office@autocenter.eu</span>
+                 <span><h3>Monday - Friday:</h3> 9:00 AM – 4:00 PM</span>
+               </div>
+               <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJb_rUFBxz_UYRjb63Y_H7uZs&key=AIzaSyBgf9ERasF9BPc2RpLqVqf8GeWXtlJ46ZI" allowfullscreen></iframe>
              </div>
-             <div>text</div>
+             <div id="left_contact">
+               <h2>Get in touch</h2>
+              <form>
+                <mat-form-field floatLabel="never">
+                  <input type="text" matInput placeholder="Name..">
+                </mat-form-field>
+                <mat-form-field floatLabel="never">
+                  <input type="text" matInput placeholder="Email...">
+                </mat-form-field>
+                <mat-form-field floatLabel="never">
+                  <textarea type="text" matInput placeholder="Text..." rows="5"></textarea>
+                </mat-form-field>
+                <div class="hidden_message" #hidden_message>
+                  Sorry the operation of the contact form is not necessary :)
+                </div>
+              </form>
+               <div class="custom_btn_wrapper">
+               <button mat-raised-button class="main-button orange" (click)="SendEmail()">
+                 Send a message
+               </button>
+               </div>
+             </div>
+
            </div>
          </section>
 
@@ -105,11 +142,6 @@
 
 
 
-        <!-- footer -->
-<section class="footer">
 
  <app-footer></app-footer>
 
-
-
-</section>

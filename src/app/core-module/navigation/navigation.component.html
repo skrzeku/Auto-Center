@@ -2,8 +2,13 @@
   <ul class="navi-ul">
     <li class="left-list"><a class="navi-link" (click)="sendOutput()" id="navi-bars"><i class="fas fa-bars"></i></a>
     </li>
-    <li class="left-list" routerLink='/main'>
-      <img src="../../../assets/images/logo2.png" alt="logo" id="logo_img">
+    <li class="left-list" routerLink='/main' id="logo">
+     <!-- <img src="../../../assets/images/logo2.png" alt="logo" id="logo_img"> -->
+      <img src="../../../assets/images/LogoWheel.png">
+      <div>
+        <span>Auto-Center</span>
+        <span>Driving to the future</span>
+      </div>
     </li>
 
     <li class="right-list" *ngIf="bool"><a class="singouticon" (click)="singOut()"><i class="fas fa-sign-out-alt"></i></a></li>
