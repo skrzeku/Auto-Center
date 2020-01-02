@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     console.log(this.user);
     this.authserv.login(this.user)
       .then(lol => this.router.navigate(['myaccount']))
-      .catch(error => this.snack.open(error.message));
+      .catch(error => this.snack.open(error.message, undefined, {panelClass: ['error_one']}));
   }
 
   GoToDealer() {

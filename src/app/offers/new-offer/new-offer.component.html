@@ -1,24 +1,16 @@
 <div class="big-new-offer-container">
   <mat-toolbar class="mytoolbar">
-
-
 <div class="toolbar-inside">
-  Dodawanie Ogłoszenia
-
-
-
-
+<h1>Add car</h1>
 </div>
   </mat-toolbar>   <!-- End Toolbar-->
 
   <div id="bottom-navi-fixed">
     <div class="smaller-container">
-      <div class="left-side"> <a>Anuluj</a>
-
+      <div class="left-side"> <a (click)="testfunc()">Clear</a>
 
         <span>Liczba + Wypełnione pola</span>
-        <button class="register-btn" id="add-car" [disabled]="form.invalid" (click)="createCar()">Dodaj Pojazd</button></div>
-      <div class="right-side"></div>
+        <button  mat-raised-button class="main-button orange" [disabled]="form.invalid" (click)="createCar()">Add Vehicle</button></div>
 
     </div>
   </div>
@@ -28,12 +20,12 @@
   <div class="rest-section">
 <div class="smaller-container">
   <div class="left-one">
-  <h3>Twój pojazd</h3>
+    <h3 class="header_withLine"><span>Your Vehicle</span></h3>
 
     <form [formGroup]="form">   <!--2nd form -->
       <div class="forms-inside">
-      <div class="mywidth">
-        <span>Marka pojazdu:</span><i class="fas fa-info-circle" id="1"></i>
+      <div class="myfield sm">
+        <span>Brand:</span><i class="fas fa-info-circle" id="1"></i>
       <mat-form-field>
         <mat-select formControlName="mark" (selectionChange)="checkmark()">
           <mat-option class="myoption" *ngFor="let mark of marks" [value]="mark">
@@ -42,7 +34,7 @@
         </mat-select>
       </mat-form-field>
     </div>
-      <div class="mywidth">
+      <div class="myfield sm">
         <span>Model:</span><i class="fas fa-info-circle" id="2"></i>
         <mat-form-field>
           <mat-error>Model is required</mat-error>
@@ -54,8 +46,8 @@
         </mat-form-field>
       </div>
 
-        <div class="mywidth">
-          <span>Typ pojazdu:</span>
+        <div class="myfield sm">
+          <span>Type:</span>
           <mat-form-field>
             <mat-error>Type is required</mat-error>
             <mat-select formControlName="type">
@@ -67,8 +59,8 @@
         </div>
 
 
-      <div class="mywidth">
-        <span>Rok produkcji:</span><i class="fas fa-info-circle" id="3"></i>
+      <div class="myfield sm">
+        <span>Production Year:</span><i class="fas fa-info-circle" id="3"></i>
         <mat-form-field>
           <mat-select formControlName="year">
             <mat-option class="myoption" *ngFor="let year of years" [value]="year">
@@ -77,10 +69,10 @@
           </mat-select>
         </mat-form-field>
       </div>
-      <div class="mywidth">
-        <span>Rodzaj Paliwa:</span><i class="fas fa-info-circle" id="4"></i>
-        <mat-form-field>
 
+      <div class="myfield sm">
+        <span>Fuel:</span><i class="fas fa-info-circle" id="4"></i>
+        <mat-form-field>
           <mat-select formControlName="fuel">
             <mat-option class="myoption" *ngFor="let fuel of fuels" [value]="fuel">
               {{fuel}}
@@ -88,10 +80,10 @@
           </mat-select>
         </mat-form-field>
       </div>
-      <div class="mywidth">
+
+      <div class="myfield sm">
         <span>Color:</span>
         <mat-form-field>
-
           <mat-error>Colour is required</mat-error>
           <mat-select formControlName="color">
             <mat-option class="myoption" *ngFor="let color of colors" [value]="color">
@@ -103,41 +95,41 @@
       </div>
       <div class="forms-inside">
       <div class="mywidth width-50">
-        <span>Skrzynia biegów:</span><i class="fas fa-info-circle" id="5"></i>
+        <span>Gearcase:</span><i class="fas fa-info-circle" id="5"></i>
         <mat-radio-group aria-label="Select an option" formControlName="gearcase">
-          <mat-radio-button class="radio-group" value="manualna" color="primary">Manualna</mat-radio-button>
-          <mat-radio-button class="radio-group" value="automatyczna" color="primary">Automatyczna</mat-radio-button>
+          <mat-radio-button class="radio-group" value="Manual" color="primary">Manual</mat-radio-button>
+          <mat-radio-button class="radio-group" value="Automatic" color="primary">Automatic</mat-radio-button>
         </mat-radio-group>
       </div>
       <div class="mywidth width-50">
-        <span>Stan:</span><i class="fas fa-info-circle" id="6"></i>
+        <span>State:</span><i class="fas fa-info-circle" id="6"></i>
         <mat-radio-group aria-label="Select an option" formControlName="state">
-          <mat-radio-button class="radio-group" value="nowy" color="primary">Nowy</mat-radio-button>
-          <mat-radio-button class="radio-group" value="używany" color="primary">Używany</mat-radio-button>
+          <mat-radio-button class="radio-group" value="New" color="primary">New</mat-radio-button>
+          <mat-radio-button class="radio-group" value="Used" color="primary">Used</mat-radio-button>
         </mat-radio-group>
       </div>
-      <div class="mywidth">
-      <span>Moc (KM):</span><i class="fas fa-info-circle" id="7"></i>
+      <div class="myfield sm number_field">
+      <span>Power (KM):</span><i class="fas fa-info-circle" id="7"></i>
       <mat-form-field [ngClass]="{'error_field': form.get('power').invalid}">
         <mat-error>Power should be more than 0</mat-error>
         <input type="number"  matInput name="value" placeholder="" formControlName="power">
       </mat-form-field>
 
       </div>
-      <div class="mywidth">
-        <span id="smaller-span">Pojemność skokowa (cm<sup>3</sup>):</span><i class="fas fa-info-circle" id="8"></i>
+      <div class="myfield sm number_field">
+        <span id="smaller-span">Engine capacity (cm<sup>3</sup>):</span><i class="fas fa-info-circle" id="8"></i>
         <mat-form-field>
           <input type="number"  matInput name="value" placeholder="" formControlName="engine_capacity">
         </mat-form-field>
       </div>
-      <div class="mywidth">
-        <span>Przebieg:</span>
+      <div class="myfield sm number_field">
+        <span>Course:</span>
         <mat-form-field>
           <mat-error>Course should be more than 0</mat-error>
           <input type="number"  formControlName="course" matInput name="value" placeholder="">
         </mat-form-field>
       </div>
-        <div class="mywidth">
+        <div class="myfield sm">
           <span>Country:</span>
           <mat-form-field>
             <mat-error>Colour is required</mat-error>
@@ -150,7 +142,7 @@
         </div>
       </div>
       <div class="forms-inside">
-      <div class="mywidth" id="price">
+      <div class="myfield number_field" id="price">
         <span>Cena:</span>
         <mat-form-field>
           <input type="number"  matInput name="value" placeholder="" formControlName="price">
@@ -166,18 +158,20 @@
       <div class="add-photo-cont">
         <div class="small-add-photo">
           <input #addMainInput hidden="true" type="file" onclick="this.value=null" accept=".png" (change)="addMainPhoto($event)"/>
-          <a (click)="addMainInput.click()" id="add-img-main"><i class="fas fa-camera"></i>Dodaj główne zdjęcie</a>
+          <a (click)="addMainInput.click()" id="add-img-main"><i class="fas fa-camera"></i>Add main photo</a>
         </div>
         <div class="small-add-photo">
           <input #csvInput hidden="true" multiple type="file"  onclick="this.value=null" (change)="csvInputChange($event)" accept=".png"/>
-          <a (click)="csvInput.click()" id="add-img"><i class="fas fa-camera"></i>Dodaj pozostałe zdjęcia</a>
+          <a (click)="csvInput.click()" id="add-img"><i class="fas fa-camera"></i>Add rest photos</a>
         </div>
-        <div class="small-img" *ngFor="let img of selectedFiles; index as index">
-          <img [src]="url[index]">
+        <div id="big_main_img" [ngStyle]="{'background-image': 'url(' + mainUrl + ')'}" *ngIf="mainUrl">
+        </div>
+        <div class="small-img" *ngFor="let img of selectedFiles; index as index" [ngStyle]="{'background-image':' url(' + url[index] + ')'}">
+          <!--<img [src]="url[index]"> -->
         </div>
 
       </div>
-        <div class="mywidth w-100">
+        <div class="myfield">
           <span>Title:</span>
           <mat-form-field>
             <input type="text"  matInput name="value" placeholder="" #titleInput formControlName="shortdescription">
@@ -188,7 +182,7 @@
 
 
 
-        <div class="mywidth w-100">
+        <div class="myfield">
         <span>Description:</span>
         <mat-form-field>
           <input type="text"  matInput name="value" placeholder="" #descriptionInput formControlName="description">
@@ -198,7 +192,7 @@
         </mat-form-field>
       </div>
         <div class="check-vat">
-          <mat-checkbox color="primary" formControlName="premium">Ogłoszenie wyróżnione (+ 40PLN)</mat-checkbox></div>
+          <mat-checkbox color="primary" formControlName="premium">Premium Add (+ 40$)</mat-checkbox></div>
       </div>
     <div class="forms-inside" id="forms-inside-withoutPadding">
       <div class=" small-width-50">

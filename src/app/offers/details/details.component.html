@@ -16,9 +16,9 @@
               <i class="fas fa-chevron-right mychevron"></i>
             </div>
 
-            <figure style="height: 100%" class="myfigure" #figure>
-              <div class="img_carousel_wrapper" *ngFor="let img of small_img_src" #sliders>
-                <img [src]="img" class="img_carousel">
+            <figure style="height: 100%" class="myfigure" #figure>  <!--[ngStyle]="{'background-image': 'url(' + img + ')'}" -->
+              <div class="img_carousel_wrapper" *ngFor="let img of small_img_src" #sliders [ngStyle]="{'background-image':' url(' + img + ')'}">
+               <!-- <img [src]="img" class="img_carousel"> -->
               </div>
 
 
@@ -47,16 +47,16 @@
                     <div *ngIf="visibleboolean" [@scale3dboth]>
                       <i class="fas fa-phone"></i><span>51220292</span>
                     </div>
-                  <button mat-raised-button (click)="shownumber()" class="question_button" *ngIf="!visibleboolean">Show Number</button> <button mat-raised-button (click)="hidenumber()" class="question_button" *ngIf="visibleboolean">Hide Number</button>
-
+                  <button mat-raised-button (click)="shownumber()" class="main-button orange" *ngIf="!visibleboolean">Show Number</button> <button mat-raised-button (click)="hidenumber()" class="main-button orange" *ngIf="visibleboolean">Hide Number</button>
+                  <button mat-raised-button class="main-button blue visible-sm" (click)="showContact()">Contact</button>
                 </div>
-                <button mat-raised-button class="question_button visible-sm" color="primary" (click)="showContact()">Contact</button>
+
 
               </div>
           </div>
     <div class="date-id-details" #details_now_fixed>
       <div class="details-button-wrapper">
-        <button mat-raised-button class="headers_btn" color="primary">Details</button>
+        <button mat-raised-button class="main-button headers_btn blue">Details</button>
       </div>
 
       <ul>
@@ -81,9 +81,9 @@
     </div>
     <div id="description_wrapper">
       <div class="details-button-wrapper">
-        <button mat-raised-button class="headers_btn" color="primary">Description</button>
+        <button mat-raised-button class="main-button blue headers_btn">Description</button>
       </div>
-      <div>{{car.description}}</div>
+      <div class="date-id-details">{{car.description}}</div>
     </div>
   </div>
 </section>

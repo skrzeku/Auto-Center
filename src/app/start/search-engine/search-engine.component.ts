@@ -2,13 +2,9 @@ import {
   AfterViewInit, Component, ComponentRef, ContentChild, ElementRef, HostListener, OnInit, Renderer2, ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import {text} from '@angular/core/src/render3/instructions';
-import {map, startWith, tap} from 'rxjs/internal/operators';
-import {Observable} from 'rxjs';
-import {FormControl} from '@angular/forms';
+
 import {Router} from '@angular/router';
-import * as $ from 'jQuery';
-import {AutomobileComponent} from './automobile/automobile.component';
+
 import {HelpService} from '../../core-module/services/help.service';
 import {fadeAnimation} from '../animation/fadeIntRoute';
 import {CarsService} from '../../core-module/services/cars.service';
@@ -18,15 +14,10 @@ import {Car} from '../../core-module/models/car.model';
   selector: 'app-search-engine',
   templateUrl: './search-engine.component.html',
   styleUrls: ['./search-engine.component.less'],
-  providers: [AutomobileComponent],
   animations: [fadeAnimation]
 })
 export class SearchEngineComponent implements OnInit, AfterViewInit {
 
-
-
-  @ViewChild(AutomobileComponent) routerchild: AutomobileComponent;
-  @ContentChild(AutomobileComponent) childCompo: AutomobileComponent;
   @ViewChild('movedspan') movedspan: ElementRef;
   @ViewChild('firstspan') firstspan: ElementRef;
   @ViewChild('fuelmoved') fuelmoved: ElementRef;
@@ -69,8 +60,6 @@ export class SearchEngineComponent implements OnInit, AfterViewInit {
     const left = this.firstspan.nativeElement.offsetLeft;
     const fuelleft = this.firstfuel.nativeElement.offsetLeft;
     this.rend.setStyle(this.movedspan.nativeElement, 'left', left + 'px');
-    //this.rend.setStyle(this.fuelmoved.nativeElement, 'left', fuelleft + 'px');
-    this.rend
 
   }
 

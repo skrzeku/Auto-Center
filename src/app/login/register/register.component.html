@@ -2,73 +2,107 @@
   <div class="medium-container">
     <div class="left-register-form">
       <form [formGroup]="registerform">
-        <div class="login-form-field">
-          <span>Login:</span>
+
+      <!--  <div class="login-form-field">
+          <span>Email:</span>
           <input type="email" formControlName="email">
+          <span *ngIf="registerform.get('email').hasError('required')">This field is required</span>
         </div>
-        <div class="login-form-field">
-          <span>Password:</span>
-          <input type="password" formControlName="password">
-          <mat-error *ngIf="registerform.get('password').hasError('minlength')">Min length is 6 chars</mat-error>
+        -->
+
+        <div class="myfield">
+          <span>Email:</span>
+          <mat-form-field>
+            <mat-error>Email is required</mat-error>
+            <input type="email"  formControlName="email" matInput placeholder="">
+          </mat-form-field>
         </div>
-        <div class="login-form-field">
+
+        <div class="myfield">
+            <span>Password:</span>
+            <mat-form-field>
+              <mat-error>Password is required</mat-error>
+              <input type="password"  formControlName="password" matInput placeholder="">
+            </mat-form-field>
+        </div>
+        <div class="myfield">
           <span>Repeat password: </span>
-          <input type="password">
+          <mat-form-field>
+            <mat-error>Password is required</mat-error>
+            <input type="password" matInput placeholder="">
+          </mat-form-field>
         </div>
-        <div class="login-form-field sm">
-          <span>Imię: </span>
-          <input type="text" formControlName="first_name">
+
+        <div class="myfield sm">
+          <span>Name: </span>
+          <mat-form-field>
+            <input type="text" matInput formControlName="first_name" placeholder="">
+          </mat-form-field>
         </div>
-        <div class="login-form-field sm">
-          <span>Nazwisko: </span>
-          <input type="text" formControlName="last_name">
+
+        <div class="myfield sm">
+          <span>Last Name: </span>
+          <mat-form-field>
+            <input type="text" matInput formControlName="last_name" placeholder="">
+          </mat-form-field>
         </div>
-        <div class="login-form-field">
-          <span>Kraj: </span>
-          <input type="text" formControlName="country">
+
+
+
+        <div class="myfield">
+          <span>Country: </span>
+          <mat-form-field>
+            <input type="text" matInput formControlName="country" placeholder="">
+          </mat-form-field>
         </div>
-        <div class="login-form-field">
-          <span>Adres: </span>
-          <input type="text" formControlName="adress">
+
+        <div class="myfield">
+          <span>Adress: </span>
+          <mat-form-field>
+            <input type="text" matInput formControlName="adress" placeholder="">
+          </mat-form-field>
         </div>
-        <div class="login-form-field sm">
-          <span>Kod Pocztowy: </span>
-          <input type="text" formControlName="post_code">
+
+        <div class="myfield sm">
+          <span>Postal Code: </span>
+          <mat-form-field>
+            <input type="text" matInput formControlName="post_code" placeholder="">
+          </mat-form-field>
         </div>
-        <div class="login-form-field sm">
-          <span>Miasto: </span>
-          <input type="text" formControlName="city">
+
+        <div class="myfield sm">
+          <span>City: </span>
+          <mat-form-field>
+            <input type="text" matInput formControlName="city" placeholder="">
+          </mat-form-field>
         </div>
 
         <!-- shown when login success
         <span ngIf="">Login success</span> -->
-        <h5>Klikając przycisk utwórz konto, akceptuję <a>Regulamin</a> </h5>
-        <p>Przyjmuję do wiadomości, że Auto-Center wykorzystuje moje dane osobowe zgodnie z <a>Polityką prywatności</a> oraz <a>Polityką dotyczącą plików cookie i podobnych technologii</a>. OLX wykorzystuje zautomatyzowane systemy i partnerów do analizowania, w jaki sposób korzystam z usług w celu zapewnienia odpowiedniej funkcjonalności produktu, treści, dostosowanych i opartych na zainteresowaniach reklam, jak również ochrony przed spamem, złośliwym oprogramowaniem i nieuprawnionym korzystaniem z naszych usług.</p>
+        <p>By creating an account, you agree to our <a>User Agreement</a> and acknowledge reading our <a>User Privacy Notice</a>.</p>
 
         <!-- Checbox--> <p>WLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
       </form>
-      <button class="register-btn" (click)="register()" [disabled]="registerform.invalid">Utwórz konto indywidualne</button>
+      <button mat-raised-button class="main-button orange" (click)="register()" [disabled]="registerform.invalid">Create an account</button>
     </div>
-    <div class="right-register visible-sm">
-      <div class="right-header-content">
-        <h4>Konto umożliwia dostęp do zakładki </h4>
-        <h4>Moje Auto-Centrum gdzie możesz:</h4>
+    <div class="right_form">
+      <div id="right_top_wrapper">
+        <h3>Is this your first time being here?</h3>
+        <p>Create an account and gain a lot</p>
       </div>
-      <div class="right-bottom-content">
-        <ul class="right-bottom-ul">
-          <li>
-            <span><i class="far fa-check-circle fa-2x"></i></span>
-            edytować lub usuwać swoje ogłoszenia</li>
-          <li>
-            <span><i class="far fa-check-circle fa-2x"></i></span>edytować lub usuwać swoje ogłoszenia</li>
-          <li>
-            <span><i class="far fa-check-circle fa-2x"></i></span>edytować lub usuwać </li>
-          <li><span>Podaj swój adres e-mail i Twoje hasło</span>
-          <p>Potwierdź klikając w przycisk przesłany
-            w oddzielnym e-mailu</p>
-          </li>
+
+      <div class="w-100 center-text">
+
+        <ul id="right_from_list">
+          <li><i class="far fa-check-circle"></i>Access saved cars and searches.</li>
+          <li><i class="far fa-check-circle"></i>Make more money when you sell your car yourself.</li>
+          <li><i class="far fa-check-circle"></i>You can sell your own car on less than 2 minutes.</li>
+          <li><i class="far fa-check-circle"></i>We help you to find the best financial solution.</li>
+
+
         </ul>
       </div>
+
     </div>
   </div>
 </div>

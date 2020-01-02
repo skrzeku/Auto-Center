@@ -2,54 +2,65 @@
   <div class="medium-container">
     <div class="left-form">
       <form action="">
-        <div class="login-form-field">
+        <div class="myfield">
           <span>Login:</span>
-          <input type="text" [(ngModel)]="user.email" required name="email">
+          <mat-form-field>
+            <mat-error>Email is required</mat-error>
+            <input type="email"  [(ngModel)]="user.email" required name="email" matInput placeholder="">
+          </mat-form-field>
         </div>
-        <div class="login-form-field">
+        <div class="myfield">
           <span>Password:</span>
-          <input type="password" [(ngModel)]="user.password" required name="password">
+          <mat-form-field>
+            <mat-error>Password is required</mat-error>
+            <input type="password"  [(ngModel)]="user.password" required name="password" matInput placeholder="">
+          </mat-form-field>
         </div>                                <!--Checkbox -->
                                       <section title=".slideThree">
                                         <div class="slideThree">
                                           <input type="checkbox" value="None" id="slideThree" name="check" checked />
                                           <label for="slideThree"></label>
                                         </div>
-                                        <span id="remember-span">Zapamietaj mnie</span>
+                                        <span id="remember-span">Remember me</span>
                                       </section>
 
               <!-- shown when login success -->
         <!--<span ngIf="">Login success</span> -->
 
       </form>
-      <button class="register-btn" id="login-btn" (click)="SingIn()">Zaloguj się</button>
+      <button mat-raised-button class="main-button orange" id="login-btn" (click)="SingIn()">Sign-In</button>
       <div class="spans">
-        <span>Przypomnij login lub hasło</span>
-        <span class="float-right" (click)="gotoRegister()">Zarejestruj się</span>
+        <span>Forget login or password</span>
+        <span class="float-right" (click)="gotoRegister()">Register</span>
       </div>
 
     </div>
-    <div class="right-add">
-      <div class="right-top-text visible-sm"> Nie masz konta, <br>
-       ale już zamieściłeś Ogłoszenie? <a>Kliknij tutaj</a>
-     </div>
-      <div class="right-top-container">
-        <div class="right-top-img"></div>
-        <h3 class="right-top-header">Bądź bezpieczny w Auto-Center!</h3> <i class="fas fa-info-circle"></i>
-        <p class="visible-sm">Korzystaj z bezpiecznych łączy. Zwróć uwagę, czy linki odnoszące się do Auto-Center są odpowiednio zabezpieczone i prowadzą do właściwej strony. Pamiętaj o protokole bezpieczeństwa HTTPS, który chroni Twoje dane osobowe w sieci.</p>
+    <div class="right_form">
+      <div id="right_top_wrapper">
+        <h3>Is this your first time being here?</h3>
+        <p>Create an account and gain a lot</p>
       </div>
-      <div class="right-bottom-container visible-sm" (click)="GoToDealer()">
-        <h4>Masz firmę sprzedającą pojazdy?</h4>
-        <h5>Załóż konto dla użytkowników profesjonalnych</h5>
-        <i class="fas fa-chevron-right"></i>
+
+      <div class="w-100 center-text">
+
+        <ul id="right_from_list">
+          <li><i class="far fa-check-circle"></i>Access saved cars and searches.</li>
+          <li><i class="far fa-check-circle"></i>Make more money when you sell your car yourself.</li>
+          <li><i class="far fa-check-circle"></i>You can sell your own car on less than 2 minutes.</li>
+          <li><i class="far fa-check-circle"></i>We help you to find the best financial solution.</li>
+
+
+        </ul>
       </div>
+
     </div>
+
   </div>
   <div class="bottom-social-container">
     <div class="medium-container">
       <ul class="social-buttons">
-        <li class="face-li"><i class="fab fa-facebook-f"></i><a>Zaloguj się przez Facebook</a></li>
-        <li class="google-li"><i class="fab fa-google"></i><a>Zaloguj się z Google</a></li>
+        <li class="face-li main-button blue" ><i class="fab fa-facebook-f"></i><a>Facebook Login</a></li>
+        <li class="google-li main-button blue"><i class="fab fa-google"></i><a>Google login</a></li>
       </ul>
       <p class="social-par">“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus rhoncus pulvinar aliquam. Ut aliquet tristique nisl vitae volutpat. Nulla aliquet porttitor venenatis. Donec a dui et dui fringilla consectetur id nec massa. Aliquam erat volutpat. Sed ut dui ut lacus dictum fermentum vel tincidunt neque. Sed sed lacinia lectus. Duis sit amet sodales felis. Duis nunc eros, mattis at dui ac, convallis semper risus. In adipiscing ultrices tellus, in suscipit massa vehicula eu.</p>
     </div>

@@ -77,10 +77,6 @@ export class DetailsComponent implements OnInit, AfterViewInit {
 
     this.mydetail_element = this.details_now_fixed.nativeElement;
     this.getLength();
-    console.log(this.slider_wrapper.nativeElement.clientWidth);
-    //this.renderer.setStyle(this.figure.nativeElement, 'left', -this.slider_wrapper.nativeElement.clientWidth + 'px');
-
-
 
   }
 
@@ -92,7 +88,7 @@ export class DetailsComponent implements OnInit, AfterViewInit {
     this.visibleboolean = false;
   }
   getLength(): void {
-    firebase.storage().ref().child('21').listAll().then((result) => {
+    firebase.storage().ref().child('' + this.car.id + '').listAll().then((result) => {
       this.DownloadImgs(result.items.length);
       this.imgs_length = result.items.length;
     }).catch(function(error) {
@@ -100,14 +96,12 @@ export class DetailsComponent implements OnInit, AfterViewInit {
     });
   }
   DownloadImgs(num: number): void {
-
     for(let i = 0; i <= num - 1; i++) {
-
-      const storage = firebase.storage().ref().child('21/' + i + '.png');
+      const storage = firebase.storage().ref().child( '27/' + i + '.png');
       storage.getDownloadURL().then(url => {
         this.small_img_src.push(url);
         this.renderer.setStyle(this.figure.nativeElement, 'width', (num * 100) + '%');
-
+        console.log(i);
       });
     }
     setTimeout(() => {
@@ -154,7 +148,7 @@ export class DetailsComponent implements OnInit, AfterViewInit {
       this.visibleRight = true;
     }
     if (str === '+') {
-      if (this.increment >= this.sliders.length - 1) {
+      if (this.increment >= this.sliders.length - 2) {
         this.visibleRight = false;
       }
       this.increment++;

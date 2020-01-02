@@ -27,6 +27,7 @@ export class StartComponent implements OnInit {
   @ViewChildren('allbrands') allbrands: QueryList<ElementRef>;
   @ViewChild('main_figure') main_figure: ElementRef;
   @ViewChild('hidden_message') hidden_message: ElementRef;
+  @ViewChild('contact_section') contact_section: ElementRef;
   types_button = true;
   brand_button = true;
   leftchevron_vis = false;
@@ -126,6 +127,15 @@ export class StartComponent implements OnInit {
     setTimeout(() => {
       this.render.removeClass(this.hidden_message.nativeElement, 'shown_message');
     }, 4000);
+  }
+  scrolltoContact(): void {
+    this.contact_section.nativeElement.scrollIntoView({behavior: 'smooth'});
+  }
+  gotoOffers(): void {
+    this.router.navigate(['/offers']);
+  }
+  navigateToLogin(): void {
+    this.router.navigate(['login']);
   }
 
 }

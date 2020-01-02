@@ -47,13 +47,13 @@ export class OffersComponent implements OnInit, AfterViewInit, OnDestroy {
   range = [0, 99999];
   course_range = [0, 999999];
   year_range = [1850, 2019];
-  states: string[] = ['Nowy', 'Używany', 'Wszystkie'];
+  states: string[] = ['New', 'Used', 'All'];
   models: string[] = ['BMW', 'Mazda', 'Toyota', 'Audi'];
   modeModel = '';
   stateModel1 = '';
   markModel1 = '';
   showfilter = false;
-  sorts = ['Najnowsze', 'Cena rosnąco', 'Cena malejąco', 'Najniższy przebieg', 'Najwyższy przebieg'];
+  sorts = ['Latest', 'Lower price', 'Higher price', 'Lower course', 'Higher course'];
   marks$;
   markModel = '';
   stateModel = '';
@@ -217,7 +217,7 @@ export class OffersComponent implements OnInit, AfterViewInit, OnDestroy {
     }, 300);
   }
   Checkfields(modelvalue) {
-    if (modelvalue === '' || modelvalue === 'Wszystkie') {
+    if (modelvalue === '' || modelvalue === 'All') {
       this.valueone = '';
       this.valuetwo = null;
     }

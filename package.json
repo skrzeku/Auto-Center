@@ -33,6 +33,7 @@
     "jquery": "^3.4.1",
     "ngx-rangeslider-component": "^1.0.6",
     "rxjs": "6.0.0",
+    "smoothscroll-polyfill": "^0.4.4",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {

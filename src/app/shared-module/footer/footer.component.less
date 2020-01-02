@@ -76,13 +76,17 @@
 }
 #footer_bottom {
   .center-text;
+  max-width: 1180px;
   .w-100;
   .absolute;
   bottom: 30px;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-top: 15px;
   color: @sec-color;
   opacity: .7;
   font-size: .8rem;
+  border-top: solid 1px @bg-color;
   @media @medium {
     font-size: 1rem;
   }

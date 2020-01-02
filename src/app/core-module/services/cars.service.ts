@@ -64,7 +64,7 @@ export class CarsService {
   pushFileToStorage(fileUpload: FileList, progress: { percentage: number }, path) {
 for (let i = 0; i <= fileUpload.length - 1; i++) {
   const storageRef = firebase.storage().ref();
-  const uploadTask = storageRef.child(`${'/' + path}/${i + '.png'}`).put(fileUpload[i]);
+  const uploadTask = storageRef.child(`${'/' + path}/${(i + 1) + '.png'}`).put(fileUpload[i]);
   uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
     (snapshot) => {
       // in progress
@@ -80,12 +80,29 @@ for (let i = 0; i <= fileUpload.length - 1; i++) {
     }
   );
 }
-
+  }
+  pushMaintoStorage(fileUpload: File, progress: {percentage: number}, path) {
+    const storageRef = firebase.storage().ref();
+    const uploadTask = storageRef.child(`${'/' + path}/${0 + '.png'}`).put(fileUpload);
+    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+      (snapshot) => {
+        // in progress
+        const snap = snapshot as firebase.storage.UploadTaskSnapshot;
+        progress.percentage = Math.round((snap.bytesTransferred / snap.totalBytes) * 100);
+      },
+      (error) => {
+        // fail
+        console.log(error);
+      },
+      () => {
+        this.saveFileData(fileUpload, path);
+      });
   }
 
 
    saveFileData(fileUpload: File, path) {
     this.db.list(`${'/' + path}/`).push(fileUpload);
+    console.log(fileUpload);
   }
 
 }

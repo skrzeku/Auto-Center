@@ -47,13 +47,13 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
   @ViewChildren('mydynamic') mydynamic: ElementRef;
   dynamic_info: boolean = false;
   progress: { percentage: number } = {percentage: 0};
-  selectedFiles: FileList;
+  selectedFiles: FileList = null;
   oneSelectedFile: File;
  marks = ['Mazda', 'Audi', 'Volkswagen', 'Kia', 'Toyota', 'BMW', 'Citroen', 'Fiat', 'Honda', 'Ford', 'Hyundai', 'Lexus', 'Mercedes', 'Nissan', 'Renault'];
   models = [];
-  colors = ['Biały', 'Czarny', 'Granatowy', 'Sredrny', 'Szary', 'Czerwony', 'Zielony', 'Żółty'];
-  types = ['Hatchback', 'Sedan', 'Kombi', 'Coupe', 'Kabriolet', 'Limuzyna', 'Pickup', 'Terenowe', 'Van'];
-  fuels = ['Benzyna', 'Diesel', 'Hybryda', 'Elektryczny', 'LPG'];
+  colors = ['White', 'Black', 'Blue', 'Silver', 'Gray', 'Red', 'Green', 'Yellow'];
+  types = ['Hatchback', 'Sedan', 'Wagon', 'Coupe', 'Convertible', 'Luxury', 'Pickup', 'Suv'];
+  fuels = ['Petrol', 'Diesel', 'Hybrid', 'Electric', 'LPG'];
   countries = ['Poland', 'Germany', 'France', 'UK', 'USA', 'Russia', 'Belgium', 'Netherlands', 'Other'];
   carse: Car[];
   mysrc;
@@ -64,7 +64,7 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
   info_db: any [] = [];
   carsLength: number;
   url = [];
-  rs$;
+  mainUrl: any = null;
   years = [];
 
   oneinfodb: any;
@@ -111,6 +111,7 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
   this.carsservice.getCars().subscribe((cars) => {
     if (cars) {
       this.carse = cars;
+
     }
   });
 
@@ -127,15 +128,15 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
         color: ['', Validators.required],
         course: [0, [Validators.required, Validators.min(0)]],
         engine_capacity: [1000, [Validators.required, Validators.min(0)]],
-        from: 'Osoba Prywatna',    //it should be moved to the client datas!!
+        from: 'Poland',    //it should be moved to the client datas!!
         fuel: ['', Validators.required],
-        gearcase: ['manualna', Validators.required],
+        gearcase: ['Manual', Validators.required],
         id: '',
       shortdescription: ['', [Validators.required, Validators.maxLength(50)]],
         mark: ['', Validators.required],
         model: ['', [Validators.required, Validators.maxLength(12)]],
         power: [0, [Validators.required, Validators.min(0)]],
-        state: ['nowy', Validators.required],
+        state: ['New', Validators.required],
         version: '',
         year: [2010, Validators.required],
         key: '',
@@ -152,6 +153,7 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
 
   //Send images to the storage now just one file but i have to edit it :)
   csvInputChange(event): void {
+    this.url.length = 0;
     this.selectedFiles = event.target.files;
     console.log(this.selectedFiles.length);
     for (let i = 0; i <= this.selectedFiles.length - 1; i++) {
@@ -160,14 +162,21 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
       reader.onload = (e: any) => { // called once readAsDataURL is completed
         const oneresult = e.target.result;
         this.url.push(oneresult);
+        console.log(oneresult);
       };
     }
   }
   addMainPhoto(event): void {
     this.oneSelectedFile = event.target.files[0];
-
-    console.log(this.oneSelectedFile.webkitRelativePath);
+    const reader = new FileReader();
+    const read = reader.readAsDataURL(this.oneSelectedFile);
+    reader.onload = (e: any) => {
+      this.mainUrl = e.target.result;
+    };
+    console.log(read);
   }
+
+
   LoadoneCar() {
     if (this.carsservice.carSubject.value) {
       this.carsservice.carSubject.subscribe((car) => {
@@ -227,10 +236,16 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
   }
 
   createCar(): void {
-    const id = this.carsLength + 1;
-    this.form.controls['id'].setValue(id);
+
+    const id_cor = this.carse.map((car) => car.id)
+      .reduce((prev, current) => {
+        return (prev > current) ? prev : current;
+      });
+
+    this.form.controls['id'].setValue(id_cor + 1);
     this.form.controls['start_date'].setValue(new Date());
-    this.carsservice.pushFileToStorage(this.selectedFiles, this.progress, id);   //images
+    this.carsservice.pushMaintoStorage(this.oneSelectedFile, this.progress, id_cor + 1);
+    this.carsservice.pushFileToStorage(this.selectedFiles, this.progress, id_cor + 1);   //images
 
 
     this.db.addCar(this.form.value)
@@ -260,6 +275,10 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
     const models = this.carse.filter(car => car.mark === mark);
     const lol = models.map(car => car.model);
     this.models = Array.from(new Set(lol));
+  }
+  testfunc() {
+  console.log(this.selectedFiles);
+
   }
 
 

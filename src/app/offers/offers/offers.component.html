@@ -1,106 +1,107 @@
-
-  <div class="smaller-container">
-    <div id="small_navi_separator">
-
-      <span id="top_span_navi">Strona główna <i class="fas fa-chevron-right"></i> Aktywne Oferty</span>
-      <div class="w-100 center-text filterbtn">
-        <button mat-raised-button color="primary" class="search_button" (click)="showfilters('show')">Filtruj</button>
-      </div>
-      <div id="filters_medium_wrapper">
-
-            <!-- First-->
-      <div class="one_medium_filter">
-        <div class="one_medium_inside" id="1"><span *ngIf="!mybools[0]">Cena</span><span class="colorbrands" *ngIf="mybools[0]">{{range[0]}} - {{range[1]}} zł</span><i class="fas fa-chevron-down"></i></div>
-        <div class="hidden_filter" *ngIf="filter_number == 1"  [@widtheight]>
-          <div class="hidden_filter_top">
-            <h3>Cena: </h3><span (click)="clearValues(range, 0, min, max)">Wyczyść</span>
-          </div>
-          <span> {{range[0]}} - {{range[1]}} zł </span>
-          <range-slider [min]="min" [max]="max" [step]="1" [(ngModel)]="range"></range-slider>
-          <button mat-raised-button class="hidden_btn" *ngIf="range[0] != min || range[1] != max" (click)="setValues(0)">Wybierz</button>
-        <button mat-raised-button class="hidden_btn close_hidden_btn" *ngIf="range[0] == min && range[1] == max" (click)="closeValues(0)">Zamknij</button></div>
-      </div>
+<div id="small_navi_separator">
+<div class="medium-container">
 
 
-        <!-- Second-->
-        <div class="one_medium_filter">
-          <div  class="one_medium_inside" id="2"><span *ngIf="!mybools[1]">Rok Produkcji</span><span class="colorbrands" *ngIf="mybools[1]">{{year_range[0]}} - {{year_range1[1]}} r.</span><i class="fas fa-chevron-down"></i></div>
-          <div class="hidden_filter" *ngIf="filter_number == 2" #topfilters [@widtheight]>
-            <div class="hidden_filter_top">
-              <h3>Rok produkcji: </h3><span (click)="clearValues(year_range, 1, 1850, 2019)">Wyczyść</span>
-            </div>
+  <span id="top_span_navi">Home <i class="fas fa-chevron-right"></i> Active Offers</span>
+  <div class="w-100 center-text filterbtn">
+    <button mat-raised-button class="main-button orange" (click)="showfilters('show')">Filter</button>
+  </div>
+  <div id="filters_medium_wrapper">
 
-            <span class="slider_span"> {{year_range[0]}} - {{year_range[1]}} r </span>                                      <!--(onRangeChange)="rangeChanged($event)" -->
-            <range-slider [min]="1850" [max]="2019" [step]="1" [(ngModel)]="year_range"></range-slider>
-            <button mat-raised-button class="hidden_btn" *ngIf="year_range[0] != 1850 || year_range[1] != 2019" (click)="setValues(1)">Wybierz</button>
-            <button mat-raised-button class="hidden_btn close_hidden_btn" *ngIf="year_range[0] == 1850 && year_range[1] == 2019" (click)="closeValues(1)">Zamknij</button></div>
+    <!-- First-->
+    <div class="one_medium_filter">
+      <div class="one_medium_inside" id="1"><span *ngIf="!mybools[0]">Price</span><span class="colorbrands" *ngIf="mybools[0]">{{range[0]}} - {{range[1]}} zł</span><i class="fas fa-chevron-down"></i></div>
+      <div class="hidden_filter" *ngIf="filter_number == 1"  [@widtheight]>
+        <div class="hidden_filter_top">
+          <h3>Price: </h3><span (click)="clearValues(range, 0, min, max)">Clear</span>
         </div>
-
-
-            <!-- Third-->
-        <div class="one_medium_filter"><div class="one_medium_inside" id="3"><span *ngIf="!mybools[2]">Przebieg</span><span class="colorbrands" *ngIf="mybools[2]">{{course_range[0]}} - {{course_range[1]}} km</span><i class="fas fa-chevron-down"></i></div>
-          <div class="hidden_filter" *ngIf="filter_number == 3" #topfilters [@widtheight]>
-            <div class="hidden_filter_top">
-              <h3>Przebieg: </h3><span (click)="clearValues(course_range, 2, 0, 999999)">Wyczyść</span>
-            </div>
-            <span class="slider_span"> {{course_range[0]}} - {{course_range[1]}} km </span>
-            <range-slider [min]="0" [max]="999999" [step]="10" [(ngModel)]="course_range">        </range-slider>
-            <button mat-raised-button class="hidden_btn" *ngIf="course_range[0] != 0 || course_range[1] != 999999" (click)="setValues(2)">Wybierz</button>
-            <button mat-raised-button class="hidden_btn close_hidden_btn" *ngIf="course_range[0] == 0 && course_range[1] == 999999" (click)="closeValues(2)">Zamknij</button></div>
-        </div>
-
-
-         <mat-form-field class="top_filter_fields" floatLabel="never">
-           <mat-select [(ngModel)]="stateModel" placeholder="Stan">
-             <mat-option *ngFor="let state of states" [value]="state" >
-               {{state}}
-             </mat-option>
-           </mat-select>
-         </mat-form-field>
-
-        <mat-form-field class="top_filter_fields" floatLabel="never">
-          <mat-select [(ngModel)]="markModel" placeholder="Marka">
-            <mat-option *ngFor="let mark of marks$ | async" [value]="mark" >
-              {{mark}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <div class="d-inline" id="show_btn">
-          <button mat-raised-button class="search_button" (click)="fillFilterArray(range, year_range, course_range, stateModel, markModel, '')">Pokaż</button>
-        </div>
-      </div>
-          <div id="sortby_wrapper">
-            <div class="d-inline" id="smallerone">Liczba ogłoszeń - {{(carse | myfilter: filters).length}} </div>
-            <div class="d-inline">
-              <span>Sortuj:</span>
-              <mat-form-field class="top_filter_fields">
-                <mat-select [(ngModel)]="sortby" (ngModelChange)="dataChanged($event)">
-                  <mat-option *ngFor="let sort of sorts; let i = index" [value]="i">
-                    {{sort}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-
-
-          </div>
-
+        <span> {{range[0]}} - {{range[1]}} $ </span>
+        <range-slider [min]="min" [max]="max" [step]="1" [(ngModel)]="range"></range-slider>
+        <button mat-raised-button class="main-button orange" *ngIf="range[0] != min || range[1] != max" (click)="setValues(0)">Select</button>
+        <button mat-raised-button class="main-button orange" *ngIf="range[0] == min && range[1] == max" (click)="closeValues(0)">Close</button></div>
     </div>
+
+
+    <!-- Second-->
+    <div class="one_medium_filter">
+      <div  class="one_medium_inside" id="2"><span *ngIf="!mybools[1]">Production Year</span><span class="colorbrands" *ngIf="mybools[1]">{{year_range[0]}} - {{year_range1[1]}} r.</span><i class="fas fa-chevron-down"></i></div>
+      <div class="hidden_filter" *ngIf="filter_number == 2" #topfilters [@widtheight]>
+        <div class="hidden_filter_top">
+          <h3>Production Year: </h3><span (click)="clearValues(year_range, 1, 1850, 2019)">Clear</span>
+        </div>
+
+        <span class="slider_span"> {{year_range[0]}} - {{year_range[1]}} r </span>                                      <!--(onRangeChange)="rangeChanged($event)" -->
+        <range-slider [min]="1850" [max]="2019" [step]="1" [(ngModel)]="year_range"></range-slider>
+        <button mat-raised-button class="main-button orange" *ngIf="year_range[0] != 1850 || year_range[1] != 2019" (click)="setValues(1)">Select</button>
+        <button mat-raised-button class="main-button orange" *ngIf="year_range[0] == 1850 && year_range[1] == 2019" (click)="closeValues(1)">Close</button></div>
+    </div>
+
+
+    <!-- Third-->
+    <div class="one_medium_filter"><div class="one_medium_inside" id="3"><span *ngIf="!mybools[2]">Course</span><span class="colorbrands" *ngIf="mybools[2]">{{course_range[0]}} - {{course_range[1]}} km</span><i class="fas fa-chevron-down"></i></div>
+      <div class="hidden_filter" *ngIf="filter_number == 3" #topfilters [@widtheight]>
+        <div class="hidden_filter_top">
+          <h3>Course: </h3><span (click)="clearValues(course_range, 2, 0, 999999)">Clear</span>
+        </div>
+        <span class="slider_span"> {{course_range[0]}} - {{course_range[1]}} km </span>
+        <range-slider [min]="0" [max]="999999" [step]="10" [(ngModel)]="course_range">        </range-slider>
+        <button mat-raised-button class="main-button orange" *ngIf="course_range[0] != 0 || course_range[1] != 999999" (click)="setValues(2)">Select</button>
+        <button mat-raised-button class="main-button orange" *ngIf="course_range[0] == 0 && course_range[1] == 999999" (click)="closeValues(2)">Close</button></div>
+    </div>
+
+
+    <mat-form-field class="top_filter_fields" floatLabel="never">
+      <mat-select [(ngModel)]="stateModel" placeholder="State">
+        <mat-option *ngFor="let state of states" [value]="state" >
+          {{state}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="top_filter_fields" floatLabel="never">
+      <mat-select [(ngModel)]="markModel" placeholder="Brand">
+        <mat-option *ngFor="let mark of marks$ | async" [value]="mark" >
+          {{mark}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="d-inline" id="show_btn">
+      <button mat-raised-button class="main-button orange" (click)="fillFilterArray(range, year_range, course_range, stateModel, markModel, '')">Show</button>
+    </div>
+  </div>
+  <div id="sortby_wrapper">
+    <div class="d-inline" id="smallerone">Results - {{(carse | myfilter: filters).length}} </div>
+    <div class="d-inline">
+      <span id="smallsortby">Sort by:</span>
+      <mat-form-field class="top_filter_fields" id="sortbyformfield">
+        <mat-select [(ngModel)]="sortby" (ngModelChange)="dataChanged($event)">
+          <mat-option *ngFor="let sort of sorts; let i = index" [value]="i">
+            {{sort}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+
+  </div>
+</div>
+</div>
+  <div class="smaller-container">
 
             <!-- Mobile filter menu-->
     <div class="left_offers_top" [ngClass]="{'left_offers_show': showfilter}" (click)="hiefilter($event)">
       <div id="left_offers_inside">
       <div class="left_form_field">
-        <h3>Cena: </h3><span class="slider_span"> {{range1[0]}} - {{range1[1]}} zł </span>
+        <h4>Price: </h4><span class="slider_span"> {{range1[0]}} - {{range1[1]}} $ </span>
         <range-slider [min]="min" [max]="max" [step]="1" [(ngModel)]="range1"></range-slider>
       </div>
       <div class="left_form_field">
-        <h3>Przebieg: </h3><span class="slider_span"> {{course_range1[0]}} - {{course_range1[1]}} km </span>
+        <h4>Course: </h4><span class="slider_span"> {{course_range1[0]}} - {{course_range1[1]}} km </span>
         <range-slider [min]="0" [max]="999999" [step]="10" [(ngModel)]="course_range1" >        </range-slider>
 
       </div>
       <div class="left_form_field">
-        <h3>Rok Produkcji: </h3><span class="slider_span"> {{year_range1[0]}} - {{year_range1[1]}} r </span>                                      <!--(onRangeChange)="rangeChanged($event)" -->
+        <h4>Production Year: </h4><span class="slider_span"> {{year_range1[0]}} - {{year_range1[1]}} r </span>                                      <!--(onRangeChange)="rangeChanged($event)" -->
         <range-slider [min]="1850" [max]="2019" [step]="1" [(ngModel)]="year_range1" >        </range-slider>
 
       </div>
@@ -110,9 +111,9 @@
 
 
       <div class="left_form_field">
-        <h3>Stan</h3>
+        <h4>State</h4>
         <mat-form-field floatLabel="never">
-          <mat-select [(ngModel)]="stateModel1" name="food" placeholder="Stan">
+          <mat-select [(ngModel)]="stateModel1" name="food" placeholder="State">
             <mat-option *ngFor="let state2 of states" [value]="state2">
               {{state2}}
             </mat-option>
@@ -121,9 +122,9 @@
       </div>
 
       <div class="left_form_field">
-        <h3>Marka</h3>
+        <h4>Brand</h4>
         <mat-form-field floatLabel="never">
-          <mat-select [(ngModel)]="markModel1" name="food" placeholder="Mark">
+          <mat-select [(ngModel)]="markModel1" name="food" placeholder="Brande">
             <mat-option *ngFor="let mark of marks$ | async" [value]="mark">
               {{mark}}
             </mat-option>
@@ -146,8 +147,8 @@
       </mat-form-field>
     </div>
     <div id="filter_btn_wrapper">
-      <button mat-raised-button class="search_button" id="left_offers_button" (click)="fillFilterArray(range1, year_range1, course_range1, stateModel1, markModel, modeModel)">Filtruj<i class="fa fa-chevron-right"></i></button>
-      <button mat-raised-button class="search_button" color="warning" (click)="showfilters('hide')">X</button>
+      <button mat-raised-button class="main-button orange" (click)="fillFilterArray(range1, year_range1, course_range1, stateModel1, markModel, modeModel)">Filter<i class="fa fa-chevron-right"></i></button>
+      <button mat-raised-button class="main-button blue"  (click)="showfilters('hide')">Close</button>
     </div>
 
 
@@ -166,19 +167,20 @@
             <div class="one-car-img"></div>  <!-- with a background-->
             <div class="one-car-right-side-wrapper">
               <div id="span_sep">
-                <span id="car_state" *ngIf="car.state === 'używany'">{{car.state}}</span>
+                <span id="car_state" *ngIf="car.state === 'nowy'">{{car.state}}</span>
               </div>
 
-              <h3>{{car.mark}}&nbsp;{{car.model}}&nbsp;{{car.year}}</h3>
+              <h3>{{car.mark}}&nbsp;
+                {{car.model}}&nbsp;{{car.year}}</h3>
               <div class="one-car-price">
-                <span>{{car.price | number }} zł </span>
-                <p id="small_vat">W tym 23% Vat</p>
+                <span>{{car.price | number }} $ </span>
+                <p id="small_vat">23% Vat include</p>
               </div>
 
             </div>
               <div id="show_more">
                 <span>{{car.fuel}}<i class="fas fa-angle-double-right"></i>{{car.course}} km<i class="fas fa-angle-double-right"></i>{{car.power}} KM</span>
-                <button mat-raised-button color="primary" class="search_button">ZOBACZ WIĘCEJ</button>
+                <button mat-raised-button color="primary" class="main-button orange">Show more</button>
 
               </div>
 
@@ -194,8 +196,6 @@
 
 
   <ng-template #noCars>Nie znaleziono samochodów spełniających podane kryteria. Proszę spróbować ponownie! </ng-template>
+
   <app-footer></app-footer>
 
-
-
-<!-- I have to change it-->

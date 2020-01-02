@@ -1,10 +1,10 @@
 @import "../../../assets/styles/global";
-@main-color-here: lighten(@brands-color, 10%);
+
 
          //The big container
 
           .navi-login-container {
-            background-color: @main-color-here;
+            background-color: @main-color;
            margin-top: 0;
             margin-bottom: 0;
             padding: 0;
@@ -25,17 +25,22 @@
     padding: 20px 25px;
     .c-pointer;
     opacity: 1;
-    margin: 0 10px 0 0;
-    border: 1px solid white;
-    background-color: lighten(@main-color-here, 62%);
-    color: @main-color-here;
+    outline: 0;
+    font-size: 1rem;
+    text-transform: uppercase;
+    .font-bold;
+    color: @sec-color;
+    font-family: 'Open Sans', sans-serif;
+
+
     &:hover {
-      opacity: 0.8;
+      color: @bg-color;
     }
   }
 }
 .active {
-  background-color: white !important;
+  background-color: @bg-color !important;
+  color: @main-color !important;
   &:hover {
     opacity: 1 !important;
   }

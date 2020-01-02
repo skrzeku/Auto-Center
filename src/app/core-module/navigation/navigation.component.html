@@ -7,22 +7,33 @@
       <img src="../../../assets/images/LogoWheel.png">
       <div>
         <span>Auto-Center</span>
-        <span>Driving to the future</span>
+              <span>Driving to the future</span>          <!-- <i class="far fa-plus-square"></i>   <i class="far fa-user"></i>  -->
       </div>
     </li>
 
-    <li class="right-list" *ngIf="bool"><a class="singouticon" (click)="singOut()"><i class="fas fa-sign-out-alt"></i></a></li>
-   <li class="right-list visible-sm" routerLink="/offers/new"><a class="navi-link"><i class="far fa-plus-square"></i></a> </li>
-    <li class="right-list visible-sm" (click)="LoginorMyAccount()"><a><i class="far fa-user"></i></a></li>
-    <li class="right-list visible-sm relative"><a><i class="fas fa-search" (click)="showSearchForm()" id="show_search_icon"></i></a>
-    <input type="text" [(ngModel)]="inputvalue" (ngModelChange)="checkSearch($event)" placeholder="Search..." *ngIf="visibleSearch" [@width] id="search_input">
-      <div class="hidden_search_ul">
-        <div *ngFor="let car of cars | search: searches" class="searches_car" (click)="navigatetoCar(car)">
-          <img src="../../../assets/images/maxresdefault.jpg">
-          <span>{{car.mark}} {{car.model}}</span>
+    <li class="right-list" *ngIf="bool" (click)="singOut()"><a class="singouticon" ><i class="fas fa-sign-out-alt"></i></a></li>
+   <li class="right-list visible-sm" routerLink="/offers/new"><a class="a_link">Add Car</a> </li>
+    <li class="right-list visible-sm" (click)="LoginorMyAccount()"><a class="a_link">Login</a></li>
+    <li class="right-list visible-sm relative"><a id="show_search_icon" class="a_link">Search<i class="fas fa-chevron-down"></i></a>
+      <div id="hidden_div">
+        <input type="text" [(ngModel)]="inputvalue" (ngModelChange)="checkSearch($event)" placeholder="Search..." [@width]>
+        <div class="hidden_search_ul">
+          <div *ngFor="let car of cars | search: searches" class="searches_car" (click)="navigatetoCar(car)">
+            <img src="../../../assets/images/maxresdefault.jpg">
+            <div id="hiddern_search_names">
+              <div>{{car.mark}}</div>
+              <div>{{car.model}}</div>
+            </div>
+            <div id="price_search">
+              {{car.price}}$
+            </div>
+
+          </div>
         </div>
       </div>
+
     </li>
+    <li class="right-list visible-sm" routerLink='/main'><a class="a_link">Home</a></li>
 
     <!--
       <li class="right-list visible-sm nopadding"><div id="hidden_search" *ngIf="visibleSearch" [@width]>

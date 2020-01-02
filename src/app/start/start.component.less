@@ -34,17 +34,7 @@
   background-color: @main-color;
   .relative;
   &:after {
-    .absolute;
-    bottom: 0;
-    content: '';
-    left: 50%;
-    .w(0);
-    height: 0;
-    border-style: solid;
-    border-width: 50px 200px 50px;
-    border-color: transparent transparent @main-color transparent;
-    transform: translateX(-50%) rotate(180deg) translateY(-100%);
-    z-index: 5;
+   .afterStartAdd;
   }
   @media @medium {
     padding: 70px 0 90px;
@@ -187,10 +177,13 @@ section {
 .random_car {
   .w-calc(10%, 14px);
   float: left;
-  height: 300px;
+  height: 260px;
   margin: 0 7px;
   .c-pointer;
   .custom-transition(0.3s all ease);
+  @media @medium {
+    height: 300px;
+  }
   &:hover {
    background-color: @main-color;
   }
@@ -202,10 +195,13 @@ section {
   text-align: right;
 }
 .random_car_img {
-  height: 180px;
+  height: 140px;
   .w(100%);
   background-size: cover;
   background-position: center center;
+  @media @medium {
+    height: 180px;
+  }
 }
 #right-chev {
   right: 0;

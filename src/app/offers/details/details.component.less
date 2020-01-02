@@ -1,21 +1,20 @@
 @import "../../../assets/styles/global";
 @import "../../../assets/styles/variables";
 
-.main-bg {
-  background-color: darkgray;
-}
 .big-container {
   .custom-transition(0.7s all ease);
   opacity: 1;
+  .relative;
+  padding-top: 100px;
+  @media @medium {
+    padding-top: 80px;
+  }
+
 }
 
-.big-container {
-  .relative;
-  padding: 0;
-}
+
 //main container
 .main-detail-section {
-  background-color: lighten(lightgray, 10%);
 }
 .img_wrapper {
   img {
@@ -84,6 +83,7 @@
           height: 280px;
           background-color: white;
           .padding-top-bottom(0, 30px);
+          .box-shadow;
                           top: -150px; //just for the x-small devices    it's a height of detail-navi
                           @media @small {
                             top: 0;
@@ -130,16 +130,21 @@
   height: 100%;
   .center-text;
   .w(100%);
+ background-size: contain;
+  //background-image: url("../../../assets/images/iconfinder_Soccer_2138356.png");
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 .show-all-images {
   .c-pointer;
   .absolute;
   font-size: 1.1rem;
   line-height: 30px;
+  color: @main-color;
   bottom: 0;      //couse of 30px big imgs margin
   right: 5px;
   &:hover {
-    color: @hover-text-color;
+    color: @sec-color;
   }
 }
         .img_carousel {
@@ -159,14 +164,12 @@
 
           //dealer-info
               .dealer-info-container {
-                .w-calc(100%, 22px);
-                //margin: 0 10px 10px;
-                //.drop-shadow();
+               .w(100%);
                 .d-inline;
-                vertical-align: bottom;
+                vertical-align: top;
                               @media @medium {
-                                .w-calc(40%, 62px);
-                                //padding: 40px 30px;
+                                .w(40%);
+
                               }
               }
 
@@ -177,10 +180,16 @@
               .dealer-where {
                 font-size: 1.3rem;
                 margin-top: 15px;
-                color: lighten(black, 20%);
+
+                color: @main-color;
                 i {
-                  color: black;
+                  color: @sec-color;
                   .w(15%);
+                }
+                button {
+                  margin-top: 10px;
+                  .w(80%);
+                  margin-left: 10%;
                 }
               }
               .question_button {
@@ -198,13 +207,16 @@
                 justify-content: space-between;
                 align-items: center;
                 padding: 10px 20px;
-                border-bottom: solid 1px lightgray;
+                background-color: @main-color;
                 h3 {
                   opacity: .8;
+                  color: @bg-color;
                 }
+
               }
               #price_inside {
                 font-size: 2.4rem;
+                color: @sec-color;
                 .font-bold;
                 font-family: 'Roboto Condensed',Arial,Helvetica,sans-serif;
               }
@@ -219,6 +231,7 @@
                         .w-calc(100%, 20px);
                        .d-inline;
                         padding: 20px 10px;
+                        color: @main-color;
                         ul {
                           padding: 10px 0;
                           .d-block;
@@ -233,18 +246,19 @@
                           }
                         }
                                   .list-span {
-                                    opacity: .7;
+                                    opacity: .9;
                                     .d-inline;
                                     .w(40%);
+                                    color: @main-color;
                                     &:first-letter {
                                       text-transform: uppercase;
                                     }
                                   }
                         .nav {
-                          color: @brands-color !important;
+                          color: @main-color;
                           .c-pointer;
                           &:hover {
-                            color: @hover-text-color !important;
+                            color: @sec-color;
                           }
                         }
 

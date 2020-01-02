@@ -36,7 +36,7 @@ this.BuildRegisterForm();
     this.user.password = this.registerform.controls['password'].value;
 
     this.authserv.register(this.user)
-      .then(success => this.snack.open('register successfuly. Now you can LogIn'))
+      .then(success => this.snack.open('register successfuly. Now you can LogIn', 'close', {panelClass: ['error_snackbar']}))
       .catch(error => this.snack.open(error.message));
 
 

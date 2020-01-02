@@ -28,14 +28,9 @@ div, span, p {
   font-family: 'Roboto', sans-serif;
 }
 
-          //separator height equal to navigation height
-          .separator {
-            height: 50px;
-            padding: 0;
-            margin: 0;
-          }
+
           .white-bg {
-            background-color: white;
+            background-color: @bg-color;
           }
           //grid
           .row {
@@ -211,6 +206,10 @@ a, button{
                       span {
                         .d-block;
                         .font-bold;
+                        color: @main-color;
+                      }
+                      mat-form-field {
+                        .w(100%);
                       }
                       input {
                         margin: 5px 0;
@@ -220,7 +219,10 @@ a, button{
                         //padding: 10px 20px;
 
                         &:focus {
-                          background-color: lighten(lightskyblue, 19%);
+                          border: none;
+                          -moz-box-shadow:    3px 3px 5px 6px #ccc;
+                          -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+                          box-shadow:         3px 3px 5px 6px #ccc;
                         }
                       }
                     }
@@ -365,10 +367,11 @@ a, button{
     //forms
 
 mat-form-field {
-  font-size: 1rem !important;
+  font-size: .9rem !important;
   font-family: "Open Sans", Arial , sans-serif;
   background-color: white;
   padding: 0 5px;
+
 
 }
 ::ng-deep .mat-form-field-wrapper {
@@ -395,6 +398,7 @@ mat-form-field {
 }
 ::ng-deep .mat-select-value {
   padding: 10px 0;
+  color: @main-color;
 }
 ::ng-deep .mat-input-element {
 padding: 10px 0 !important;
@@ -418,12 +422,12 @@ padding: 10px 0 !important;
     top: 50%;
     transform: translateY(-50%);
     right: 10px;
-    color: black;
+    color: @sec-color;
     font-weight: 900;
   }
 }
 ::ng-deep .mat-select-placeholder {
- // color: black !important;
+ color: @main-color !important;
   //-webkit-text-fill-color: black !important;
 }
 .aftericons {
@@ -507,5 +511,89 @@ padding: 10px 0 !important;
   }
 }
 
+#right_from_list {
+  .list-style-none;
+  margin-left: 20px;
+  li {
+    margin-bottom: 15px;
+    padding: 12px 0;
+    i {
+      .d-block;
+      font-size: 34px;
+    }
+  }
+}
+
+#right_top_wrapper {
+  background-color: @main-color;
+  color: @bg-color;
+  padding: 5px 0;
+  .center-text;
+  .w(100vw);
+  .relative;
+  left: -10px;
+  @media @small {
+    .w(100%);
+    left: 0;
+  }
+  h3 {
+    margin: 30px 0;
+  }
+  p {
+    color: @sec-color;
+  }
+}
+.right_form {
+  .w(100%);
+  .d-inline;
+  vertical-align: top;
+
+  h5 {
+    margin: 15px 0;
+    opacity: .8;
+  }
+  @media @small {
+    .w(50%);
+  }
+}
+.myfield {
+  vertical-align: bottom;
+  mat-form-field {
+    .w-calc(100%, 20px);
+    margin: 5px 10px 15px;
+    padding: 0;
+    border: solid 1px @main-color;
+    font-size: 20px;
+    input {
+      padding: 10px 10px 10px  !important;
+    }
+  }
+   span {
+    margin-left: 10px;
+    font-size: 15px;
+    color: @main-color;
+    .font-bold;
+  }
+}
+.error_one {
+  background-color: darkred !important;
+  color: white;
+}
 
 
+.afterStartAdd {
+  .absolute;
+  bottom: 0;
+  content: '';
+  left: 50%;
+  .w(0);
+  height: 0;
+  border-style: solid;
+  border-width: 50px 200px 50px;
+  border-color: transparent transparent @main-color transparent;
+  transform: translateX(-50%) rotate(180deg) translateY(-100%);
+  z-index: 5;
+}
+.main_font_color {
+  color: @main-color;
+}
