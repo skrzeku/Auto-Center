@@ -5,7 +5,6 @@
   .custom-transition(0.7s all ease);
   opacity: 1;
   .relative;
-  padding-top: 100px;
   @media @medium {
     padding-top: 80px;
   }
@@ -155,6 +154,7 @@
         .myfigure {
           margin: 0;
           left: 0;
+          .clear;
           .relative;
           .w(100%);
           .custom-transition(0.5s all ease);
@@ -215,10 +215,13 @@
 
               }
               #price_inside {
-                font-size: 2.4rem;
-                color: @sec-color;
+                font-size: 2.2rem;
+                color: @bg-color;
                 .font-bold;
                 font-family: 'Roboto Condensed',Arial,Helvetica,sans-serif;
+                b {
+                  color: @sec-color;
+                }
               }
               #description_wrapper {
                 padding: 15px 10px;

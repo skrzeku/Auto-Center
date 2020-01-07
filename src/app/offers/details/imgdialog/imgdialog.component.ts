@@ -8,6 +8,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 })
 export class ImgdialogComponent implements OnInit {
   images = [];
+  zoomImg = false;
+  clickedimg;
 
   constructor(private dialogref: MatDialogRef<ImgdialogComponent>,
               @Inject(MAT_DIALOG_DATA) private data) {
@@ -18,6 +20,13 @@ export class ImgdialogComponent implements OnInit {
   }
   close() {
     this.dialogref.close();
+  }
+  doanything(src) {
+    this.clickedimg = src;
+    this.zoomImg = true;
+  }
+  closeZoom() {
+    this.zoomImg = false;
   }
 
 

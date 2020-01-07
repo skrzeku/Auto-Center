@@ -79,7 +79,7 @@
 
                  <figure id="main_figure" #main_figure>
                    <div class="random_car" *ngFor="let car of randomCars" (click)="goToDetails(car)">
-                     <div class="random_car_img" [ngStyle]="{'background-image':' url(../../assets/images/maxresdefault.jpg)'}">
+                     <div class="random_car_img" [ngStyle]="{'background-image':' url(' + car.mainImg + ')'}">
                      </div>
                      <div class="random_car_details">
                        <span class="random_car_span">{{car.year}} {{car.mark}}  {{car.model}}</span>

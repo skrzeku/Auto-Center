@@ -11,17 +11,17 @@ export interface Car {
   model: string;        //
   power: number;        //
   state: string;        //
-  version: string;      //
   year: number;
   key: string;
   price: number;
-  start_date: string;
+  start_date: number;
   premium: boolean;
   vat: boolean;
   description: string;
   type: string;
   shortdescription: string;
   mainImg: any;
+
 
 }
 export class Image {

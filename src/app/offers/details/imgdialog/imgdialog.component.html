@@ -1,8 +1,7 @@
 
 
-<div class="dialog_img_wrapper" *ngFor="let img_src of images">
-  <img [src]="img_src">
+<div class="dialog_img_wrapper" *ngFor="let img_src of images" [ngStyle]="{'background-image':' url(' + img_src + ')'}" (click)="doanything(img_src)">
 </div>
-
+<div class="full_img" *ngIf="zoomImg" [ngStyle]="{'background-image':' url(' + clickedimg + ')'}"><i class="fas fa-times" (click)="closeZoom()"></i></div>
 
 <button mat-raised-button class="main-button blue d-block margins-auto" (click)="close()">Close</button>

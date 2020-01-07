@@ -108,15 +108,14 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
 
 
   ngAfterViewInit() {
+    console.log(new Date().getDate());
   this.carsservice.getCars().subscribe((cars) => {
     if (cars) {
       this.carse = cars;
-
     }
   });
 
-    this.storageRef = firebase.storage().ref().child('Zrzut ekranu 2019-09-11 o 13.30.10.png');
-    this.storageRef.getDownloadURL().then(url => console.log(url) );
+
   }
 
 
@@ -137,7 +136,6 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
         model: ['', [Validators.required, Validators.maxLength(12)]],
         power: [0, [Validators.required, Validators.min(0)]],
         state: ['New', Validators.required],
-        version: '',
         year: [2010, Validators.required],
         key: '',
         price: [0, [Validators.required, Validators.min(0), Validators.max(999999)]],
@@ -146,7 +144,8 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
         vat: [false, Validators.required],
         description: ['', [Validators.required, Validators.minLength(30), Validators.maxLength(170)]],
         bottom_checkbox: false,
-      type: ['', Validators.required]
+      type: ['', Validators.required],
+      mainImg: ''
       }
     );
   }
@@ -162,7 +161,6 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
       reader.onload = (e: any) => { // called once readAsDataURL is completed
         const oneresult = e.target.result;
         this.url.push(oneresult);
-        console.log(oneresult);
       };
     }
   }
@@ -173,7 +171,6 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
     reader.onload = (e: any) => {
       this.mainUrl = e.target.result;
     };
-    console.log(read);
   }
 
 
@@ -235,24 +232,34 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
 
   }
 
-  createCar(): void {
 
+  GetImage(id: number) {
+      const storage = firebase.storage().ref().child('' + id + '/0.png');
+      storage.getDownloadURL().then(url => {
+        this.form.controls['mainImg'].setValue(url.toString());
+        this.db.addCar(this.form.value)
+          .then(this.SuccesCreate.bind(this), this.ErrorCreate.bind(this));
+      });
+  }
+
+  createCar() {
     const id_cor = this.carse.map((car) => car.id)
       .reduce((prev, current) => {
         return (prev > current) ? prev : current;
       });
-
+    this.carsservice.pushFileToStorage(this.selectedFiles, this.progress, id_cor + 1);
     this.form.controls['id'].setValue(id_cor + 1);
-    this.form.controls['start_date'].setValue(new Date());
-    this.carsservice.pushMaintoStorage(this.oneSelectedFile, this.progress, id_cor + 1);
-    this.carsservice.pushFileToStorage(this.selectedFiles, this.progress, id_cor + 1);   //images
+    this.form.controls['start_date'].setValue(+new Date());
+    this.carsservice.pushMaintoStorage(this.oneSelectedFile, this.progress, id_cor + 1, () => {
+      this.GetImage(id_cor + 1);
+    });
 
 
-    this.db.addCar(this.form.value)
-      .then(this.SuccesCreate.bind(this), this.ErrorCreate.bind(this));
   }
 
+
   private SuccesCreate() {
+    console.log('success');
     this.router.navigate(['main']);
     this.snack.open('Car has been successfully created!', '', {panelClass: ['success-snack']});
   }
@@ -261,9 +268,8 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
     this.snack.open(error.message, '', {panelClass: 'snack-error'});
   }
 
-  LoadOneCar(car: Car): void {
-    this.form.patchValue(car);
-  }
+
+
   iterationofyears() {
     for (let i = 2020; i > 1950; i--) {
       this.years.push(i);
@@ -276,10 +282,8 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
     const lol = models.map(car => car.model);
     this.models = Array.from(new Set(lol));
   }
-  testfunc() {
-  console.log(this.selectedFiles);
 
-  }
+
 
 
 

@@ -28,7 +28,7 @@
 
     <div class="dealer-info-container">
             <div id="price_info">
-              <h3>Price</h3> <span id="price_inside">{{car.price}} $</span>
+              <h3>Price</h3> <span id="price_inside">{{car.price}} <b>$</b></span>
             </div>
               <div class="dealer-info-mid">
                 <div class="dealer-where">
@@ -64,7 +64,7 @@
         <li><span class="list-span">Mark:</span> <a class="nav">{{car.mark}}</a></li>
         <li><span class="list-span">Model:</span> <a class="nav">{{car.model}}</a></li>
         <li><span class="list-span">Year:</span> <a class="nav">{{car.year}}</a></li>
-        <li><span class="list-span">Published:</span> <a class="nav">{{car.start_date}}</a></li>
+        <li><span class="list-span">Published:</span> <a class="nav">{{car.start_date | date: 'medium'}}</a></li>
         <li><span class="list-span">Course:</span> <a class="nav">{{car.course}} Km</a></li>
         <li><span class="list-span">Type:</span> <a class="nav">{{car.type}}</a></li>
         <li><span class="list-span">Fuel:</span> <a class="nav">{{car.fuel}}</a></li>

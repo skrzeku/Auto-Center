@@ -11,7 +11,6 @@ export class DetailNaviComponent implements OnInit, AfterViewInit {
 
   @Input ('car') car: Car;
 
-  visiblenumber: boolean = false;
 
   constructor() { }
 
@@ -21,8 +20,14 @@ export class DetailNaviComponent implements OnInit, AfterViewInit {
 
   }
 
-  shownumber() {
-    this.visiblenumber = !this.visiblenumber;
+
+  scrolltoDetails() {
+    const el = document.querySelectorAll('.date-id-details')[0];
+    el.scrollIntoView({behavior: 'smooth'});
+  }
+  scrolltoDescription() {
+    const el = document.querySelectorAll('.date-id-details')[1];
+    el.scrollIntoView({behavior: 'smooth'});
   }
 
 

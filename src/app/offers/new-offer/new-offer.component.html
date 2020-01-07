@@ -7,10 +7,10 @@
 
   <div id="bottom-navi-fixed">
     <div class="smaller-container">
-      <div class="left-side"> <a (click)="testfunc()">Clear</a>
-
+      <div class="left-side"> <a>Clear</a>
         <span>Liczba + Wypełnione pola</span>
-        <button  mat-raised-button class="main-button orange" [disabled]="form.invalid" (click)="createCar()">Add Vehicle</button></div>
+        <button  mat-raised-button class="main-button orange" [disabled]="form.invalid" (click)="createCar()">Add Vehicle</button>
+     </div>
 
     </div>
   </div>
@@ -37,13 +37,18 @@
       <div class="myfield sm">
         <span>Model:</span><i class="fas fa-info-circle" id="2"></i>
         <mat-form-field>
+          <input type="text"  matInput placeholder=""  formControlName="model">
+          <mat-error *ngIf="form.get('model').hasError('required')">This field is required</mat-error>
+        </mat-form-field>
+
+       <!-- <mat-form-field>
           <mat-error>Model is required</mat-error>
           <mat-select formControlName="model">
             <mat-option *ngFor="let model of models" [value]="model">
               {{model}}
             </mat-option>
           </mat-select>
-        </mat-form-field>
+        </mat-form-field> -->
       </div>
 
         <div class="myfield sm">
@@ -164,11 +169,14 @@
           <input #csvInput hidden="true" multiple type="file"  onclick="this.value=null" (change)="csvInputChange($event)" accept=".png"/>
           <a (click)="csvInput.click()" id="add-img"><i class="fas fa-camera"></i>Add rest photos</a>
         </div>
-        <div id="big_main_img" [ngStyle]="{'background-image': 'url(' + mainUrl + ')'}" *ngIf="mainUrl">
+        <div id="added_img_wrapper">
+          <div id="big_main_img" [ngStyle]="{'background-image': 'url(' + mainUrl + ')'}" *ngIf="mainUrl">
+          </div>
+          <div class="small-img" *ngFor="let img of selectedFiles; index as index" [ngStyle]="{'background-image':' url(' + url[index] + ')'}">
+          </div>
         </div>
-        <div class="small-img" *ngFor="let img of selectedFiles; index as index" [ngStyle]="{'background-image':' url(' + url[index] + ')'}">
-          <!--<img [src]="url[index]"> -->
-        </div>
+
+
 
       </div>
         <div class="myfield">
@@ -223,11 +231,11 @@
   <div class="right-container">
     <div class="office-info-big">
       <span class="cirlce-span"><i class="fas fa-mobile-alt"></i></span>
-      <span>Potrzebujesz pomocy?</span>
-      <h3>Biuro Auto-Center</h3>
+      <span>Do you need a help?</span>
+      <h3>Auto-Center Office</h3>
       <h4>+48500600700</h4>
-      <span>(od pon. do pt. w godz. 6:00 - 21:00 </span>
-      <h4>pomoc@autocenter.pl</h4>
+      <span>(Monday-Friday 6:00 - 21:00 </span>
+      <h4>help@autocenter.pl</h4>
     </div>
     <div class="dynamic-info" *ngIf="dynamic_info" [@openClose]>
       <button type="button" class="close" aria-label="Close" (click)="closeInfo()">
@@ -237,11 +245,15 @@
       <div>{{oneinfodb.content}}</div>
 
     </div>
-    <pre>{{form.value | json}}</pre>
+   <!-- it could be a helpful in the future<pre>{{form.value | json}}</pre> -->
 
   </div>
 </div>
   </div>
+  <div class="footer_bottom">
+    <app-footer></app-footer>
+  </div>
+
 
 
 

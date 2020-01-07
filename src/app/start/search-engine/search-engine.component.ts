@@ -106,33 +106,30 @@ export class SearchEngineComponent implements OnInit, AfterViewInit {
     const lol = models.map(car => car.model);
     this.correct_models = lol;
   }
-  Checkfields(modelvalue) {
-    if (modelvalue === '') {
-      this.valuetwo = null;
-    }
-    else  this.valuetwo = '';
-  }
-  CheckallValue(value) {
-    if (value === 'All') {
+
+  Checkfields2(modelvalue) {
+    if (modelvalue === '' || modelvalue === 'All') {
       this.valueone = '';
       this.valuetwo = null;
     }
-    else {
-      this.valueone = value;
+    else  {
+      this.valueone = modelvalue;
       this.valuetwo = '';
     }
   }
+
+
   AutogoToOffers() {
     this.helpserv.array.length = 0;
     const mapprice = this.cars.map(car => car.price);
     const maxprice = Math.max(...mapprice);
     const minprice = Math.min(...mapprice);
     //mark
-    this.Checkfields(this.mark);
-    this.helpserv.PushFilterArray('mark', this.mark, this.valuetwo);
+    this.Checkfields2(this.mark);
+    this.helpserv.PushFilterArray('mark', this.valueone, this.valuetwo);
     //model
-    this.Checkfields(this.model);
-    this.helpserv.PushFilterArray('model', this.model, this.valuetwo  );
+    this.Checkfields2(this.model);
+    this.helpserv.PushFilterArray('model', this.valueone, this.valuetwo  );
     //price
     this.helpserv.PushFilterArray('price', this.price_from || minprice  , this.price_to || maxprice);
 
@@ -140,10 +137,10 @@ export class SearchEngineComponent implements OnInit, AfterViewInit {
     this.helpserv.PushFilterArray('year', this.year_from || 0, this.year_to || 2500);
 
     //state add it after complete databese
-    this.CheckallValue(this.stateText);
+   this.Checkfields2(this.stateText);
     this.helpserv.PushFilterArray('state', this.valueone, this.valuetwo);
     //this.helpserv.PushFilterArray('state', this.stateText.toLowerCase(), '');
-    this.CheckallValue(this.fuelText);
+    this.Checkfields2(this.fuelText);
     this.helpserv.PushFilterArray('fuel', this.valueone, this.valuetwo);
 
     this.router.navigate(['offers']);

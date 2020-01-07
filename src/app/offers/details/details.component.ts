@@ -74,10 +74,8 @@ export class DetailsComponent implements OnInit, AfterViewInit {
 
   }
   ngAfterViewInit() {
-
     this.mydetail_element = this.details_now_fixed.nativeElement;
     this.getLength();
-
   }
 
   shownumber() {
@@ -91,17 +89,17 @@ export class DetailsComponent implements OnInit, AfterViewInit {
     firebase.storage().ref().child('' + this.car.id + '').listAll().then((result) => {
       this.DownloadImgs(result.items.length);
       this.imgs_length = result.items.length;
+      console.log(this.imgs_length + ' length');
     }).catch(function(error) {
       alert(error);
     });
   }
   DownloadImgs(num: number): void {
     for(let i = 0; i <= num - 1; i++) {
-      const storage = firebase.storage().ref().child( '27/' + i + '.png');
+      const storage = firebase.storage().ref().child( '' + this.car.id + '/' + i + '.png');
       storage.getDownloadURL().then(url => {
         this.small_img_src.push(url);
         this.renderer.setStyle(this.figure.nativeElement, 'width', (num * 100) + '%');
-        console.log(i);
       });
     }
     setTimeout(() => {

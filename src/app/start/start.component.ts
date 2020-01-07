@@ -4,6 +4,8 @@ import {AuthorizationService} from '../core-module/services/authorization.servic
 import {CarsService} from '../core-module/services/cars.service';
 import {HelpService} from '../core-module/services/help.service';
 import {Router} from '@angular/router';
+import * as firebase from 'firebase';
+import {forEach} from '@angular/router/src/utils/collection';
 declare var require;
 
 @Component({
@@ -21,7 +23,7 @@ export class StartComponent implements OnInit {
   allcars: Car[];
   imgUrl = '../../assets/images/';
   marks = ['Mazda', 'Audi', 'Volkswagen', 'Kia', 'Toyota', 'BMW', 'Citroen', 'Fiat', 'Honda', 'Ford', 'Hyundai', 'Lexus', 'Mercedes', 'Nissan', 'Renault'];
-  randomCars: Car[];
+  randomCars: Car[] = [];
   types = ['Hatchback', 'Sedan', 'Wagon', 'Coupe', 'Convertible', 'Luxury', 'Pickup', 'Suv'];
   @ViewChildren('alltypes') alltypes: QueryList<ElementRef>;
   @ViewChildren('allbrands') allbrands: QueryList<ElementRef>;
@@ -46,11 +48,15 @@ export class StartComponent implements OnInit {
 
   ngOnInit() {
     this.carsserv.getCars().subscribe((cars) => {
-      this.chanceit(cars);
+      //this.chanceit(cars);
       this.allcars = cars;
-      this.randomCars = cars.slice(0, 10);
+      cars.forEach((car) => {
+        this.GetMainImg(car);
+      });
+      const premium_cars = cars.filter(car => car.premium === true);
+      this.chanceit(premium_cars);
     });
-    console.log(this.types);
+
 
   }
   goToDetails(car: Car): void {
@@ -79,16 +85,8 @@ export class StartComponent implements OnInit {
   chanceit(array): void {
     const chance = new this.Chance();
     const uniques = chance.unique(chance.natural, array.length, {min: 0, max: array.length - 1});
-    for (let i = 0; i < 11; i++ ) {
-      if (i < 1) {
-        this.BigCar = array[uniques[i]];
-      }
-      else if (i < 5) {
-        this.midCars.push(array[uniques[i]]);
-      }
-      else if (i < 11) {
-        this.smallCars.push(array[uniques[i]]);
-      }
+    for (let i = 0; i < 10; i++ ) {
+     this.randomCars.push(array[uniques[i]]);
     }
   }
   filterbyTypes(type: string) {
@@ -136,6 +134,13 @@ export class StartComponent implements OnInit {
   }
   navigateToLogin(): void {
     this.router.navigate(['login']);
+  }
+
+  GetMainImg(car: Car): void {
+    const storage = firebase.storage().ref().child('' + car.id + '/0.png');
+    storage.getDownloadURL().then(url => {
+      car.mainImg = url;
+    });
   }
 
 }

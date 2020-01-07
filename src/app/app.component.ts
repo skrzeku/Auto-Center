@@ -4,6 +4,7 @@ import {HelpService} from './core-module/services/help.service';
 import {fadeAnimation} from './start/animation/fadeIntRoute';
 import {CarsService} from './core-module/services/cars.service';
 import {Car} from './core-module/models/car.model';
+import * as firebase from 'firebase';
 
 
 @Component({
@@ -34,6 +35,9 @@ export class AppComponent implements OnInit, AfterViewInit{
   this.carsserv.getCars().subscribe((cars) => {
     this.allcars = cars;
     this.mapCars();
+    cars.forEach((car) => {
+      //this.GetMainImg(car);
+    });
   });
   }
 
@@ -50,7 +54,7 @@ export class AppComponent implements OnInit, AfterViewInit{
 
   reduceMapValues(array: any) {
     this.reducedmark = Array.from(new Set(array));
-    this.reducedmark.push('Wszystkie');
+    this.reducedmark.push('All');
     this.helpservice.ShareMarks(this.reducedmark);
   }
 
@@ -66,6 +70,13 @@ export class AppComponent implements OnInit, AfterViewInit{
       $event.preventDefault();
     }
     else return;
+  }
+
+  GetMainImg(car: Car): void {
+    const storage = firebase.storage().ref().child('' + car.id + '/0.png');
+    storage.getDownloadURL().then(url => {
+      car.mainImg = url;
+    });
   }
 
 }

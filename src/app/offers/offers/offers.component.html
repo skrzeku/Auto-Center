@@ -164,7 +164,7 @@
 
           <div class="one-car" *ngFor="let car of carse | myfilter: filters" (click)="gotoDetails(car)" #carselement [@scale3dboth]>
             <div class="one_car_absolute">
-            <div class="one-car-img"></div>  <!-- with a background-->
+            <div class="one-car-img" [ngStyle]="{'background-image':' url(' + car.mainImg + ')'}"></div>  <!-- with a background-->
             <div class="one-car-right-side-wrapper">
               <div id="span_sep">
                 <span id="car_state" *ngIf="car.state === 'nowy'">{{car.state}}</span>

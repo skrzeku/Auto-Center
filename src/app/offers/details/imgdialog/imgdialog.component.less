@@ -8,6 +8,10 @@
   .d-inline;
   margin: 30px 20px;
   padding: 10px;
+  .relative;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
   cursor: zoom-in;
   .custom-transition(0.3s all ease);
   &:hover {
@@ -15,8 +19,30 @@
     -moz-box-shadow: 5px 5px 6px 0px rgba(0,0,0,0.75);
     box-shadow: 5px 5px 6px 0px rgba(0,0,0,0.75);
   }
-          img {
-            height: 100%;
-            .w(auto);
-          }
+
+}
+.full_img {
+  position: fixed;
+  left: 10%;
+  top: 80px;
+  .w(80%);
+  height: 80%;
+  cursor: default;
+  z-index: 99;
+  background-color: rgba(0, 0, 0, 0.5);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  i {
+    float: right;
+    color: @bg-color;
+    font-size: 30px;
+    padding: 10px;
+    margin: 10px 10px 0 0;
+    .c-pointer;
+    &:hover {
+      transform: scale(1.2);
+      color: @sec-color;
+    }
+  }
 }

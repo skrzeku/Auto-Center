@@ -57,11 +57,10 @@ export class CarsService {
 
   shareCar(car: Car) {
     this.carSubject.next(car);
-    console.log(car);
   }
 
 
-  pushFileToStorage(fileUpload: FileList, progress: { percentage: number }, path) {
+  pushFileToStorage(fileUpload: FileList, progress: { percentage: number }, path, method?) {
 for (let i = 0; i <= fileUpload.length - 1; i++) {
   const storageRef = firebase.storage().ref();
   const uploadTask = storageRef.child(`${'/' + path}/${(i + 1) + '.png'}`).put(fileUpload[i]);
@@ -76,12 +75,12 @@ for (let i = 0; i <= fileUpload.length - 1; i++) {
       console.log(error);
     },
     () => {
-      this.saveFileData(fileUpload[i], path);
+      this.saveFileDatawithoutThen(fileUpload[i], path);
     }
   );
 }
   }
-  pushMaintoStorage(fileUpload: File, progress: {percentage: number}, path) {
+  pushMaintoStorage(fileUpload: File, progress: {percentage: number}, path, method?: any) {
     const storageRef = firebase.storage().ref();
     const uploadTask = storageRef.child(`${'/' + path}/${0 + '.png'}`).put(fileUpload);
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
@@ -95,14 +94,20 @@ for (let i = 0; i <= fileUpload.length - 1; i++) {
         console.log(error);
       },
       () => {
-        this.saveFileData(fileUpload, path);
+        this.saveFileData(fileUpload, path, method);
       });
   }
 
 
-   saveFileData(fileUpload: File, path) {
+
+
+   saveFileData(fileUpload: File, path, method) {
+    this.db.list(`${'/' + path}/`).push(fileUpload).then(() => {
+      method();
+    });
+  }
+  saveFileDatawithoutThen(fileUpload: File, path) {
     this.db.list(`${'/' + path}/`).push(fileUpload);
-    console.log(fileUpload);
   }
 
 }
