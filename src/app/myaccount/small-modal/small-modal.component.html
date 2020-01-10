@@ -1,16 +1,15 @@
 <div id="modal-wrapper">
-  <h2>Usuwanie Pojazdu</h2>
+  <h2>Delete vehicle</h2>
 
-  <p>id: {{car.id}}</p>
   <div id="divspans">
     <span>{{car.mark}}</span>
     <span>{{car.model}}</span>
     <span>{{car.year}}</span>
   </div>
+  <p>id: {{car.id}}</p>
   <div id="both_btns">
-    <button class="register-btns" id="cancel_btn" (click)="close()">Anuluj</button>
-    <button class="register-btns" id="delete_btn">Usuń</button>
-
+    <button class="main-button blue" mat-raised-button (click)="close()">Cancel</button>
+    <button class="main-button orange" mat-raised-button (click)="deleteCar(car.key)">Delete</button>
   </div>
 
 

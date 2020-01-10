@@ -9,13 +9,15 @@ import {ReplaceUnderscorePipe} from './pipes/under.pipe';
 import {Ng2SearchPipe} from './pipes/searchfilter.pipe';
 import { SearchPipe } from './pipes/search.pipe';
 import {FormsModule} from '@angular/forms';
+import {MaterialModule} from '../material/material.module';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    MaterialModule
   ],
   exports: [NavigationComponent, LeftNavisComponent, FilterPipe, ReplaceUnderscorePipe, Ng2SearchPipe, SearchPipe],
   declarations: [NavigationComponent, LeftNavisComponent, FilterPipe, ReplaceUnderscorePipe, Ng2SearchPipe, SearchPipe],

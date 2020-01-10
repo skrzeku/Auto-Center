@@ -1,5 +1,5 @@
 import {
-  AfterViewInit, ChangeDetectorRef, Component, ComponentFactoryResolver, ElementRef, HostListener, OnInit, Renderer2,
+  AfterViewInit, ChangeDetectorRef, Component, ComponentFactoryResolver, ElementRef, HostListener, OnDestroy, OnInit, Renderer2,
   ViewChild, ViewChildren, ViewEncapsulation
 } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
@@ -15,6 +15,8 @@ import {HelpService} from '../../core-module/services/help.service';
 import {rS} from '@angular/core/src/render3';
 import {Router} from '@angular/router';
 import * as firebase from 'firebase';
+import {AuthorizationService} from '../../core-module/services/authorization.service';
+import {bind} from '@angular/core/src/render3/instructions';
 
 @Component({
   selector: 'app-new-offer',
@@ -42,13 +44,14 @@ import * as firebase from 'firebase';
   ],
 
 })
-export class NewOfferComponent implements OnInit, AfterViewInit {
+export class NewOfferComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChildren('mydynamic') mydynamic: ElementRef;
   dynamic_info: boolean = false;
   progress: { percentage: number } = {percentage: 0};
   selectedFiles: FileList = null;
   oneSelectedFile: File;
+  editSite;
  marks = ['Mazda', 'Audi', 'Volkswagen', 'Kia', 'Toyota', 'BMW', 'Citroen', 'Fiat', 'Honda', 'Ford', 'Hyundai', 'Lexus', 'Mercedes', 'Nissan', 'Renault'];
   models = [];
   colors = ['White', 'Black', 'Blue', 'Silver', 'Gray', 'Red', 'Green', 'Yellow'];
@@ -56,8 +59,8 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
   fuels = ['Petrol', 'Diesel', 'Hybrid', 'Electric', 'LPG'];
   countries = ['Poland', 'Germany', 'France', 'UK', 'USA', 'Russia', 'Belgium', 'Netherlands', 'Other'];
   carse: Car[];
-  mysrc;
-  storageRef;
+  imgs_url = [];
+
 
 
   //dynamic databes for test!!
@@ -66,6 +69,7 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
   url = [];
   mainUrl: any = null;
   years = [];
+  userEmail;
 
   oneinfodb: any;
 
@@ -82,7 +86,8 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
               private cd: ChangeDetectorRef,
               private carsservice: CarsService,
               private helpservice: HelpService,
-              private router: Router) {
+              private router: Router,
+              private authserv: AuthorizationService) {
   }
 
   ngOnInit() {
@@ -91,12 +96,19 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
       this.info_db = lol;
       console.log(lol);
     });
+    this.helpservice.editBoolean$.subscribe((bool) => {
+      this.editSite = bool;
+    });
+    this.checkAuth();
+    this.buildMyForm();
 
     this.LoadoneCar();
-    this.buildMyForm();
     this.CheckCarsLength();
     this.iterationofyears();
-
+  }
+  ngOnDestroy(): void {
+    this.helpservice.Shareedits(false);
+    this.carsservice.shareCar(null);
   }
 
 
@@ -108,14 +120,16 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
 
 
   ngAfterViewInit() {
-    console.log(new Date().getDate());
-  this.carsservice.getCars().subscribe((cars) => {
-    if (cars) {
-      this.carse = cars;
-    }
-  });
+
+    this.carsservice.getCars().subscribe((all_cars) => {
+      this.carse = all_cars;
+    });
 
 
+
+  }
+  checkAuth(): void {
+    this.userEmail = this.authserv.user.email;
   }
 
 
@@ -142,10 +156,11 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
         start_date: '',
         premium: [false, Validators.required],
         vat: [false, Validators.required],
-        description: ['', [Validators.required, Validators.minLength(30), Validators.maxLength(170)]],
+        description: ['', [Validators.required, Validators.minLength(30), Validators.maxLength(300)]],
         bottom_checkbox: false,
       type: ['', Validators.required],
-      mainImg: ''
+      mainImg: '',
+      user: ''
       }
     );
   }
@@ -175,11 +190,11 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
 
 
   LoadoneCar() {
-    if (this.carsservice.carSubject.value) {
-      this.carsservice.carSubject.subscribe((car) => {
-        this.carsservice.getCars().subscribe(() => {
-          this.form.patchValue(car);
-        });
+    if (this.carsservice.carSubject$.value) {
+      this.carsservice.carSubject$.subscribe((car) => {
+        this.form.patchValue(car);
+        this.car = car;
+        this.getLength(car);
       });
     }
     else return false;
@@ -233,13 +248,34 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
   }
 
 
-  GetImage(id: number) {
+  GetImage(id: number, key?: string) {
       const storage = firebase.storage().ref().child('' + id + '/0.png');
       storage.getDownloadURL().then(url => {
         this.form.controls['mainImg'].setValue(url.toString());
-        this.db.addCar(this.form.value)
-          .then(this.SuccesCreate.bind(this), this.ErrorCreate.bind(this));
+        if (!this.car) {
+          this.db.addCar(this.form.value)
+            .then(this.SuccesCreate.bind(this), this.ErrorCreate.bind(this));
+        }
+        else {
+          this.carsservice.editCar(key, this.form.value).then(this.SuccesCreate.bind(this), this.ErrorCreate.bind(this));
+        }
+
       });
+  }
+  DownloadImgs(num: number, car: Car): void {
+    for(let i = 0; i <= num - 1; i++) {
+      const storage = firebase.storage().ref().child( '' + car.id + '/' + i + '.png');
+      storage.getDownloadURL().then(url => {
+        this.url.push(url);
+      });
+    }
+  }
+  getLength(car: Car): void {
+    firebase.storage().ref().child('' + car.id + '').listAll().then((result) => {
+      this.DownloadImgs(result.items.length, car);
+    }).catch(function(error) {
+      alert(error);
+    });
   }
 
   createCar() {
@@ -247,19 +283,17 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
       .reduce((prev, current) => {
         return (prev > current) ? prev : current;
       });
-    this.carsservice.pushFileToStorage(this.selectedFiles, this.progress, id_cor + 1);
-    this.form.controls['id'].setValue(id_cor + 1);
+    this.carsservice.pushFileToStorage(this.selectedFiles, this.progress, +id_cor + 1);
+    this.form.controls['id'].setValue(+id_cor + 1);
     this.form.controls['start_date'].setValue(+new Date());
-    this.carsservice.pushMaintoStorage(this.oneSelectedFile, this.progress, id_cor + 1, () => {
-      this.GetImage(id_cor + 1);
+    this.form.controls['user'].setValue(this.userEmail);
+    this.carsservice.pushMaintoStorage(this.oneSelectedFile, this.progress, +id_cor + 1, () => {
+      this.GetImage(+id_cor + 1);
     });
-
-
   }
 
 
   private SuccesCreate() {
-    console.log('success');
     this.router.navigate(['main']);
     this.snack.open('Car has been successfully created!', '', {panelClass: ['success-snack']});
   }
@@ -273,14 +307,22 @@ export class NewOfferComponent implements OnInit, AfterViewInit {
   iterationofyears() {
     for (let i = 2020; i > 1950; i--) {
       this.years.push(i);
-
     }
   }
-  checkmark() {
+  checkmark() {   //useless now, but will be helpful in the future
     const mark = this.form.controls['mark'].value;
     const models = this.carse.filter(car => car.mark === mark);
     const lol = models.map(car => car.model);
     this.models = Array.from(new Set(lol));
+  }
+  editCar(key): void {
+    this.carsservice.pushFileToStorage(this.selectedFiles, this.progress, this.car.id);
+    this.carsservice.pushMaintoStorage(this.oneSelectedFile, this.progress, this.car.id, () => {
+      this.GetImage(this.car.id, key);
+    });
+  }
+  ClearIt(): void {
+
   }
 
 

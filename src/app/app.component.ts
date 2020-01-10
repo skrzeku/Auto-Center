@@ -35,9 +35,7 @@ export class AppComponent implements OnInit, AfterViewInit{
   this.carsserv.getCars().subscribe((cars) => {
     this.allcars = cars;
     this.mapCars();
-    cars.forEach((car) => {
-      //this.GetMainImg(car);
-    });
+    this.carsserv.shareCars(cars);
   });
   }
 

@@ -25,7 +25,7 @@ export class AuthGuard implements CanActivate, CanLoad {
           return true;
         }
         this.router.navigate(['/login'])
-          .then(error => this.toast.open("Sorry you're not authorized to view this page"));
+          .then(error => this.toast.open("Sorry you're not authorized to view this page", '', {panelClass: 'error_one'}));
         return false;
       }
       )

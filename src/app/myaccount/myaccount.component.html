@@ -1,19 +1,181 @@
 <div class="my-accont-container">
-  <div class="medium-container">
-    <div class="my-account-hello">
-      <span>Witaj NAZWA UZYTKOWNIKA!!</span>
+  <mat-toolbar class="mytoolbar">
+    <div class="toolbar-inside">
+      <h1><span>My Account</span></h1>
     </div>
-    <div class="add-wrapper">
-      <h2>Moje Ogłoszenia</h2>
-      <ul id="myacc-ul">
-        <li class="active">Ogłoszenia</li>
-        <li>Wiadomości</li>
-        <li>Ustawienia</li>
+  </mat-toolbar>
+  <div id="adds-container">
+    <div class="medium-container">
+      <h3 class="header_withLine"><span>Your Advertisements</span></h3>
+      <ul id="choice-add-category">
+        <li class="active" #current_li (click)="chengeViews($event, true)">Current {{amountOfCurrent}}</li>
+        <li #recent_li (click)="chengeViews($event, false)">Recent {{amountOfRecent}}</li>
       </ul>
-    </div>
-  </div>
-  <main [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''">
-    <router-outlet #o="outlet"></router-outlet>
-  </main>
+      <div class="adds-main-wrap">
+        <!-- Current-->
+        <div class="currentwrapper" *ngIf="currentBoolean">
+          <div class="not_empty_inside" *ngIf="clientCars?.length > 0; else NoCurrentCars">  <!-- it should be shown by ngif-->
+              <ul class="ul_top visible-sm">
+                <li class="smallest_one"><a>No.</a></li>
+                <li class="img"></li>
+                <li class="title"><a (click)="sortIt()">Title<i class="fas fa-sort-up"></i><i class="fas fa-sort-down"></i></a></li>
+                <li class="price"><a>Price<i class="fas fa-sort-up"></i><i class="fas fa-sort-down"></i></a></li>
+                <li class="actions">Actions</li>
+              </ul>
+
+            <div class="myaccount_car" *ngFor="let car of clientCars; let i = index">
+              <div class="car_number visible-sm smallest_one">{{i + 1}}</div>
+              <div class="img_myaccount img" [ngStyle]="{'background-image':' url(' + car.mainImg + ')'}"></div>
+              <div class="car_info_myaccount title">
+                <h4 (click)="gotoDetails(car)">{{car.shortdescription}}</h4>
+                <div class="visible-sm another_bottom">
+                  <span>{{car.fuel}} <i class="fas fa-angle-double-right"></i> {{car.course}}km <i class="fas fa-angle-double-right"></i> {{car.power}}KM</span>
+                </div>
+              </div>
+              <div class="myaccount_car_price price">
+                <span>{{car.price | number}} $</span>
+              </div>
+
+              <div class="car_buttons_wrapper actions">
+                <button mat-raised-button class="main-button blue" (click)="goToEditCar(car)"><i class="fas fa-edit"></i></button>
+                <button mat-raised-button class="main-button orange" (click)="openDialog(car)"><i class="fas fa-times"></i></button>
+                <!--<a id="edit_car" ><i class="fas fa-edit"></i></a>
+                <a id="delete_car" ><i class="fas fa-times"></i></a> -->
+              </div>
+
+
+
+              <div class="bottom_info hidden-sm">
+                <span>{{car.fuel}} <i class="fas fa-angle-double-right"></i> {{car.course}}km <i class="fas fa-angle-double-right"></i> {{car.power}}KM</span>
+              </div>
+
+            </div>
+          </div>
 </div>
-<!-- footer -->
+
+        <!-- Recent-->
+        <div id="recent_wrapper" *ngIf="!currentBoolean"> <div *ngIf="recentBoolean; else NoRecentCars"></div></div>
+
+      </div>
+      <div id="UserInfo">
+        <h3 class="header_withLine"><span>User Info</span></h3>
+        <div id="left_user">
+          <img src="../../assets/images/user-info_icon-icons.com_68281.png">
+        </div>
+        <div id="right_user">
+          <div class="w-50">
+            <h4>Email:</h4>
+            <span>{{myuser?.email}}</span>
+          </div>
+          <div class="w-50">
+            <h4>Password:</h4>
+            <span>{{myuser?.password}}</span>
+          </div>
+          <div id="shown_info" *ngIf="!edit_info">
+            <div class="w-50">
+              <h4>First Name:</h4>
+              <span>{{myuser?.first_name}}</span>
+            </div>
+            <div class="w-50">
+              <h4>Last Name:</h4>
+              <span>{{myuser?.last_name}}</span>
+            </div>
+            <div class="w-50">
+              <h4>Country:</h4>
+              <span>{{myuser?.country}}</span>
+            </div>
+            <div class="w-50">
+              <h4>Adress:</h4>
+              <span>{{myuser?.adress}}</span>
+            </div>
+            <div class="w-50">
+              <h4>Postal Code:</h4>
+              <span>{{myuser?.post_code}}</span>
+            </div>
+            <div class="w-50">
+              <h4>City:</h4>
+              <span>{{myuser?.city}}</span>
+            </div>
+          </div>
+
+
+
+          <!-- Show by click-->
+          <div id="hidden_form" *ngIf="edit_info">
+            <form [formGroup]="info_form">
+              <div class="w-50">
+                <h4>First Name:</h4>
+                <div class="myfield">
+                  <mat-form-field>
+                    <input type="text" matInput formControlName="first_name" placeholder="" >
+                  </mat-form-field>
+                </div>
+
+              </div>
+              <div class="w-50">
+                <h4>Last Name:</h4>
+                <div class="myfield">
+                  <mat-form-field>
+                    <input type="text" matInput formControlName="last_name" placeholder="" >
+                  </mat-form-field>
+                </div>
+
+              </div>
+              <div class="w-50">
+                <h4>Country:</h4>
+                <div class="myfield">
+                  <mat-form-field>
+                    <input type="text" matInput formControlName="country" placeholder="" >
+                  </mat-form-field>
+                </div>
+
+              </div>
+              <div class="w-50">
+                <h4>Adress:</h4>
+                <div class="myfield">
+                  <mat-form-field>
+                    <input type="text" matInput formControlName="adress" placeholder="" >
+                  </mat-form-field>
+                </div>
+
+              </div>
+              <div class="w-50">
+                <h4>Postal code:</h4>
+                <div class="myfield">
+                  <mat-form-field>
+                    <input type="text" matInput formControlName="post_code" placeholder="" >
+                  </mat-form-field>
+                </div>
+
+              </div>
+              <div class="w-50">
+                <h4>City:</h4>
+                <div class="myfield">
+                  <mat-form-field>
+                    <input type="text" matInput formControlName="city" placeholder="">
+                  </mat-form-field>
+                </div>
+
+              </div>
+            </form>
+
+          </div>
+
+
+
+          <div class="info-button-wrapper">
+            <button class="main-button orange" mat-raised-button (click)="showinfoform()" *ngIf="!edit_info">Edit</button>
+            <button class="main-button blue" mat-raised-button (click)="cancelInfoForm()" *ngIf="edit_info">Cancel</button>
+            <button class="main-button orange" mat-raised-button (click)="acceptChanges()" *ngIf="edit_info">Accept</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <app-footer></app-footer>
+  </div>
+</div>
+
+
+<ng-template #NoCurrentCars><div class="center-text mymargins"><b>Currently, you don't have any announcement. Would you like to add you vehicle?</b></div> <div class="center-text"><button mat-raised-button class="main-button orange" (click)="gotoAddCars()">Add Vehicle</button></div> </ng-template>
+<ng-template #NoRecentCars><div class="center-text mymargins"><b>You didn't have any announcement. Would you like to add you vehicle?</b></div> <div class="center-text"><button mat-raised-button class="main-button orange" (click)="gotoAddCars()">Add Vehicle</button></div> </ng-template>

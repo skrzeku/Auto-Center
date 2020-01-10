@@ -1,15 +1,15 @@
 <div class="big-new-offer-container">
   <mat-toolbar class="mytoolbar">
 <div class="toolbar-inside">
-<h1>Add car</h1>
+<h1><span>Add car</span></h1>
 </div>
   </mat-toolbar>   <!-- End Toolbar-->
 
   <div id="bottom-navi-fixed">
     <div class="smaller-container">
-      <div class="left-side"> <a>Clear</a>
-        <span>Liczba + Wypełnione pola</span>
-        <button  mat-raised-button class="main-button orange" [disabled]="form.invalid" (click)="createCar()">Add Vehicle</button>
+      <div class="left-side"><a (click)="form.reset()">Clear</a>
+        <button  mat-raised-button class="main-button orange" [disabled]="form.invalid" (click)="createCar()" *ngIf="!editSite">Add Vehicle</button>
+        <button  mat-raised-button class="main-button orange"  [disabled]="form.invalid" (click)="editCar(car.key)" *ngIf="editSite">Edit Vehicle</button>
      </div>
 
     </div>
@@ -27,7 +27,7 @@
       <div class="myfield sm">
         <span>Brand:</span><i class="fas fa-info-circle" id="1"></i>
       <mat-form-field>
-        <mat-select formControlName="mark" (selectionChange)="checkmark()">
+        <mat-select formControlName="mark" > <!-- (selectionChange)="checkmark()"-->
           <mat-option class="myoption" *ngFor="let mark of marks" [value]="mark">
             {{mark}}
           </mat-option>
@@ -166,14 +166,15 @@
           <a (click)="addMainInput.click()" id="add-img-main"><i class="fas fa-camera"></i>Add main photo</a>
         </div>
         <div class="small-add-photo">
-          <input #csvInput hidden="true" multiple type="file"  onclick="this.value=null" (change)="csvInputChange($event)" accept=".png"/>
+          <input #csvInput hidden="true" multiple type="file"  onclick="this.value=null" (change)="csvInputChange($event)" accept=".jpg"/>
           <a (click)="csvInput.click()" id="add-img"><i class="fas fa-camera"></i>Add rest photos</a>
         </div>
         <div id="added_img_wrapper">
           <div id="big_main_img" [ngStyle]="{'background-image': 'url(' + mainUrl + ')'}" *ngIf="mainUrl">
           </div>
-          <div class="small-img" *ngFor="let img of selectedFiles; index as index" [ngStyle]="{'background-image':' url(' + url[index] + ')'}">
-          </div>
+          <div class="small-img" *ngFor="let img of url; index as index" [ngStyle]="{'background-image':' url(' + img + ')'}"></div>
+         <!-- <div class="small-img" *ngFor="let img of imgs_url" [ngStyle]="{'background-image':' url(' + img + ')'}"></div> -->
+
         </div>
 
 
@@ -194,9 +195,9 @@
         <span>Description:</span>
         <mat-form-field>
           <input type="text"  matInput name="value" placeholder="" #descriptionInput formControlName="description">
-          <mat-hint align="end">{{descriptionInput.value.length}} / 170</mat-hint>
+          <mat-hint align="end">{{descriptionInput.value.length}} / 300</mat-hint>
           <mat-error *ngIf="form.get('description').hasError('minlength')">Minimum length is 30 chars</mat-error>
-          <mat-error *ngIf="form.get('description').hasError('maxlength')">Maximum length is 170 chars</mat-error>
+          <mat-error *ngIf="form.get('description').hasError('maxlength')">Maximum length is 300 chars</mat-error>
         </mat-form-field>
       </div>
         <div class="check-vat">
@@ -209,7 +210,7 @@
       </div>
       <div class=" small-width-50">
         <span>email:</span>
-        <input type="text" value="pawel@wp.pl" class="client-inputs">
+        <input type="text" [value]="userEmail" class="client-inputs" *ngIf="userEmail">
       </div>
       <div class=" small-width-50">
         <span>Tel:</span>

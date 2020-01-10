@@ -1,12 +1,12 @@
 export interface Client {
-  login: string;    //
-  password: string;       //
-  first_name: number;       //
-  last_name: number;       //
-  adress: string;
-  post_code: string;
+  email: string,
+  password: string;
+  first_name: string,
+  last_name: string,
+  country: string,
+  adress: string,
+  post_code: string,
   city: string;
-  phone: string;
   id: number;
   key: string;
 }

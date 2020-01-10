@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {map, publishBehavior} from 'rxjs/operators';
 import {Car, Image} from '../models/car.model';
 import {Mark} from '../models/marks.model';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -18,7 +18,8 @@ export class CarsService {
     private Api_url = '/cars';
     private marks_url = '/marks/marks';
     private info_url = 'info/info_db';
-    carSubject = new BehaviorSubject(null);
+    carSubject$ = new BehaviorSubject(null);
+    allCars$ = new BehaviorSubject(null);
   private basePath = '/img';
   constructor(private db: AngularFireDatabase,
               private router: Router,
@@ -36,13 +37,19 @@ export class CarsService {
   }
 
 
-  getInfoCircle(): Observable <any>{
+  getInfoCircle(): Observable <any> {
     return this.db.list<any>(this.info_url).snapshotChanges()
       .pipe(map(response => response.map(info => this.assignKey(info))));
   }
 
   addCar(car: Car) {
     return this.db.list<Car>(this.Api_url).push(car);
+  }
+  deleteCar(key: string) {
+    return this.db.object(`${this.Api_url}/${key}`).remove();
+  }
+  editCar(key: string, car: Car) {
+    return this.db.object<Car>(`${this.Api_url}/${key}`).update(car);
   }
 
   goToCarDetails(car: Car) {
@@ -56,9 +63,11 @@ export class CarsService {
   }
 
   shareCar(car: Car) {
-    this.carSubject.next(car);
+    this.carSubject$.next(car);
   }
-
+  shareCars(cars: Car[]) {
+    this.allCars$.next(cars);
+  }
 
   pushFileToStorage(fileUpload: FileList, progress: { percentage: number }, path, method?) {
 for (let i = 0; i <= fileUpload.length - 1; i++) {

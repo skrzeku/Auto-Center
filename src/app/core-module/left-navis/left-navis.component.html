@@ -1,21 +1,27 @@
 <div class="left-navi-container">
-  <button class="add-button">Dodaj Ogłoszenie</button>
-  <div class="flex-cont">
-    <div class="active"><i class="fas fa-car"></i><span>osobowe</span></div>
-    <div><i class="fas fa-bicycle"></i><span>rowery</span></div>
-    <div><i class="fas fa-motorcycle"></i><span>motocykle</span></div>
+  <div id="logo">
+    <img src="../../../assets/images/LogoWheel.png">
+    <div>
+      <span>Auto-Center</span>
+      <span>Driving to the future</span>
+    </div>
   </div>
   <ul class="left-navi-uls">
-    <li>Obser</li>
-    <li>dsdsi</li>
-    <li>lorem</li>
+    <li><a (click)="toMyAccounts('main')">Home</a></li>
+    <li><a (click)="toNavigate()">All Offers</a></li>
+    <li><a (click)="toNavigate(true, 'premium', true)">Promoted Vehicles</a></li>
+    <li><a (click)="toNavigate(true, 'type', 'Luxury')">Luxury Vehicles</a></li>
+    <li><a (click)="toNavigate(true, 'state', 'New')">New Vehicles</a></li>
   </ul>
-  <h4>Moje konto</h4>
+  <h4>My account</h4>
   <ul class="left-navi-uls">
-    <li>Zaloguj</li>
-    <li>Zarejestruj</li>
-    <li>Utworz konto</li>
+    <li><a (click)="toMyAccounts('login')" *ngIf="!loginstate">Sign-in</a></li>
+    <li><a (click)="toMyAccounts('login/register')" *ngIf="!loginstate">Register</a></li>
+    <li><a (click)="toMyAccounts('myaccount')" *ngIf="loginstate">My Account</a></li>
+    <li><a (click)="logOut()" *ngIf="loginstate">LogOut</a></li>
   </ul>
+  <div class="center-text"><button mat-raised-button class="main-button orange" (click)="toMyAccounts('offers/new')">Add Vehicle</button></div>
+
   <button type="button" class="close" aria-label="Close" (click)="sharedbool()">
     <span aria-hidden="true">&times;</span>
   </button>

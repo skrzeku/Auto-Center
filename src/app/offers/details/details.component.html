@@ -3,8 +3,8 @@
 <app-detail-navi #detail_navi_children [car] ="car"></app-detail-navi>
   </div>
   <div class="bottom-xs-navi hidden-sm">
-    <button mat-raised-button color="danger"><i class="fas fa-phone"></i>Call</button>
-    <button mat-raised-button color="primary" (click)="showContact()"><i class="fas fa-envelope"></i>Contact</button>
+    <button mat-raised-button class="orange"><i class="fas fa-phone"></i>Call</button>
+    <button mat-raised-button class="blue" (click)="showContact()"><i class="fas fa-envelope"></i>Contact</button>
   </div>
 <section class="main-detail-section">
   <div class="another-container">   <!--have to add class .medium-container -->
@@ -41,7 +41,7 @@
                   <i class="fas fa-map-marker-alt"></i><span>{{car.from}}</span>
                 </div>
                 <div class="dealer-where">
-                  <i class="fas fa-clock"></i>{{car.start_date}}
+                  <i class="fas fa-clock"></i>{{car.start_date | date}}
                 </div>
                 <div class="dealer-where">
                     <div *ngIf="visibleboolean" [@scale3dboth]>
@@ -75,6 +75,7 @@
         <li><span class="list-span">State:</span> <a class="nav">{{car.state}}</a></li>
         <li><span class="list-span">Power:</span> <a class="nav">{{car.power}} KW</a></li>
         <li><span class="list-span">Engine capacity:</span> <a class="nav">{{car.engine_capacity}} cm<sup>3</sup></a></li>
+        <li><span class="list-span">User:</span> <a class="nav">{{car.user}} </a></li>
 
       </ul>
 
@@ -84,6 +85,7 @@
         <button mat-raised-button class="main-button blue headers_btn">Description</button>
       </div>
       <div class="date-id-details">{{car.description}}</div>
+      <div class="center-text"><button class="main-button orange" mat-raised-button (click)="goToEditCar(car)" *ngIf="stateEmail === car.user">Edit Vehicle</button></div>
     </div>
   </div>
 </section>

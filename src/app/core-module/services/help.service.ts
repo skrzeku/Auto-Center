@@ -13,6 +13,7 @@ export class HelpService {
   array: Filter[] = [];
   marks$ = new BehaviorSubject<string[]>(null);
   cars$ = new BehaviorSubject<string[]>(null);
+  editBoolean$ = new BehaviorSubject<boolean>(null);
 
 
   constructor() { }
@@ -43,6 +44,9 @@ export class HelpService {
   }
   ShareCars(cars) {
   this.cars$.next(cars);
+  }
+  Shareedits(val: boolean) {
+  this.editBoolean$.next(val);
   }
 
 

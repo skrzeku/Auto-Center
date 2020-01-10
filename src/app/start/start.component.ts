@@ -65,7 +65,6 @@ export class StartComponent implements OnInit {
   goTopromotedCars() {
     this.router.navigate(['offers']);
     this.helpserv.PushFilterArray('premium', true, '' );
-
   }
   showMoreTypes() {
     this.alltypes.forEach((type) => {

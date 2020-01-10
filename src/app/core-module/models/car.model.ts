@@ -21,6 +21,7 @@ export interface Car {
   type: string;
   shortdescription: string;
   mainImg: any;
+  user: string;
 
 
 }

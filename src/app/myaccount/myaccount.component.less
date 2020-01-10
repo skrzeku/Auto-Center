@@ -1,29 +1,231 @@
 @import "../../assets/styles/global";
 
-
-#myacc-ul {
-  .list-style-none;
-
-}
-.routers {
-  .relative !important;
-}
-
-#myacc-ul li {
-  .d-inline;
-  .w(33.333%);
-  .center-text;
-  .padding-top-bottom(13px, 13px);
-  font-size: 20px;
-}
-.active {
-  background-color: #4c8bf5;
-  color: white;
-  box-shadow: 2px 5px 5px #888888;
-}
 .my-accont-container {
   .relative;
 }
-.footerone {
+#my-account-hello {
 
+}
+
+
+.routers {
+  .relative !important;
+}
+#adds-container {
+  margin-top: 40px;
+  .relative;
+  .medium-container {
+    padding-bottom: 40px;
+  }
+}
+.adds-main-wrap {
+  padding-bottom: 40px;
+}
+
+.img_myaccount {
+  height: 120px;
+  .w(100%);
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.not_empty_inside {
+  padding-right: 10px;
+}
+
+
+
+
+
+
+
+
+
+#choice-add-category {
+  .list-style-none;
+  .d-flex;
+  margin-top: 30px;
+  justify-content: space-around;
+  align-items: center;
+  li {
+    .center-text;
+    .c-pointer;
+    font-size: 18px;
+    .w(200px);
+    padding: 8px 0;
+    color: @main-color;
+    &:hover {
+      color: @sec-color;
+    }
+  }
+  @media @small {
+    .w(50%);
+  }
+}
+.active {
+  background-color: @main-color;
+  color: @bg-color !important;
+  .box-shadow;
+  .blue;
+  .main-button;
+}
+.ul_top {
+  .list-style-none;
+  padding: 0;
+  margin: 20px 0 0;
+  .w(100%);
+  li {
+    .d-inline;
+    .center-text;
+    color: @main-color;
+    font-weight: 700;
+  }
+}
+.myaccount_car {
+  .w-calc(50%, 12px);
+  margin: 10px 0 0 10px;
+  .d-inline;
+  border: solid 1px @main-color;
+  overflow: hidden;
+  vertical-align: top;
+  @media @small {
+    .w-calc(100%, 12px);
+    margin: 15px 0;
+    padding: 0 10px 0 0;
+      .d-flex;
+      justify-content: space-around;
+      align-items: center;
+
+  }
+}
+.car_buttons_wrapper {
+  .center-text;
+  padding: 25px 0 10px;
+  background-color: @main-color;
+  button {
+    .w(50%);
+    .d-inline;
+  }
+}
+.car_info_myaccount {
+  padding: 0 5px;
+  h4 {
+    color: @main-color;
+    font-size: 1rem;
+    .c-pointer;
+    &:hover {
+      color: @sec-color;
+    }
+    @media @small {
+      font-size: 1.2rem;
+    }
+  }
+}
+.bottom_info {
+  font-size: .8rem;
+  padding-left: 10px;
+  background-color: @main-color;
+  color: @bg-color;
+
+  span, i {
+    opacity: .8;
+  }
+}
+.another_bottom {
+  font-size: 0.9rem;
+  color: @sec-color;
+}
+.myaccount_car_price {
+  .center-text;
+  margin-top: 15px;
+
+  span {
+    background-color: @main-color;
+    font-size: 1.1rem;
+    color: @bg-color;
+    padding: 10px;
+    border-radius: 10px 0 10px 0;
+    .box-shadow;
+  }
+
+}
+@media @small {
+  .smallest_one {
+    .w(5%);
+    .center-text;
+  }
+  .actions {
+    .w(20%);
+  }
+  .price {
+    .w(15%);
+  }
+  .img {
+    .w(25%);
+  }
+  .title {
+    .w(35%);
+  }
+  .smallest_one, .actions, .price, .img, .title {
+    .d-inline;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+
+#left_user {
+  margin-top: 30px;
+  .w-100;
+  .center-text;
+  .d-inline;
+  @media @small {
+    .w(40%);
+  }
+  img {
+    .w(60%);
+    height: auto;
+    filter: invert(11%) sepia(43%) saturate(850%) hue-rotate(201deg) brightness(89%) contrast(90%);
+    @media @small {
+      .w(80%);
+    }
+  }
+}
+#right_user {
+  margin-top: 30px;
+  .w-calc(100%, 20px);
+  padding: 0 10px;
+  @media @small {
+    .w(60%);
+    .d-inline;
+    padding: 0;
+    vertical-align: top;
+  }
+}
+.w-50 {
+  .w(50%);
+  .d-inline;
+  margin-top: 20px;
+  h4 {
+    color: @main-color;
+    margin: 0 0 5px;
+  }
+  span {
+    font-size: .95rem;
+  }
+  .myfield {
+    .w(80%);
+  }
+}
+.info-button-wrapper {
+  margin-top: 30px;
+  .w(80%);
+  .d-flex;
+  justify-content: space-around;
+  button {
+    .d-inline;
+  }
+}
+.mymargins {
+  margin: 30px 0;
 }

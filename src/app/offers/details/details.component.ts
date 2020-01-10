@@ -20,6 +20,8 @@ import {MatDialog} from '@angular/material';
 import {ImgdialogComponent} from './imgdialog/imgdialog.component';
 import {scale3dboth} from '../../start/animation/scale3dboth';
 import {ContactDialogComponent} from './contact-dialog/contact-dialog.component';
+import {HelpService} from '../../core-module/services/help.service';
+import {AuthorizationService} from '../../core-module/services/authorization.service';
 
 @Component({
   selector: 'app-details',
@@ -43,17 +45,18 @@ export class DetailsComponent implements OnInit, AfterViewInit {
   increment = 0;
   imgs_length = 0;
   bigbool = false;
-
-
   car: Car;
   key: any;
   visibleboolean: boolean = false;
+  stateEmail = '';
 
   constructor(private activeroute: ActivatedRoute,
               private router: Router,
               private carsservice: CarsService,
               private renderer: Renderer2,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              private helpserv: HelpService,
+              private authderv: AuthorizationService) {
     router.events.subscribe((e) => {
       if (e instanceof NavigationStart) {
         this.bigbool = true;
@@ -71,7 +74,12 @@ export class DetailsComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.LoadoneCar();
+    this.authderv.authState$.subscribe((state) => {
+      if (state) {
+        this.stateEmail = state.email;
+      }
 
+    });
   }
   ngAfterViewInit() {
     this.mydetail_element = this.details_now_fixed.nativeElement;
@@ -89,7 +97,7 @@ export class DetailsComponent implements OnInit, AfterViewInit {
     firebase.storage().ref().child('' + this.car.id + '').listAll().then((result) => {
       this.DownloadImgs(result.items.length);
       this.imgs_length = result.items.length;
-      console.log(this.imgs_length + ' length');
+
     }).catch(function(error) {
       alert(error);
     });
@@ -161,6 +169,14 @@ export class DetailsComponent implements OnInit, AfterViewInit {
   }
   showContact(): void {
     this.dialog.open(ContactDialogComponent, {data: this.car});
+  }
+  goToEditCar(car: Car) {
+    this.helpserv.Shareedits(true);
+    this.router.navigate(['offers/new']).then(
+      () => {
+        this.carsservice.shareCar(car);
+      }
+    );
   }
 
 

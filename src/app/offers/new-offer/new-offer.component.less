@@ -5,34 +5,7 @@
 }
 
 
-.mytoolbar {
-  background-color: @main-color;
-  color: @bg-color;
-  .position(relative);
-  .w(100%);
-  padding-top: 140px;
-  padding-bottom: 40px;
-                            &:after {
-                             .afterStartAdd;
-                            }
-}
 
-.toolbar-inside {
-  .w(100%);
-  text-transform: uppercase;
-  color: @bg-color;
-  font-weight: bold;
-
-
-  @media @medium {
-    .w(1100px);
-    margin: 0 auto;
-    padding-left: 10px;
-  }
-
-
-
-}
 
 
 
@@ -143,22 +116,7 @@
   }
 
 }
-.header_withLine {
-  color: @main-color;
-  .relative;
-  span {
-    background-color: @bg-color;
-    z-index: 2;
-    padding: 0 10px;
-    margin-left: 60px;
-  }
-  &:before {
-    .headers_line(100%);
-    left: 0;
-    bottom: 50%;
-    z-index: -1;
-  }
-}
+
 
 .left-one {
 .w-calc(100%, 20px);
@@ -352,7 +310,7 @@
   z-index: 9;
   .w-calc(100%, 20px);
   border-top: solid 1px lighten(gray, 10%);
-  padding: 10px 10px 0;
+  padding: 10px 10px 10px;
   .white-bg;
   box-shadow: 0 -5px 5px -5px #333;
   @media @small {
@@ -366,31 +324,20 @@
 }
 .left-side {
   .w(100%);
-  text-align: center;
-                  span {
-                    .d-block;
-                    cursor: default;
-                    font-size: 13px;
-                    opacity: 0.6;
-                    line-height: 21px;
-                    .position(relative, @top: 42px);
-                    @media @small {
-                      .d-inline;
-                      top: 0;
-                      margin-right: 10px;
-                    }
-                  }
+ .center-text;
+  .d-flex;
+  justify-content: space-around;
+  align-items: center;
                   a {
-                    color: red;
+                    color: @main-color;
                     .font-bold;
                     line-height: 30px;
                     @media @small {
-                      margin-right: 150px;
 
                     }
                     &:hover {
                       opacity: 0.7;
-                      border-bottom: 1px solid red;
+                      border-bottom: 1px solid @main-color;
                     }
                   }
   @media @small {
@@ -405,26 +352,7 @@
 }       //not important
 
       //button
-#add-car {
-  left: 0;
-  transform: none;
-  .position(relative, @top: -23px);
-  @media @small {
-    .w(auto);
-    top: 0;
-    padding: 10px 60px;
-  }
 
-}
-.small-cont-toolbar {
-  @media @small {
-    width: 760px;
-    margin-right: auto;
-  }
-}
-.another-small {
-  width: 760px;
-}
 
 .keyframes(fade-in; {
   0% {
